@@ -11,7 +11,7 @@ namespace RiECalmingPlan.Views {
             InitializeComponent();
             BackgroundColor = Constants.BackgroundColor;
 
-
+            // hello from mitchell's push
         }
 
         async void GoToContextMainPage(object sender, System.EventArgs e) {
