@@ -1,9 +1,5 @@
 ﻿using RiECalmingPlan.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,7 +18,7 @@ namespace RiECalmingPlan.Pages {
 
         }
 
-        private void RefreshListView() {
+        private void RefreshCarouselView() {
             try {
                 Questions.ItemsSource = database.GetDisplayQuestionList();
             }
@@ -33,9 +29,20 @@ namespace RiECalmingPlan.Pages {
         }
         protected override void OnAppearing() {
             base.OnAppearing();
-            RefreshListView();
+            RefreshCarouselView();
         }
 
 
+        
+        private void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e) {
+            //Event that occurs when a checkbox is checked
+            Console.WriteLine("Checkbox changed " + e.Value);
+
+        }
+
+        private void OnStepperValueChanged(object sender, ValueChangedEventArgs e) {
+            //Event that occurs when a Stepper is changed
+            Console.WriteLine("Stepper changed " + e.NewValue);
+        }
     }
 }

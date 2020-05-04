@@ -6,6 +6,8 @@
              xmlns:views="clr-namespace:RiECalmingPlan.Views"
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_Questions">
+    
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="radioBoxTemplate">
@@ -23,10 +25,15 @@
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
 
-                            <ListView BindingContext="{Binding Response}" ItemsSource="{Binding}">
+                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextCell Text="{Binding RadioBoxText}"></TextCell>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding RadioBoxText}"></Label>
+                                                <Stepper ValueChanged="OnStepperValueChanged" Minimum="0" Maximum="3"/>
+                                            </StackLayout>
+                                        </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
@@ -50,10 +57,15 @@
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
 
-                            <ListView BindingContext="{Binding Response}" ItemsSource="{Binding}" >
+                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextCell Text="{Binding CheckText}"></TextCell>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding CheckText}"></Label>
+                                                <CheckBox IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged"></CheckBox>
+                                            </StackLayout>
+                                        </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
@@ -77,10 +89,15 @@
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
 
-                            <ListView BindingContext="{Binding Response}" ItemsSource="{Binding}">
+                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" >
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <TextCell Text="{Binding CPQID}"></TextCell>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding CPQID}"></Label>
+                                                <Entry Placeholder="{Binding TextResponse}"></Entry>
+                                            </StackLayout>
+                                        </ViewCell>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
@@ -100,10 +117,8 @@
     <ContentPage.Content>
         <StackLayout Margin="20,35,20,20">
 
-            <Label x:Name="title" Text="Question Survey"/>
+            <CarouselView x:Name="Questions" ItemTemplate="{StaticResource answerTemplateSelector}"/>
 
-            <CarouselView x:Name="Questions" ItemTemplate="{StaticResource answerTemplateSelector}">
-            </CarouselView>
         </StackLayout>
     </ContentPage.Content>
     

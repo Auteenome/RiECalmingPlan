@@ -15,11 +15,18 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(SQLite_Android))]
 namespace RiECalmingPlan.Droid.SQLite {
     public class SQLite_Android : ISQLite {
-        async Task<SQLiteConnection> ISQLite.GetConnection() {
 
+        //The differences between these two functions is that one triggers when the app is practically initialised whereas the second happens manually
+
+
+
+
+        async Task<SQLiteConnection> ISQLite.GetConnection() {
             String databaseName = "Questions.db";
             var docFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            var dbFile = Path.Combine(docFolder, databaseName); // FILE NAME TO USE WHEN COPIED
+            var dbFile = Path.Combine(docFolder, databaseName); // FILE PATH TO USE WHEN COPIED
+
+            //Copies and pastes db file from assets folder to above path
             if (!File.Exists(dbFile)) {
                 FileStream writeStream = new FileStream(dbFile, FileMode.OpenOrCreate, FileAccess.Write);
                 await Android.App.Application.Context.Assets.Open(databaseName).CopyToAsync(writeStream);

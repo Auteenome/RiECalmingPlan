@@ -17,7 +17,7 @@ namespace RiECalmingPlan.Models {
         public string CheckText { get; set; }
 
         [Column("CheckBoxValue")]
-        public int CheckBoxValue { get; set; }
+        public bool CheckBoxValue { get; set; }
 
 
     }

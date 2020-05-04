@@ -18,5 +18,9 @@ namespace RiECalmingPlan.Views {
             await Navigation.PushAsync(new Page_Questions());
         }
 
+        void ResetLocalDatabase(object sender, System.EventArgs e) {
+            //will be implemented soon
+        }
+
     }
 }
