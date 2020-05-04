@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:RiECalmingPlan.Views"
+             mc:Ignorable="d"
+             x:Class="RiECalmingPlan.Pages.Page_Questions">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="radioBoxTemplate">
+                <StackLayout>
+                    <Frame HasShadow="True"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       Margin="20"
+                       HeightRequest="500"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                        <StackLayout>
+                            <Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Blue" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
+
+                            <ListView BindingContext="{Binding Response}" ItemsSource="{Binding}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextCell Text="{Binding RadioBoxText}"></TextCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+
+            <DataTemplate x:Key="checkBoxTemplate">
+                <StackLayout>
+                    <Frame HasShadow="True"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       Margin="20"
+                       HeightRequest="500"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                        <StackLayout>
+                            <Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Green" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
+
+                            <ListView BindingContext="{Binding Response}" ItemsSource="{Binding}" >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextCell Text="{Binding CheckText}"></TextCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+
+            <DataTemplate x:Key="textResponseTemplate">
+                <StackLayout>
+                    <Frame HasShadow="True"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       Margin="20"
+                       HeightRequest="500"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                        <StackLayout>
+                            <Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Red" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
+
+                            <ListView BindingContext="{Binding Response}" ItemsSource="{Binding}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextCell Text="{Binding CPQID}"></TextCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+
+            <views:AnswerTemplateSelector x:Key="answerTemplateSelector"
+            RadioBoxTemplate="{StaticResource radioBoxTemplate}"
+            CheckBoxTemplate="{StaticResource checkBoxTemplate}"
+            TextResponseTemplate="{StaticResource textResponseTemplate}" />
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Margin="20,35,20,20">
+
+            <Label x:Name="title" Text="Question Survey"/>
+
+            <CarouselView x:Name="Questions" ItemTemplate="{StaticResource answerTemplateSelector}">
+            </CarouselView>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

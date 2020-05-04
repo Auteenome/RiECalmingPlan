@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RiECalmingPlan.Views.Page_Login">
+
+
+<StackLayout x:Name="MasterLayout">
+        <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
+            <!-- WIll fill to the end of the icon -->
+            <Image x:Name="LoginIcon" Source="logo.png" Margin="0,80,0,0"/>
+        </StackLayout>
+
+        <StackLayout x:Name="LoginEntriesStack" VerticalOptions="StartAndExpand">
+            <!-- Will fill from the end of the icon stack to the end of the page-->
+            <StackLayout.Padding>
+                <!-- OnIdiom allows different arguements for different frameworks -->
+                <OnIdiom x:TypeArguments="Thickness">
+                    <OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
+                    <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>
+                </OnIdiom>            
+            </StackLayout.Padding>
+
+            <!-- Used for when waiting for server to respond -->
+            <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="true" />
+
+
+            <Label x:Name="Lbl_Username" Text="Username" />
+            <Entry x:Name="Entry_UserName" Placeholder="Username" />
+            <Label x:Name="Lbl_Password" Text="Password" />
+            <Entry x:Name="Entry_PassWord" Placeholder="Password" />
+            <Button x:Name="Btn_SignIn" Text="Sign In" Clicked="SignInProcedure" />
+            <Button Text="Not Registered? Sign Up" BorderColor="Black"
+                    Padding="10" BackgroundColor="White"
+                    TextColor="Black" Clicked="GoToTandC" ></Button>
+
+            <Button Text="Go to Next Page" Clicked="Page2Jump" Padding="10" BackgroundColor="White" TextColor="Black"></Button>
+        </StackLayout>
+    
+    </StackLayout>
+
+</ContentPage>

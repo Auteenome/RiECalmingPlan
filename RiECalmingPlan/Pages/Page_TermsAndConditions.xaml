@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RiECalmingPlan.Views.TermsAndConditions">
+     <ContentPage.Content>
+        <StackLayout Padding="20" >
+            <Label Text="Legal Goo Goo" />
+            <Label Text="More Legal Ga Ga" Padding="10" />
+            <Button x:Name="TandC_Accepted" Text="Accept Terms and Conditions" VerticalOptions="Center" HorizontalOptions="Center" Clicked="ContinueToMenu" Padding="10" BackgroundColor="White" TextColor="Black"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
