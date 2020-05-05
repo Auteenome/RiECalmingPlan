@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using RiECalmingPlan.SQLite;
 using RiECalmingPlan.ViewModels;
 using SQLite;
@@ -60,12 +61,17 @@ namespace RiECalmingPlan.Models {
             return db.Query<Label_RadioBox>("SELECT * FROM [RadioBoxLabels] WHERE [CPQID] = " + CPQID);
         }
 
-        public List<CheckBoxLabel> GetAssociatedCheckBoxes(int CPQID) {
-            return db.Query<CheckBoxLabel>("SELECT * FROM [CheckBoxLabels] WHERE [CPQID] = " + CPQID);
+        public List<Label_CheckBox> GetAssociatedCheckBoxes(int CPQID) {
+            return db.Query<Label_CheckBox>("SELECT * FROM [CheckBoxLabels] WHERE [CPQID] = " + CPQID);
         }
 
-        public List<TextResponseLabel> GetAssociatedTextResponse(int CPQID) {
-            return db.Query<TextResponseLabel>("SELECT * FROM [TextResponseLabels] WHERE [CPQID] = " + CPQID);
+        public List<Label_TextResponse> GetAssociatedTextResponse(int CPQID) {
+            return db.Query<Label_TextResponse>("SELECT * FROM [TextResponseLabels] WHERE [CPQID] = " + CPQID);
         }
+
+        public void UpdateRadioResponse(Label_RadioBox radioBox) {
+            db.Update(radioBox);
+        }
+
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RiECalmingPlan.Models {
     [Table("TextResponseLabels")]
-    public class TextResponseLabel : Response {
+    public class Label_TextResponse : Response {
         [Column("CPQID")]
         public int CPQID { get; set; }
 

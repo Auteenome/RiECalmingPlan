@@ -17,7 +17,7 @@ namespace RiECalmingPlan.Models {
         public string RadioBoxText { get; set; }
 
         [Column("RadioBoxValue")]
-        public string RadioBoxValue { get; set; }
+        public int RadioBoxValue { get; set; }
 
 
 

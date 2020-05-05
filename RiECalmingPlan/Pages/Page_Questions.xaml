@@ -31,7 +31,7 @@
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding RadioBoxText}"></Label>
-                                                <Stepper ValueChanged="OnStepperValueChanged" Minimum="0" Maximum="3"/>
+                                                <Stepper Value="{Binding RadioBoxValue}" ValueChanged="OnStepperValueChanged" Minimum="0" Maximum="3"/>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
@@ -63,7 +63,7 @@
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding CheckText}"></Label>
-                                                <CheckBox IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged"></CheckBox>
+                                                <CheckBox IsChecked="{Binding CheckBoxValue}"  CheckedChanged="OnCheckBoxCheckedChanged"></CheckBox>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>

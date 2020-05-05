@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RiECalmingPlan.Models {
     [Table("CheckBoxLabels")]
-    public class CheckBoxLabel : Response {
+    public class Label_CheckBox : Response {
 
         [Column("CPQID")]
         public int CPQID { get; set; }
