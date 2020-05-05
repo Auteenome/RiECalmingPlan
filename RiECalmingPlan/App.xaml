@@ -5,5 +5,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" x:Class="RiECalmingPlan.App">
     <Application.Resources>
+        <!-- Global Styles and Colors. Reference these using: ="{StaticResource *ResourceKey*}" --> 
+        <ResourceDictionary>
+            <Color x:Key="RiEDarkGreen">#006738</Color>
+            <Color x:Key="RiELightGreen">#8DC63F</Color>
+            <Color x:Key="RiEOrange">#F05A28</Color>
+            <Color x:Key="RiEGray">#5B5C5C</Color>
+            <Color x:Key="RiEOffWhite">#E8E5DA</Color>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

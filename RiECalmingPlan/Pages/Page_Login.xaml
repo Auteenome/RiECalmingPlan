@@ -4,7 +4,7 @@
              x:Class="RiECalmingPlan.Views.Page_Login">
 
 
-<StackLayout x:Name="MasterLayout">
+    <StackLayout x:Name="MasterLayout"  BackgroundColor="{StaticResource RiELightGreen}">
         <StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
             <!-- WIll fill to the end of the icon -->
             <Image x:Name="LoginIcon" Source="logo.png" Margin="0,80,0,0"/>
@@ -15,8 +15,8 @@
             <StackLayout.Padding>
                 <!-- OnIdiom allows different arguements for different frameworks -->
                 <OnIdiom x:TypeArguments="Thickness">
-                    <OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
-                    <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>
+                    <!--<OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
+                    <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>-->
                 </OnIdiom>            
             </StackLayout.Padding>
 

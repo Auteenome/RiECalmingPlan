@@ -24,7 +24,7 @@ namespace RiECalmingPlan.Views {
         }
 
         void Init() {
-            BackgroundColor = Constants.BackgroundColor;
+            // BackgroundColor = Constants.BackgroundColor;
             Lbl_Username.TextColor = Constants.MainTextColor;
             Lbl_Password.TextColor = Constants.MainTextColor;
             //Do not display the activity spinner
