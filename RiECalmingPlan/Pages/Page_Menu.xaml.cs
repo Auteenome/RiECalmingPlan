@@ -9,7 +9,7 @@ namespace RiECalmingPlan.Views {
 
         public Page_Menu() {
             InitializeComponent();
-            BackgroundColor = Constants.BackgroundColor;
+            // BackgroundColor = Constants.BackgroundColor;
 
             // hello from mitchell's push
         }

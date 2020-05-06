@@ -40,7 +40,10 @@ namespace RiECalmingPlan {
                                                                         //  It will then be set false and subsequent arrivals
                                                                         //  at CalmingPLanMenuPage will not be affected.
 
-            MainPage = new NavigationPage (new Page_Login());
+            MainPage = new NavigationPage(new Page_Login()) {
+                BarBackgroundColor = Color.Green,
+                BarTextColor = Color.White
+            };
 
         }
 

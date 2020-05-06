@@ -1,15 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RiECalmingPlan.Views.Page_Menu"
-            Title="Calming Plan Menu">
+             x:Class="RiECalmingPlan.Views.Page_Menu">
     <ContentPage.Content>
-        <StackLayout  Padding="20">
-            <Button Text="Calming Plan Questions" BackgroundColor="White" TextColor="Black" Padding="10" Clicked="GoToContextMainPage" ></Button>
-            <Button Text="Reset Database" BackgroundColor="White" TextColor="Black" Padding="10" Clicked="ResetLocalDatabase" ></Button>
-            <StackLayout Padding = "10,50,0,0" VerticalOptions="End">
-                <Button Text="Sign Out - to be added"  BackgroundColor="White" TextColor="Black" Padding="10"  ></Button>
+        <StackLayout Style="{StaticResource StackLayoutStyle}">
+            <Button Text="Calming Plan Questions" Style="{StaticResource ButtonStyle}" Clicked="GoToContextMainPage" />
+            <Button Text="Reset Database" Style="{StaticResource ButtonStyle}" Clicked="ResetLocalDatabase" />
+            
+            <!--layout for spacing-->
+            <StackLayout VerticalOptions="CenterAndExpand">
             </StackLayout>
+
+            <Button Text="Sign Out - to be added" Style="{StaticResource AdminButtonStyle}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
