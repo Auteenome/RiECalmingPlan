@@ -44,11 +44,17 @@
 
             <DataTemplate x:Key="checkBoxTemplate">
                 <StackLayout>
-                    <Frame HasShadow="True"
+                    <!--<Frame HasShadow="True"
                        BorderColor="DarkGray"
                        CornerRadius="5"
                        Margin="20"
                        HeightRequest="500"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">-->
+                    <Frame HasShadow="True"
+                       BorderColor="{StaticResource RiEGray}"
+                       CornerRadius="5"
+                       Margin="20"
                        HorizontalOptions="Center"
                        VerticalOptions="CenterAndExpand">
                         <StackLayout>
@@ -62,8 +68,8 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding CheckText}"></Label>
-                                                <CheckBox IsChecked="{Binding CheckBoxValue}"  CheckedChanged="OnCheckBoxCheckedChanged"></CheckBox>
+                                                <CheckBox IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center"></CheckBox>
+                                                <Label Text="{Binding CheckText}" VerticalOptions="Center"></Label>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
@@ -115,7 +121,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Margin="20,35,20,20">
+        <StackLayout BackgroundColor="{DynamicResource RiELightGreen}">
 
             <CarouselView x:Name="Questions" ItemTemplate="{StaticResource answerTemplateSelector}"/>
 

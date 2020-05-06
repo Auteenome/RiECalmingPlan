@@ -12,6 +12,46 @@
             <Color x:Key="RiEOrange">#F05A28</Color>
             <Color x:Key="RiEGray">#5B5C5C</Color>
             <Color x:Key="RiEOffWhite">#E8E5DA</Color>
+            <Color x:Key="RiEOffBlack">#333333</Color>
+
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" 
+                        Value="{StaticResource RiEOffWhite}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource RiEOffBlack}" />
+                <Setter Property="BorderColor"
+                        Value="{StaticResource RiEGray}" />
+                <Setter Property="BorderWidth"
+                        Value="0" />
+                <!--<Setter Property="HorizontalOptions"
+                        Value="" />-->
+            </Style>
+
+            <Style x:Key="LoginButtonStyle" TargetType="Button"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Margin" 
+                        Value="10,0" />
+            </Style>
+
+            <Style x:Key="AdminButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" 
+                        Value="{StaticResource RiEOffWhite}" />
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="TextColor"
+                        Value="Red" />
+                <Setter Property="BorderColor"
+                        Value="Red" />
+                <Setter Property="BorderWidth"
+                        Value="1" />
+            </Style>
+
+            <Style x:Key="StackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Padding"
+                        Value="20" />
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource RiELightGreen}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

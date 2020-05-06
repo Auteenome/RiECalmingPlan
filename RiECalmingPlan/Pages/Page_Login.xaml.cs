@@ -25,11 +25,13 @@ namespace RiECalmingPlan.Views {
 
         void Init() {
             // BackgroundColor = Constants.BackgroundColor;
-            Lbl_Username.TextColor = Constants.MainTextColor;
-            Lbl_Password.TextColor = Constants.MainTextColor;
+            Lbl_Username.TextColor = Constants.MainTextColor;   // hides labels by making them white
+            Lbl_Password.TextColor = Constants.MainTextColor;   // bit dodgy
+
             //Do not display the activity spinner
             ActivitySpinner.IsVisible = false;
-            LoginIcon.HeightRequest = Constants.LoginIconHeight;
+            //LoginIcon not currently used
+            //LoginIcon.HeightRequest = Constants.LoginIconHeight;
 
             //When the entry Username is completed and return key pressed, the focus moves to the password entry
             //Entry_UserName.Completed += (s, e) => Entry_PassWord.Focus();
