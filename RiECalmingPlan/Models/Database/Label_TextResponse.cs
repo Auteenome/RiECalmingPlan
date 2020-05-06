@@ -11,6 +11,11 @@ namespace RiECalmingPlan.Models {
 
         [Column("TextResponse")]
         public string TextResponse { get; set; }
+
+
+
+
+
     }
 }
 

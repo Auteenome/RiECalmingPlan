@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using RiECalmingPlan.SQLite;
 using RiECalmingPlan.ViewModels;
@@ -29,16 +30,16 @@ namespace RiECalmingPlan.Models {
 
         //------------------- RETRIEVERS -------------------------------
 
-        public async Task<List<DisplayQuestion>> GetDisplayQuestionList() {
-            List<DisplayQuestion> list = new List<DisplayQuestion>();
+        public async Task<ObservableCollection<DisplayQuestion>> GetDisplayQuestionList() {
+            ObservableCollection<DisplayQuestion> list = new ObservableCollection<DisplayQuestion>();
             foreach (Question q in await db.Table<Question>().ToListAsync()) {
                 List<Response> r = new List<Response>();
                 switch (q.QuestionType) {
                     case ("CheckBox"):
                         r.AddRange(await GetAssociatedCheckBoxesAsync(q.CPQID));
                         break;
-                    case ("RadioBox"):
-                        r.AddRange(await GetAssociatedRadioBoxesAsync(q.CPQID));
+                    case ("Stepper"):
+                        r.AddRange(await GetAssociatedStepperAsync(q.CPQID));
                         break;
                     case ("Text Response"):
                         r.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
@@ -54,8 +55,8 @@ namespace RiECalmingPlan.Models {
             return list;
         }
 
-        public async Task<List<Label_RadioBox>> GetAssociatedRadioBoxesAsync(int CPQID) {
-            return await db.QueryAsync<Label_RadioBox>("SELECT * FROM [RadioBoxLabels] WHERE [CPQID] = " + CPQID);
+        public async Task<List<Label_Stepper>> GetAssociatedStepperAsync(int CPQID) {
+            return await db.QueryAsync<Label_Stepper>("SELECT * FROM [StepperLabels] WHERE [CPQID] = " + CPQID);
         }
 
         public async Task<List<Label_CheckBox>> GetAssociatedCheckBoxesAsync(int CPQID) {
@@ -68,17 +69,17 @@ namespace RiECalmingPlan.Models {
 
         //------------------- MUTATORS -------------------------------
 
-        public async void UpdateRadioBoxResponse(int CPQID, int RadioBoxID, int RadioBoxValue) {
-            await db.QueryAsync<Label_RadioBox>("UPDATE [RadioBoxLabels] SET RadioBoxValue = ? WHERE CPQID = ? AND RadioBoxID = ?",
-                RadioBoxValue, CPQID, RadioBoxID);
+        public async void UpdateStepperResponse(Label_Stepper stepper) {
+            await db.QueryAsync<Label_Stepper>("UPDATE [StepperLabels] SET StepperValue = ? WHERE CPQID = ? AND StepperID = ?",
+                stepper.StepperID, stepper.CPQID, stepper.StepperID);
         }
 
-        public async void UpdateCheckBoxResponse(int CPQID, int CheckBoxID, bool CheckBoxValue) {
+        public async void UpdateCheckBoxResponse(Label_CheckBox checkbox) {
             //db.Query<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = " + 
             //    CheckBoxValue + " WHERE CPQID = " + CPQID + " AND CheckBoxID = " + CheckBoxID);
 
             await db.QueryAsync<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = ? WHERE CPQID = ? AND CheckBoxID = ?", 
-                CheckBoxValue, CPQID, CheckBoxID);
+                checkbox.CheckBoxID, checkbox.CPQID, checkbox.CheckBoxID);
 
             Console.WriteLine("\n UPDATING DATABASE");
         }

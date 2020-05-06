@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:RiECalmingPlan.Views"
+             mc:Ignorable="d"
+             x:Class="RiECalmingPlan.Views.DisplayQuestionView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="stepperTemplate">
+                <StackLayout>
+                    <Frame HasShadow="True"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       Margin="20"
+                       HeightRequest="500"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                        <StackLayout>
+                            <Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Blue" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
+
+                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding StepperText}"></Label>
+                                                <Stepper Value="{Binding StepperValue}" ValueChanged="OnStepperValueChanged" Minimum="0" Maximum="3"/>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+
+            <DataTemplate x:Key="checkBoxTemplate">
+                <StackLayout>
+                    <!--<Frame HasShadow="True"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       Margin="20"
+                       HeightRequest="500"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">-->
+                    <Frame HasShadow="True"
+                       BorderColor="{StaticResource RiEGray}"
+                       CornerRadius="5"
+                       Margin="20"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                        <StackLayout>
+                            <Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Green" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
+
+                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <CheckBox IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center"></CheckBox>
+                                                <Label Text="{Binding CheckText}" VerticalOptions="Center"></Label>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+
+            <DataTemplate x:Key="textResponseTemplate">
+                <StackLayout>
+                    <Frame HasShadow="True"
+                       BorderColor="DarkGray"
+                       CornerRadius="5"
+                       Margin="20"
+                       HeightRequest="500"
+                       HorizontalOptions="Center"
+                       VerticalOptions="CenterAndExpand">
+                        <StackLayout>
+                            <Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Red" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
+
+                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding CPQID}"></Label>
+                                                <Entry Placeholder="{Binding TextResponse}"></Entry>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+
+            <views:AnswerTemplateSelector x:Key="answerTemplateSelector"
+            StepperTemplate="{StaticResource stepperTemplate}"
+            CheckBoxTemplate="{StaticResource checkBoxTemplate}"
+            TextResponseTemplate="{StaticResource textResponseTemplate}" />
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+      <StackLayout>
+            <CarouselView x:Name="Questions" ItemTemplate="{StaticResource answerTemplateSelector}"/>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

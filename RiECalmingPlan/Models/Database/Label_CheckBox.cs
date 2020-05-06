@@ -1,6 +1,8 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace RiECalmingPlan.Models {
@@ -18,6 +20,9 @@ namespace RiECalmingPlan.Models {
 
         [Column("CheckBoxValue")]
         public bool CheckBoxValue { get; set; }
+
+
+
 
 
     }
