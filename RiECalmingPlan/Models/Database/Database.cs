@@ -72,15 +72,23 @@ namespace RiECalmingPlan.Models {
 
         //------------------- MUTATORS -------------------------------
 
+        public void UpdateRadioBoxResponse(int CPQID, int RadioBoxID, int RadioBoxValue) {
+            db.Query<Label_RadioBox>("UPDATE [RadioBoxLabels] SET RadioBoxValue = ? WHERE CPQID = ? AND RadioBoxID = ?",
+                RadioBoxValue, CPQID, RadioBoxID);
+        }
+
         public void UpdateCheckBoxResponse(int CPQID, int CheckBoxID, bool CheckBoxValue) {
-            db.Query<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = " + 
-                CheckBoxValue + " WHERE CPQID = " + CPQID + " AND CheckBoxID = " + CheckBoxID);
+            //db.Query<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = " + 
+            //    CheckBoxValue + " WHERE CPQID = " + CPQID + " AND CheckBoxID = " + CheckBoxID);
+
+            db.Query<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = ? WHERE CPQID = ? AND CheckBoxID = ?", 
+                CheckBoxValue, CPQID, CheckBoxID);
+
             Console.WriteLine("\n UPDATING DATABASE");
         }
 
-        //public void UpdateRadioResponse(Label_RadioBox radioBox) {
-        //    db.Update(radioBox);
+        //public void ResetDatabase() {
+        //    db.Query<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = 0");
         //}
-
     }
 }

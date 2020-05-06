@@ -55,7 +55,12 @@ namespace RiECalmingPlan.Pages {
 
             Console.WriteLine("\n CPQID:" + CPQID + "\n CheckBoxID: " + CheckBoxID + "\n CheckText: " + CheckText + "\n CheckBoxValue: " + CheckBoxValue.ToString());
 
-            database.UpdateCheckBoxResponse(CPQID, CheckBoxID, CheckBoxValue);
+            try {
+                database.UpdateCheckBoxResponse(CPQID, CheckBoxID, CheckBoxValue);
+            }
+            catch (Exception ex) {
+                Console.WriteLine(ex);
+            }
         }
 
         private void OnStepperValueChanged(object sender, ValueChangedEventArgs e) {
@@ -68,6 +73,15 @@ namespace RiECalmingPlan.Pages {
             int RadioBoxValue = ((Label_RadioBox)stepper.BindingContext).RadioBoxValue;
 
             Console.WriteLine("\n CPQID:" + CPQID + "\n RadioBoxID: " + RadioBoxID + "\n RadioBoxText: " + RadioBoxText + "\n RadioBoxValue: " + RadioBoxValue);
+
+            try
+            {
+                database.UpdateRadioBoxResponse(CPQID, RadioBoxID, RadioBoxValue);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 }
