@@ -18,9 +18,9 @@ namespace RiECalmingPlan.Pages {
 
         }
 
-        private void RefreshCarouselView() {
+        private async void RefreshCarouselView() {
             try {
-                Questions.ItemsSource = database.GetDisplayQuestionList();
+                Questions.ItemsSource = await database.GetDisplayQuestionList();
             }
             catch (Exception e) {
                 Console.WriteLine(e);

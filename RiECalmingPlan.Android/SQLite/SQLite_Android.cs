@@ -16,7 +16,7 @@ using Xamarin.Forms;
 namespace RiECalmingPlan.Droid.SQLite {
     public class SQLite_Android : ISQLite {
 
-        async Task<SQLiteConnection> ISQLite.ResetDatabase() {
+        async Task<SQLiteAsyncConnection> ISQLite.ResetDatabase() {
             String databaseName = "Questions.db";
             var docFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var dbFile = Path.Combine(docFolder, databaseName); // FILE PATH TO USE WHEN COPIED
@@ -30,7 +30,7 @@ namespace RiECalmingPlan.Droid.SQLite {
 
             var path = dbFile;
             // Create the connection
-            var conn = new SQLiteConnection(path);
+            var conn = new SQLiteAsyncConnection(path);
             // Return the database connection
             return conn;
         }
@@ -38,7 +38,7 @@ namespace RiECalmingPlan.Droid.SQLite {
 
 
 
-        async Task<SQLiteConnection> ISQLite.GetConnection() {
+        async Task<SQLiteAsyncConnection> ISQLite.GetConnection() {
             String databaseName = "Questions.db";
             var docFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
             var dbFile = Path.Combine(docFolder, databaseName); // FILE PATH TO USE WHEN COPIED
@@ -51,7 +51,7 @@ namespace RiECalmingPlan.Droid.SQLite {
 
             var path = dbFile;
             // Create the connection
-            var conn = new SQLiteConnection(path);
+            var conn = new SQLiteAsyncConnection(path);
             // Return the database connection
             return conn;
         }

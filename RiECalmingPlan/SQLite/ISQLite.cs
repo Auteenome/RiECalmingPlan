@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RiECalmingPlan.SQLite {
     public interface ISQLite {
-        Task<SQLiteConnection> GetConnection();
-        Task<SQLiteConnection> ResetDatabase();
+        Task<SQLiteAsyncConnection> GetConnection();
+        Task<SQLiteAsyncConnection> ResetDatabase();
     }
 }
