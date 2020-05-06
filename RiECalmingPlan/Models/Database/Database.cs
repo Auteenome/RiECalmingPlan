@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using RiECalmingPlan.SQLite;
 using RiECalmingPlan.ViewModels;
@@ -69,9 +70,17 @@ namespace RiECalmingPlan.Models {
             return db.Query<Label_TextResponse>("SELECT * FROM [TextResponseLabels] WHERE [CPQID] = " + CPQID);
         }
 
-        public void UpdateRadioResponse(Label_RadioBox radioBox) {
-            db.Update(radioBox);
+        //------------------- MUTATORS -------------------------------
+
+        public void UpdateCheckBoxResponse(int CPQID, int CheckBoxID, bool CheckBoxValue) {
+            db.Query<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = " + 
+                CheckBoxValue + " WHERE CPQID = " + CPQID + " AND CheckBoxID = " + CheckBoxID);
+            Console.WriteLine("\n UPDATING DATABASE");
         }
+
+        //public void UpdateRadioResponse(Label_RadioBox radioBox) {
+        //    db.Update(radioBox);
+        //}
 
     }
 }

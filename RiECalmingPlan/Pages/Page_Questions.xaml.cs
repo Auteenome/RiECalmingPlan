@@ -55,6 +55,7 @@ namespace RiECalmingPlan.Pages {
 
             Console.WriteLine("\n CPQID:" + CPQID + "\n CheckBoxID: " + CheckBoxID + "\n CheckText: " + CheckText + "\n CheckBoxValue: " + CheckBoxValue.ToString());
 
+            database.UpdateCheckBoxResponse(CPQID, CheckBoxID, CheckBoxValue);
         }
 
         private void OnStepperValueChanged(object sender, ValueChangedEventArgs e) {
