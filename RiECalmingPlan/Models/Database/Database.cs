@@ -72,9 +72,10 @@ namespace RiECalmingPlan.Models {
         public async Task UpdateStepperResponse(Label_Stepper stepper) {
             if (stepper != null) {
                 await db.QueryAsync<Label_Stepper>("UPDATE [StepperLabels] SET StepperValue = ? WHERE CPQID = ? AND StepperID = ?",
-                    stepper.StepperID, stepper.CPQID, stepper.StepperID);
-                Console.WriteLine("\n UPDATING DATABASE FOR STEPPER");
-            } else {
+                    stepper.StepperValue, stepper.CPQID, stepper.StepperID);
+                Console.WriteLine("\n CPQID:" + stepper.CPQID + "\n StepperID: " + stepper.StepperID + "\n StepperText: " + stepper.StepperText + "\n CheckBoxValue: " + stepper.StepperValue);
+            }
+            else {
                 Console.WriteLine("\n STEPPER null");
             }
         }
@@ -84,10 +85,10 @@ namespace RiECalmingPlan.Models {
             //    CheckBoxValue + " WHERE CPQID = " + CPQID + " AND CheckBoxID = " + CheckBoxID);
             if (checkbox != null) {
                 await db.QueryAsync<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = ? WHERE CPQID = ? AND CheckBoxID = ?",
-                    checkbox.CheckBoxID, checkbox.CPQID, checkbox.CheckBoxID);
-
-                Console.WriteLine("\n UPDATING DATABASE FOR CHECKBOX");
-            } else {
+                    checkbox.CheckBoxValue, checkbox.CPQID, checkbox.CheckBoxID);
+                Console.WriteLine("\n CPQID:" + checkbox.CPQID + "\n CheckBoxID: " + checkbox.CheckBoxID + "\n CheckText: " + checkbox.CheckText + "\n CheckBoxValue: " + checkbox.CheckBoxValue);
+            }
+            else {
                 Console.WriteLine("\n checkbox null");
             }
         }
