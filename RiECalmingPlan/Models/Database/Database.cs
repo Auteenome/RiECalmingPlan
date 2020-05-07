@@ -69,19 +69,27 @@ namespace RiECalmingPlan.Models {
 
         //------------------- MUTATORS -------------------------------
 
-        public async void UpdateStepperResponse(Label_Stepper stepper) {
-            await db.QueryAsync<Label_Stepper>("UPDATE [StepperLabels] SET StepperValue = ? WHERE CPQID = ? AND StepperID = ?",
-                stepper.StepperID, stepper.CPQID, stepper.StepperID);
+        public async Task UpdateStepperResponse(Label_Stepper stepper) {
+            if (stepper != null) {
+                await db.QueryAsync<Label_Stepper>("UPDATE [StepperLabels] SET StepperValue = ? WHERE CPQID = ? AND StepperID = ?",
+                    stepper.StepperID, stepper.CPQID, stepper.StepperID);
+                Console.WriteLine("\n UPDATING DATABASE FOR STEPPER");
+            } else {
+                Console.WriteLine("\n STEPPER null");
+            }
         }
 
-        public async void UpdateCheckBoxResponse(Label_CheckBox checkbox) {
+        public async Task UpdateCheckBoxResponse(Label_CheckBox checkbox) {
             //db.Query<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = " + 
             //    CheckBoxValue + " WHERE CPQID = " + CPQID + " AND CheckBoxID = " + CheckBoxID);
+            if (checkbox != null) {
+                await db.QueryAsync<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = ? WHERE CPQID = ? AND CheckBoxID = ?",
+                    checkbox.CheckBoxID, checkbox.CPQID, checkbox.CheckBoxID);
 
-            await db.QueryAsync<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = ? WHERE CPQID = ? AND CheckBoxID = ?", 
-                checkbox.CheckBoxID, checkbox.CPQID, checkbox.CheckBoxID);
-
-            Console.WriteLine("\n UPDATING DATABASE");
+                Console.WriteLine("\n UPDATING DATABASE FOR CHECKBOX");
+            } else {
+                Console.WriteLine("\n checkbox null");
+            }
         }
     }
 }

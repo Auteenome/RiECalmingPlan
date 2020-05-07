@@ -15,8 +15,8 @@ namespace RiECalmingPlan.Views {
         private readonly Database database;
 
         public DisplayQuestionView() {
-            InitializeComponent();
             database = new Database();
+            InitializeComponent();
             RefreshCarouselView();
         }
 
@@ -30,9 +30,7 @@ namespace RiECalmingPlan.Views {
 
         }
 
-
-
-        private void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e) {
+        private async void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e) {
             //Event that occurs when a checkbox is checked
 
             /*
@@ -53,20 +51,20 @@ namespace RiECalmingPlan.Views {
             CheckBox checkbox = (CheckBox)sender;
             Label_CheckBox checkBoxLabel = ((Label_CheckBox)checkbox.BindingContext);
 
-            Console.WriteLine("\n CPQID:" + checkBoxLabel.CPQID + "\n CheckBoxID: " + checkBoxLabel.CheckBoxID + "\n CheckText: " + checkBoxLabel.CheckText + "\n CheckBoxValue: " + checkBoxLabel.CheckBoxValue);
+            //Console.WriteLine("\n CPQID:" + checkBoxLabel.CPQID + "\n CheckBoxID: " + checkBoxLabel.CheckBoxID + "\n CheckText: " + checkBoxLabel.CheckText + "\n CheckBoxValue: " + checkBoxLabel.CheckBoxValue);
 
-            database.UpdateCheckBoxResponse(checkBoxLabel);
+           await database.UpdateCheckBoxResponse(checkBoxLabel);
         }
 
-        private void OnStepperValueChanged(object sender, ValueChangedEventArgs e) {
+        private async void OnStepperValueChanged(object sender, ValueChangedEventArgs e) {
             //Event that occurs when a Stepper is changed
 
             Stepper stepper = (Stepper)sender;
             Label_Stepper stepperLabel = ((Label_Stepper)stepper.BindingContext);
 
-            Console.WriteLine("\n CPQID:" + stepperLabel.CPQID + "\n RadioBoxID: " + stepperLabel.StepperID + "\n RadioBoxText: " + stepperLabel.StepperText + "\n RadioBoxValue: " + stepperLabel.StepperValue);
+            //Console.WriteLine("\n CPQID:" + stepperLabel.CPQID + "\n RadioBoxID: " + stepperLabel.StepperID + "\n RadioBoxText: " + stepperLabel.StepperText + "\n RadioBoxValue: " + stepperLabel.StepperValue);
             
-            database.UpdateStepperResponse(stepperLabel);
+           await database.UpdateStepperResponse(stepperLabel);
         }
 
     }
