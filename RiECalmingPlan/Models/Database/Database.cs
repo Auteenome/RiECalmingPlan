@@ -27,6 +27,11 @@ namespace RiECalmingPlan.Models {
             db = await DependencyService.Get<ISQLite>().GetConnection();
         }
 
+        public async void ResetConnection() {
+            await db.CloseAsync();
+            db = await DependencyService.Get<ISQLite>().ResetDatabase();
+        }
+
 
         //------------------- RETRIEVERS -------------------------------
 
@@ -74,23 +79,30 @@ namespace RiECalmingPlan.Models {
                 await db.QueryAsync<Label_Stepper>("UPDATE [StepperLabels] SET StepperValue = ? WHERE CPQID = ? AND StepperID = ?",
                     stepper.StepperValue, stepper.CPQID, stepper.StepperID);
                 Console.WriteLine("\n CPQID:" + stepper.CPQID + "\n StepperID: " + stepper.StepperID + "\n StepperText: " + stepper.StepperText + "\n CheckBoxValue: " + stepper.StepperValue);
-            }
-            else {
+            } else {
                 Console.WriteLine("\n STEPPER null");
             }
         }
 
         public async Task UpdateCheckBoxResponse(Label_CheckBox checkbox) {
-            //db.Query<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = " + 
-            //    CheckBoxValue + " WHERE CPQID = " + CPQID + " AND CheckBoxID = " + CheckBoxID);
             if (checkbox != null) {
                 await db.QueryAsync<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = ? WHERE CPQID = ? AND CheckBoxID = ?",
                     checkbox.CheckBoxValue, checkbox.CPQID, checkbox.CheckBoxID);
                 Console.WriteLine("\n CPQID:" + checkbox.CPQID + "\n CheckBoxID: " + checkbox.CheckBoxID + "\n CheckText: " + checkbox.CheckText + "\n CheckBoxValue: " + checkbox.CheckBoxValue);
-            }
-            else {
+            } else {
                 Console.WriteLine("\n checkbox null");
             }
         }
+
+        public async Task UpdateTextResponse(Label_TextResponse textResponse) {
+            if (textResponse != null) {
+                await db.QueryAsync<Label_TextResponse>("UPDATE [TextResponseLabels] SET TextResponse = ? WHERE CPQID = ? AND TextResponseID = ?",
+                    textResponse.TextResponse, textResponse.CPQID, textResponse.TextResponseID);
+                Console.WriteLine("\n CPQID:" + textResponse.CPQID + "\n textResponseID: " + textResponse.TextResponseID + "\n Text: " + textResponse.TextResponse);
+            } else {
+                Console.WriteLine("\n textbox null");
+            }
+        }
+
     }
 }

@@ -9,6 +9,9 @@ namespace RiECalmingPlan.Models {
         [Column("CPQID")]
         public int CPQID { get; set; }
 
+        [Column("TextResponseID")]
+        public int TextResponseID { get; set; }
+
         [Column("TextResponse")]
         public string TextResponse { get; set; }
 

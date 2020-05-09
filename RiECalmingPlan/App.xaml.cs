@@ -3,12 +3,12 @@ using Xamarin.Forms;
 using SQLite;
 using System.IO;
 using RiECalmingPlan.Views;
+using RiECalmingPlan.Models;
 
 namespace RiECalmingPlan {
     public partial class App : Application {
 
-        static public SQLiteAsyncConnection DB;
-        
+        public static readonly Database database = new Database();
 
         public App() {
             InitializeComponent();

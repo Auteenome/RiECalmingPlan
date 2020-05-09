@@ -35,9 +35,6 @@ namespace RiECalmingPlan.Droid.SQLite {
             return conn;
         }
 
-
-
-
         async Task<SQLiteAsyncConnection> ISQLite.GetConnection() {
             String databaseName = "Questions.db";
             var docFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);

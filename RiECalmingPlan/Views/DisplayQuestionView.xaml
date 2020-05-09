@@ -24,13 +24,14 @@
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
 
-                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}">
+                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding StepperText}"></Label>
-                                                <Stepper Value="{Binding StepperValue}" ValueChanged="OnStepperValueChanged" Minimum="0" Maximum="3"/>
+                                                <Stepper x:Name="_stepper" Value="{Binding StepperValue}" ValueChanged="OnStepperValueChanged" Minimum="0" Maximum="3" HeightRequest="-1"/>
+                                                <Label Text="{Binding Source={x:Reference _stepper}, Path=Value}"/>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
@@ -62,7 +63,7 @@
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
 
-                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}">
+                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
@@ -94,13 +95,12 @@
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
 
-                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" >
+                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding CPQID}"></Label>
-                                                <Entry Placeholder="{Binding TextResponse}"></Entry>
+                                            <StackLayout>
+                                                <Editor Text="{Binding TextResponse}" Placeholder="Place your answer here" AutoSize="TextChanges" Completed="Editor_Completed"></Editor>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
