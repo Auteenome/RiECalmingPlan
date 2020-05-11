@@ -25,5 +25,8 @@ namespace RiECalmingPlan.Views {
             Console.WriteLine("Database connection reset");
         }
 
+        private async void btnStepperAlt_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_StepperAlternativeDemo());
+        }
     }
 }

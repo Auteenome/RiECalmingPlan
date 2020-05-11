@@ -11,6 +11,7 @@
             <StackLayout VerticalOptions="CenterAndExpand">
             </StackLayout>
 
+            <Button x:Name="btnStepperAlt" Text="Stepper alternative demo" Style="{StaticResource AdminButtonStyle}" Clicked="btnStepperAlt_Clicked" />
             <Button Text="Sign Out - to be added" Style="{StaticResource AdminButtonStyle}" />
         </StackLayout>
     </ContentPage.Content>

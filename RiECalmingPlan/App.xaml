@@ -52,6 +52,28 @@
                 <Setter Property="BackgroundColor"
                         Value="{StaticResource RiELightGreen}" />
             </Style>
+
+            <Style x:Key="QuestionFrameStyle" TargetType="Frame">
+                <Setter Property="HasShadow"
+                        Value="True" />
+                <Setter Property="BorderColor"
+                        Value="{StaticResource RiEGray}" />
+                <Setter Property="CornerRadius"
+                        Value="5" />
+                <Setter Property="Margin"
+                        Value="20" />
+                <Setter Property="HorizontalOptions"
+                        Value="Center" />
+                <Setter Property="VerticalOptions"
+                        Value="CenterAndExpand" />
+            </Style>
+
+            <Style x:Key="AnswerStepperStyle" TargetType="Stepper">
+                <!--<Setter Property="HeightRequest"
+                        Value="" />-->
+                <!--<Setter Property="WidthRequest"
+                        Value="40" />-->
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

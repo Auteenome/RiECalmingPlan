@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RiECalmingPlan.Pages.Page_StepperAlternativeDemo"
+             xmlns:local="clr-namespace:RiECalmingPlan.Views"> <!-- reference local to StepProgressBar.cs -->
+    <ContentPage.Content>
+        <StackLayout>
+            <Frame Style="{StaticResource QuestionFrameStyle}">
+                <StackLayout>
+                    <Label Text="What types of things can other people do to help you when you feel like you are unable to manage your distress?" />
+                    <Label Text="Some of these might work at different times" />
+                    <StackLayout VerticalOptions="CenterAndExpand" />
+                    <!-- spacing layout -->
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Stay with me but don't ask too many questions" />
+                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Stay with me but don't ask too many questions" />
+                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Stay with me but don't ask too many questions" />
+                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Stay with me but don't ask too many questions" />
+                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Stay with me but don't ask too many questions" />
+                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
