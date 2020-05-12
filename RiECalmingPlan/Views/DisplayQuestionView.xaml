@@ -54,10 +54,10 @@
                        VerticalOptions="CenterAndExpand">-->
                     <Frame Style="{StaticResource QuestionFrameStyle}">
                         <StackLayout>
-                            <Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Green" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
+                            <!--<Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />-->
+                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Green" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                            <!--<Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />-->
+                            <!--<Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />-->
 
                             <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
@@ -71,7 +71,9 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
+                            <Editor Placeholder="Other" />
                         </StackLayout>
+                        
                     </Frame>
                 </StackLayout>
             </DataTemplate>

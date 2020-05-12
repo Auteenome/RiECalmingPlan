@@ -31,11 +31,11 @@ namespace RiECalmingPlan.Views {
 
         public StepProgressBar() {
             Orientation = StackOrientation.Horizontal;
-            HorizontalOptions = LayoutOptions.FillAndExpand;
+            // VerticalOptions = LayoutOptions.EndAndExpand;
+            HorizontalOptions = LayoutOptions.EndAndExpand;     // layoutoption to align stepbars to the right
             Padding = new Thickness(10, 0);
             Spacing = 0;
             AddStyles();
-
         }
 
         protected override void OnPropertyChanged(string propertyName = null) {
@@ -44,8 +44,8 @@ namespace RiECalmingPlan.Views {
             if (propertyName == StepsProperty.PropertyName) {
                 for (int i = 0; i < Steps; i++) {
                     var button = new Button() {
-                        Text = $"{i + 1}",
-                        ClassId = $"{i + 1}",
+                        Text = $"{i}",
+                        ClassId = $"{i}",
                         Style = Resources["unSelectedStyle"] as Style
                     };
 
@@ -77,14 +77,12 @@ namespace RiECalmingPlan.Views {
         }
 
         void SelectElement(Button elementSelected) {
-
             if (_lastStepSelected != null) _lastStepSelected.Style = Resources["unSelectedStyle"] as Style;
 
             elementSelected.Style = Resources["selectedStyle"] as Style;
 
             StepSelected = Convert.ToInt32(elementSelected.Text);
             _lastStepSelected = elementSelected;
-
         }
 
         void AddStyles() {
@@ -97,7 +95,7 @@ namespace RiECalmingPlan.Views {
                     new Setter { Property = Button.CornerRadiusProperty,   Value = 20 },
                     new Setter { Property = HeightRequestProperty,   Value = 40 },
                     new Setter { Property = WidthRequestProperty,   Value = 40 }
-            }
+                }
             };
 
             var selectedStyle = new Style(typeof(Button)) {
@@ -110,7 +108,7 @@ namespace RiECalmingPlan.Views {
                     new Setter { Property = HeightRequestProperty,   Value = 40 },
                     new Setter { Property = WidthRequestProperty,   Value = 40 },
                     new Setter { Property = Button.FontAttributesProperty,   Value = FontAttributes.Bold }
-            }
+                }
             };
 
             Resources = new ResourceDictionary();

@@ -6,33 +6,41 @@
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_StepperAlternativeDemo"
              xmlns:local="clr-namespace:RiECalmingPlan.Views"> <!-- reference local to StepProgressBar.cs -->
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="StepperStyle" TargetType="local:StepProgressBar">
+                <Setter Property="Steps" Value="4" />
+                <Setter Property="StepSelected" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Frame Style="{StaticResource QuestionFrameStyle}">
+            <Frame Style="{StaticResource QuestionFrameStyle}" Margin="10">
                 <StackLayout>
-                    <Label Text="What types of things can other people do to help you when you feel like you are unable to manage your distress?" />
-                    <Label Text="Some of these might work at different times" />
+                    <Label Text="What types of things can other people do to help you when you feel like you are unable to manage your distress? Some of these might work at different times"/>
                     <StackLayout VerticalOptions="CenterAndExpand" />
                     <!-- spacing layout -->
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Stay with me but don't ask too many questions" />
-                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                        <local:StepProgressBar StepColor="Red" Style="{StaticResource StepperStyle}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Stay with me but don't ask too many questions" />
-                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                        <Label Text="Try and understand what is happening to me"  />
+                        <local:StepProgressBar StepColor="{DynamicResource RiEDarkGreen}" Style="{StaticResource StepperStyle}" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Stay with me but don't ask too many questions" />
-                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                        <Label Text="Talk to me                                " />
+                        <local:StepProgressBar StepColor="{DynamicResource RiEDarkGreen}" Style="{StaticResource StepperStyle}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Stay with me but don't ask too many questions" />
-                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                        <Label Text="Stay with me but don't ask too many questions"  />
+                        <local:StepProgressBar StepColor="{DynamicResource RiEOrange}" Style="{StaticResource StepperStyle}" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Stay with me but don't ask too many questions" />
-                        <local:StepProgressBar StepColor="Red" Steps="3" />
+                        <Label Text="Stay with me "  />
+                        <local:StepProgressBar StepColor="{DynamicResource RiELightGreen}" Style="{StaticResource StepperStyle}" />
                     </StackLayout>
                 </StackLayout>
             </Frame>
