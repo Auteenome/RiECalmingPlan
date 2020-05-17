@@ -33,6 +33,13 @@
                         Value="10,0" />
             </Style>
 
+            <Style x:Key="CurvedButtonStyle" TargetType="Button"
+                   BasedOn="{StaticResource ButtonStyle}">
+                <Setter Property="Margin" 
+                        Value="10,0" />
+            </Style>
+
+
             <Style x:Key="AdminButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" 
                         Value="{StaticResource RiEOffWhite}" />

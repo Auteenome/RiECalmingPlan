@@ -28,19 +28,22 @@
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Try and understand what is happening to me"  />
-                        <local:StepProgressBar StepColor="{DynamicResource RiEDarkGreen}" Style="{StaticResource StepperStyle}" />
+                        <local:StepProgressBar StepColor="{StaticResource RiEDarkGreen}" Style="{StaticResource StepperStyle}" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Talk to me                                " />
-                        <local:StepProgressBar StepColor="{DynamicResource RiEDarkGreen}" Style="{StaticResource StepperStyle}"/>
+                        <Label Text="Talk to me" />
+                        <local:StepProgressBar StepColor="{StaticResource RiEDarkGreen}" Style="{StaticResource StepperStyle}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Stay with me but don't ask too many questions"  />
-                        <local:StepProgressBar StepColor="{DynamicResource RiEOrange}" Style="{StaticResource StepperStyle}" />
+                        <local:StepProgressBar StepColor="{StaticResource RiEOrange}" Style="{StaticResource StepperStyle}" />
                     </StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label Text="Stay with me "  />
-                        <local:StepProgressBar StepColor="{DynamicResource RiELightGreen}" Style="{StaticResource StepperStyle}" />
+                        <local:StepProgressBar StepColor="{StaticResource RiELightGreen}" Style="{StaticResource StepperStyle}" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Editor Placeholder="Other" AutoSize="TextChanges"/>
                     </StackLayout>
                 </StackLayout>
             </Frame>

@@ -25,8 +25,8 @@ namespace RiECalmingPlan.Views {
 
         void Init() {
             // BackgroundColor = Constants.BackgroundColor;
-            Lbl_Username.TextColor = Constants.MainTextColor;   // hides labels by making them white
-            Lbl_Password.TextColor = Constants.MainTextColor;   // bit dodgy
+            //Lbl_Username.TextColor = Constants.MainTextColor;   // hides labels by making them white
+            //Lbl_Password.TextColor = Constants.MainTextColor;
 
             //Do not display the activity spinner
             ActivitySpinner.IsVisible = false;
@@ -47,7 +47,7 @@ namespace RiECalmingPlan.Views {
         void SignInProcedure(object sender, EventArgs e) {
             /* Use later when connected to Web
              
-             User user = new User(Entry_UserName.Text, Entry_PassWord.Text);
+            User user = new User(Entry_UserName.Text, Entry_PassWord.Text);
             if (user.CheckLoginInformation())
             {
                 //DisplayAlert("Login", "Login Successful", "Okay");

@@ -11,7 +11,7 @@
              --><!--WIll fill to the end of the icon--><!-- 
             <Image x:Name="LoginIcon" Source="logo.png" Margin="0,80,0,0"/>
         </StackLayout>-->
-        <Label Text="Icon removed for now because login screen inputs should be at the top of the page so that they aren't covered by the keyboard"/>
+        <!--<Label Text="Icon removed for now because login screen inputs should be at the top of the page so that they aren't covered by the keyboard"/>-->
 
         <StackLayout x:Name="LoginEntriesStack" VerticalOptions="StartAndExpand" 
                      BackgroundColor="White" Padding="10">
@@ -27,14 +27,22 @@
             <!-- Used for when waiting for server to respond -->
             <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="true" />
 
-        
-            <Label x:Name="Lbl_Username" Text="Username" />
-            <Entry x:Name="Entry_UserName" Placeholder="Username" />
-            <Label x:Name="Lbl_Password" Text="Password" />
+
+            <Label x:Name="Lbl_Heading" Text="Log in to Auteenome" FontSize="Large" TextColor="{StaticResource RiEOffBlack}"/>
+            
+            <!--<Label x:Name="Lbl_Username" Text="Email Address" />-->
+            <Entry x:Name="Entry_UserName" Placeholder="Email Address" />
+            
+            <!--<Label x:Name="Lbl_Password" Text="Password" />-->
             <Entry x:Name="Entry_PassWord" Placeholder="Password" />
 
-            <Button x:Name="Btn_SignIn" Text="Sign In" Style="{StaticResource LoginButtonStyle}" Clicked="SignInProcedure" />
+            <Button x:Name="Btn_SignIn" Text="Log In" Style="{StaticResource CurvedButtonStyle}" Clicked="SignInProcedure"/>
             <Button Text="Not Registered? Sign Up" Style="{StaticResource LoginButtonStyle}" Clicked="GoToTandC" />
+            
+            <!--layout for spacing-->
+            <StackLayout VerticalOptions="CenterAndExpand">
+            </StackLayout>
+            
             <Button Text="Go to Next Page" Clicked="Page2Jump" Style="{StaticResource AdminButtonStyle}" />
             
         </StackLayout>
