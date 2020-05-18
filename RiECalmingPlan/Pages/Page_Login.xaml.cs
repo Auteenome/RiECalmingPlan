@@ -65,6 +65,5 @@ namespace RiECalmingPlan.Views {
         void GoToTandC(object sender, EventArgs e) {
 
         }
-    
     }
 }

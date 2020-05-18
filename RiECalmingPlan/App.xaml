@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" x:Class="RiECalmingPlan.App">
     <Application.Resources>
-        <!-- Global Styles and Colors. Reference these using: ="{StaticResource *ResourceKey*}" --> 
+        <!-- Global Styles and Colors. Reference these using: Style="{StaticResource *ResourceKey*}" --> 
         <ResourceDictionary>
             <Color x:Key="RiEDarkGreen">#006738</Color>
             <Color x:Key="RiELightGreen">#8DC63F</Color>
@@ -13,6 +13,13 @@
             <Color x:Key="RiEGray">#5B5C5C</Color>
             <Color x:Key="RiEOffWhite">#E8E5DA</Color>
             <Color x:Key="RiEOffBlack">#333333</Color>
+
+            <Style x:Key="NavBarStyle" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor"
+                        Value="{StaticResource RiEDarkGreen}" />
+                <Setter Property="BarTextColor"
+                        Value="{StaticResource RiEOffWhite}" />
+            </Style>
 
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" 
@@ -30,15 +37,34 @@
             <Style x:Key="LoginButtonStyle" TargetType="Button"
                    BasedOn="{StaticResource ButtonStyle}">
                 <Setter Property="Margin" 
-                        Value="10,0" />
+                        Value="0,0" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource RiEOffWhite}"/>
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource RiEDarkGreen}" />
+                <!--<Setter Property="BorderWidth"
+                        Value="" />-->
+                <Setter Property="CornerRadius"
+                        Value="20" />
+                <Setter Property="HeightRequest"
+                        Value="40" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
             </Style>
 
-            <Style x:Key="CurvedButtonStyle" TargetType="Button"
+            <Style x:Key="LoginButtonStyle2" TargetType="Button"
                    BasedOn="{StaticResource ButtonStyle}">
                 <Setter Property="Margin" 
                         Value="10,0" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource RiEOffWhite}"/>
+                <Setter Property="BackgroundColor"
+                        Value="{StaticResource RiELightGreen}" />
+                <Setter Property="CornerRadius"
+                        Value="20" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
             </Style>
-
 
             <Style x:Key="AdminButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" 
@@ -51,6 +77,13 @@
                         Value="Red" />
                 <Setter Property="BorderWidth"
                         Value="1" />
+            </Style>
+
+            <Style x:Key="HeaderStyle" TargetType="Label">
+                <Setter Property="FontSize"
+                        Value="Large" />
+                <Setter Property="FontAttributes"
+                        Value="Bold" />
             </Style>
 
             <Style x:Key="StackLayoutStyle" TargetType="StackLayout">

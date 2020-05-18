@@ -41,8 +41,7 @@ namespace RiECalmingPlan {
                                                                         //  at CalmingPLanMenuPage will not be affected.
 
             MainPage = new NavigationPage(new Page_Login()) {
-                BarBackgroundColor = Color.Green,
-                BarTextColor = Color.White
+                Style = this.Resources["NavBarStyle"] as Style         // references the resource dictionary
             };
 
         }

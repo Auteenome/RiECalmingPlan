@@ -2,19 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RiECalmingPlan.Views.Page_Login">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="TbItemSignUp" Text="Sign Up" Order="Primary"/>
+        <ToolbarItem x:Name="TbItemAbout" Text="About" Order="Secondary" />
+    </ContentPage.ToolbarItems>
 
-
-    <StackLayout x:Name="MasterLayout" BackgroundColor="White" Padding="20">
+    <StackLayout x:Name="MasterLayout" BackgroundColor="{StaticResource RiEOffWhite}" Padding="20">
         
         <!--removed for now because login screen inputs should be at the top of the page-->
+        <!--icon will be added to a splash screen -->
         <!--<StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
              --><!--WIll fill to the end of the icon--><!-- 
             <Image x:Name="LoginIcon" Source="logo.png" Margin="0,80,0,0"/>
         </StackLayout>-->
         <!--<Label Text="Icon removed for now because login screen inputs should be at the top of the page so that they aren't covered by the keyboard"/>-->
-
-        <StackLayout x:Name="LoginEntriesStack" VerticalOptions="StartAndExpand" 
-                     BackgroundColor="White" Padding="10">
+        
+        <StackLayout x:Name="LoginEntriesStack" VerticalOptions="StartAndExpand" Padding="10">
             <!-- Will fill from the end of the icon stack to the end of the page-->
             <StackLayout.Padding>
                 <!-- OnIdiom allows different arguements for different frameworks -->
@@ -25,26 +28,29 @@
             </StackLayout.Padding>
 
             <!-- Used for when waiting for server to respond -->
-            <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="true" />
+            <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="False" />
 
-
-            <Label x:Name="Lbl_Heading" Text="Log in to Auteenome" FontSize="Large" TextColor="{StaticResource RiEOffBlack}"/>
+            <Label x:Name="Lbl_Heading" Text="Log in to Auteenome"  Style="{StaticResource HeaderStyle}" TextColor="{StaticResource RiEOffBlack}" Padding="5,10"/>
             
             <!--<Label x:Name="Lbl_Username" Text="Email Address" />-->
             <Entry x:Name="Entry_UserName" Placeholder="Email Address" />
-            
             <!--<Label x:Name="Lbl_Password" Text="Password" />-->
-            <Entry x:Name="Entry_PassWord" Placeholder="Password" />
+            <Entry x:Name="Entry_PassWord" Placeholder="Password" IsPassword="True"/>
 
-            <Button x:Name="Btn_SignIn" Text="Log In" Style="{StaticResource CurvedButtonStyle}" Clicked="SignInProcedure"/>
-            <Button Text="Not Registered? Sign Up" Style="{StaticResource LoginButtonStyle}" Clicked="GoToTandC" />
+            <Label Text="Forgotten your password?" TextColor="{StaticResource RiEOrange}" HorizontalOptions="Center"/>
             
-            <!--layout for spacing-->
-            <StackLayout VerticalOptions="CenterAndExpand">
+            <StackLayout>
+                <Button x:Name="Btn_SignIn" Text="Log In" Style="{StaticResource LoginButtonStyle}" Clicked="SignInProcedure" HorizontalOptions="End"/>
             </StackLayout>
+
+            <Button x:Name="Btn_SignIn2" Text="Sign In" Style="{StaticResource LoginButtonStyle2}" Clicked="SignInProcedure"/>
+
+            <!--<Button Text="Sign in" Clicked="SignInProcedure"/>-->
             
+            <!--<Button Text="Not Registered? Sign Up" Clicked="GoToTandC" />-->
+
             <Button Text="Go to Next Page" Clicked="Page2Jump" Style="{StaticResource AdminButtonStyle}" />
-            
+
         </StackLayout>
 
     </StackLayout>
