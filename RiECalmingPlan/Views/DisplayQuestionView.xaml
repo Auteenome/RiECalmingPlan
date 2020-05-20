@@ -1,29 +1,19 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:RiECalmingPlan.Views"
              mc:Ignorable="d"
-             x:Class="RiECalmingPlan.Views.DisplayQuestionView">
+             x:Class="RiECalmingPlan.Views.DisplayQuestionView"
+             xmlns:local="clr-namespace:RiECalmingPlan.Views"> <!-- reference local to StepProgressBar.cs -->
 
     <ContentView.Resources>
         <ResourceDictionary>
             <DataTemplate x:Key="stepperTemplate">
                 <StackLayout>
-                    <!--<Frame HasShadow="True"
-                       BorderColor="DarkGray"
-                       CornerRadius="5"
-                       Margin="20"
-                       HeightRequest="500"
-                       HorizontalOptions="Center"
-                       VerticalOptions="CenterAndExpand">-->
                     <Frame Style="{StaticResource QuestionFrameStyle}">
                         <StackLayout>
-                            <Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Blue" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
 
                             <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
@@ -31,8 +21,9 @@
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding StepperText}"></Label>
-                                                <Stepper x:Name="_stepper" Style="{StaticResource AnswerStepperStyle}" Value="{Binding StepperValue}" ValueChanged="OnStepperValueChanged" Minimum="0" Maximum="3" HeightRequest="-1"/>
-                                                <Label Text="{Binding Source={x:Reference _stepper}, Path=Value}"/>
+
+                                                <views:StepProgressBar StepColor="Red" Style="{StaticResource StepperStyle} "/>
+
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
@@ -45,19 +36,9 @@
 
             <DataTemplate x:Key="checkBoxTemplate">
                 <StackLayout>
-                    <!--<Frame HasShadow="True"
-                       BorderColor="DarkGray"
-                       CornerRadius="5"
-                       Margin="20"
-                       HeightRequest="500"
-                       HorizontalOptions="Center"
-                       VerticalOptions="CenterAndExpand">-->
                     <Frame Style="{StaticResource QuestionFrameStyle}">
                         <StackLayout>
-                            <!--<Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />-->
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Green" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" FontSize="Medium" HorizontalTextAlignment="Center"/>
-                            <!--<Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />-->
-                            <!--<Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />-->
 
                             <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
@@ -73,26 +54,16 @@
                             </ListView>
                             <Editor Placeholder="Other" />
                         </StackLayout>
-                        
+
                     </Frame>
                 </StackLayout>
             </DataTemplate>
 
             <DataTemplate x:Key="textResponseTemplate">
                 <StackLayout>
-                    <!--<Frame HasShadow="True"
-                       BorderColor="DarkGray"
-                       CornerRadius="5"
-                       Margin="20"
-                       HeightRequest="500"
-                       HorizontalOptions="Center"
-                       VerticalOptions="CenterAndExpand">-->
                     <Frame Style="{StaticResource QuestionFrameStyle}">
                         <StackLayout>
-                            <Label  BindingContext="{Binding Question}" Text="{Binding CPQID}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Red" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionCarePlanArea}" HorizontalOptions="Center" />
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionType}" HorizontalOptions="Center" />
 
                             <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
@@ -115,6 +86,11 @@
             CheckBoxTemplate="{StaticResource checkBoxTemplate}"
             TextResponseTemplate="{StaticResource textResponseTemplate}" />
 
+            <Style x:Key="StepperStyle" TargetType="local:StepProgressBar" >
+                <Setter Property="Steps" Value="4" />
+                <Setter Property="StepSelected" Value="{Binding StepperValue}" />
+            </Style>
+            
         </ResourceDictionary>
     </ContentView.Resources>
 

@@ -1,9 +1,5 @@
 ﻿using RiECalmingPlan.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -32,15 +28,6 @@ namespace RiECalmingPlan.Views {
             Label_CheckBox checkBoxLabel = ((Label_CheckBox)checkbox.BindingContext);
 
            await App.database.UpdateCheckBoxResponse(checkBoxLabel);
-        }
-
-        private async void OnStepperValueChanged(object sender, ValueChangedEventArgs e) {
-            //Event that occurs when a Stepper is changed
-
-            Stepper stepper = (Stepper)sender;
-            Label_Stepper stepperLabel = ((Label_Stepper)stepper.BindingContext);
-            
-           await App.database.UpdateStepperResponse(stepperLabel);
         }
 
         private async void Editor_Completed(object sender, EventArgs e) {
