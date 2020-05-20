@@ -3,7 +3,7 @@ using Xamarin.Forms;
 using RiECalmingPlan.Views;
 using Xamarin.Forms.Xaml;
 using RiECalmingPlan.Models;
-
+using RiECalmingPlan.Pages;
 
 namespace RiECalmingPlan.Views {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -29,7 +29,7 @@ namespace RiECalmingPlan.Views {
             //Lbl_Password.TextColor = Constants.MainTextColor;
 
             //Do not display the activity spinner
-            ActivitySpinner.IsVisible = false;
+            //ActivitySpinner.IsVisible = false;
             //LoginIcon not currently used
             //LoginIcon.HeightRequest = Constants.LoginIconHeight;
 
@@ -64,6 +64,10 @@ namespace RiECalmingPlan.Views {
 
         void GoToTandC(object sender, EventArgs e) {
 
+        }
+
+        private async void btn_altlogin_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_LoginAlternativeDemo());
         }
     }
 }
