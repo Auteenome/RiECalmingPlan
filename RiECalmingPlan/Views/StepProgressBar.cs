@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RiECalmingPlan.Models;
+using System;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -49,7 +50,7 @@ namespace RiECalmingPlan.Views {
                         Style = Resources["unSelectedStyle"] as Style
                     };
 
-                    button.Clicked += Handle_Clicked;
+                    button.Clicked += Handle_ClickedAsync;
 
                     this.Children.Add(button);
 
@@ -66,18 +67,27 @@ namespace RiECalmingPlan.Views {
                 }
             } else if (propertyName == StepSelectedProperty.PropertyName) {
                 var children = this.Children.First(p => (!string.IsNullOrEmpty(p.ClassId) && Convert.ToInt32(p.ClassId) == StepSelected));
-                if (children != null) SelectElement(children as Button);
+                if (children != null) {
+                    SelectElement(children as Button);
+                }
 
             } else if (propertyName == StepColorProperty.PropertyName) {
                 AddStyles();
             }
         }
-        void Handle_Clicked(object sender, System.EventArgs e) {
-            SelectElement(sender as Button);
+
+        async void Handle_ClickedAsync(object sender, System.EventArgs e) {
+            Button b = (Button)sender;
+            Label_Stepper stepperLabel = ((Label_Stepper)b.BindingContext);
+            SelectElement(b);
+
+            await App.database.UpdateStepperResponse(stepperLabel);
         }
 
         void SelectElement(Button elementSelected) {
-            if (_lastStepSelected != null) _lastStepSelected.Style = Resources["unSelectedStyle"] as Style;
+            if (_lastStepSelected != null) {
+                _lastStepSelected.Style = Resources["unSelectedStyle"] as Style;
+            }
 
             elementSelected.Style = Resources["selectedStyle"] as Style;
 
