@@ -9,11 +9,15 @@ namespace RiECalmingPlan.ViewModels {
     public class DisplayQuestion {
 
         public Question Question { get; set; }
-        public List<Response> Responses { get; set; }
+        //Non Text Related Responses, since checkbox questions may have 'other' text responses, these are usually preemptively made in the database
+        public List<GeneratedResponse> GeneratedResponses { get; set; }
+        //List of text related responses
+        public List<NonGeneratedResponse> NonGeneratedResponses { get; set; }
 
-        public DisplayQuestion(Question question, List<Response> response) {
+        public DisplayQuestion(Question question, List<GeneratedResponse> generatedResponses, List<NonGeneratedResponse> nonGeneratedResponses) {
             this.Question = question;
-            this.Responses = response;
+            this.GeneratedResponses = generatedResponses;
+            this.NonGeneratedResponses = nonGeneratedResponses;
         }
     }
 }

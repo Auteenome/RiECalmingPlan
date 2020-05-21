@@ -8,11 +8,23 @@ namespace RiECalmingPlan.Views {
     // code referenced from: https://xamgirl.com/step-bar-in-xamarin-forms/
     // modified by Mitchell Hedges
     public class StepProgressBar : StackLayout {
+        /*
+         * This StepProgressBar does the following things (To avoid confusion)
+         * 
+         * 1. Generates the unselected circles and lines based on the number of steps provided to the stacklayout
+         * 2. Detects all the changes dealt to the property 'StepSelected' and toggles its unselected style to the selected style
+         *    Since the default value of the StepSelectedProperty is -1 (Which is 1 less than the default value known in the database), this will always trigger on startup
+         * 3. Clicking on an unselected circle will deselect it and select the new one, treating the new selected circle as the target to be unselected if another one were to
+         *    be selected
+         * 
+         *
+         * 
+         */
 
         Button _lastStepSelected;
         public static readonly BindableProperty StepsProperty = BindableProperty.Create(nameof(Steps), typeof(int), typeof(StepProgressBar), 0);
-        public static readonly BindableProperty StepSelectedProperty = BindableProperty.Create(nameof(StepSelected), typeof(int), typeof(StepProgressBar), 0, defaultBindingMode: BindingMode.TwoWay);
-        public static readonly BindableProperty StepColorProperty = BindableProperty.Create(nameof(StepColor), typeof(Xamarin.Forms.Color), typeof(StepProgressBar), Color.Black, defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty StepSelectedProperty = BindableProperty.Create(nameof(StepSelected), typeof(int), typeof(StepProgressBar), -1, defaultBindingMode: BindingMode.TwoWay);
+        public static readonly BindableProperty StepColorProperty = BindableProperty.Create(nameof(StepColor), typeof(Color), typeof(StepProgressBar), Color.Black, defaultBindingMode: BindingMode.TwoWay);
 
         public Color StepColor {
             get { return (Color)GetValue(StepColorProperty); }
@@ -44,6 +56,7 @@ namespace RiECalmingPlan.Views {
 
             if (propertyName == StepsProperty.PropertyName) {
                 for (int i = 0; i < Steps; i++) {
+                    //Generates the circle button things, defaulting them all as unselected circles
                     var button = new Button() {
                         Text = $"{i}",
                         ClassId = $"{i}",
@@ -55,6 +68,7 @@ namespace RiECalmingPlan.Views {
                     this.Children.Add(button);
 
                     if (i < Steps - 1) {
+                        //Generates the lines between each circle
                         var separatorLine = new BoxView() {
                             BackgroundColor = Color.Silver,
                             HeightRequest = 1,
@@ -85,13 +99,18 @@ namespace RiECalmingPlan.Views {
         }
 
         void SelectElement(Button elementSelected) {
+
+            // Unselects the last button selected
             if (_lastStepSelected != null) {
                 _lastStepSelected.Style = Resources["unSelectedStyle"] as Style;
-            }
+            } 
 
+            // Selects the new button selected
             elementSelected.Style = Resources["selectedStyle"] as Style;
 
             StepSelected = Convert.ToInt32(elementSelected.Text);
+
+            // The last button is refered to the new button clicked 
             _lastStepSelected = elementSelected;
         }
 

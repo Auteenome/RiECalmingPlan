@@ -38,24 +38,26 @@ namespace RiECalmingPlan.Models {
         public async Task<ObservableCollection<DisplayQuestion>> GetDisplayQuestionList() {
             ObservableCollection<DisplayQuestion> list = new ObservableCollection<DisplayQuestion>();
             foreach (Question q in await db.Table<Question>().ToListAsync()) {
-                List<Response> r = new List<Response>();
+                List<GeneratedResponse> g = new List<GeneratedResponse>();
+                List<NonGeneratedResponse> ng = new List<NonGeneratedResponse>();
                 switch (q.QuestionType) {
                     case ("CheckBox"):
-                        r.AddRange(await GetAssociatedCheckBoxesAsync(q.CPQID));
+                        g.AddRange(await GetAssociatedCheckBoxesAsync(q.CPQID));
+                        ng.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
                         break;
                     case ("Stepper"):
-                        r.AddRange(await GetAssociatedStepperAsync(q.CPQID));
+                        g.AddRange(await GetAssociatedStepperAsync(q.CPQID));
                         break;
                     case ("Text Response"):
-                        r.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
+                        ng.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
                         break;
                     default:
-                        r.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
+                        ng.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
                         break;
                 }
 
 
-                list.Add(new DisplayQuestion(q, r));
+                list.Add(new DisplayQuestion(q, g, ng));
             }
             return list;
         }
@@ -78,7 +80,7 @@ namespace RiECalmingPlan.Models {
             if (stepper != null) {
                 await db.QueryAsync<Label_Stepper>("UPDATE [StepperLabels] SET StepperValue = ? WHERE CPQID = ? AND StepperID = ?",
                     stepper.StepperValue, stepper.CPQID, stepper.StepperID);
-                Console.WriteLine("\n CPQID:" + stepper.CPQID + "\n StepperID: " + stepper.StepperID + "\n StepperText: " + stepper.StepperText + "\n CheckBoxValue: " + stepper.StepperValue);
+                Console.WriteLine("\n CPQID:" + stepper.CPQID + "\n StepperID: " + stepper.StepperID + "\n StepperText: " + stepper.StepperText + "\n StepperValue: " + stepper.StepperValue);
             } else {
                 Console.WriteLine("\n STEPPER null");
             }

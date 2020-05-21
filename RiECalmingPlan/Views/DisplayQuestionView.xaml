@@ -15,12 +15,12 @@
                         <StackLayout>
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Blue" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
 
-                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
+                            <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding StepperText}"></Label>
+                                                <Label Text="{Binding StepperText}"/>
 
                                                 <views:StepProgressBar StepColor="Red" Style="{StaticResource StepperStyle} "/>
 
@@ -37,24 +37,50 @@
             <DataTemplate x:Key="checkBoxTemplate">
                 <StackLayout>
                     <Frame Style="{StaticResource QuestionFrameStyle}">
-                        <StackLayout>
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Green" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                        <StackLayout VerticalOptions="Fill">
+                            <StackLayout VerticalOptions="Start">
+                                <Label BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Green" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" FontSize="Medium" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
 
-                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout Orientation="Horizontal">
-                                                <CheckBox  IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center"></CheckBox>
-                                                <Label Text="{Binding CheckText}" VerticalOptions="Center"></Label>
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <Editor Placeholder="Other" />
+                            <StackLayout VerticalOptions="CenterAndExpand">
+                                <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True" >
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <CheckBox  IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding CheckText}" VerticalOptions="Center"/>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                            <!--
+                            This needs a bit of work, since there is a bit of whitespace when there is a small number
+                            of elements in this list
+                            
+                            For now the heightRequest is a simple fix but only works for one element
+                            
+                            which isn't that bad if we leave it, since there most likely be only one element to work with
+                            
+                            an example would be if a staff member were to create a new question with multiple written responses
+                            -->
+                            <StackLayout VerticalOptions="End">
+                                <ListView HeightRequest="50" BindingContext="{Binding NonGeneratedResponses}" HasUnevenRows="True" ItemsSource="{Binding}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout>
+                                                    <Editor Text="{Binding TextResponse}" Placeholder="Place your answer here" Completed="Editor_Completed"/>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
                         </StackLayout>
-
                     </Frame>
                 </StackLayout>
             </DataTemplate>
@@ -65,12 +91,12 @@
                         <StackLayout>
                             <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Red" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
 
-                            <ListView BindingContext="{Binding Responses}" ItemsSource="{Binding}" HasUnevenRows="True">
+                            <ListView BindingContext="{Binding NonGeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout>
-                                                <Editor Text="{Binding TextResponse}" Placeholder="Place your answer here" AutoSize="TextChanges" Completed="Editor_Completed"></Editor>
+                                                <Editor Text="{Binding TextResponse}" Placeholder="Place your answer here" AutoSize="TextChanges" Completed="Editor_Completed"/>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
