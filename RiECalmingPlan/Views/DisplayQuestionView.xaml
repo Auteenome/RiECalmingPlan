@@ -57,28 +57,12 @@
                                 </ListView>
                             </StackLayout>
 
-                            <!--
-                            This needs a bit of work, since there is a bit of whitespace when there is a small number
-                            of elements in this list
-                            
-                            For now the heightRequest is a simple fix but only works for one element
-                            
-                            which isn't that bad if we leave it, since there most likely be only one element to work with
-                            
-                            an example would be if a staff member were to create a new question with multiple written responses
-                            -->
-                            <StackLayout VerticalOptions="End">
-                                <ListView HeightRequest="50" BindingContext="{Binding NonGeneratedResponses}" HasUnevenRows="True" ItemsSource="{Binding}">
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <ViewCell>
-                                                <StackLayout>
-                                                    <Editor Text="{Binding TextResponse}" Placeholder="Place your answer here" Completed="Editor_Completed"/>
-                                                </StackLayout>
-                                            </ViewCell>
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
+                            <StackLayout VerticalOptions="End" BindableLayout.ItemsSource="{Binding NonGeneratedResponses}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Editor BindingContext="{Binding}" Text="{Binding TextResponse}" Placeholder="Other" Completed="Editor_Completed"/>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
                             </StackLayout>
                         </StackLayout>
                     </Frame>
@@ -123,6 +107,6 @@
     <ContentView.Content>
       <StackLayout>
             <CarouselView x:Name="Questions" ItemTemplate="{StaticResource answerTemplateSelector}"/>
-        </StackLayout>
+      </StackLayout>
   </ContentView.Content>
 </ContentView>
