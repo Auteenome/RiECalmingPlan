@@ -6,13 +6,13 @@
              xmlns:local="clr-namespace:RiECalmingPlan.Renderers"
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_LoginAlternativeDemo"
-             BackgroundColor="{StaticResource RiEOffWhite}">
+             BackgroundColor="{StaticResource RiELightGreen}">
     <ContentPage.Content>
         <ScrollView>
             <ScrollView.VerticalOptions>
                 <OnIdiom x:TypeArguments="LayoutOptions"
                          Tablet="CenterAndExpand"
-                         Phone="FillAndExpand" />
+                         Phone="StartAndExpand" />
             </ScrollView.VerticalOptions>
 
             <StackLayout Spacing="20"
@@ -57,16 +57,27 @@
                 </Frame>
 
                 <Label Text="Forgotten your password?"
-                       TextColor="{StaticResource RiEOrange}"
+                       TextColor="{StaticResource RiEOffBlack}"
                        HorizontalOptions="End" />
 
                 <Button Text="Log in"
                         Style="{StaticResource LoginButtonStyle}"
+                        HorizontalOptions="End"
+                        BackgroundColor="{StaticResource RiEDarkGreen}"
+                        TextColor="White" />
+
+                <Button Text="Log in"
+                        Style="{StaticResource LoginButtonStyle}"
                         HorizontalOptions="Fill"
-                        BackgroundColor="{StaticResource RiELightGreen}"
-                        TextColor="White" 
-                        FontFamily=""/>
-                
+                        BackgroundColor="{StaticResource RiEOrange}"
+                        TextColor="White" />
+
+                <Button Text="Sign up"
+                        Style="{StaticResource LoginButtonStyle}"
+                        HorizontalOptions="Fill"
+                        BackgroundColor="{StaticResource RiEDarkGreen}"
+                        TextColor="White"/>
+
 
             </StackLayout>
         </ScrollView>

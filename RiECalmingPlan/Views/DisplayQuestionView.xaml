@@ -20,7 +20,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding StepperText}"/>
+                                                <Label Text="{Binding StepperText}" VerticalOptions="Center"/>
 
                                                 <views:StepProgressBar StepColor="Red" Style="{StaticResource StepperStyle} "/>
 
