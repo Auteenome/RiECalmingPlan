@@ -11,10 +11,7 @@ namespace RiECalmingPlan.Views {
         public Page_Menu() {
             InitializeComponent();
             // BackgroundColor = Constants.BackgroundColor;
-
-            // hello from mitchell's push
         }
-
         async void GoToContextMainPage(object sender, EventArgs e) {
             await Navigation.PushAsync(new Page_Questions());
         }

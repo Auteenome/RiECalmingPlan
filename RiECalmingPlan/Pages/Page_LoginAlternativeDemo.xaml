@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:RiECalmingPlan.Renderers"
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_LoginAlternativeDemo"
-             BackgroundColor="{StaticResource RiELightGreen}">
+             BackgroundColor="{StaticResource RiEOffWhite}">
     <ContentPage.Content>
         <ScrollView>
             <ScrollView.VerticalOptions>
@@ -57,7 +57,7 @@
                 </Frame>
 
                 <Label Text="Forgotten your password?"
-                       TextColor="{StaticResource RiEOffBlack}"
+                       TextColor="{StaticResource RiEOrange}"
                        HorizontalOptions="End" />
 
                 <Button Text="Log in"

@@ -4,6 +4,6 @@
     <color android:color="@color/launcher_background" />
   </item>
   <item>
-    <bitmap android:src="@drawable/rie_logo300" android:tileMode="disabled" android:gravity="center" android:layout_gravity="center" />
+    <bitmap android:src="@drawable/rie_logo300" android:tileMode="disabled" android:gravity="center" android:layout_gravity="center"/>
   </item>
 </layer-list>
