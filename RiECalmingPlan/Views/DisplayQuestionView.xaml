@@ -22,7 +22,7 @@
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding StepperText}" VerticalOptions="Center"/>
 
-                                                <views:StepProgressBar StepColor="Red" Style="{StaticResource StepperStyle} "/>
+                                                <views:StepProgressBar StepColor="{StaticResource RiELightGreen}" Style="{StaticResource StepperStyle} "/>
 
                                             </StackLayout>
                                         </ViewCell>

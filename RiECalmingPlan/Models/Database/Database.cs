@@ -74,6 +74,14 @@ namespace RiECalmingPlan.Models {
             return await db.QueryAsync<Label_TextResponse>("SELECT * FROM [TextResponseLabels] WHERE [CPQID] = " + CPQID);
         }
 
+        public async Task<List<CalmDistressLevelResponse>> GetCalmDistressResponseHistory() {
+            return await db.QueryAsync<CalmDistressLevelResponse>("SELECT * FROM [CalmDistressLevelResponse]");
+        }
+
+        public async Task<List<NonCalmDistressLevelResponse>> GetNonCalmDistressResponseHistory() {
+            return await db.QueryAsync<NonCalmDistressLevelResponse>("SELECT * FROM [NonCalmDistressLevelResponse]");
+        }
+
         //------------------- MUTATORS -------------------------------
 
         public async Task UpdateStepperResponse(Label_Stepper stepper) {
@@ -104,6 +112,14 @@ namespace RiECalmingPlan.Models {
             } else {
                 Console.WriteLine("\n textbox null");
             }
+        }
+
+        public async Task AppendCalmResponse(CalmDistressLevelResponse response) {
+            await db.InsertAsync(response);
+        }
+
+        public async Task AppendNonCalmResponse(NonCalmDistressLevelResponse response) {
+            await db.InsertAsync(response);
         }
 
     }

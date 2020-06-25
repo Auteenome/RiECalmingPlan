@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RiECalmingPlan.Pages.Page_DistressTracker">
+
+    <ContentPage.Resources>
+        <ContentView x:Key="CarouselControl">
+            <Frame Style="{StaticResource QuestionFrameStyle}">
+                <StackLayout>
+                    <Button Text="Acute" Style="{StaticResource ButtonStyle}" Clicked="NotCalmSelected"/>
+                    <Button Text="Moderate" Style="{StaticResource ButtonStyle}" Clicked="NotCalmSelected"/>
+                    <Button Text="Mild" Style="{StaticResource ButtonStyle}" Clicked="NotCalmSelected"/>
+                    <Button Text="Calm" Style="{StaticResource ButtonStyle}" Clicked="CalmSelected"/>
+                </StackLayout>
+            </Frame>
+        </ContentView>
+
+        <ContentView x:Key="NonCalmFrame" >
+            <StackLayout>
+                <Frame Style="{StaticResource QuestionFrameStyle}">
+                    <StackLayout  BindingContext="{Binding NonCalmResponse}">
+
+                        <Label Text="Did anything make you this way?"/>
+                        <Editor x:Name="NonCalmResponse1" Text="{Binding Response1}"/>
+                        <Label Text="What can you do to feel better?"/>
+                        <Editor x:Name="NonCalmResponse2" Text="{Binding Response2}"/>
+                        <Label Text="Would you like a suggestion?"/>
+                        <CheckBox x:Name="NonCalmResponse3" IsChecked="{Binding Suggestion}"/>
+                        <Button Text="Back" Style="{StaticResource ButtonStyle}" Clicked="Back"/>
+                        <Button Text="Save" Style="{StaticResource ButtonStyle}" Clicked="SaveNonCalmResponse"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ContentView>
+
+        <ContentView x:Key="CalmFrame" >
+            <StackLayout>
+                <Frame Style="{StaticResource QuestionFrameStyle}">
+                    <StackLayout BindingContext="{Binding CalmResponse}" >
+
+                        <Label Text="Terrific – was there anything that helped you feel calm?"/>
+                        <Editor x:Name="CalmResponse1" Text="{Binding Response1}" />
+                        <Label Text="Is there anything you will do to keep you feeling this way?"/>
+                        <Editor x:Name="CalmResponse2" Text="{Binding Response2}" />
+                        <Button Text="Back" Style="{StaticResource ButtonStyle}" Clicked="Back"/>
+                        <Button Text="Save" Style="{StaticResource ButtonStyle}" Clicked="SaveCalmResponse"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ContentView>
+
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <CarouselView x:Name="Carousel" IsSwipeEnabled="False">
+            <CarouselView.ItemsSource>
+                <x:Array Type="{x:Type ContentView}">
+                    <ContentView Content="{DynamicResource CarouselControl}"/>
+                    <ContentView Content="{DynamicResource CalmFrame}"/>
+                    <ContentView Content="{DynamicResource NonCalmFrame}"/>
+                </x:Array>
+            </CarouselView.ItemsSource>
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView Content="{Binding .}" />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </ContentPage.Content>
+    
+    
+</ContentPage>

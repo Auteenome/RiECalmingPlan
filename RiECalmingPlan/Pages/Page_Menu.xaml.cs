@@ -12,8 +12,17 @@ namespace RiECalmingPlan.Views {
             InitializeComponent();
             // BackgroundColor = Constants.BackgroundColor;
         }
+
         async void GoToContextMainPage(object sender, EventArgs e) {
             await Navigation.PushAsync(new Page_Questions());
+        }
+
+        async void GoToDistressTracker(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_DistressTracker());
+        }
+
+        async void GoToDistressHistory(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_DistressHistory());
         }
 
         void ResetLocalDatabase(object sender, EventArgs e) {

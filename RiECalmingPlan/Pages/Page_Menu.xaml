@@ -6,7 +6,11 @@
         <StackLayout Style="{StaticResource StackLayoutStyle}">
             <Button Text="Calming Plan Questions" Style="{StaticResource ButtonStyle}" Clicked="GoToContextMainPage" />
             <Button Text="Reset Database" Style="{StaticResource ButtonStyle}" Clicked="ResetLocalDatabase" />
-            
+
+
+            <Button Text="Distress Tracker" Style="{StaticResource ButtonStyle}" Clicked="GoToDistressTracker" />
+            <Button Text="Distress History" Style="{StaticResource ButtonStyle}" Clicked="GoToDistressHistory" />
+
             <!--layout for spacing-->
             <StackLayout VerticalOptions="CenterAndExpand">
             </StackLayout>
