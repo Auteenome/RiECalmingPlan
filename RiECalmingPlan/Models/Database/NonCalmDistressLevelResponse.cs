@@ -13,7 +13,7 @@ namespace RiECalmingPlan.Models {
 
         //TimeStamp
         [Column("TimeStamp")]
-        public DateTime TimeStamp { get; set; }
+        public override DateTime TimeStamp { get; set; }
 
         //Terrific – was there anything that helped you feel calm?
         [Column("Response1")]

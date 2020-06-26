@@ -94,8 +94,15 @@ namespace RiECalmingPlan.Pages {
         }
 
         private void Back(object sender, EventArgs e) {
+            //Clears everything and goes back to main control
             Console.WriteLine("GOING BACK");
             Carousel.Position = PYRAMID_CONTROLS;
+            NonCalmResponse1.Text = "";
+            NonCalmResponse2.Text = "";
+            NonCalmResponse3.IsChecked = false;
+            CalmResponse1.Text = "";
+            CalmResponse2.Text = "";
+
         }
     }
 }

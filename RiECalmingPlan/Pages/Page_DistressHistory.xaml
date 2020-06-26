@@ -39,10 +39,10 @@
         <StackLayout>
             <StackLayout Orientation="Horizontal" Padding="10">
                 <Label Text="Filter Items:"  VerticalOptions="Center"/>
-                <Picker ItemsSource="{Binding FilterOptions}" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
+                <Picker ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilter}"  VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <ScrollView>
-                <StackLayout BindableLayout.ItemsSource="{Binding FullHistory}" BindableLayout.ItemTemplateSelector="{StaticResource distressCategorySelector}"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding FilteredHistory}" BindableLayout.ItemTemplateSelector="{StaticResource distressCategorySelector}"/>
             </ScrollView>
 
 
