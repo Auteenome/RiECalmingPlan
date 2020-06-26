@@ -9,6 +9,8 @@ Any changes to the database tables must also happen to the database models in th
 2. All questions split apart over multiple pages are condensed into one page with multiple 'cards' that have a question and
 appropriate responses. Checkbox and Stepper informaiton is saved as the user presses the respective controls, and text responses are saved when exiting out of the keyboard.
 
+3. The 'Distress Tracker' allows you to add distress responses into the same database file and review them in the 'Distress History' page. This Distress History page also allows filtering for four different filters (All, Today, Week (7 days before today), and Month (1 month before this one)).
+
 TODO
 1. Fix presentation of the questionaire cards
 2. Test Database code on IOS
@@ -19,3 +21,5 @@ in the carousel moving and not the ListView Scrolling
 2. Carousel cards are differentiated by question type, which allows for different sizing and styles for all three current types
 (Stepper, Text Response, Checkbox).
 3. As cards are swiped and values are loaded in, it will trigger events that activate when a value is changed (E.G checkbox default is 0 but a loaded binding value could change it to 1 if checked before). Some events may be triggered on unrendered elements but do not affect the backend side of the app.
+
+4. A little ambiguity is shown in the Month/Week filters, as Month could also mean "roughly 30 days ago", and Week can also mean "The full week Monday-Sunday before the current week". A good change to this is allowing the user to enter a specific date and any entries that pop up that is between that date and today will be shown.
