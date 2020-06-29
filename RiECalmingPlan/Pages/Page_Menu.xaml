@@ -10,6 +10,7 @@
 
             <Button Text="Distress Tracker" Style="{StaticResource ButtonStyle}" Clicked="GoToDistressTracker" />
             <Button Text="Distress History" Style="{StaticResource ButtonStyle}" Clicked="GoToDistressHistory" />
+            <Button Text="Distress Chart" Style="{StaticResource ButtonStyle}" Clicked="GoToDistressChart" />
 
             <!--layout for spacing-->
             <StackLayout VerticalOptions="CenterAndExpand">

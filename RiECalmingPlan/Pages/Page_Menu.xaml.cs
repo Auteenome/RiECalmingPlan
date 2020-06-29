@@ -25,6 +25,10 @@ namespace RiECalmingPlan.Views {
             await Navigation.PushAsync(new Page_DistressHistory());
         }
 
+        async void GoToDistressChart(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_DistressChart());
+        }
+
         void ResetLocalDatabase(object sender, EventArgs e) {
             //will be implemented soon
             App.database.ResetConnection();

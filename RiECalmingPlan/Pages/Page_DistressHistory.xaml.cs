@@ -15,17 +15,5 @@ namespace RiECalmingPlan.Pages {
             InitializeComponent();
             BindingContext = new DistressHistoryViewModel();
         }
-
-        void OnDateSelected(object sender, DateChangedEventArgs args) {
-            Recalculate();
-        }
-
-        void OnSwitchToggled(object sender, ToggledEventArgs args) {
-            Recalculate();
-        }
-
-        void Recalculate() {
-
-        }
     }
 }
