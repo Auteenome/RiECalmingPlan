@@ -12,9 +12,6 @@ using SkiaSharp;
 namespace RiECalmingPlan.ViewModels {
     public class DistressChartViewModel : ViewModel_Base {
 
-
-        public DistressHistoryViewModel Model = new DistressHistoryViewModel();
-
         private Chart _LineChart;
         public Chart LineChart { get { return _LineChart; } set { SetProperty(ref _LineChart, value); } }
 
@@ -28,29 +25,34 @@ namespace RiECalmingPlan.ViewModels {
 
 
         public DistressChartViewModel() {
-            LineChart = new LineChart() { Entries = GetEntries() };
+            GetEntries();
         }
 
-        public List<Entry> GetEntries() {
+        public async void GetEntries() {
+            List<DistressResponse> FullHistory = new List<DistressResponse>();
+            var calm = await App.database.GetCalmDistressResponseHistory();
+            var noncalm = await App.database.GetNonCalmDistressResponseHistory();
+            FullHistory.AddRange(calm);
+            FullHistory.AddRange(noncalm);
+            FullHistory = FullHistory.OrderBy(x => x.TimeStamp).ToList();
+
             Console.WriteLine("Getting Entries now");
             List<Entry> entries = new List<Entry>();
-            foreach(var d in Model.FullHistory) {
+            foreach(var d in FullHistory) {
                 if (d is NonCalmDistressLevelResponse) {
                     Magnitude.TryGetValue(((NonCalmDistressLevelResponse)d).DistressLevelType, out int value);
                     entries.Add(new Entry(value) {
-                        ValueLabel = ((NonCalmDistressLevelResponse)d).DistressLevelType,
+                        ValueLabel = d.TimeStamp.ToString(),
                         Color = SKColor.Parse("#b455b6")
                     });
-                }
-                else {
+                } else {
                     entries.Add(new Entry(1) {
-                        ValueLabel = "Calm",
+                        ValueLabel = d.TimeStamp.ToString(),
                         Color = SKColor.Parse("#b455b6")
                     });
                 }
             }
-
-            return entries;
+            LineChart = new LineChart() { Entries = entries };
         }
 
     }

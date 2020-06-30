@@ -16,15 +16,10 @@ namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page_DistressChart : ContentPage {
 
-        DistressChartViewModel model = new DistressChartViewModel();
 
         public Page_DistressChart() {
             InitializeComponent();
-            BindingContext = model;
-        }
-
-        private void Button_Clicked(object sender, EventArgs e) {
-            model.LineChart = new LineChart() { Entries = model.GetEntries() };
+            BindingContext = new DistressChartViewModel();
         }
     }
 }

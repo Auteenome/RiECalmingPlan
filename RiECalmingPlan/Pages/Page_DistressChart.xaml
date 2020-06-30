@@ -13,7 +13,6 @@
         <ScrollView>
             <StackLayout>
                 <microcharts:ChartView x:Name="Chart1" HeightRequest="500" Chart="{Binding LineChart}"/>
-                <Button Text="Refresh" Clicked="Button_Clicked"></Button>
             </StackLayout>
             
         </ScrollView>
