@@ -56,37 +56,48 @@
                    BackgroundColor="White">
                 <local:BorderlessEntry x:Name="Entry_Email"
                                        Placeholder="Email Address"
+                                       Text="{Binding Email}"
                                        Style="{StaticResource Style_CustomEntryLoginStyle}"
                                        HeightRequest="30"
-                                       WidthRequest="350" />
+                                       WidthRequest="350" 
+                                       Keyboard="Email"
+                                       ReturnType="Next"/>
             </Frame>
 
             <Frame Style="{StaticResource Style_EntryCurvedBorderFrameStyle}"
                    BackgroundColor="White">
                 <local:BorderlessEntry x:Name="Entry_Password"
                                        Placeholder="Password"
+                                       Text="{Binding Password}"
                                        Style="{StaticResource Style_CustomEntryLoginStyle}"
                                        HeightRequest="30"
                                        WidthRequest="350"
-                                       IsPassword="True" />
+                                       IsPassword="True" 
+                                       Keyboard="Default"/>
             </Frame>
-            
+
             <Label Text="Forgotten your password?"
                    TextColor="{StaticResource RiEOrange}"
-                   HorizontalOptions="End" />
-            
+                   HorizontalOptions="End">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="GoToResetPassword" />
+                </Label.GestureRecognizers>
+            </Label>
+
             <Button Text="Log in"
                     Style="{StaticResource LoginButtonStyle}"
                     HorizontalOptions="Fill"
                     BackgroundColor="{StaticResource RiEDarkGreen}"
-                    TextColor="White" />
+                    TextColor="White"
+                    Command="{Binding LoginCommand}" />
+            <!--Clicked="SignInProcedure"-->
 
             <Button Text="Sign up"
                     Style="{StaticResource LoginButtonStyle}"
                     HorizontalOptions="Fill"
                     BackgroundColor="{StaticResource RiEOrange}"
                     TextColor="White"
-                    Clicked="GoToTandC" />
+                    Command="{Binding SignUpCommand}" />
 
             <Button x:Name="btn_adminNextPage"
                 Text="Go to Next Page"

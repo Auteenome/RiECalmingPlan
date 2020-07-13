@@ -28,8 +28,20 @@ namespace RiECalmingPlan.Models
 
         public bool CheckLoginInformation()
         {
-            //Basic check only to see some text was entered in the Login Page Entry form , ie that username is not blank
-            if (!this.Username.Equals("") && !this.Password.Equals(""))
+            // Basic check only to see entered data matches some dummy data
+            // Later this will query the web database
+
+            if (this.Username.Equals("email@email.com") && this.Password.Equals("password"))
+                return true;
+            else
+                return false;
+        }
+
+        public static bool CheckLoginInformation(string Email, string Password)
+        {
+            // method for MVVM login procedure
+
+            if (Email.Equals("email@email.com") && Password.Equals("password"))
                 return true;
             else
                 return false;
