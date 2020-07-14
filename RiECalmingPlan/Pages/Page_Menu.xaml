@@ -1,22 +1,70 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RiECalmingPlan.Views.Page_Menu">
+             x:Class="RiECalmingPlan.Views.Page_Menu"
+             BackgroundColor="{StaticResource RiEOffWhite}">
+    
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource StackLayoutStyle}">
-            <Button Text="Calming Plan Questions" Style="{StaticResource ButtonStyle}" Clicked="GoToContextMainPage" />
-            <Button Text="Reset Database" Style="{StaticResource ButtonStyle}" Clicked="ResetLocalDatabase" />
+        <StackLayout Spacing="20"
+                     Margin="20"
+                     Padding="10"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     WidthRequest="-1">
+            <StackLayout.Style>
+                <OnIdiom x:TypeArguments="Style"
+                         Tablet="{StaticResource Style_TabletStackLayout}"
+                         Phone="{StaticResource Style_PhoneStackLayout}" />
+            </StackLayout.Style>
+            <StackLayout.Padding>
+                <!-- OnIdiom allows different arguements for different frameworks -->
+                <OnIdiom x:TypeArguments="Thickness">
+                    <!--<OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
+                        <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>-->
+                </OnIdiom>
+            </StackLayout.Padding>
+            
+            <Button Text="Calming Plan Questions"
+                    Style="{StaticResource MenuButtonStyle}"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource RiEDarkGreen}"
+                    Clicked="GoToContextMainPage" 
+                    WidthRequest="350"/>
+            
+            <Button Text="Reset Database"
+                    Style="{StaticResource MenuButtonStyle}"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource RiEDarkGreen}"
+                    Clicked="ResetLocalDatabase" />
+            
+            <Button Text="Distress Tracker"
+                    Style="{StaticResource MenuButtonStyle}"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource RiEDarkGreen}"
+                    Clicked="GoToDistressTracker" />
+            
+            <Button Text="Distress History"
+                    Style="{StaticResource MenuButtonStyle}"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource RiEDarkGreen}"
+                    Clicked="GoToDistressHistory" />
+            
+            <Button Text="Distress Chart"
+                    Style="{StaticResource MenuButtonStyle}"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource RiEDarkGreen}"
+                    Clicked="GoToDistressChart" />
 
-
-            <Button Text="Distress Tracker" Style="{StaticResource ButtonStyle}" Clicked="GoToDistressTracker" />
-            <Button Text="Distress History" Style="{StaticResource ButtonStyle}" Clicked="GoToDistressHistory" />
-            <Button Text="Distress Chart" Style="{StaticResource ButtonStyle}" Clicked="GoToDistressChart" />
+            <Button Text="Button Demo"
+                    Style="{StaticResource AdminButtonStyle}"
+                    Clicked="GoToButtonDemo" />
 
             <!--layout for spacing-->
             <StackLayout VerticalOptions="CenterAndExpand">
             </StackLayout>
 
-            <Button Text="Sign Out - to be added" Style="{StaticResource AdminButtonStyle}" />
+            <Button Text="Sign Out - to be added" 
+                    Style="{StaticResource AdminButtonStyle}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

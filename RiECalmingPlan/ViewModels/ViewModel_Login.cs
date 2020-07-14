@@ -10,6 +10,7 @@ namespace RiECalmingPlan.ViewModels {
         // View Model for login procedure
         // Has properties for Email, Password
         // Has command LoginCommand that checks entries not null or empty, and calls User.CheckLoginInformation(Email, Password)
+        // Has Sign Up command
         // Last Updated by: Mitchell H 13.07.20
 
         public event PropertyChangedEventHandler PropertyChanged;

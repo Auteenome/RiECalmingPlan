@@ -13,7 +13,7 @@
                     <Button Text="Acute" Style="{StaticResource ButtonStyle}" Clicked="NotCalmSelected"/>
                     <Button Text="Moderate" Style="{StaticResource ButtonStyle}" Clicked="NotCalmSelected"/>
                     <Button Text="Mild" Style="{StaticResource ButtonStyle}" Clicked="NotCalmSelected"/>
-                    <Button Text="Calm" Style="{StaticResource ButtonStyle}" Clicked="CalmSelected"/>
+                    <Button Text="Calm" Style="{StaticResource ButtonStyle}" Clicked="CalmSelected" />
                 </StackLayout>
             </Frame>
         </ContentView>
