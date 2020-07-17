@@ -36,5 +36,9 @@ namespace RiECalmingPlan.Views {
             await App.database.UpdateTextResponse(editorLabel);
             Console.WriteLine("Editing completed");
         }
+
+        private async void CustomInputButtonPressed(object sender, EventArgs e) {
+
+        }
     }
 }

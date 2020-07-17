@@ -14,7 +14,7 @@ namespace RiECalmingPlan.Models {
         public int StepperID { get; set; }
 
         [Column("StepperText")]
-        public string StepperText { get; set; }
+        public override string Label { get; set; }
 
         [Column("StepperValue")]
         public int StepperValue { get; set; }

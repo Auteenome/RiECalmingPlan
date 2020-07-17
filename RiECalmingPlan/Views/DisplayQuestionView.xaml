@@ -12,23 +12,35 @@
             <DataTemplate x:Key="stepperTemplate">
                 <StackLayout>
                     <Frame Style="{StaticResource QuestionFrameStyle}">
-                        <StackLayout>
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Blue" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                        <StackLayout  VerticalOptions="Fill">
+                            
+                            <StackLayout VerticalOptions="Start">
+                                <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Blue" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                            </StackLayout>
+                            
+                            <StackLayout VerticalOptions="CenterAndExpand">
+                                <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding Label}" VerticalOptions="Center"/>
 
-                            <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding StepperText}" VerticalOptions="Center"/>
+                                                    <views:StepProgressBar StepColor="{StaticResource RiELightGreen}" Style="{StaticResource StepperStyle} "/>
 
-                                                <views:StepProgressBar StepColor="{StaticResource RiELightGreen}" Style="{StaticResource StepperStyle} "/>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
 
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                            </StackLayout>
+                            
+                            <StackLayout VerticalOptions="End">
+                                <Editor x:Name="CustomEntry" BindingContext="{Binding NonGeneratedResponses}" Text="{Binding TextResponse}" Placeholder="Other"/>
+                                <Button Text="Add" Command="{Binding AddResponseCommand}" CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
+                            </StackLayout>
+                            
                         </StackLayout>
                     </Frame>
                 </StackLayout>
@@ -38,6 +50,7 @@
                 <StackLayout>
                     <Frame Style="{StaticResource QuestionFrameStyle}">
                         <StackLayout VerticalOptions="Fill">
+                            
                             <StackLayout VerticalOptions="Start">
                                 <Label BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Green" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" FontSize="Medium" HorizontalTextAlignment="Center"/>
                             </StackLayout>
@@ -49,7 +62,7 @@
                                             <ViewCell>
                                                 <StackLayout Orientation="Horizontal">
                                                     <CheckBox  IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center"/>
-                                                    <Label Text="{Binding CheckText}" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Label}" VerticalOptions="Center"/>
                                                 </StackLayout>
                                             </ViewCell>
                                         </DataTemplate>
@@ -57,13 +70,11 @@
                                 </ListView>
                             </StackLayout>
 
-                            <StackLayout VerticalOptions="End" BindableLayout.ItemsSource="{Binding NonGeneratedResponses}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <Editor BindingContext="{Binding}" Text="{Binding TextResponse}" Placeholder="Other" Completed="Editor_Completed"/>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
+                            <StackLayout VerticalOptions="End">
+                                <Editor x:Name="CustomEntry" BindingContext="{Binding NonGeneratedResponses}" Text="{Binding TextResponse}" Placeholder="Other"/>
+                                <Button Text="Add" Command="{Binding AddResponseCommand}" CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
                             </StackLayout>
+                            
                         </StackLayout>
                     </Frame>
                 </StackLayout>
