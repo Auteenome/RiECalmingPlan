@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using MvvmHelpers;
 using RiECalmingPlan.SQLite;
 using RiECalmingPlan.ViewModels;
 using SQLite;
@@ -46,7 +47,6 @@ namespace RiECalmingPlan.Models {
                 switch (q.QuestionType) {
                     case ("CheckBox"):
                         g.AddRange(await GetAssociatedCheckBoxesAsync(q.CPQID));
-                        ng.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
                         break;
                     case ("Stepper"):
                         g.AddRange(await GetAssociatedStepperAsync(q.CPQID));
@@ -65,14 +65,16 @@ namespace RiECalmingPlan.Models {
             return list;
         }
 
-        public async Task<List<Response>> GetDistressLevelViewModelList(int DistressLevelType) {
+        public async Task<ObservableRangeCollection<Response>> GetDistressLevelViewModelList(string DistressLevelType) {
             /*
-             * Returns all responses where their respective question's distress level type matches the 
+             * Returns all responses where their respective question's distress level type matches the input
+             * 
+             *  ORDER BY RANDOM() LIMIT 5
              */
-            List<Response> r = new List<Response>();
-            r.AddRange(await db.QueryAsync<Label_Stepper>("SELECT * FROM [Questions] RIGHT JOIN [StepperLabels] ON Questions.DistressLevelType = ? ORDER BY RANDOM() LIMIT 5", DistressLevelType));
-            r.AddRange(await db.QueryAsync<Label_CheckBox>("SELECT * FROM [Questions] RIGHT JOIN [CheckBoxLabels] ON Questions.DistressLevelType = ? ORDER BY RANDOM() LIMIT 5", DistressLevelType));
-            r.AddRange(await db.QueryAsync<Label_TextResponse>("SELECT * FROM [Questions] RIGHT JOIN [TextResponseLabels] ON Questions.DistressLevelType = ? ORDER BY RANDOM() LIMIT 5", DistressLevelType));
+            ObservableRangeCollection<Response> r = new ObservableRangeCollection<Response>();
+            r.AddRange(await db.QueryAsync<Label_CheckBox>("SELECT * FROM [CheckBoxLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND CheckBoxLabels.CheckBoxValue = 1 AND Questions.CPQID = CheckBoxLabels.CPQID", DistressLevelType));
+            r.AddRange(await db.QueryAsync<Label_Stepper>("SELECT * FROM [StepperLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND StepperLabels.StepperValue > 0 AND Questions.CPQID = StepperLabels.CPQID", DistressLevelType));
+            r.AddRange(await db.QueryAsync<Label_TextResponse>("SELECT * FROM [TextResponseLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND Questions.CPQID = TextResponseLabels.CPQID", DistressLevelType));
             return r;
 
         }
@@ -119,8 +121,8 @@ namespace RiECalmingPlan.Models {
         public async Task UpdateTextResponse(Label_TextResponse textResponse) {
             if (textResponse != null) {
                 await db.QueryAsync<Label_TextResponse>("UPDATE [TextResponseLabels] SET TextResponse = ? WHERE CPQID = ? AND TextResponseID = ?",
-                    textResponse.TextResponse, textResponse.CPQID, textResponse.TextResponseID);
-                Console.WriteLine("\n CPQID:" + textResponse.CPQID + "\n textResponseID: " + textResponse.TextResponseID + "\n Text: " + textResponse.TextResponse);
+                    textResponse.Label, textResponse.CPQID, textResponse.TextResponseID);
+                Console.WriteLine("\n CPQID:" + textResponse.CPQID + "\n textResponseID: " + textResponse.TextResponseID + "\n Text: " + textResponse.Label);
             } else {
                 Console.WriteLine("\n textbox null");
             }
@@ -136,6 +138,9 @@ namespace RiECalmingPlan.Models {
 
         public async Task AppendStepperResponse(Label_Stepper stepper) {
             await db.InsertAsync(stepper);
+        }
+        public async Task AppendTextResponse(Label_TextResponse textResponse) {
+            await db.InsertAsync(textResponse);
         }
 
         public async Task AppendUserInputDistressLevel(UserInputDistressLevel level) {

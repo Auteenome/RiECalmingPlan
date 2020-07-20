@@ -37,7 +37,7 @@
                             </StackLayout>
                             
                             <StackLayout VerticalOptions="End">
-                                <Editor x:Name="CustomEntry" BindingContext="{Binding NonGeneratedResponses}" Text="{Binding TextResponse}" Placeholder="Other"/>
+                                <Editor x:Name="CustomEntry" Text="{Binding OtherText}" Placeholder="Other"/>
                                 <Button Text="Add" Command="{Binding AddResponseCommand}" CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
                             </StackLayout>
                             
@@ -71,7 +71,7 @@
                             </StackLayout>
 
                             <StackLayout VerticalOptions="End">
-                                <Editor x:Name="CustomEntry" BindingContext="{Binding NonGeneratedResponses}" Text="{Binding TextResponse}" Placeholder="Other"/>
+                                <Editor x:Name="CustomEntry" Text="{Binding OtherText}" Placeholder="Other"/>
                                 <Button Text="Add" Command="{Binding AddResponseCommand}" CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
                             </StackLayout>
                             
@@ -81,22 +81,33 @@
             </DataTemplate>
 
             <DataTemplate x:Key="textResponseTemplate">
-                <StackLayout>
+                <StackLayout VerticalOptions="Start">
                     <Frame Style="{StaticResource QuestionFrameStyle}">
                         <StackLayout>
-                            <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Red" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                            <StackLayout>
+                                <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Red" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
+                            </StackLayout>
 
-                            <ListView BindingContext="{Binding NonGeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout>
-                                                <Editor Text="{Binding TextResponse}" Placeholder="Place your answer here" AutoSize="TextChanges" Completed="Editor_Completed"/>
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
+                            <StackLayout VerticalOptions="CenterAndExpand">
+                                <ListView BindingContext="{Binding NonGeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout>
+                                                    <Label Text="{Binding Label}" />
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+
+                            <StackLayout VerticalOptions="End">
+                                <Editor x:Name="CustomEntry" Text="{Binding OtherText}" Placeholder="Other"/>
+                                <Button Text="Add" Command="{Binding AddResponseCommand}" CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
+                            </StackLayout>
+                            
+
                         </StackLayout>
                     </Frame>
                 </StackLayout>

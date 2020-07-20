@@ -14,6 +14,7 @@ namespace RiECalmingPlan.ViewModels {
         private Question _Question;
         private ObservableRangeCollection<GeneratedResponse> _GeneratedResponses;
         private ObservableRangeCollection<NonGeneratedResponse> _NonGeneratedResponses;
+        private string _OtherText;
 
 
         public Question Question { get { return _Question; } set { SetProperty(ref _Question, value); } }
@@ -22,6 +23,7 @@ namespace RiECalmingPlan.ViewModels {
         //List of text related responses
         public ObservableRangeCollection<NonGeneratedResponse> NonGeneratedResponses { get { return _NonGeneratedResponses; } set { SetProperty(ref _NonGeneratedResponses, value); } }
 
+        public string OtherText { get { return _OtherText; } set { SetProperty(ref _OtherText, value); } }
         public Command<string> AddResponseCommand { get; private set; } 
 
         public DisplayQuestion(Question question, List<GeneratedResponse> generatedResponses, List<NonGeneratedResponse> nonGeneratedResponses) {
@@ -31,6 +33,7 @@ namespace RiECalmingPlan.ViewModels {
             GeneratedResponses.ReplaceRange(generatedResponses);
             NonGeneratedResponses.ReplaceRange(nonGeneratedResponses);
             AddResponseCommand = new Command<string>(AddResponse);
+            _OtherText = string.Empty;
         }
 
         public async void AddResponse(string s) {
@@ -44,8 +47,13 @@ namespace RiECalmingPlan.ViewModels {
                     Label_Stepper stepper = new Label_Stepper() { CPQID = Question.CPQID, StepperID = GeneratedResponses.Count + 1, Label = s, StepperValue = 0 };
                     GeneratedResponses.Add(stepper);
                     await App.database.AppendStepperResponse(stepper);
+                } else {
+                    Label_TextResponse textResponse = new Label_TextResponse() { CPQID = Question.CPQID, TextResponseID = NonGeneratedResponses.Count + 1, Label = s };
+                    NonGeneratedResponses.Add(textResponse);
+                    await App.database.AppendTextResponse(textResponse);
                 }
             }
+            OtherText = string.Empty;
         }
     }
 }
