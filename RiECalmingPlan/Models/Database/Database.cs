@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using MvvmHelpers;
 using RiECalmingPlan.SQLite;
 using RiECalmingPlan.ViewModels;
 using SQLite;
@@ -33,7 +34,10 @@ namespace RiECalmingPlan.Models {
         }
 
 
-        //------------------- RETRIEVERS -------------------------------
+        //------------------- READ -------------------------------
+        /*
+         * Pulls the appropriate information from tables into tangible objects
+         */
 
         public async Task<ObservableCollection<DisplayQuestion>> GetDisplayQuestionList() {
             ObservableCollection<DisplayQuestion> list = new ObservableCollection<DisplayQuestion>();
@@ -43,7 +47,6 @@ namespace RiECalmingPlan.Models {
                 switch (q.QuestionType) {
                     case ("CheckBox"):
                         g.AddRange(await GetAssociatedCheckBoxesAsync(q.CPQID));
-                        ng.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
                         break;
                     case ("Stepper"):
                         g.AddRange(await GetAssociatedStepperAsync(q.CPQID));
@@ -62,33 +65,44 @@ namespace RiECalmingPlan.Models {
             return list;
         }
 
+        public async Task<ObservableRangeCollection<Response>> GetDistressLevelViewModelList(string DistressLevelType) {
+            /*
+             * Returns all responses where their respective question's distress level type matches the input
+             * 
+             *  ORDER BY RANDOM() LIMIT 5
+             */
+            ObservableRangeCollection<Response> r = new ObservableRangeCollection<Response>();
+            r.AddRange(await db.QueryAsync<Label_CheckBox>("SELECT * FROM [CheckBoxLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND CheckBoxLabels.CheckBoxValue = 1 AND Questions.CPQID = CheckBoxLabels.CPQID", DistressLevelType));
+            r.AddRange(await db.QueryAsync<Label_Stepper>("SELECT * FROM [StepperLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND StepperLabels.StepperValue > 0 AND Questions.CPQID = StepperLabels.CPQID", DistressLevelType));
+            r.AddRange(await db.QueryAsync<Label_TextResponse>("SELECT * FROM [TextResponseLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND Questions.CPQID = TextResponseLabels.CPQID", DistressLevelType));
+            return r;
+
+        }
+
         public async Task<List<Label_Stepper>> GetAssociatedStepperAsync(int CPQID) {
-            return await db.QueryAsync<Label_Stepper>("SELECT * FROM [StepperLabels] WHERE [CPQID] = " + CPQID);
+            return await db.QueryAsync<Label_Stepper>("SELECT * FROM [StepperLabels] WHERE [CPQID] = ?", CPQID);
         }
 
         public async Task<List<Label_CheckBox>> GetAssociatedCheckBoxesAsync(int CPQID) {
-            return await db.QueryAsync<Label_CheckBox>("SELECT * FROM [CheckBoxLabels] WHERE [CPQID] = " + CPQID);
+            return await db.QueryAsync<Label_CheckBox>("SELECT * FROM [CheckBoxLabels] WHERE [CPQID] = ?", CPQID);
         }
 
         public async Task<List<Label_TextResponse>> GetAssociatedTextResponseAsync(int CPQID) {
-            return await db.QueryAsync<Label_TextResponse>("SELECT * FROM [TextResponseLabels] WHERE [CPQID] = " + CPQID);
+            return await db.QueryAsync<Label_TextResponse>("SELECT * FROM [TextResponseLabels] WHERE [CPQID] = ?", CPQID);
         }
 
-        public async Task<List<CalmDistressLevelResponse>> GetCalmDistressResponseHistory() {
-            return await db.QueryAsync<CalmDistressLevelResponse>("SELECT * FROM [CalmDistressLevelResponse]");
+        public async Task<List<UserInputDistressLevel>> GetUserInputDistressLevels() {
+            return await db.QueryAsync<UserInputDistressLevel>("SELECT * FROM [UserInputDistressLevel]");
         }
-
-        public async Task<List<NonCalmDistressLevelResponse>> GetNonCalmDistressResponseHistory() {
-            return await db.QueryAsync<NonCalmDistressLevelResponse>("SELECT * FROM [NonCalmDistressLevelResponse]");
-        }
-
-        //------------------- MUTATORS -------------------------------
-
+        //------------------- UPDATE -------------------------------
+        /*
+         * Overwrites a row with the input given
+         */
         public async Task UpdateStepperResponse(Label_Stepper stepper) {
             if (stepper != null) {
                 await db.QueryAsync<Label_Stepper>("UPDATE [StepperLabels] SET StepperValue = ? WHERE CPQID = ? AND StepperID = ?",
                     stepper.StepperValue, stepper.CPQID, stepper.StepperID);
-                Console.WriteLine("\n CPQID:" + stepper.CPQID + "\n StepperID: " + stepper.StepperID + "\n StepperText: " + stepper.StepperText + "\n StepperValue: " + stepper.StepperValue);
+                Console.WriteLine("\n CPQID:" + stepper.CPQID + "\n StepperID: " + stepper.StepperID + "\n StepperText: " + stepper.Label + "\n StepperValue: " + stepper.StepperValue);
             } else {
                 Console.WriteLine("\n STEPPER null");
             }
@@ -98,7 +112,7 @@ namespace RiECalmingPlan.Models {
             if (checkbox != null) {
                 await db.QueryAsync<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = ? WHERE CPQID = ? AND CheckBoxID = ?",
                     checkbox.CheckBoxValue, checkbox.CPQID, checkbox.CheckBoxID);
-                Console.WriteLine("\n CPQID:" + checkbox.CPQID + "\n CheckBoxID: " + checkbox.CheckBoxID + "\n CheckText: " + checkbox.CheckText + "\n CheckBoxValue: " + checkbox.CheckBoxValue);
+                Console.WriteLine("\n CPQID:" + checkbox.CPQID + "\n CheckBoxID: " + checkbox.CheckBoxID + "\n CheckText: " + checkbox.Label + "\n CheckBoxValue: " + checkbox.CheckBoxValue);
             } else {
                 Console.WriteLine("\n checkbox null");
             }
@@ -107,20 +121,37 @@ namespace RiECalmingPlan.Models {
         public async Task UpdateTextResponse(Label_TextResponse textResponse) {
             if (textResponse != null) {
                 await db.QueryAsync<Label_TextResponse>("UPDATE [TextResponseLabels] SET TextResponse = ? WHERE CPQID = ? AND TextResponseID = ?",
-                    textResponse.TextResponse, textResponse.CPQID, textResponse.TextResponseID);
-                Console.WriteLine("\n CPQID:" + textResponse.CPQID + "\n textResponseID: " + textResponse.TextResponseID + "\n Text: " + textResponse.TextResponse);
+                    textResponse.Label, textResponse.CPQID, textResponse.TextResponseID);
+                Console.WriteLine("\n CPQID:" + textResponse.CPQID + "\n textResponseID: " + textResponse.TextResponseID + "\n Text: " + textResponse.Label);
             } else {
                 Console.WriteLine("\n textbox null");
             }
         }
 
-        public async Task AppendCalmResponse(CalmDistressLevelResponse response) {
-            await db.InsertAsync(response);
+        //------------------- CREATE -------------------------------
+        /*
+         * Appends the row to the end of the table
+         */
+        public async Task AppendCheckBoxResponse(Label_CheckBox checkbox) {
+            await db.InsertAsync(checkbox);
         }
 
-        public async Task AppendNonCalmResponse(NonCalmDistressLevelResponse response) {
-            await db.InsertAsync(response);
+        public async Task AppendStepperResponse(Label_Stepper stepper) {
+            await db.InsertAsync(stepper);
         }
+        public async Task AppendTextResponse(Label_TextResponse textResponse) {
+            await db.InsertAsync(textResponse);
+        }
+
+        public async Task AppendUserInputDistressLevel(UserInputDistressLevel level) {
+            await db.InsertAsync(level);
+        }
+
+        //------------------- DELETE --------------------------------
+        /*
+         * Deletes a specific row in a specific table
+         * 
+         */
 
     }
 }

@@ -7,33 +7,6 @@
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_DistressHistory">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-
-            <DataTemplate x:Key="nonCalmTemplate">
-                <StackLayout>
-                    <Label Text="{Binding TimeStamp, StringFormat='Date: {0}'}" />
-                    <Label Text="{Binding DistressLevelType, StringFormat='Type: {0}'}" />
-                    <Label Text="{Binding Response1, StringFormat='Response 1: {0}'}" />
-                    <Label Text="{Binding Response2, StringFormat='Response 2: {0}'}" />
-                    <Label Text="{Binding Suggestion, StringFormat='Suggestion: {0}'}" />
-                </StackLayout>
-            </DataTemplate>
-
-            <DataTemplate x:Key="calmTemplate">
-                <StackLayout>
-                    <Label Text="{Binding TimeStamp, StringFormat='Date: {0}'}" />
-                    <Label Text="Type: Calm" />
-                    <Label Text="{Binding Response1, StringFormat='Response 1: {0}'}" />
-                    <Label Text="{Binding Response2, StringFormat='Response 2: {0}'}" />
-                </StackLayout>
-            </DataTemplate>
-
-            <views:DistressCategorySelector x:Key="distressCategorySelector"
-            NonCalmTemplate="{StaticResource nonCalmTemplate}"
-            CalmTemplate="{StaticResource calmTemplate}"/>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     
     <ContentPage.Content>
         <StackLayout>
@@ -42,7 +15,17 @@
                 <Picker ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilter}"  VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <ScrollView>
-                <StackLayout BindableLayout.ItemsSource="{Binding FilteredHistory}" BindableLayout.ItemTemplateSelector="{StaticResource distressCategorySelector}"/>
+                <StackLayout BindableLayout.ItemsSource="{Binding FilteredHistory}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="{Binding DistressLevelType, StringFormat='Date: {0}'}" />
+                                <Label Text="{Binding StartTime, StringFormat='Start Time: {0}'}" />
+                                <Label Text="{Binding EndTime, StringFormat='End Time: {0}'}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
             </ScrollView>
 
 
