@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.App">
     <Application.Resources>
-        <ResourceDictionary>
+        <ResourceDictionary x:Name="Dictionary_Main">
             <!-- 
             Global Styles and Colors
             Reference these using: Style="{StaticResource ResourceKey}" 

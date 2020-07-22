@@ -29,12 +29,5 @@ namespace RiECalmingPlan.Views {
 
            await App.database.UpdateCheckBoxResponse(checkBoxLabel);
         }
-
-        private async void Editor_Completed(object sender, EventArgs e) {
-            Editor editor = (Editor)sender;
-            Label_TextResponse editorLabel = ((Label_TextResponse)editor.BindingContext);
-            await App.database.UpdateTextResponse(editorLabel);
-            Console.WriteLine("Editing completed");
-        }
     }
 }

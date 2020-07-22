@@ -5,8 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace RiECalmingPlan.Models {
-    public class GeneratedResponse{
+    public class GeneratedResponse : Response {
+        public override string Label { get; set; }
 
-        
     }
 }

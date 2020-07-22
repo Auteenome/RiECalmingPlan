@@ -4,11 +4,17 @@ using SQLite;
 using System.IO;
 using RiECalmingPlan.Views;
 using RiECalmingPlan.Models;
+using Xamarin.Essentials;
 
 namespace RiECalmingPlan {
     public partial class App : Application {
 
         public static readonly Database database = new Database();
+
+        // values used to detect whether or not to use 'small resolution' images
+        // not currently in use
+        public const int smallWidthResolution = 768;
+        public const int smallHeightResolution = 1280;
 
         public App() {
             InitializeComponent();
@@ -40,12 +46,26 @@ namespace RiECalmingPlan {
                                                                         //  It will then be set false and subsequent arrivals
                                                                         //  at CalmingPLanMenuPage will not be affected.
 
-            MainPage = new NavigationPage(new Page_Login()) {
-                Style = this.Resources["NavBarStyle"] as Style         // references the resource dictionary
-            };
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;                                // get device dsiplay info
+            Application.Current.Properties["widthResolution"] = mainDisplayInfo.Width;          // get width as double
+            Application.Current.Properties["heightResolution"] = mainDisplayInfo.Height;        // get height as double
 
+            MainPage = new NavigationPage(new Page_Login()) {
+                Style = this.Resources["NavBarStyle"] as Style         // references the resource dictionary, and loads the navbar style
+            };
         }
 
+        // method will be used to detect if device is 'small'
+        /*
+        public static bool boolIsASmallDevice()
+        {
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            var width = mainDisplayInfo.Width;
+            var height = mainDisplayInfo.Height;
+
+            return (width <= smallWidthResolution && height <= smallHeightResolution);
+        }
+        */
 
         protected override void OnStart() {
         }

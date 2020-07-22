@@ -13,7 +13,7 @@ namespace RiECalmingPlan.Models {
         public int TextResponseID { get; set; }
 
         [Column("TextResponse")]
-        public string TextResponse { get; set; }
+        public override string Label { get; set; }
 
 
 

@@ -16,12 +16,10 @@ namespace RiECalmingPlan.Models {
         public int CheckBoxID { get; set; }
 
         [Column("CheckText")]
-        public string CheckText { get; set; }
+        public override string Label { get; set; }
 
         [Column("CheckBoxValue")]
         public int CheckBoxValue { get; set; }
-
-
 
 
 
