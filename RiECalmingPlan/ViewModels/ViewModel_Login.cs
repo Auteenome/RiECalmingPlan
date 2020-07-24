@@ -6,14 +6,14 @@ using System.ComponentModel;
 using System.Text;
 
 namespace RiECalmingPlan.ViewModels {
-    class ViewModel_Login : INotifyPropertyChanged {
+    class ViewModel_Login : ViewModel_Base {
         // View Model for login procedure
         // Has properties for Email, Password
         // Has command LoginCommand that checks entries not null or empty, and calls User.CheckLoginInformation(Email, Password)
         // Has Sign Up command
         // Last Updated by: Mitchell H 13.07.20
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
         private string email;
         private string password;
 
@@ -25,16 +25,18 @@ namespace RiECalmingPlan.ViewModels {
         public string Email {
             get { return email; }
             set {
-                email = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Email"));
+                //email = value;
+                //PropertyChanged(this, new PropertyChangedEventArgs("Email"));
+                SetProperty(ref email, value);
             }
         }
 
         public string Password {
             get { return password; }
             set {
-                password = value;
-                PropertyChanged(this, new PropertyChangedEventArgs("Passowrd"));
+                //password = value;
+                //PropertyChanged(this, new PropertyChangedEventArgs("Passowrd"));
+                SetProperty(ref password, value);
             }
         }
 
