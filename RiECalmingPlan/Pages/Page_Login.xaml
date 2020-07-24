@@ -100,13 +100,8 @@
                     Command="{Binding SignUpCommand}" />
 
             <Button x:Name="btn_adminNextPage"
-                Text="Go to Next Page"
+                    Text="Go to Next Page"
                     Clicked="Page2Jump"
-                    Style="{StaticResource AdminButtonStyle}" />
-
-            <Button x:Name="btn_altlogin"
-                    Text="Alternative Login Screen Demo"
-                    Clicked="btn_altlogin_Clicked"
                     Style="{StaticResource AdminButtonStyle}" />
 
         </StackLayout>

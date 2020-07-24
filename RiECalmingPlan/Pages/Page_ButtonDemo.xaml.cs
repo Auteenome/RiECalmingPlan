@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RiECalmingPlan.ViewModels;
 
 namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,6 +16,7 @@ namespace RiECalmingPlan.Pages {
         public Page_ButtonDemo()
         {
             InitializeComponent();
+            Frame_Buttons.BindingContext = new DistressButtonDemoViewModel();   // ViewModel inherits TapViewModel_Base
         }
     }
 }

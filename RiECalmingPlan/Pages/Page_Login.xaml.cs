@@ -20,9 +20,8 @@ namespace RiECalmingPlan.Views {
             //So just get acceptance of Terms and Conditions plus
             //  user registration details (email as username, emergency contact, etc
             //  and a password for this draft system.
-            var loginViewModel = new ViewModel_Login();
             InitializeComponent();
-            BindingContext = loginViewModel;
+            BindingContext = new ViewModel_Login();
             Init();
         }
 
@@ -77,10 +76,6 @@ namespace RiECalmingPlan.Views {
 
         }
         */
-
-        private async void btn_altlogin_Clicked(object sender, EventArgs e) {
-            await Navigation.PushAsync(new Page_LoginAlternativeDemo());
-        }
 
         private async void GoToResetPassword(object sender, EventArgs e)
         {

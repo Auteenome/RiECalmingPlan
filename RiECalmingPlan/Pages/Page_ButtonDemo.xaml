@@ -6,12 +6,56 @@
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_ButtonDemo"
              BackgroundColor="{StaticResource RiELightGreen}">
-    
-    <ContentPage.Resources>
+
+    <Frame Style="{StaticResource QuestionFrameStyle}"
+           x:Name="Frame_Buttons">
+        <StackLayout>
+            <Image x:Name="Image_Acute"
+                   Source="button_acute"
+                   Margin="57, 2, 57, 2">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="Acute" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image x:Name="Image_Moderate"
+                   Source="button_moderate"
+                   Margin="39, 2, 39, 2">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="Moderate" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image x:Name="Image_Mild"
+                   Source="button_mild"
+                   Margin="21.5, 2, 21.5, 2">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="Mild" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Image x:Name="Image_Calm"
+                   Source="button_calm"
+                   Margin="5, 2, 5, 2">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="Calm" />
+                </Image.GestureRecognizers>
+            </Image>
+        </StackLayout>
+    </Frame>
+
+    <!--<ContentPage.Resources>
         <ContentView x:Key="CarouselControl">
             <Frame Style="{StaticResource QuestionFrameStyle}" x:Name="Frame_Buttons">
                 <StackLayout>
-                    <Image x:Name="Image_Acute" Source="button_acute" Margin="57, 2, 57, 2"/>
+                    <Image x:Name="Image_Acute" Source="button_acute" Margin="57, 2, 57, 2">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding TapCommand}"
+                                CommandParameter="Acute" />
+                        </Image.GestureRecognizers>
+                    </Image>
                     <Image x:Name="Image_Moderate" Source="button_moderate" Margin="39, 2, 39, 2"/>
                     <Image x:Name="Image_Mild" Source="button_mild" Margin="21.5, 2, 21.5, 2"/>
                     <Image x:Name="Image_Calm" Source="button_calm" Margin="5, 2, 5, 2"/>
@@ -21,7 +65,8 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <CarouselView x:Name="Carousel" IsSwipeEnabled="False">
+        <CarouselView x:Name="Carousel"
+                      IsSwipeEnabled="False">
             <CarouselView.ItemsSource>
                 <x:Array Type="{x:Type ContentView}">
                     <ContentView Content="{DynamicResource CarouselControl}" />
@@ -33,5 +78,5 @@
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </ContentPage.Content>
+    </ContentPage.Content>-->
 </ContentPage>
