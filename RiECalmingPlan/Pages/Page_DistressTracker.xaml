@@ -25,7 +25,19 @@
                         <Label Text="{Binding Source={x:Reference Carousel}, Path=BindingContext.DistressType, StringFormat='Distress Level: {0}'}"/>
                     </StackLayout>
 
+                    <Label Text="Expressions"/>
                     <StackLayout VerticalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding DistressExpressions}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Label Text="{Binding Label}"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                    
+                    <Label Text="Suggestions"/>
+                    <StackLayout VerticalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding DistressSuggestions}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>

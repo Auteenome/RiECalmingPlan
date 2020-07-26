@@ -65,9 +65,13 @@ namespace RiECalmingPlan.Models {
             return list;
         }
 
-        public async Task<ObservableRangeCollection<Response>> GetDistressLevelViewModelList(string DistressLevelType) {
+        public async Task<ObservableRangeCollection<Response>> GetDistressExpressions(string DistressLevelType) {
             /*
              * Returns all responses where their respective question's distress level type matches the input
+             * 
+             * The current problem with this is that it will select from the following tables in order,
+             * and not a randomised sublist of the query. Pulling out a sublist from each one will make the returned list to be of size 3n,
+             * which it really should be 5 or less regardless.
              * 
              *  ORDER BY RANDOM() LIMIT 5
              */
@@ -77,6 +81,18 @@ namespace RiECalmingPlan.Models {
             r.AddRange(await db.QueryAsync<Label_TextResponse>("SELECT * FROM [TextResponseLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND Questions.CPQID = TextResponseLabels.CPQID", DistressLevelType));
             return r;
 
+        }
+
+        public async Task<ObservableRangeCollection<Suggestion>> GetDistressSuggestions(string DistressLevelType) {
+            /*
+             * Returns all responses where their respective question's distress level type matches the input
+             *
+             * 
+             *  ORDER BY RANDOM() LIMIT 5
+             */
+            ObservableRangeCollection<Suggestion> s = new ObservableRangeCollection<Suggestion>();
+            s.AddRange(await db.QueryAsync<Suggestion>("SELECT * FROM [Suggestions] WHERE Level = ?", DistressLevelType));
+            return s;
         }
 
         public async Task<List<Label_Stepper>> GetAssociatedStepperAsync(int CPQID) {
