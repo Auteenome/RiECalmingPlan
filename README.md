@@ -9,11 +9,15 @@ Any changes to the database tables must also happen to the database models in th
 2. All questions split apart over multiple pages are condensed into one page with multiple 'cards' that have a question and
 appropriate responses. Checkbox and Stepper informaiton is saved as the user presses the respective controls, and text responses are saved when exiting out of the keyboard.
 
-3. The 'Distress Tracker' allows you to add distress responses into the same database file and review them in the 'Distress History' page. This Distress History page also allows filtering for four different filters (All, Today, Week (7 days before today), and Month (1 month before this one)).
+3. The 'Distress Tracker' allows you to add distress responses into the same database file and review them in the 'Distress History' page. When selecting a Distress Level, a new timestamp is created with that level and the current time, and will only be logged into the database one minute after if the user is still in the same Distress Tracker Page.
+
+4. This Distress History page also allows filtering for four different filters for timestamps (All, Today, Week (7 days before today), and Month (1 month before this one)). This includes a small graph that shows the filtered list of timestamps that also change when the selected filter is changed.
 
 TODO
-1. Fix presentation of the questionaire cards
+1. Fix survey card presentation
 2. Test Database code on IOS
+3. Update Graph Presentation
+4. Functional diary with inbuilt FingerPrint lock
 
 NOTES
 1. ListViews etc are not very good to have with a CarouselView, as swiping diagonally upwards or downwards will result 
