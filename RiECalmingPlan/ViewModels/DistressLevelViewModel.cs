@@ -3,6 +3,7 @@ using RiECalmingPlan.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Timers;
 using Xamarin.Forms;
 
 namespace RiECalmingPlan.ViewModels {
@@ -11,7 +12,8 @@ namespace RiECalmingPlan.ViewModels {
          * This class pulls all responses from the database and slots them in the appropriate distress level group, defined from the question it belongs to.
          * 
          * 1. The user clicks on a specific distress level [Calm, Mild, Moderate, Acute]. This also logs the start of a timestamp.
-         * 2. The app will then show all responses that belong to questions that belong to one of these distress levels, with included suggestions
+         * Clicking on a distress level also starts/resets a timer. After [1 minute] has passed without restarting the timer, it will be logged into the database for later use. 
+         * 2. The app will then show all responses that belong to questions that belong to one of these distress levels, with included suggestions.
          * 
          * 
          */
@@ -25,14 +27,34 @@ namespace RiECalmingPlan.ViewModels {
 
         public ObservableRangeCollection<Suggestion> DistressSuggestions { get { return _DistressSuggestions; } set { SetProperty(ref _DistressSuggestions, value); } }
 
+        private Timer timer = new Timer(60 * 1000);
+        private UserInputDistressLevel TimeStamp;
+
 
         public DistressLevelViewModel() {
             FilterResponses = new Command<string>(FilterByLevel);
             DistressExpressions = new ObservableRangeCollection<Response>();
+            timer.Elapsed += Timer_Elapsed;
+            timer.AutoReset = false;
         }
 
         private void FilterByLevel(string parameter) {
+            /*
+             * This code is triggered using whichever text is contained within the Distress Level buttons
+             * 
+             */
             DistressType = parameter;
+            //Timer reset
+            timer.Interval = 60 * 1000;
+            timer.Start();
+            //Reset current log
+            TimeStamp = new UserInputDistressLevel() { DistressLevelType = DistressType, StartTime = DateTime.Now };
+        }
+
+        private async void Timer_Elapsed(object sender, ElapsedEventArgs e) {
+            Console.WriteLine("Timestamp added");
+            await App.database.AppendUserInputDistressLevel(TimeStamp);
+            timer.Stop();
         }
 
         private async void GenerateDistressExpressions() {
@@ -41,6 +63,10 @@ namespace RiECalmingPlan.ViewModels {
 
         private async void GenerateDistressSuggestions() {
             DistressSuggestions = await App.database.GetDistressSuggestions(DistressType);
+        }
+
+        public void StopTimer() {
+            timer.Stop();
         }
     }
 }

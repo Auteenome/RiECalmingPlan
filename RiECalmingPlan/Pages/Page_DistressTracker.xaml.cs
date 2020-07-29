@@ -13,11 +13,11 @@ namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page_DistressTracker : ContentPage {
 
-        
+        private DistressLevelViewModel ViewModel = new DistressLevelViewModel();
 
         public Page_DistressTracker() {
             InitializeComponent();
-            Carousel.BindingContext = new DistressLevelViewModel();
+            Carousel.BindingContext = ViewModel;
         }
 
         public void LevelButtonPressed(object sender, EventArgs e) {
@@ -27,6 +27,11 @@ namespace RiECalmingPlan.Pages {
         public void BackButtonPressed(object sender, EventArgs e) {
             Carousel.Position = 0;
         }
-        
+
+        protected override void OnDisappearing() {
+            base.OnDisappearing();
+            ViewModel.StopTimer();
+        }
+
     }
 }

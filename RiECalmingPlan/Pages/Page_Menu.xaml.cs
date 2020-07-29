@@ -8,6 +8,7 @@ using Xamarin.Forms;
 namespace RiECalmingPlan.Views {
     public partial class Page_Menu : ContentPage {
 
+        
         public Page_Menu() {
             InitializeComponent();
             // BackgroundColor = Constants.BackgroundColor;
@@ -23,10 +24,6 @@ namespace RiECalmingPlan.Views {
 
         async void GoToDistressHistory(object sender, EventArgs e) {
             await Navigation.PushAsync(new Page_DistressHistory());
-        }
-
-        async void GoToDistressChart(object sender, EventArgs e) {
-            await Navigation.PushAsync(new Page_DistressChart());
         }
 
         async void GoToButtonDemo(object sender, EventArgs e)

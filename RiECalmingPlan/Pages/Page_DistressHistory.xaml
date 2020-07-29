@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:RiECalmingPlan.Views"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_DistressHistory">
 
@@ -14,14 +14,16 @@
                 <Label Text="Filter Items:"  VerticalOptions="Center"/>
                 <Picker ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilter}"  VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
             </StackLayout>
+            <StackLayout>
+                <microcharts:ChartView HeightRequest="250" Chart="{Binding LineChart}"/>
+            </StackLayout>
             <ScrollView>
                 <StackLayout BindableLayout.ItemsSource="{Binding FilteredHistory}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <Label Text="{Binding DistressLevelType, StringFormat='Date: {0}'}" />
-                                <Label Text="{Binding StartTime, StringFormat='Start Time: {0}'}" />
-                                <Label Text="{Binding EndTime, StringFormat='End Time: {0}'}" />
+                                <Label Text="{Binding DistressLevelType, StringFormat='Level: {0}'}" />
+                                <Label Text="{Binding StartTime, StringFormat='Time Recorded: {0}'}" />
                             </StackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>

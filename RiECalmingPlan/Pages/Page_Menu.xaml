@@ -42,18 +42,12 @@
                     TextColor="White"
                     BackgroundColor="{StaticResource RiEDarkGreen}"
                     Clicked="GoToDistressTracker" />
-            
-            <Button Text="Distress History"
+
+            <Button Text="Distress History/Chart"
                     Style="{StaticResource MenuButtonStyle}"
                     TextColor="White"
                     BackgroundColor="{StaticResource RiEDarkGreen}"
                     Clicked="GoToDistressHistory" />
-            
-            <Button Text="Distress Chart"
-                    Style="{StaticResource MenuButtonStyle}"
-                    TextColor="White"
-                    BackgroundColor="{StaticResource RiEDarkGreen}"
-                    Clicked="GoToDistressChart" />
 
             <Button Text="Button Demo"
                     Style="{StaticResource AdminButtonStyle}"

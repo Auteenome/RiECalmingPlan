@@ -12,9 +12,6 @@ namespace RiECalmingPlan.Models {
         [Column("StartTime")]
         public DateTime StartTime { get; set; }
 
-        [Column("EndTime")]
-        public DateTime EndTime { get; set; }
-
 
 
     }
