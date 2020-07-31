@@ -31,6 +31,11 @@ namespace RiECalmingPlan.Views {
             await Navigation.PushAsync(new Page_ButtonDemo());
         }
 
+        async void GoToDeviceInfo(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Page_DeviceInfo());
+        }
+
         void ResetLocalDatabase(object sender, EventArgs e) {
             //will be implemented soon
             App.database.ResetConnection();

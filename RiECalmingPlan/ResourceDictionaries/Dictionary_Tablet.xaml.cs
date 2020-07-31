@@ -9,7 +9,6 @@ using Xamarin.Forms.Xaml;
 
 namespace RiECalmingPlan.ResourceDictionaries
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Dictionary_Tablet : ResourceDictionary
     {
         public Dictionary_Tablet()

@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="RiECalmingPlan.ResourceDictionaries.Dictionary_Small">
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d"
+                    x:Class="RiECalmingPlan.ResourceDictionaries.Dictionary_Small">
     
-    <Style x:Key="NavBarStyle"
-        TargetType="NavigationPage">
-        <Setter Property="BarBackgroundColor"
-                        Value="{StaticResource RiEOrange}" />
-        <Setter Property="BarTextColor"
-                        Value="{StaticResource RiEOffWhite}" />
+    <!-- ********** ********** **********  Testing ********** ********** ********** -->
+    <Style x:Key="Style_TestLabel"
+           TargetType="Label">
+        <Setter Property="BackgroundColor"
+                Value="Green" />
     </Style>
+    
 </ResourceDictionary>

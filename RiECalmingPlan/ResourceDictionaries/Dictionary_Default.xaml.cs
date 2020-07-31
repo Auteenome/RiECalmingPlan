@@ -9,7 +9,6 @@ using Xamarin.Forms.Xaml;
 
 namespace RiECalmingPlan.ResourceDictionaries
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Dictionary_Default : ResourceDictionary
     {
         public static Dictionary_Default SharedDictionary { get; } = new Dictionary_Default();    // singleton for referencing dictionary

@@ -53,6 +53,10 @@
                     Style="{StaticResource AdminButtonStyle}"
                     Clicked="GoToButtonDemo" />
 
+            <Button Text="Device Info"
+                    Style="{StaticResource AdminButtonStyle}"
+                    Clicked="GoToDeviceInfo" />
+
             <!--layout for spacing-->
             <StackLayout VerticalOptions="CenterAndExpand">
             </StackLayout>

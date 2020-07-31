@@ -51,10 +51,8 @@ namespace RiECalmingPlan {
             Application.Current.Properties["widthResolution"] = mainDisplayInfo.Width;          // get width as double
             Application.Current.Properties["heightResolution"] = mainDisplayInfo.Height;        // get height as double
 
-            loadStyle();
-            MainPage = loadMainPage();
-
-            
+            loadStyles();
+            MainPage = loadMainPage();  // will load main menu or login screen based on application property 'setmenurootpage'
         }
 
         // method will be used to detect if device is 'small'
@@ -86,10 +84,14 @@ namespace RiECalmingPlan {
             }
         }
 
-        private void loadStyle()
+        private void loadStyles()
         {
+            Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Base.SharedDictionary);     // load base style
+
+            // choose which file to override with based on screen size
+
             if (boolIsSmallDevice())
-                Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Small.SharedDictionary); // merge Dictionary_Small with main
+                Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Small.SharedDictionary);     // merge Dictionary_Small with main
             else
                 Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Default.SharedDictionary);   // merge Dictionary_Default with main
         }
