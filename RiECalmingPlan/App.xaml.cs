@@ -11,8 +11,9 @@ namespace RiECalmingPlan {
 
         public static readonly Database database = new Database();
 
-        // values used to detect whether or not to use 'small resolution' images
-        // not currently in use
+        // values used for defining a 'small' sized screen
+        // used to load 'small' resource dictionary
+        // tablets are detected with idiom
         public const int smallWidthResolution = 768;
         public const int smallHeightResolution = 1280;
 
@@ -39,25 +40,25 @@ namespace RiECalmingPlan {
                                                                                 //Needs additional vlaidation in the
                                                                                 //  Registration page as no checking is done
                                                                                 //  for a username as a valid email
-            Application.Current.Properties["setMenuRootPage"] = "True"; //This will be used to see if CalmingPlanMenuPage
+            Application.Current.Properties["setMenuRootPage"] = true;   //This will be used to see if CalmingPlanMenuPage
                                                                         //  will be set as the new Navigation root page.
                                                                         //  On the initial push to CalmingPLanMenuPage it
                                                                         //  is true and will set it as the new Navigation root 
                                                                         //  It will then be set false and subsequent arrivals
                                                                         //  at CalmingPLanMenuPage will not be affected.
 
-            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;                                // get device dsiplay info
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;                                // get device display info
             Application.Current.Properties["widthResolution"] = mainDisplayInfo.Width;          // get width as double
             Application.Current.Properties["heightResolution"] = mainDisplayInfo.Height;        // get height as double
 
-            MainPage = new NavigationPage(new Page_Login()) {
-                Style = this.Resources["NavBarStyle"] as Style         // references the resource dictionary, and loads the navbar style
-            };
+            loadStyle();
+            MainPage = loadMainPage();
+
+            
         }
 
         // method will be used to detect if device is 'small'
-        /*
-        public static bool boolIsASmallDevice()
+        private static bool boolIsSmallDevice()
         {
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             var width = mainDisplayInfo.Width;
@@ -65,7 +66,33 @@ namespace RiECalmingPlan {
 
             return (width <= smallWidthResolution && height <= smallHeightResolution);
         }
-        */
+
+        private NavigationPage loadMainPage()
+        {
+            // decides whether to navigate to menu page or login page
+            if ((bool)Application.Current.Properties["setMenuRootPage"])
+            {
+                return new NavigationPage(new Page_Menu())
+                {
+                    Style = this.Resources["NavBarStyle"] as Style      // references the resource dictionary, and loads the navbar style
+                };
+            }
+            else
+            {
+                return new NavigationPage(new Page_Login())
+                {
+                    Style = this.Resources["NavBarStyle"] as Style      // references the resource dictionary, and loads the navbar style
+                };
+            }
+        }
+
+        private void loadStyle()
+        {
+            if (boolIsSmallDevice())
+                Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Small.SharedDictionary); // merge Dictionary_Small with main
+            else
+                Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Default.SharedDictionary);   // merge Dictionary_Default with main
+        }
 
         protected override void OnStart() {
         }
