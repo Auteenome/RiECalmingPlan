@@ -9,6 +9,7 @@ using Xamarin.Essentials;
 namespace RiECalmingPlan {
     public partial class App : Application {
 
+        public static string SavePath;
         public static readonly Database database = new Database();
 
         // values used for defining a 'small' sized screen
@@ -17,8 +18,11 @@ namespace RiECalmingPlan {
         public const int smallWidthResolution = 768;
         public const int smallHeightResolution = 1280;
 
-        public App() {
+        public App(string savepath = "") {
             InitializeComponent();
+
+            SavePath = savepath;//Path used for saving to JSON (Different path between android/IOS)
+
             //This is the first page actioned
             //Set the Login page to start the app instead of the Main Page
 

@@ -26,6 +26,10 @@ namespace RiECalmingPlan.Views {
             await Navigation.PushAsync(new Page_DistressHistory());
         }
 
+        async void GoToUserDiary(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_UserDiary());
+        }
+
         async void GoToButtonDemo(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new Page_ButtonDemo());

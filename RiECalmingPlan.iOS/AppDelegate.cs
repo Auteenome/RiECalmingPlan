@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using Foundation;
@@ -23,7 +24,12 @@ namespace RiECalmingPlan.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+
+
+            string savedata = "savedata.json";
+            string folderpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "..", "Library");
+            string savepath = Path.Combine(folderpath, savedata);
+            LoadApplication(new App(savepath));
 
             return base.FinishedLaunching(app, options);
         }

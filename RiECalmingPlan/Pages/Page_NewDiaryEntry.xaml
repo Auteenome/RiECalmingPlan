@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RiECalmingPlan.Pages.Page_NewDiaryEntry">
+    
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Starter Statement[From database]"/>
+                <Label Text="{Binding Starter}"/>
+                <Label Text="User Entry"/>
+                <Editor Text="{Binding Body}"/>
+                <Label Text="Photo Upload"/>
+                <Button Text="Pick Gallery Photo" Clicked="OnPickPhotoButtonClicked" />
+                <Button Text="Take Camera Photo[Does not work]" Clicked="OnCameraPhotoButtonClicked" />
+                <Image x:Name="image">
+                    <Image.Source>
+                        <UriImageSource Uri="{Binding PhotoLink}"/>
+                    </Image.Source>
+                </Image>
+                <Label x:Name="Debug"/>
+                <Label Text="Happiness Slider"/>
+                <Slider Value="{Binding HappinessIndicator}" MinimumTrackColor="Black" MaximumTrackColor="Blue"/>
+                <Button x:Name="SaveButton" Text="Save Diary Entry" Clicked="OnSaveButtonClicked"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+    
+    
+</ContentPage>
