@@ -17,11 +17,7 @@
                 <Label Text="Photo Upload"/>
                 <Button Text="Pick Gallery Photo" Clicked="OnPickPhotoButtonClicked" />
                 <Button Text="Take Camera Photo[Does not work]" Clicked="OnCameraPhotoButtonClicked" />
-                <Image x:Name="image">
-                    <Image.Source>
-                        <UriImageSource Uri="{Binding PhotoLink}"/>
-                    </Image.Source>
-                </Image>
+                <Image x:Name="image"/>
                 <Label x:Name="Debug"/>
                 <Label Text="Happiness Slider"/>
                 <Slider Value="{Binding HappinessIndicator}" MinimumTrackColor="Black" MaximumTrackColor="Blue"/>

@@ -9,6 +9,13 @@ using Android.OS;
 using System.IO;
 using System.Threading.Tasks;
 using Android.Content;
+using Android.Provider;
+using Android.Database;
+using Android;
+using Android.Support.V4.Content;
+using Android.Support.V4.App;
+using Plugin.Permissions;
+using Uri = Android.Net.Uri;
 
 namespace RiECalmingPlan.Droid {
     [Activity(Label = "RiECalmingPlan", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -34,29 +41,55 @@ namespace RiECalmingPlan.Droid {
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults) {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         // Field, property, and method for Picture Picker
         public static readonly int PickImageId = 1000; 
-        public TaskCompletionSource<Stream> PickImageTaskCompletionSource { set; get; } 
+        public TaskCompletionSource<string> GetImagePathAsync { get; internal set; }
+
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent intent) {
             base.OnActivityResult(requestCode, resultCode, intent);
 
             if (requestCode == PickImageId) {
                 if ((resultCode == Result.Ok) && (intent != null)) {
-                    Android.Net.Uri uri = intent.Data;
+                    Uri uri = intent.Data;
                     Stream stream = ContentResolver.OpenInputStream(uri);
 
+                    string path = GetFilePath(uri);
+
                     // Set the Stream as the completion of the Task
-                    PickImageTaskCompletionSource.SetResult(stream);
+                    GetImagePathAsync.SetResult(path);
                 }
                 else {
-                    PickImageTaskCompletionSource.SetResult(null);
+                    GetImagePathAsync.SetResult(null);
                 }
             }
         }
+
+        private string GetFilePath(Uri uri) {
+            string filePath = "";
+            //             
+            string imageId = DocumentsContract.GetDocumentId(uri);
+            string id = imageId.Split(':')[1];
+            string[] proj = { MediaStore.Images.Media.InterfaceConsts.Data };
+            string sel = MediaStore.Images.Media.InterfaceConsts.Id + "=?";
+
+
+            using (ICursor cursor = ContentResolver.Query(MediaStore.Images.Media.ExternalContentUri, proj, sel, new string[] { id }, null)) {
+                int columnIndex = cursor.GetColumnIndex(proj[0]);
+                if (cursor.MoveToFirst()) {
+                    filePath = cursor.GetString(columnIndex);
+                }
+            }
+            return filePath;
+
+
+        }
+
+
+
+
     }
 }

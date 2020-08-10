@@ -8,20 +8,25 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(PhotoPickerService))]
 namespace RiECalmingPlan.Droid.PhotoPicker {
     public class PhotoPickerService : IPhotoPickerService {
-        public Task<Stream> GetImageStreamAsync() {
+        public Task<string> GetImagePathAsync() {
             // Define the Intent for getting images
             Intent intent = new Intent();
             intent.SetType("image/*");
             intent.SetAction(Intent.ActionGetContent);
 
+            // Get the MainActivity instance
+            MainActivity activity = Forms.Context as MainActivity;
+
             // Start the picture-picker activity (resumes in MainActivity.cs)
-            MainActivity.Instance.StartActivityForResult(Intent.CreateChooser(intent, "Select Photo"), MainActivity.PickImageId);
+            activity.StartActivityForResult(
+                Intent.CreateChooser(intent, "Select Picture"),
+                MainActivity.PickImageId);
 
             // Save the TaskCompletionSource object as a MainActivity property
-            MainActivity.Instance.PickImageTaskCompletionSource = new TaskCompletionSource<Stream>();
+            activity.GetImagePathAsync = new TaskCompletionSource<string>();
 
             // Return Task object
-            return MainActivity.Instance.PickImageTaskCompletionSource.Task;
+            return activity.GetImagePathAsync.Task;
         }
     }
 }

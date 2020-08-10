@@ -21,7 +21,7 @@ namespace RiECalmingPlan.Models.JSON {
          */
         public string Starter { get; set; }
         public string Body { get; set; }
-        //public StreamImageSource PhotoLink { get; set; } //Problem with this, see Page_NewDiaryEntry.cs, OnPickPhotoButtonClicked()
+        public string PhotoLink { get; set; } //Problem with this, see Page_NewDiaryEntry.cs, OnPickPhotoButtonClicked()
         public Double HappinessIndicator { get; set; }
 
         public DateTime FirstSubmit { get; set; }

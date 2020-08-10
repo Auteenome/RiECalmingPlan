@@ -14,10 +14,10 @@ using Xamarin.Forms;
 namespace RiECalmingPlan.iOS.PhotoPicker {
     public class PhotoPickerService : IPhotoPickerService {
 
-        TaskCompletionSource<Stream> taskCompletionSource;
+        TaskCompletionSource<string> stringTaskCompletionSource;
         UIImagePickerController imagePicker;
 
-        public Task<Stream> GetImageStreamAsync() {
+        public Task<string> GetImagePathAsync() {
             // Create and define UIImagePickerController
             imagePicker = new UIImagePickerController {
                 SourceType = UIImagePickerControllerSourceType.PhotoLibrary,
@@ -25,39 +25,34 @@ namespace RiECalmingPlan.iOS.PhotoPicker {
             };
 
             // Set event handlers
-            imagePicker.FinishedPickingMedia += OnImagePickerFinishedPickingMedia;
+            imagePicker.FinishedPickingMedia += OnImagePickerFinished;
             imagePicker.Canceled += OnImagePickerCancelled;
 
             // Present UIImagePickerController;
-            UIWindow window = UIApplication.SharedApplication.KeyWindow;
-            var viewController = window.RootViewController;
-            viewController.PresentViewController(imagePicker, true, null);
+            var window = UIApplication.SharedApplication.KeyWindow;
+            var vc = window.RootViewController;
+            while (vc.PresentedViewController != null) {
+                vc = vc.PresentedViewController;
+            }
+            vc.PresentModalViewController(imagePicker, true);
 
             // Return Task object
-            taskCompletionSource = new TaskCompletionSource<Stream>();
-            return taskCompletionSource.Task;
+            stringTaskCompletionSource = new TaskCompletionSource<string>();
+            return stringTaskCompletionSource.Task;
         }
 
-        void OnImagePickerFinishedPickingMedia(object sender, UIImagePickerMediaPickedEventArgs args) {
+        private void OnImagePickerFinished(object sender, UIImagePickerMediaPickedEventArgs args) {
             UIImage image = args.EditedImage ?? args.OriginalImage;
 
             if (image != null) {
-                // Convert UIImage to .NET Stream object
-                NSData data;
-                if (args.ReferenceUrl.PathExtension.Equals("PNG") || args.ReferenceUrl.PathExtension.Equals("png")) {
-                    data = image.AsPNG();
-                } else {
-                    data = image.AsJPEG(1);
-                }
-                Stream stream = data.AsStream();
 
-                UnregisterEventHandlers();
+                var url = (NSUrl)args.Info.ValueForKey(new NSString("UIImagePickerControllerImageURL"));
 
-                // Set the Stream as the completion of the Task
-                taskCompletionSource.SetResult(stream);
-            } else {
-                UnregisterEventHandlers();
-                taskCompletionSource.SetResult(null);
+
+                stringTaskCompletionSource.SetResult(url.Path);
+            }
+            else {
+                stringTaskCompletionSource.SetResult(null);
             }
             imagePicker.DismissModalViewController(true);
         }

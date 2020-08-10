@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,16 +22,30 @@ namespace RiECalmingPlan.Pages {
             InitializeComponent();
         }
 
+        async void SetImageFromPath() {
+            var permissions = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+            if (permissions != PermissionStatus.Granted) {
+                permissions = await Permissions.RequestAsync<Permissions.StorageRead>();
+            }
+
+            if (permissions != PermissionStatus.Granted) {
+                return;
+            }
+
+            image.Source = ((DiaryEntry)BindingContext).PhotoLink;
+        }
+
         protected override void OnAppearing() {
             base.OnAppearing();
+            SetImageFromPath();
+
         }
 
         async void OnPickPhotoButtonClicked(object sender, EventArgs e) {
             (sender as Button).IsEnabled = false;
 
-            Stream stream = await DependencyService.Get<IPhotoPickerService>().GetImageStreamAsync();
+            string stream = await DependencyService.Get<IPhotoPickerService>().GetImagePathAsync();
             if (stream != null) {
-                image.Source = ImageSource.FromStream(() => stream);
                 /*
                  * At this point we need to save the path from whichever photo that was selected to the PhotoLink field in the model.
                  * 
@@ -40,6 +54,8 @@ namespace RiECalmingPlan.Pages {
                  * This is why you can select an image and display it when creating or editing an entry, but does not persist as the link isn't saved
                  * 
                  */
+                ((DiaryEntry)BindingContext).PhotoLink = stream;
+                SetImageFromPath();
             }
 
             (sender as Button).IsEnabled = true;
