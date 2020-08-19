@@ -16,7 +16,7 @@
                 <Editor Text="{Binding Body}"/>
                 <Label Text="Photo Upload"/>
                 <Button Text="Pick Gallery Photo" Clicked="OnPickPhotoButtonClicked" />
-                <Button Text="Take Camera Photo[Does not work]" Clicked="OnCameraPhotoButtonClicked" />
+                <Button Text="Take Camera Photo" Clicked="OnCameraPhotoButtonClicked" />
                 <Image x:Name="image"/>
                 <Label x:Name="Debug"/>
                 <Label Text="Happiness Slider"/>

@@ -1,5 +1,5 @@
-﻿using RiECalmingPlan.Models.JSON;
-using RiECalmingPlan.PhotoPicker;
+﻿using Plugin.Media;
+using RiECalmingPlan.Models.JSON;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,7 +13,13 @@ using Xamarin.Forms.Xaml;
 namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page_NewDiaryEntry : ContentPage {
-
+        /*
+         * Using James Montemagno's Media Plugin for getting the paths to photo gallery and camera
+         * https://github.com/jamesmontemagno/MediaPlugin
+         * 
+         * After taking a photo within the app and saving it to the phone, it becomes a lot harder to find since it is stored in its own namespace folder,
+         * rather than taking the photo directly from the camera separately and using the photo gallery section of the app to pull the path.
+         */
         public event EventHandler SaveHandler;
         public event EventHandler UpdateHandler;
         public string EntryType = "New";
@@ -44,17 +50,9 @@ namespace RiECalmingPlan.Pages {
         async void OnPickPhotoButtonClicked(object sender, EventArgs e) {
             (sender as Button).IsEnabled = false;
 
-            string stream = await DependencyService.Get<IPhotoPickerService>().GetImagePathAsync();
-            if (stream != null) {
-                /*
-                 * At this point we need to save the path from whichever photo that was selected to the PhotoLink field in the model.
-                 * 
-                 * The current problem here is converting the image source (Which is a stream object) to a tangible URI or file link so it
-                 * can be saved to the JSON file.
-                 * This is why you can select an image and display it when creating or editing an entry, but does not persist as the link isn't saved
-                 * 
-                 */
-                ((DiaryEntry)BindingContext).PhotoLink = stream;
+            var file = await CrossMedia.Current.PickPhotoAsync();
+            if (file != null) {
+                ((DiaryEntry)BindingContext).PhotoLink = file.Path;
                 SetImageFromPath();
             }
 
@@ -63,9 +61,30 @@ namespace RiECalmingPlan.Pages {
         }
 
         async void OnCameraPhotoButtonClicked(object sender, EventArgs e) {
-            /*
-             * Function kept here but does not work as of yet.
-             */
+                await CrossMedia.Current.Initialize();
+
+                //Check if the camera is available and if camera is supported
+                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported) {
+                    await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                    return;
+                }
+
+                //Attempt to take a photo
+                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions {
+                    Directory = "Auteenome",//By convention, the photos should belong in a folder with the same name as the app's name
+                    Name = "test.jpg"//Duplicates of this name will append the next available number after an underscore, example: test_5.jpg
+                });
+
+                //If the user takes the photo, it will use the path as the image source
+                if (file == null) {
+                    return;
+                } else {
+                    await DisplayAlert("File Location", file.Path, "OK");
+
+                    ((DiaryEntry)BindingContext).PhotoLink = file.Path;
+                    SetImageFromPath();
+
+                }
         }
 
         async void OnSaveButtonClicked(object sender, EventArgs e) {
