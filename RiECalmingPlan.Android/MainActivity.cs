@@ -12,10 +12,10 @@ using Android.Content;
 using Android.Provider;
 using Android.Database;
 using Android;
-using Android.Support.V4.Content;
 using Android.Support.V4.App;
 using Plugin.Permissions;
 using Uri = Android.Net.Uri;
+using Plugin.Fingerprint;
 
 namespace RiECalmingPlan.Droid {
     [Activity(Label = "RiECalmingPlan", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -24,6 +24,8 @@ namespace RiECalmingPlan.Droid {
         internal static MainActivity Instance { get; private set; }
 
         protected override void OnCreate(Bundle savedInstanceState) {
+            CrossFingerprint.SetCurrentActivityResolver(() => this);
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

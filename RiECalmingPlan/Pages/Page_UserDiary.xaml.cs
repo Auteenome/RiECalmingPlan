@@ -28,7 +28,7 @@ namespace RiECalmingPlan.Pages {
         async void NewEntryButtonClicked(object sender, EventArgs e) {
             var page = new Page_NewDiaryEntry {
                 BindingContext = new DiaryEntry()
-        };
+            };
             page.SaveHandler += ((ViewModel_DiaryEntries)BindingContext).AddEntry;
             await Navigation.PushAsync(page);
         }

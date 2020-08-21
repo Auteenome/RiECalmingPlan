@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 using RiECalmingPlan.Models;
 using RiECalmingPlan.Pages;
 using Xamarin.Forms;
@@ -27,7 +29,11 @@ namespace RiECalmingPlan.Views {
         }
 
         async void GoToUserDiary(object sender, EventArgs e) {
-            await Navigation.PushAsync(new Page_UserDiary());
+            var request = new AuthenticationRequestConfiguration("Fingerprint Protected", "Use your finger to unlock your diary!");
+            var result = await CrossFingerprint.Current.AuthenticateAsync(request);
+            if (result.Authenticated) {
+                await Navigation.PushAsync(new Page_UserDiary());
+            }
         }
 
         async void GoToButtonDemo(object sender, EventArgs e)
