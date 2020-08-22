@@ -13,7 +13,7 @@
                 <StackLayout>
                     <Frame Style="{StaticResource QuestionFrameStyle}">
                         <StackLayout  VerticalOptions="Fill">
-                            
+
                             <StackLayout VerticalOptions="Start">
                                 <Label  BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Blue" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" />
                             </StackLayout>
@@ -50,9 +50,11 @@
                 <StackLayout>
                     <Frame Style="{StaticResource QuestionFrameStyle}">
                         <StackLayout VerticalOptions="Fill">
-                            
-                            <StackLayout VerticalOptions="Start">
-                                <Label BindingContext="{Binding Question}" Text="{Binding QuestionText}" TextColor="Green" FontAttributes="Italic" HorizontalOptions="Center" MaxLines="5" LineBreakMode="TailTruncation" FontSize="Medium" HorizontalTextAlignment="Center"/>
+
+                            <StackLayout>
+                                <Label BindingContext="{Binding Question}"
+                                       Text="{Binding QuestionText}"
+                                       Style="{StaticResource Style_QuestionLabel}" />
                             </StackLayout>
 
                             <StackLayout VerticalOptions="CenterAndExpand">
@@ -61,8 +63,8 @@
                                         <DataTemplate>
                                             <ViewCell>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <CheckBox  IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center"/>
-                                                    <Label Text="{Binding Label}" VerticalOptions="Center"/>
+                                                    <CheckBox IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Label}" VerticalOptions="Center" FontSize="Medium" />
                                                 </StackLayout>
                                             </ViewCell>
                                         </DataTemplate>

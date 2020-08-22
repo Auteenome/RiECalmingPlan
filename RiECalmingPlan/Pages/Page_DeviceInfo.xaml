@@ -6,11 +6,38 @@
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_DeviceInfo">
     <ContentPage.Content>
-        <StackLayout>
+        <FlexLayout Direction="Column"
+                    AlignItems="Center">
+
             <Label Text="This label will change colour based on the applied resource dictionary"
-                   Style="{StaticResource Style_TestLabel}"/>
+                   Style="{StaticResource Style_TestLabel}" />
+
             <Label x:Name="Label_Width" />
             <Label x:Name="Label_Height" />
-        </StackLayout>
+
+            <FlexLayout FlexLayout.Grow="1" />
+
+            <Label x:Name="Label_PhoneNumber"
+                   Style="{StaticResource Style_LabelClickable}"
+                   Text="0490715342">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="0490715342" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <FlexLayout FlexLayout.Grow="1" />
+
+            <Label x:Name="Label_URLLink"
+                   Style="{StaticResource Style_LabelClickable}"
+                   Text="https://restinessence.com.au/">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding TapCommand}"
+                                          CommandParameter="https://restinessence.com.au/" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <FlexLayout FlexLayout.Grow="1" />
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

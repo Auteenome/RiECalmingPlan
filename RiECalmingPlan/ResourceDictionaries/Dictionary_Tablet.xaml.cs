@@ -11,6 +11,7 @@ namespace RiECalmingPlan.ResourceDictionaries
 {
     public partial class Dictionary_Tablet : ResourceDictionary
     {
+        public static Dictionary_Tablet SharedDictionary { get; } = new Dictionary_Tablet();
         public Dictionary_Tablet()
         {
             InitializeComponent();

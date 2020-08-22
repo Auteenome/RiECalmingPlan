@@ -11,7 +11,6 @@ namespace RiECalmingPlan.ViewModels {
         // Has properties for Email, Password
         // Has command LoginCommand that checks entries not null or empty, and calls User.CheckLoginInformation(Email, Password)
         // Has Sign Up command
-        // Last Updated by: Mitchell H 13.07.20
 
         //public event PropertyChangedEventHandler PropertyChanged;
         private string email;
@@ -48,8 +47,6 @@ namespace RiECalmingPlan.ViewModels {
             // for now this only validates with dummy data email@email.com + password
             // in future should query web DB
 
-            // null or empty validation
-            // check entries not null
             if (string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
                 App.Current.MainPage.DisplayAlert("Login", "Login unuccessful, empty username or password.", "Okay");
             else

@@ -7,10 +7,12 @@
                     xmlns:local="clr-namespace:RiECalmingPlan.Renderers"
                     x:Class="RiECalmingPlan.ResourceDictionaries.Dictionary_Base">
     <!--^ xmlns:local="clr-namespace:RiECalmingPlan.Renderers" added for custom entry renderer--> 
+    
     <!-- 
-    Global Colors and Base Styles
-    Reference these using: Style="{StaticResource ResourceKey}" 
-    App should detect the device's screen size, and load the appropriate dictionary to ovveride this base dictionary
+    This is the base dictionary for the app.
+    Reference these styles using: Style="{StaticResource ResourceKey}" 
+    App.xaml should detect the device's screen size, and load the appropriate dictionary to ovveride this base dictionary
+    An overridden styles must reset all desired values - cannot override a style to change only one value.
     -->
 
     <!-- ********** ********** **********  Testing ********** ********** ********** -->
@@ -73,6 +75,8 @@
                 Value="Bold" />
         <Setter Property="HorizontalOptions"
                 Value="FillAndExpand" />
+        <Setter Property="FontFamily"
+                Value="NimbusBold" />
     </Style>
 
     <Style x:Key="AdminButtonStyle"
@@ -104,6 +108,42 @@
            TargetType="Button">
     </Style>
 
+    <!-- ********** ********** ********** Labels ********** ********** ********** -->
+
+    <!--Global style to enforce nimbus font for all labels-->
+    <Style TargetType="Label">
+        <Setter Property="FontFamily"
+                Value="NimbusReg" />
+        <Setter Property="VerticalTextAlignment"
+                Value="Center" />
+    </Style>
+
+    <Style x:Key="Style_QuestionLabel"
+           TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{StaticResource RiEDarkGreen}" />
+        <Setter Property="FontFamily"
+                Value="NimbusReg" />
+        <Setter Property="HorizontalOptions"
+                Value="Center" />
+        <Setter Property="MaxLines"
+                Value="5" />
+        <Setter Property="HorizontalTextAlignment"
+                Value="Center" />
+        <Setter Property="LineBreakMode"
+                Value="TailTruncation" />
+        <Setter Property="FontSize"
+                Value="Medium" />
+    </Style>
+    
+    <Style x:Key="Style_LabelClickable"
+           TargetType="Label">
+        <Setter Property="TextColor"
+                Value="#0000EE" />
+        <Setter Property="TextDecorations"
+                Value="Underline" />
+    </Style>
+    
     <!-- ********** ********** ********** Layouts ********** ********** ********** -->
 
     <!--Style for phone stacklayouts-->

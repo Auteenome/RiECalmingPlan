@@ -5,4 +5,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.ResourceDictionaries.Dictionary_Tablet">
+    
+    
+    <!-- ********** ********** ********** Frames ********** ********** ********** -->
+
+    <!--style for the frames in page_questions-->
+    <Style x:Key="QuestionFrameStyle"
+           TargetType="Frame">
+        <Setter Property="HasShadow"
+                Value="True" />
+        <Setter Property="BorderColor"
+                Value="{StaticResource RiEGray}" />
+        <Setter Property="CornerRadius"
+                Value="5" />
+        <Setter Property="Margin"
+                Value="10" />
+        <Setter Property="HorizontalOptions"
+                Value="Center" />
+        <Setter Property="VerticalOptions"
+                Value="CenterAndExpand" />
+        <Setter Property="WidthRequest"
+                Value="400" />
+    </Style>
+
 </ResourceDictionary>

@@ -11,6 +11,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resource\NimbusSanL-Bol.otf" />
+    <None Remove="Resource\NimbusSanL-Reg.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\NimbusSanL-Bol.otf" />
+    <EmbeddedResource Include="Resource\NimbusSanL-Reg.otf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microcharts" Version="0.9.5.7" />
     <PackageReference Include="Microcharts.Forms" Version="0.9.5.7" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -31,9 +41,6 @@
     </Compile>
     <Compile Update="Pages\Page_Login.xaml.cs">
       <DependentUpon>Page_Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\MyPage.xaml.cs">
-      <DependentUpon>MyPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Pages\Page_Registration.xaml.cs">
       <DependentUpon>Page_Registration.xaml</DependentUpon>

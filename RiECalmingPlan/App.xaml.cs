@@ -6,6 +6,7 @@ using RiECalmingPlan.Views;
 using RiECalmingPlan.Models;
 using Xamarin.Essentials;
 
+
 namespace RiECalmingPlan {
     public partial class App : Application {
 
@@ -93,8 +94,9 @@ namespace RiECalmingPlan {
             Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Base.SharedDictionary);     // load base style
 
             // choose which file to override with based on screen size
-
-            if (boolIsSmallDevice())
+            if (Device.Idiom == TargetIdiom.Tablet)
+                Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Tablet.SharedDictionary);    // merge Dictionary_Tablet with main
+            else if (boolIsSmallDevice())
                 Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Small.SharedDictionary);     // merge Dictionary_Small with main
             else
                 Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Default.SharedDictionary);   // merge Dictionary_Default with main
