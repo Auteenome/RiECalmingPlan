@@ -22,10 +22,19 @@ namespace RiECalmingPlan.Pages {
         }
 
         public void LevelButtonPressed(object sender, EventArgs e) {
+            if (Label_DistressLevel.Text.ToString() == "Distress Level: Acute")
+                BackgroundColor = (Color)Application.Current.Resources["Distress_Red"];
+            if (Label_DistressLevel.Text.ToString() == "Distress Level: Moderate")
+                BackgroundColor = (Color)Application.Current.Resources["Distress_Orange"];
+            if (Label_DistressLevel.Text.ToString() == "Distress Level: Mild")
+                BackgroundColor = (Color)Application.Current.Resources["Distress_Yellow"];
+            if (Label_DistressLevel.Text.ToString() == "Distress Level: Calm")
+                BackgroundColor = (Color)Application.Current.Resources["Distress_Green"];
             Carousel.Position = 1;
         }
 
         public void BackButtonPressed(object sender, EventArgs e) {
+            BackgroundColor = Color.White;
             Carousel.Position = 0;
         }
 

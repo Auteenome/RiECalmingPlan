@@ -38,10 +38,11 @@
         </ContentView>
 
         <ContentView x:Key="DistressLevelSlides" BindingContext="{Binding Source={x:Reference Carousel}, Path=BindingContext}" >
-            <Frame Style="{StaticResource QuestionFrameStyle}">
+            <Frame x:Name="Frame_SupportPlan"  Style="{StaticResource QuestionFrameStyle}">
                 <StackLayout>
                     <StackLayout VerticalOptions="Start">
-                        <Label Text="{Binding Source={x:Reference Carousel}, Path=BindingContext.DistressType, StringFormat='Distress Level: {0}'}"/>
+                        <Label x:Name="Label_DistressLevel"
+                            Text="{Binding Source={x:Reference Carousel}, Path=BindingContext.DistressType, StringFormat='Distress Level: {0}'}"/>
                     </StackLayout>
 
                     <Label Text="Expressions" FontAttributes="Bold"/>
@@ -89,10 +90,11 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <CarouselView x:Name="Carousel" IsSwipeEnabled="False">
+            <CarouselView x:Name="Carousel"
+                          IsSwipeEnabled="False">
                 <CarouselView.ItemsSource>
                     <x:Array Type="{x:Type ContentView}">
-                        <ContentView Content="{DynamicResource CarouselControl}"/>
+                        <ContentView Content="{DynamicResource CarouselControl}" />
                         <ContentView Content="{DynamicResource DistressLevelSlides}" />
                     </x:Array>
                 </CarouselView.ItemsSource>
@@ -102,11 +104,10 @@
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
                 <CarouselView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical"/>
+                    <LinearItemsLayout Orientation="Vertical" />
                 </CarouselView.ItemsLayout>
             </CarouselView>
         </StackLayout>
-
     </ContentPage.Content>
     
     
