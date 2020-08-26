@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Timers;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RiECalmingPlan.ViewModels {
@@ -14,7 +15,7 @@ namespace RiECalmingPlan.ViewModels {
          * 1. The user clicks on a specific distress level [Calm, Mild, Moderate, Acute]. This also logs the start of a timestamp.
          * Clicking on a distress level also starts/resets a timer. After [1 minute] has passed without restarting the timer, it will be logged into the database for later use. 
          * 2. The app will then show all responses that belong to questions that belong to one of these distress levels, with included suggestions.
-         * 
+         * 3. The app will also show phone numbers and urls that the user can click on to access these links
          * 
          */
         private string _DistressType;
@@ -26,16 +27,36 @@ namespace RiECalmingPlan.ViewModels {
         public ObservableRangeCollection<Response> DistressExpressions { get { return _DistressExpressions; } set { SetProperty(ref _DistressExpressions, value); } }
 
         public ObservableRangeCollection<Suggestion> DistressSuggestions { get { return _DistressSuggestions; } set { SetProperty(ref _DistressSuggestions, value); } }
+        public Command<string> CallNumber { get; private set; }
+        public Command<string> OpenWebLink { get; private set; }
 
-        private Timer timer = new Timer(60 * 1000);
+        private readonly Timer timer = new Timer(60 * 1000);
         private UserInputDistressLevel TimeStamp;
-
 
         public DistressLevelViewModel() {
             FilterResponses = new Command<string>(FilterByLevel);
+            CallNumber = new Command<string>(Call);
+            OpenWebLink = new Command<string>(OpenBrowser);
             DistressExpressions = new ObservableRangeCollection<Response>();
             timer.Elapsed += Timer_Elapsed;
             timer.AutoReset = false;
+        }
+
+        private void Call(string s) {
+            if (s.ToString() != null) {
+                PhoneDialer.Open(s.ToString());
+            }
+        }
+
+        private void OpenBrowser(string s) {
+            if (!string.IsNullOrWhiteSpace(s.ToString())) {
+                Browser.OpenAsync("https://" + s, new BrowserLaunchOptions {//Have to add Https:// to the link before opening it so it won't crash
+                    LaunchMode = BrowserLaunchMode.SystemPreferred,
+                    TitleMode = BrowserTitleMode.Show,
+                    PreferredToolbarColor = Color.FromHex("#006738"),//RiE Green(I took the hex for this but i don't know how to access the colour dict for this)
+                    PreferredControlColor = Color.White,
+                });
+            }
         }
 
         private void FilterByLevel(string parameter) {

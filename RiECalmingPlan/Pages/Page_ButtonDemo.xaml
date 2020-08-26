@@ -7,8 +7,7 @@
              x:Class="RiECalmingPlan.Pages.Page_ButtonDemo"
              BackgroundColor="{StaticResource RiELightGreen}">
 
-    <Frame Style="{StaticResource QuestionFrameStyle}"
-           x:Name="Frame_Buttons">
+    <Frame Style="{StaticResource QuestionFrameStyle}" x:Name="Frame_Buttons">
         <StackLayout>
             <Image x:Name="Image_Acute"
                    Source="button_acute"

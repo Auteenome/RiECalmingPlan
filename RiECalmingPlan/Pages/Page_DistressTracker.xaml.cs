@@ -13,11 +13,12 @@ namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page_DistressTracker : ContentPage {
 
-        private DistressLevelViewModel ViewModel = new DistressLevelViewModel();
+        private readonly DistressLevelViewModel ViewModel = new DistressLevelViewModel();
 
         public Page_DistressTracker() {
             InitializeComponent();
             Carousel.BindingContext = ViewModel;
+
         }
 
         public void LevelButtonPressed(object sender, EventArgs e) {

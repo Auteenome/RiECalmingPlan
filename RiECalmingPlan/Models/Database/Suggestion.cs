@@ -14,7 +14,11 @@ namespace RiECalmingPlan.Models {
         [Column("Label")]
         public string Label { get; set; }
 
+        [Column("PhoneNumber")]
+        public string PhoneNumber { get; set; }
 
+        [Column("URL")]
+        public string URL { get; set; }
 
     }
 }
