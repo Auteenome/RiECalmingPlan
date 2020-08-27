@@ -16,7 +16,21 @@
         <ListView x:Name="listView" Margin="20" ItemsSource="{Binding Entries}" ItemSelected="OnListViewItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Body}" Detail="{Binding FirstSubmit, StringFormat='First Submitted: {0}'}" />
+                    <ViewCell>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <!-- IconImageSource="delete.png" if you want to use an image here-->
+                                    <SwipeItem Text="Delete" BackgroundColor="LightGray" Invoked="DeleteSwipeItemClicked"/>
+                                </SwipeItems>
+                            </SwipeView.LeftItems>
+                            <StackLayout>
+                                <Label Text="{Binding Body}" />
+                                <Label Text="{Binding FirstSubmit, StringFormat='First Submitted: {0}'}"/>
+                            </StackLayout>
+                        </SwipeView>
+
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

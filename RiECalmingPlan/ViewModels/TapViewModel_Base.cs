@@ -10,7 +10,7 @@ namespace RiECalmingPlan.ViewModels {
         // the base view model for implementing a tapGestureRecognizer
         // override the OnTapped method for unique implementation
 
-        private ICommand _TapCommand;
+        private readonly ICommand _TapCommand;
         public TapViewModel_Base()
         {
             _TapCommand = new Command(OnTapped);

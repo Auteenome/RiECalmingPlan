@@ -12,7 +12,7 @@ namespace RiECalmingPlan.ViewModels {
          * This view model is used for the following features:
          * 1. viewing entry metadata
          * 2. allowing an entry to be opened
-         * 
+         * 3. Deletion of an entry (Hidden until the user swipes right on an item)
          */
         private List<DiaryEntry> _Entries;
         public List<DiaryEntry> Entries { get { return _Entries; } set { SetProperty(ref _Entries, value); } }
@@ -41,6 +41,12 @@ namespace RiECalmingPlan.ViewModels {
             ((DiaryEntry)sender).LastEdited = DateTime.Now;
             Entries.Add(((DiaryEntry)sender));
             UserDiaryFileController.Save(Entries);
+        }
+
+        public void RemoveEntry(DiaryEntry model) {
+            Entries.Remove(model);
+            UserDiaryFileController.Save(Entries);
+            Refresh();
         }
     }
 }

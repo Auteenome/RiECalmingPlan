@@ -29,6 +29,8 @@ namespace RiECalmingPlan.Droid {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
+            global::Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
+
             base.OnCreate(savedInstanceState);
             Instance = this;
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

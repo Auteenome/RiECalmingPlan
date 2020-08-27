@@ -10,14 +10,14 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal" Padding="10">
+            <StackLayout Orientation="Horizontal" Padding="10" VerticalOptions="Start">
                 <Label Text="Filter Items:"  VerticalOptions="Center"/>
                 <Picker ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilter}"  VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
             </StackLayout>
-            <StackLayout>
-                <microcharts:ChartView HeightRequest="250" Chart="{Binding LineChart}"/>
+            <StackLayout VerticalOptions="Center">
+                <microcharts:ChartView HeightRequest="250" Chart="{Binding LineChart}" />
             </StackLayout>
-            <ScrollView>
+            <ScrollView VerticalOptions="EndAndExpand">
                 <StackLayout BindableLayout.ItemsSource="{Binding FilteredHistory}">
                     <BindableLayout.EmptyView>
                         <Label HorizontalOptions="Center" VerticalOptions="Center" Text="There are no items listed in this category"/>

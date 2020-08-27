@@ -37,6 +37,12 @@ namespace RiECalmingPlan.Pages {
             ((ViewModel_DiaryEntries)BindingContext).Reset();
         }
 
+        void DeleteSwipeItemClicked(object sender, EventArgs e) {
+            SwipeItem item = sender as SwipeItem;
+            DiaryEntry model = item.BindingContext as DiaryEntry;
+            ((ViewModel_DiaryEntries)BindingContext).RemoveEntry(model);
+        }
+
         async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e) {
             DiaryEntry entry = (DiaryEntry)e.SelectedItem;
             ((ViewModel_DiaryEntries)BindingContext).Entries.Remove(entry);
