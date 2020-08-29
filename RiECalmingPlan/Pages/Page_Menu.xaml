@@ -3,7 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RiECalmingPlan.Views.Page_Menu"
              BackgroundColor="{StaticResource RiEOffWhite}">
-    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="TbItemAbout"
+                     Text="About Rest in Essence"
+                     Order="Secondary" 
+                     Clicked="TbItemAbout_Clicked"/>
+        <ToolbarItem x:Name="TbItemAccount"
+                     Text="Account settings"
+                     Order="Secondary" />
+        <ToolbarItem x:Name="TbItemAdmin"
+                     Text="Admin"
+                     Order="Secondary" 
+                     Clicked="GoToDeviceInfo"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Style="{StaticResource Style_MenuStackLayoutStyle}">
             

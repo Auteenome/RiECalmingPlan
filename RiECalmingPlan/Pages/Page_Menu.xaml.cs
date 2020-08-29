@@ -51,6 +51,8 @@ namespace RiECalmingPlan.Views {
             Console.WriteLine("Database connection reset");
         }
 
-
+        async private void TbItemAbout_Clicked(object sender, EventArgs e)
+        {
+        }
     }
 }
