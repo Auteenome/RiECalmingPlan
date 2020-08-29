@@ -26,7 +26,9 @@
                                         <DataTemplate>
                                             <ViewCell>
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label Text="{Binding Label}" VerticalOptions="Center"/>
+                                                    <Label Text="{Binding Label}"
+                                                           Style="{StaticResource Style_NimbusRegSmallSizeLabel}"
+                                                           VerticalOptions="Center" />
 
                                                     <views:StepProgressBar StepColor="{StaticResource RiELightGreen}" Style="{StaticResource StepperStyle} "/>
 
@@ -38,9 +40,19 @@
 
                             </StackLayout>
                             
-                            <StackLayout VerticalOptions="End">
-                                <Editor x:Name="CustomEntry" Text="{Binding OtherText}" Placeholder="Other"/>
-                                <Button Text="Add" Command="{Binding AddResponseCommand}" CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                                <Editor x:Name="CustomEntry" 
+                                        Text="{Binding OtherText}"
+                                        Placeholder="Other"
+                                        HorizontalOptions="FillAndExpand"
+                                        FontFamily="NimbusReg"
+                                        FontSize="Default" />
+                                <Button Text="Add"
+                                        Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                                        HorizontalOptions="End"
+                                        FontFamily="NimbusBold"
+                                        Command="{Binding AddResponseCommand}" 
+                                        CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
                             </StackLayout>
                             
                         </StackLayout>
@@ -66,7 +78,9 @@
                                             <ViewCell>
                                                 <StackLayout Orientation="Horizontal" Spacing="0">
                                                     <CheckBox IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center"/>
-                                                    <Label Text="{Binding Label}" VerticalOptions="Center" FontSize="Default" />
+                                                    <Label Text="{Binding Label}"
+                                                           Style="{StaticResource Style_NimbusRegSmallSizeLabel}"
+                                                           VerticalOptions="Center"/>
                                                 </StackLayout>
                                             </ViewCell>
                                         </DataTemplate>
@@ -74,9 +88,19 @@
                                 </ListView>
                             </StackLayout>
 
-                            <StackLayout VerticalOptions="End">
-                                <Editor x:Name="CustomEntry" Text="{Binding OtherText}" Placeholder="Other"/>
-                                <Button Text="Add" Command="{Binding AddResponseCommand}" CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
+                            <StackLayout Orientation="Horizontal" VerticalOptions="End">
+                                <Editor x:Name="CustomEntry" 
+                                        Text="{Binding OtherText}" 
+                                        Placeholder="Other"
+                                        HorizontalOptions="FillAndExpand"
+                                        FontFamily="NimbusReg"
+                                        FontSize="Default"/>
+                                <Button Text="Add"
+                                        Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                                        HorizontalOptions="End"
+                                        FontFamily="NimbusBold"
+                                        Command="{Binding AddResponseCommand}" 
+                                        CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
                             </StackLayout>
                             
                         </StackLayout>
@@ -95,25 +119,31 @@
                             </StackLayout>
 
                             <StackLayout VerticalOptions="CenterAndExpand">
-                                <ListView BindingContext="{Binding NonGeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True">
+                                <ListView BindingContext="{Binding NonGeneratedResponses}"
+                                          ItemsSource="{Binding}"
+                                          HasUnevenRows="True">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
                                                 <StackLayout>
-                                                    <Label Text="{Binding Label}" />
+                                                    <Label Text="{Binding Label}"
+                                                           Style="{StaticResource Style_NimbusRegSmallSizeLabel}" />
                                                 </StackLayout>
                                             </ViewCell>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </StackLayout>
-
-                            <StackLayout VerticalOptions="End">
-                                <Editor x:Name="CustomEntry" Text="{Binding OtherText}" Placeholder="Other"/>
-                                <Button Text="Add" Command="{Binding AddResponseCommand}" CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
-                            </StackLayout>
-                            
-
+                            <!--this can be made prettier by using a frame wrapper with a custom editor--> 
+                            <Editor x:Name="CustomEntry"
+                                    Text="{Binding OtherText}"
+                                    Placeholder="Other"
+                                    FontFamily="NimbusReg"
+                                    FontSize="Default"/>
+                            <Button Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                                    Text="Add"
+                                    Command="{Binding AddResponseCommand}"
+                                    CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}" />
                         </StackLayout>
                     </Frame>
                 </StackLayout>

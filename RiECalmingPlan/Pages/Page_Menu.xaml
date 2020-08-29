@@ -7,48 +7,31 @@
     <ContentPage.Content>
         <StackLayout Style="{StaticResource Style_MenuStackLayoutStyle}">
             
-            <Frame WidthRequest="220"
-                   HasShadow="False"
-                   BackgroundColor="{StaticResource RiEOffWhite}">
-                <Image Source="RIE_logo300" 
+            <Frame Style="{StaticResource Style_MenuIconWrapperFrameStyle}">
+                <Image Source="RIE_logo300"
                        Aspect="AspectFit" />
             </Frame>
             
             <Button Text="Calming Plan Questions"
-                    Style="{StaticResource MenuButtonStyle}"
-                    TextColor="White"
-                    BackgroundColor="{StaticResource RiEDarkGreen}"
-                    Clicked="GoToContextMainPage" 
-                    />
+                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                    Clicked="GoToContextMainPage" />
             
             <Button Text="Reset Database"
-                    Style="{StaticResource MenuButtonStyle}"
-                    TextColor="White"
+                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
                     BackgroundColor="{StaticResource RiEDarkGreen}"
                     Clicked="ResetLocalDatabase" />
             
             <Button Text="Distress Tracker"
-                    Style="{StaticResource MenuButtonStyle}"
-                    TextColor="White"
-                    BackgroundColor="{StaticResource RiEDarkGreen}"
+                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
                     Clicked="GoToDistressTracker" />
 
             <Button Text="Distress History/Chart"
-                    Style="{StaticResource MenuButtonStyle}"
-                    TextColor="White"
-                    BackgroundColor="{StaticResource RiEDarkGreen}"
+                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
                     Clicked="GoToDistressHistory" />
 
             <Button Text="User Diary"
-                    Style="{StaticResource MenuButtonStyle}"
-                    TextColor="White"
-                    BackgroundColor="{StaticResource RiEDarkGreen}"
+                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
                     Clicked="GoToUserDiary" />
-
-            <Button Text="Device Info"
-                    Style="{StaticResource AdminButtonStyle}"
-                    Clicked="GoToDeviceInfo"
-                    VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

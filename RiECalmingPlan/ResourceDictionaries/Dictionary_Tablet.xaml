@@ -26,14 +26,22 @@
                 Value="CenterAndExpand" />
         <Setter Property="WidthRequest"
                 Value="400" />
+        <Setter Property="HeightRequest"
+                Value="600" />
+    </Style>
+
+    <!--style for the frame wrapping the icon on the main menu-->
+    <Style x:Key="Style_MenuIconWrapperFrameStyle"
+           TargetType="Frame">
+        <Setter Property="WidthRequest"
+                Value="220" />
+        <Setter Property="HasShadow"
+                Value="False" />
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource RiEOffWhite}" />
     </Style>
 
     <!-- ********** ********** ********** Layouts ********** ********** ********** -->
 
-    <Style x:Key="Style_MenuStackLayoutStyle"
-           TargetType="StackLayout">
-        <Setter Property="Padding"
-                Value="50" />
-    </Style>
 
 </ResourceDictionary>

@@ -84,10 +84,13 @@
                 Value="Bold" />
     </Style>
 
-    <!-- curved button style with bold font, and horizontaloptions
-            for main menu -->
-    <Style x:Key="MenuButtonStyle"
+    <!-- curved button style with bold font -->
+    <Style x:Key="Style_GreenRoundedBorderButtonStyle"
            TargetType="Button">
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource RiEDarkGreen}" />
+        <Setter Property="TextColor"
+                Value="White" />
         <Setter Property="Padding"
                 Value="0" />
         <Setter Property="CornerRadius"
@@ -158,7 +161,23 @@
         <Setter Property="FontSize"
                 Value="Medium" />
     </Style>
-    
+
+    <Style x:Key="Style_NimbusRegDefaultSizeLabel"
+           TargetType="Label" >
+        <Setter Property="FontFamily"
+                Value="NimbusReg" />
+        <Setter Property="FontSize"
+                Value="Default" />
+    </Style>
+
+    <Style x:Key="Style_NimbusRegSmallSizeLabel"
+           TargetType="Label">
+        <Setter Property="FontFamily"
+                Value="NimbusReg" />
+        <Setter Property="FontSize"
+                Value="Small" />
+    </Style>
+
     <Style x:Key="Style_LabelClickable"
            TargetType="Label">
         <Setter Property="TextColor"
@@ -212,7 +231,19 @@
         <Setter Property="VerticalOptions"
                 Value="CenterAndExpand" />
     </Style>
-
+    
+    <!--style for the frame wrapping the icon on the main menu-->
+    <Style x:Key="Style_MenuIconWrapperFrameStyle"
+           TargetType="Frame">
+        <Setter Property="WidthRequest"
+                Value="220" />
+        <Setter Property="HasShadow"
+                Value="False" />
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource RiEOffWhite}" />
+    </Style>
+    
+    
     <!--style for frames that border an entry, giving a curved border-->
     <Style x:Key="Style_EntryCurvedBorderFrameStyle"
            TargetType="Frame">
