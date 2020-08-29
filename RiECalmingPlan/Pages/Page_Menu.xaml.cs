@@ -13,7 +13,6 @@ namespace RiECalmingPlan.Views {
         
         public Page_Menu() {
             InitializeComponent();
-            // BackgroundColor = Constants.BackgroundColor;
         }
 
         async void GoToContextMainPage(object sender, EventArgs e) {
@@ -39,11 +38,6 @@ namespace RiECalmingPlan.Views {
             }
             //Too many attempts will also lock them out for a while, but not sure how long exactly.
             //If the alternative method is not added and fingerprint is not already put into the device, it will not allow the user to enter into the diary at all
-        }
-
-        async void GoToButtonDemo(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Page_ButtonDemo());
         }
 
         async void GoToDeviceInfo(object sender, EventArgs e)

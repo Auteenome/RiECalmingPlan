@@ -5,31 +5,21 @@
              BackgroundColor="{StaticResource RiEOffWhite}">
     
     <ContentPage.Content>
-        <StackLayout Spacing="20"
-                     Margin="20"
-                     Padding="10"
-                     VerticalOptions="CenterAndExpand"
-                     HorizontalOptions="CenterAndExpand"
-                     WidthRequest="-1">
-            <StackLayout.Style>
-                <OnIdiom x:TypeArguments="Style"
-                         Tablet="{StaticResource Style_TabletStackLayout}"
-                         Phone="{StaticResource Style_PhoneStackLayout}" />
-            </StackLayout.Style>
-            <StackLayout.Padding>
-                <!-- OnIdiom allows different arguements for different frameworks -->
-                <OnIdiom x:TypeArguments="Thickness">
-                    <!--<OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
-                        <OnIdiom.Tablet>140,150,140,0</OnIdiom.Tablet>-->
-                </OnIdiom>
-            </StackLayout.Padding>
+        <StackLayout Style="{StaticResource Style_MenuStackLayoutStyle}">
+            
+            <Frame WidthRequest="220"
+                   HasShadow="False"
+                   BackgroundColor="{StaticResource RiEOffWhite}">
+                <Image Source="RIE_logo300" 
+                       Aspect="AspectFit" />
+            </Frame>
             
             <Button Text="Calming Plan Questions"
                     Style="{StaticResource MenuButtonStyle}"
                     TextColor="White"
                     BackgroundColor="{StaticResource RiEDarkGreen}"
                     Clicked="GoToContextMainPage" 
-                    WidthRequest="350"/>
+                    />
             
             <Button Text="Reset Database"
                     Style="{StaticResource MenuButtonStyle}"
@@ -55,20 +45,10 @@
                     BackgroundColor="{StaticResource RiEDarkGreen}"
                     Clicked="GoToUserDiary" />
 
-            <Button Text="Button Demo"
-                    Style="{StaticResource AdminButtonStyle}"
-                    Clicked="GoToButtonDemo" />
-
             <Button Text="Device Info"
                     Style="{StaticResource AdminButtonStyle}"
-                    Clicked="GoToDeviceInfo" />
-
-            <!--layout for spacing-->
-            <StackLayout VerticalOptions="CenterAndExpand">
-            </StackLayout>
-
-            <Button Text="Sign Out - to be added" 
-                    Style="{StaticResource AdminButtonStyle}" />
+                    Clicked="GoToDeviceInfo"
+                    VerticalOptions="End" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

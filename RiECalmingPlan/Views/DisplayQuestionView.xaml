@@ -12,7 +12,7 @@
             <DataTemplate x:Key="stepperTemplate">
                 <StackLayout>
                     <Frame Style="{StaticResource QuestionFrameStyle}">
-                        <StackLayout  VerticalOptions="Fill">
+                        <StackLayout VerticalOptions="Fill">
 
                             <StackLayout VerticalOptions="Start">
                                 <Label  BindingContext="{Binding Question}"

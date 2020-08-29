@@ -5,24 +5,44 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:RiECalmingPlan.Views"
              mc:Ignorable="d"
-             x:Class="RiECalmingPlan.Pages.Page_DistressTracker">
+             x:Class="RiECalmingPlan.Pages.Page_DistressTracker"
+             BackgroundColor="{StaticResource RiEOffWhite}">
 
     <ContentPage.Resources>
-        <ContentView x:Key="CarouselControl" >
-            <Frame Style="{StaticResource QuestionFrameStyle}" x:Name="Frame_Buttons">
+        <ContentView x:Key="CarouselControl">
+            <Frame Style="{StaticResource QuestionFrameStyle}"
+                   x:Name="Frame_Buttons"
+                   HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="CenterAndExpand">
                 <StackLayout>
-                    <ImageButton x:Name="Image_Acute" Source="button_acute" Margin="57, 2, 57, 2" BackgroundColor="Transparent" 
-                                 Clicked="LevelButtonPressed" 
-                                 Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.FilterResponses}" CommandParameter="Acute"/>
-                    <ImageButton x:Name="Image_Moderate" Source="button_moderate" Margin="39, 2, 39, 2" BackgroundColor="Transparent"
+                    <ImageButton x:Name="Image_Acute"
+                                 Source="button_acute"
+                                 Margin="57, 2, 57, 2"
+                                 BackgroundColor="Transparent"
                                  Clicked="LevelButtonPressed"
-                                 Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.FilterResponses}" CommandParameter="Moderate" />
-                    <ImageButton x:Name="Image_Mild" Source="button_mild" Margin="21.5, 2, 21.5, 2" BackgroundColor="Transparent"
+                                 Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.FilterResponses}"
+                                 CommandParameter="Acute" />
+                    <ImageButton x:Name="Image_Moderate"
+                                 Source="button_moderate"
+                                 Margin="39, 2, 39, 2"
+                                 BackgroundColor="Transparent"
                                  Clicked="LevelButtonPressed"
-                                 Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.FilterResponses}" CommandParameter="Mild"/>
-                    <ImageButton x:Name="Image_Calm" Source="button_calm" Margin="5, 2, 5, 2" BackgroundColor="Transparent"
+                                 Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.FilterResponses}"
+                                 CommandParameter="Moderate" />
+                    <ImageButton x:Name="Image_Mild"
+                                 Source="button_mild"
+                                 Margin="21.5, 2, 21.5, 2"
+                                 BackgroundColor="Transparent"
                                  Clicked="LevelButtonPressed"
-                                 Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.FilterResponses}" CommandParameter="Calm" />
+                                 Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.FilterResponses}"
+                                 CommandParameter="Mild" />
+                    <ImageButton x:Name="Image_Calm"
+                                 Source="button_calm"
+                                 Margin="5, 2, 5, 2"
+                                 BackgroundColor="Transparent"
+                                 Clicked="LevelButtonPressed"
+                                 Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.FilterResponses}"
+                                 CommandParameter="Calm" />
                 </StackLayout>
             </Frame>
             <!--
@@ -37,61 +57,125 @@
             -->
         </ContentView>
 
-        <ContentView x:Key="DistressLevelSlides" BindingContext="{Binding Source={x:Reference Carousel}, Path=BindingContext}" >
-            <Frame x:Name="Frame_SupportPlan"  Style="{StaticResource QuestionFrameStyle}">
-                <StackLayout>
-                    <StackLayout VerticalOptions="Start">
-                        <Label x:Name="Label_DistressLevel"
-                            Text="{Binding Source={x:Reference Carousel}, Path=BindingContext.DistressType, StringFormat='Distress Level: {0}'}"/>
-                    </StackLayout>
+        <ContentView x:Key="DistressLevelSlides"
+                     BindingContext="{Binding Source={x:Reference Carousel}, Path=BindingContext}">
+            <!--frame for whole card-->
+            <Frame x:Name="Frame_SupportPlan"
+                   Style="{StaticResource QuestionFrameStyle}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand">
+                <!--frame for colored border-->
+                <Frame BackgroundColor="White"
+                       Padding="5"
+                       Margin="-10"
+                       CornerRadius="5"
+                       HasShadow="False">
+                <!--grid for data-->
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="0"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <Label Text="Expressions" FontAttributes="Bold"/>
-                    <StackLayout VerticalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding DistressExpressions}">
-                        <BindableLayout.EmptyView>
-                            <Label Text="Looks like you don't have any expressions in this category!"/>
-                        </BindableLayout.EmptyView>
+                        <StackLayout Grid.Row="0"
+                                     Grid.Column="0">
+                            <Label x:Name="Label_DistressLevel"
+                                   Text="{Binding Source={x:Reference Carousel}, Path=BindingContext.DistressType, StringFormat='Distress Level: {0}'}"
+                                   FontSize="Medium"
+                                   FontFamily="NimbusBold"
+                                   HorizontalOptions="CenterAndExpand" 
+                                   IsVisible="False" />
+                            <Label Text="Expressions"
+                                   FontSize="Default"
+                                   FontFamily="NimbusBold"
+                                   HorizontalOptions="CenterAndExpand" />
 
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <Label Text="{Binding Label}"/>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
-                    
-                    <Label Text="Suggestions" FontAttributes="Bold"/>
-                    <StackLayout VerticalOptions="CenterAndExpand" BindableLayout.ItemsSource="{Binding DistressSuggestions}">
-                        <BindableLayout.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Label}"/>
-                                    <Label x:Name="Label_PhoneNumber" Text="{Binding PhoneNumber}" Style="{StaticResource Style_LabelClickable}">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.CallNumber}" CommandParameter="{Binding Source={x:Reference Label_PhoneNumber}, Path=Text}"/>
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                    <Label x:Name="Label_URLLink" Text="{Binding URL}" Style="{StaticResource Style_LabelClickable}">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.OpenWebLink}" CommandParameter="{Binding Source={x:Reference Label_URLLink}, Path=Text}"/>
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                </StackLayout>
-                            </DataTemplate>
-                        </BindableLayout.ItemTemplate>
-                    </StackLayout>
+                            <StackLayout BindableLayout.ItemsSource="{Binding DistressExpressions}">
+                                <BindableLayout.EmptyView>
+                                    <Label Text="Looks like you don't have any expressions in this category!"
+                                           FontSize="Default"
+                                           FontFamily="NimbusReg" />
+                                </BindableLayout.EmptyView>
 
-                    <StackLayout VerticalOptions="End">
-                        <Button Text="Back" Style="{StaticResource ButtonStyle}" Clicked="BackButtonPressed"/>
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding Label}"
+                                               FontSize="Default"
+                                               FontFamily="NimbusReg" />
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
+                        <BoxView Grid.Row="1"
+                                 Grid.Column="0"
+                                 HorizontalOptions="FillAndExpand"
+                                 WidthRequest="1"
+                                 Color="{StaticResource RiEOffGray}" />
+                        <StackLayout Grid.Row="2"
+                                     Grid.Column="0">
+                            <Label Text="Suggestions"
+                                   FontSize="Default"
+                                   FontFamily="NimbusBold"
+                                   HorizontalOptions="CenterAndExpand" />
+                            <StackLayout BindableLayout.ItemsSource="{Binding DistressSuggestions}">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Label}"
+                                                   FontSize="Default"
+                                                   FontFamily="NimbusReg" />
+                                            <Label x:Name="Label_PhoneNumber"
+                                                   Text="{Binding PhoneNumber}"
+                                                   Style="{StaticResource Style_LabelClickable}"
+                                                   FontSize="Default"
+                                                   FontFamily="NimbusReg">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.CallNumber}"
+                                                                          CommandParameter="{Binding Source={x:Reference Label_PhoneNumber}, Path=Text}" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                            <Label x:Name="Label_URLLink"
+                                                   Text="{Binding URL}"
+                                                   Style="{StaticResource Style_LabelClickable}"
+                                                   FontSize="Default"
+                                                   FontFamily="NimbusReg">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.OpenWebLink}"
+                                                                          CommandParameter="{Binding Source={x:Reference Label_URLLink}, Path=Text}" />
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
+                        <StackLayout Grid.Row="3"
+                                 Grid.Column="0"
+                                 Margin="5">
+                        <Button Text="Back"
+                                Style="{StaticResource MenuButtonStyle}"
+                                Clicked="BackButtonPressed"
+                                BackgroundColor="{StaticResource RiEDarkGreen}"
+                                TextColor="White"
+                                WidthRequest="400" />
                     </StackLayout>
-                </StackLayout>
+                </Grid>
+                </Frame>
             </Frame>
         </ContentView>
-
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout>
             <CarouselView x:Name="Carousel"
-                          IsSwipeEnabled="False">
+                          IsSwipeEnabled="False"
+                          VerticalOptions="CenterAndExpand"
+                          HorizontalOptions="CenterAndExpand">
                 <CarouselView.ItemsSource>
                     <x:Array Type="{x:Type ContentView}">
                         <ContentView Content="{DynamicResource CarouselControl}" />
@@ -109,6 +193,6 @@
             </CarouselView>
         </StackLayout>
     </ContentPage.Content>
-    
-    
+
+
 </ContentPage>

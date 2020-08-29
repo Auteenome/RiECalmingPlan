@@ -28,4 +28,12 @@
                 Value="400" />
     </Style>
 
+    <!-- ********** ********** ********** Layouts ********** ********** ********** -->
+
+    <Style x:Key="Style_MenuStackLayoutStyle"
+           TargetType="StackLayout">
+        <Setter Property="Padding"
+                Value="50" />
+    </Style>
+
 </ResourceDictionary>

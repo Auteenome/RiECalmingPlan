@@ -22,11 +22,21 @@
     <Color x:Key="RiEGray">#5B5C5C</Color>
     <Color x:Key="RiEOffWhite">#E8E5DA</Color>
     <Color x:Key="RiEOffBlack">#333333</Color>
+    <Color x:Key="RiEOffGray">#d6d6d6</Color>
+
     
     <Color x:Key="Distress_Red">#C8263D</Color>
     <Color x:Key="Distress_Orange">#F05A28</Color>
     <Color x:Key="Distress_Yellow">#FFBE0B</Color>
     <Color x:Key="Distress_Green">#8DC63F</Color>
+    <Color x:Key="Distress_RedOpaquePlus">#e3929e</Color>
+    <Color x:Key="Distress_OrangeOpaquePlus">#f7ac93</Color>
+    <Color x:Key="Distress_YellowOpaquePlus">#ffde85</Color>
+    <Color x:Key="Distress_GreenOpaquePlus">#c6e29f</Color>
+    <Color x:Key="Distress_RedOpaque">#d55c6d</Color>
+    <Color x:Key="Distress_OrangeOpaque">#f3835d</Color>
+    <Color x:Key="Distress_YellowOpaque">#ffce48</Color>
+    <Color x:Key="Distress_GreenOpaque">#a9d46f</Color>
     
     <!-- ********** ********** **********  Testing ********** ********** ********** -->
     <Style x:Key="Style_TestLabel"
@@ -83,13 +93,15 @@
         <Setter Property="CornerRadius"
                 Value="20" />
         <Setter Property="HeightRequest"
-                Value="40" />
+                Value="45" />
         <Setter Property="FontAttributes"
                 Value="Bold" />
         <Setter Property="HorizontalOptions"
                 Value="FillAndExpand" />
         <Setter Property="FontFamily"
                 Value="NimbusBold" />
+        <Setter Property="FontSize"
+                Value="17" />
     </Style>
 
     <Style x:Key="AdminButtonStyle"
@@ -123,7 +135,7 @@
 
     <!-- ********** ********** ********** Labels ********** ********** ********** -->
 
-    <!--Global style to enforce nimbus font for all labels-->
+    <!--Global style for unstyled labels -->
     <Style TargetType="Label">
         <Setter Property="FontFamily"
                 Value="NimbusReg" />
@@ -157,20 +169,20 @@
     
     <!-- ********** ********** ********** Layouts ********** ********** ********** -->
 
-    <!--Style for phone stacklayouts-->
-    <Style x:Key="Style_PhoneStackLayout"
+    <Style x:Key="Style_MenuStackLayoutStyle"
            TargetType="StackLayout">
         <Setter Property="Padding"
-                Value="0" />
-        <!--<Setter Property="VerticalOptions" Value="FillAndExpand" />-->
-    </Style>
-
-    <!--Style for tablet stacklayouts-->
-    <Style x:Key="Style_TabletStackLayout"
-           TargetType="StackLayout">
-        <Setter Property="Padding"
-                Value="50" />
-        <!--<Setter Property="VerticalOptions" Value="CenterAndExpand" />-->
+                Value="10" />
+        <Setter Property="Spacing"
+                Value="20" />
+        <Setter Property="Margin"
+                Value="20" />
+        <Setter Property="WidthRequest"
+                Value="350" />
+        <Setter Property="VerticalOptions"
+                Value="CenterAndExpand" />
+        <Setter Property="HorizontalOptions"
+                Value="CenterAndExpand" />
     </Style>
 
     <!--default stacklayout style-->
