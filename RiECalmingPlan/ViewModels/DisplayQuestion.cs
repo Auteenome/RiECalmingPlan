@@ -25,6 +25,7 @@ namespace RiECalmingPlan.ViewModels {
 
         public string OtherText { get { return _OtherText; } set { SetProperty(ref _OtherText, value); } }
         public Command<string> AddResponseCommand { get; private set; } 
+        public Command<GeneratedResponse> DeleteResponseCommand { get; private set; }
 
         public DisplayQuestion(Question question, List<GeneratedResponse> generatedResponses, List<NonGeneratedResponse> nonGeneratedResponses) {
             Question = question;
@@ -33,6 +34,7 @@ namespace RiECalmingPlan.ViewModels {
             GeneratedResponses.ReplaceRange(generatedResponses);
             NonGeneratedResponses.ReplaceRange(nonGeneratedResponses);
             AddResponseCommand = new Command<string>(AddResponse);
+            DeleteResponseCommand = new Command<GeneratedResponse>(DeleteResponse);
             _OtherText = string.Empty;
         }
 
@@ -40,11 +42,11 @@ namespace RiECalmingPlan.ViewModels {
             if (!string.IsNullOrWhiteSpace(s)) {
                 Console.WriteLine("Adding Response " + s);
                 if (Question.QuestionType.Equals("CheckBox")) {
-                    Label_CheckBox checkbox = new Label_CheckBox() { CPQID = Question.CPQID, CheckBoxID = GeneratedResponses.Count + 1, Label = s, CheckBoxValue = 1 };
+                    Label_CheckBox checkbox = new Label_CheckBox() { CPQID = Question.CPQID, CheckBoxID = GeneratedResponses.Count + 1, Label = s, ResponseType = "Custom", CheckBoxValue = 1 };
                     GeneratedResponses.Add(checkbox);
                     await App.database.AppendCheckBoxResponse(checkbox);
                 } else if (Question.QuestionType.Equals("Stepper")) {
-                    Label_Stepper stepper = new Label_Stepper() { CPQID = Question.CPQID, StepperID = GeneratedResponses.Count + 1, Label = s, StepperValue = 0 };
+                    Label_Stepper stepper = new Label_Stepper() { CPQID = Question.CPQID, StepperID = GeneratedResponses.Count + 1, Label = s, ResponseType = "Custom", StepperValue = 0 };
                     GeneratedResponses.Add(stepper);
                     await App.database.AppendStepperResponse(stepper);
                 } else {
@@ -54,6 +56,17 @@ namespace RiECalmingPlan.ViewModels {
                 }
             }
             OtherText = string.Empty;
+        }
+
+        public async void DeleteResponse(GeneratedResponse x) {
+            Console.WriteLine("Deleting Response " + x);
+            if (Question.QuestionType.Equals("Stepper")) {
+                GeneratedResponses.Remove(x);
+                await App.database.DeleteStepperResponse((Label_Stepper)x);
+            } else if (Question.QuestionType.Equals("CheckBox")) {
+                GeneratedResponses.Remove(x);
+                await App.database.DeleteCheckboxResponse((Label_CheckBox)x);
+            }
         }
     }
 }

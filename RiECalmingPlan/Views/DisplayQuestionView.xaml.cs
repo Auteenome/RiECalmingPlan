@@ -29,5 +29,6 @@ namespace RiECalmingPlan.Views {
 
            await App.database.UpdateCheckBoxResponse(checkBoxLabel);
         }
+
     }
 }
