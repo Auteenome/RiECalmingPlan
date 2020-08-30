@@ -22,7 +22,7 @@
                             </StackLayout>
 
                             <StackLayout VerticalOptions="CenterAndExpand">
-                                <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True">
+                                <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True" SelectionMode="None">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
@@ -74,12 +74,29 @@
                             </StackLayout>
 
                             <StackLayout VerticalOptions="CenterAndExpand">
-                                <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True" SelectionMode="None" ItemTapped="ListView_ItemTapped">
+                                <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True" SelectionMode="None" ItemTapped="CheckBoxItemTapped">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
                                                 <StackLayout Orientation="Horizontal" Spacing="0">
-                                                    <CheckBox IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center"/>
+                                                    <CheckBox IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center">
+                                                        <!--Checkbox Style based on state (Checked, Unchecked) -->
+                                                        <VisualStateManager.VisualStateGroups>
+                                                            <VisualStateGroup x:Name="CommonStates">
+                                                                <VisualState x:Name="Normal">
+                                                                    <VisualState.Setters>
+                                                                        <Setter Property="Color" Value="LightGreen" />
+                                                                    </VisualState.Setters>
+                                                                </VisualState>
+
+                                                                <VisualState x:Name="IsChecked">
+                                                                    <VisualState.Setters>
+                                                                        <Setter Property="Color" Value="DarkGreen" />
+                                                                    </VisualState.Setters>
+                                                                </VisualState>
+                                                            </VisualStateGroup>
+                                                        </VisualStateManager.VisualStateGroups>
+                                                    </CheckBox>
                                                     <Label Text="{Binding Label}"
                                                            Style="{StaticResource Style_NimbusRegSmallSizeLabel}"
                                                            VerticalOptions="Center"/>
@@ -124,13 +141,14 @@
                             <StackLayout VerticalOptions="CenterAndExpand">
                                 <ListView BindingContext="{Binding NonGeneratedResponses}"
                                           ItemsSource="{Binding}"
-                                          HasUnevenRows="True">
+                                          HasUnevenRows="True"
+                                          SelectionMode="None">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
                                                 <StackLayout>
-                                                    <Label Text="{Binding Label}"
-                                                           Style="{StaticResource Style_NimbusRegSmallSizeLabel}" />
+                                                    <Label Text="{Binding Label}" Style="{StaticResource Style_NimbusRegSmallSizeLabel}" />
+                                                    <Button Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DisplayQuestion}}, Path=DeleteResponseCommand}" CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}" IsVisible="{Binding ResponseType, Converter={StaticResource responseTypeToBool}}"/>
                                                 </StackLayout>
                                             </ViewCell>
                                         </DataTemplate>

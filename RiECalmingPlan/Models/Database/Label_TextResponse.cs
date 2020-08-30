@@ -15,7 +15,8 @@ namespace RiECalmingPlan.Models {
         [Column("TextResponse")]
         public override string Label { get; set; }
 
-
+        [Column("ResponseType")]
+        public override string ResponseType { get; set; }
 
 
 

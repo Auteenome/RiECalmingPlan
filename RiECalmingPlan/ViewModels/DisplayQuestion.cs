@@ -25,7 +25,7 @@ namespace RiECalmingPlan.ViewModels {
 
         public string OtherText { get { return _OtherText; } set { SetProperty(ref _OtherText, value); } }
         public Command<string> AddResponseCommand { get; private set; } 
-        public Command<GeneratedResponse> DeleteResponseCommand { get; private set; }
+        public Command<Response> DeleteResponseCommand { get; private set; }
 
         public DisplayQuestion(Question question, List<GeneratedResponse> generatedResponses, List<NonGeneratedResponse> nonGeneratedResponses) {
             Question = question;
@@ -34,7 +34,7 @@ namespace RiECalmingPlan.ViewModels {
             GeneratedResponses.ReplaceRange(generatedResponses);
             NonGeneratedResponses.ReplaceRange(nonGeneratedResponses);
             AddResponseCommand = new Command<string>(AddResponse);
-            DeleteResponseCommand = new Command<GeneratedResponse>(DeleteResponse);
+            DeleteResponseCommand = new Command<Response>(DeleteResponse);
             _OtherText = string.Empty;
         }
 
@@ -50,7 +50,7 @@ namespace RiECalmingPlan.ViewModels {
                     GeneratedResponses.Add(stepper);
                     await App.database.AppendStepperResponse(stepper);
                 } else {
-                    Label_TextResponse textResponse = new Label_TextResponse() { CPQID = Question.CPQID, TextResponseID = NonGeneratedResponses.Count + 1, Label = s };
+                    Label_TextResponse textResponse = new Label_TextResponse() { CPQID = Question.CPQID, TextResponseID = NonGeneratedResponses.Count + 1, Label = s, ResponseType = "Custom" };
                     NonGeneratedResponses.Add(textResponse);
                     await App.database.AppendTextResponse(textResponse);
                 }
@@ -58,14 +58,20 @@ namespace RiECalmingPlan.ViewModels {
             OtherText = string.Empty;
         }
 
-        public async void DeleteResponse(GeneratedResponse x) {
+        public async void DeleteResponse(Response x) {
             Console.WriteLine("Deleting Response " + x);
-            if (Question.QuestionType.Equals("Stepper")) {
-                GeneratedResponses.Remove(x);
-                await App.database.DeleteStepperResponse((Label_Stepper)x);
-            } else if (Question.QuestionType.Equals("CheckBox")) {
-                GeneratedResponses.Remove(x);
-                await App.database.DeleteCheckboxResponse((Label_CheckBox)x);
+            if (x is GeneratedResponse g) {
+                GeneratedResponses.Remove(g);
+                if (Question.QuestionType.Equals("Stepper")) {
+                    await App.database.DeleteStepperResponse((Label_Stepper)g);
+                }
+                else if (Question.QuestionType.Equals("CheckBox")) {
+                    await App.database.DeleteCheckboxResponse((Label_CheckBox)g);
+                }
+            }
+            else if (x is NonGeneratedResponse ng) {
+                NonGeneratedResponses.Remove(ng);
+                await App.database.DeleteTextResponse((Label_TextResponse)ng);
             }
         }
     }

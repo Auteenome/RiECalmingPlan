@@ -19,10 +19,11 @@ namespace RiECalmingPlan.Models {
         public override string Label { get; set; }
 
         [Column("ResponseType")]
-        public string ResponseType { get; set; }
+        public override string ResponseType { get; set; }
 
+        private int _CheckBoxValue;
         [Column("CheckBoxValue")]
-        public int CheckBoxValue { get; set; }
+        public int CheckBoxValue { get { return _CheckBoxValue; } set { SetProperty(ref _CheckBoxValue, value); } }
 
 
 

@@ -23,7 +23,7 @@ namespace RiECalmingPlan.Views {
 
         Button _lastStepSelected;
         public static BindableProperty StepsProperty = BindableProperty.Create(nameof(Steps), typeof(int), typeof(StepProgressBar), 0);
-        public static BindableProperty StepSelectedProperty = BindableProperty.Create(nameof(StepSelected), typeof(int), typeof(StepProgressBar), -1, defaultBindingMode: BindingMode.OneWayToSource);
+        public static BindableProperty StepSelectedProperty = BindableProperty.Create(nameof(StepSelected), typeof(int), typeof(StepProgressBar), 0, defaultBindingMode: BindingMode.TwoWay);
         public static BindableProperty StepColorProperty = BindableProperty.Create(nameof(StepColor), typeof(Color), typeof(StepProgressBar), Color.Black, defaultBindingMode: BindingMode.TwoWay);
 
         public Color StepColor {
@@ -94,7 +94,6 @@ namespace RiECalmingPlan.Views {
             Button b = (Button)sender;
             Label_Stepper stepperLabel = ((Label_Stepper)b.BindingContext);
             SelectElement(b);
-
             await App.database.UpdateStepperResponse(stepperLabel);
         }
 

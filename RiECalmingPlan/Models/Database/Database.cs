@@ -179,5 +179,10 @@ namespace RiECalmingPlan.Models {
                     checkbox.CPQID, checkbox.CheckBoxID);
         }
 
+        public async Task DeleteTextResponse(Label_TextResponse textResponse) {
+            await db.QueryAsync<Label_TextResponse>("DELETE FROM [TextResponseLabels] WHERE CPQID = ? AND TextResponseID = ?",
+                    textResponse.CPQID, textResponse.TextResponseID);
+        }
+
     }
 }

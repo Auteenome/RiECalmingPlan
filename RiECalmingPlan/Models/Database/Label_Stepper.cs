@@ -17,10 +17,11 @@ namespace RiECalmingPlan.Models {
         public override string Label { get; set; }
 
         [Column("ResponseType")]
-        public string ResponseType { get; set; }
+        public override string ResponseType { get; set; }
 
+        private int _StepperValue;
         [Column("StepperValue")]
-        public int StepperValue { get; set; }
+        public int StepperValue { get { return _StepperValue; } set { SetProperty(ref _StepperValue, value); } }
 
 
 
