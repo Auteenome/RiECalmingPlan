@@ -25,12 +25,22 @@
                             FontSize="Default"
                             FontFamily="NimbusReg"/>
                     <!--<Label Text="Photo Upload" />-->
-                        <Button Text="Pick Gallery Photo"
-                                Style="{StaticResource Style_SmallGreenRoundedBorderButton}"
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="*" Margin="20,0,20,0">
+                        <Button Grid.Column="0"
+                                Text=""
+                                ContentLayout="Left"
+                                ImageSource="baseline_add_a_photo_24"
+                                Style="{StaticResource Style_IconButton}"
+                                HorizontalOptions="Start"
                                 Clicked="OnPickPhotoButtonClicked" />
-                    <Button Text="Take Camera Photo"
-                            Style="{StaticResource Style_SmallGreenRoundedBorderButton}"
-                            Clicked="OnCameraPhotoButtonClicked" />
+                        <Button Grid.Column="1"
+                                Text=""
+                                ContentLayout="Left"
+                                ImageSource="baseline_add_a_photo_24"
+                                Style="{StaticResource Style_IconButton}"
+                                HorizontalOptions="End"
+                                Clicked="OnCameraPhotoButtonClicked" />
+                    </Grid>
                     <Image x:Name="image" 
                            Margin="10"/>
                     <!--<Label x:Name="Debug" />-->
@@ -46,7 +56,8 @@
                             Text="Save Diary Entry"
                             Clicked="OnSaveButtonClicked"
                             Style="{StaticResource Style_SmallGreenRoundedBorderButton}" 
-                            VerticalOptions="EndAndExpand"/>
+                            Margin="0,20,0,0"
+                            VerticalOptions="End"/>
                 </StackLayout>
             </ScrollView>
         </Frame>

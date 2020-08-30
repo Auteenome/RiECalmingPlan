@@ -128,18 +128,16 @@
                 Value="14" />
     </Style>
 
-    <Style x:Key="AdminButtonStyle"
+    <Style x:Key="Style_IconButton"
            TargetType="Button">
         <Setter Property="BackgroundColor"
-                Value="{StaticResource RiEOffWhite}" />
-        <Setter Property="Padding"
-                Value="0" />
-        <Setter Property="TextColor"
-                Value="Red" />
-        <Setter Property="BorderColor"
-                Value="Red" />
-        <Setter Property="BorderWidth"
-                Value="1" />
+                Value="{StaticResource RiEDarkGreen}" />
+        <Setter Property="WidthRequest"
+                Value="60" />
+        <Setter Property="HeightRequest"
+                Value="35" />
+        <Setter Property="CornerRadius"
+                Value="20" />
     </Style>
 
     <!-- ********** ********** ********** Labels ********** ********** ********** -->
