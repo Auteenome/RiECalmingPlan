@@ -18,7 +18,7 @@ using Uri = Android.Net.Uri;
 using Plugin.Fingerprint;
 
 namespace RiECalmingPlan.Droid {
-    [Activity(Label = "RiECalmingPlan", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Auteenome", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
 
         internal static MainActivity Instance { get; private set; }
