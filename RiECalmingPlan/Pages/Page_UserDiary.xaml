@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="RiECalmingPlan.Pages.Page_UserDiary">
+             x:Class="RiECalmingPlan.Pages.Page_UserDiary"
+             BackgroundColor="{StaticResource RiEOffWhite}">
     
     
     <ContentPage.ToolbarItems>
@@ -24,9 +25,9 @@
                                     <SwipeItem Text="Delete" BackgroundColor="LightGray" Invoked="DeleteSwipeItemClicked"/>
                                 </SwipeItems>
                             </SwipeView.LeftItems>
-                            <StackLayout>
+                            <StackLayout BackgroundColor="{StaticResource RiEOffWhite}">
                                 <Label Text="{Binding Body}" />
-                                <Label Text="{Binding FirstSubmit, StringFormat='First Submitted: {0}'}"/>
+                                <Label Text="{Binding FirstSubmit, StringFormat='First Submitted: {0}'}" />
                             </StackLayout>
                         </SwipeView>
 

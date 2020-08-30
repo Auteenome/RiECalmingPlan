@@ -29,5 +29,15 @@ namespace RiECalmingPlan.Views {
 
            await App.database.UpdateCheckBoxResponse(checkBoxLabel);
         }
+
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)  // cjamge name
+        {
+            Label_CheckBox cbx = (Label_CheckBox)e.Item;
+
+            Console.WriteLine(e.Item);
+
+            //cbx.CheckBoxValue = (bool) cbx.CheckBoxValue ? 1:0;
+            // await App.database.UpdateCheckBoxResponse(checkBoxLabel);
+        }
     }
 }

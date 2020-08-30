@@ -48,7 +48,7 @@
                                         FontFamily="NimbusReg"
                                         FontSize="Default" />
                                 <Button Text="Add"
-                                        Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                                        Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
                                         FontFamily="NimbusBold"
                                         Command="{Binding AddResponseCommand}" 
@@ -72,7 +72,7 @@
                             </StackLayout>
 
                             <StackLayout VerticalOptions="CenterAndExpand">
-                                <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True" >
+                                <ListView BindingContext="{Binding GeneratedResponses}" ItemsSource="{Binding}" HasUnevenRows="True" SelectionMode="None" ItemTapped="ListView_ItemTapped">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
@@ -96,7 +96,7 @@
                                         FontFamily="NimbusReg"
                                         FontSize="Default"/>
                                 <Button Text="Add"
-                                        Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                                        Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
                                         FontFamily="NimbusBold"
                                         Command="{Binding AddResponseCommand}" 
@@ -134,13 +134,15 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </StackLayout>
-                            <!--this can be made prettier by using a frame wrapper with a custom editor--> 
+                            <!--this could be made prettier by using a frame wrapper with a custom editor--> 
                             <Editor x:Name="CustomEntry"
                                     Text="{Binding OtherText}"
                                     Placeholder="Other"
                                     FontFamily="NimbusReg"
-                                    FontSize="Default"/>
-                            <Button Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                                    FontSize="Default"
+                                    MaxLength="500"
+                                    AutoSize="TextChanges"/>
+                            <Button Style="{StaticResource Style_GreenRoundedBorderButton}"
                                     Text="Add"
                                     Command="{Binding AddResponseCommand}"
                                     CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}" />

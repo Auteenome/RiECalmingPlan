@@ -161,7 +161,7 @@
                                  Grid.Column="0"
                                  Margin="5">
                         <Button Text="Back"
-                                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                                    Style="{StaticResource Style_GreenRoundedBorderButton}"
                                 Clicked="BackButtonPressed"
                                 BackgroundColor="{StaticResource RiEDarkGreen}"
                                 TextColor="White"

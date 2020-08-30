@@ -19,30 +19,31 @@
     <ContentPage.Content>
         <StackLayout Style="{StaticResource Style_MenuStackLayoutStyle}">
             
-            <Frame Style="{StaticResource Style_MenuIconWrapperFrameStyle}">
+            <!--frame for displaying the rest in essence logo-->
+            <!--<Frame Style="{StaticResource Style_MenuIconWrapperFrameStyle}">
                 <Image Source="RIE_logo300"
                        Aspect="AspectFit" />
-            </Frame>
+            </Frame>-->
             
             <Button Text="Calming Plan Questions"
-                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                    Style="{StaticResource Style_GreenRoundedBorderButton}"
                     Clicked="GoToContextMainPage" />
             
             <Button Text="Reset Database"
-                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                    Style="{StaticResource Style_GreenRoundedBorderButton}"
                     BackgroundColor="{StaticResource RiEDarkGreen}"
                     Clicked="ResetLocalDatabase" />
             
             <Button Text="Distress Tracker"
-                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                    Style="{StaticResource Style_GreenRoundedBorderButton}"
                     Clicked="GoToDistressTracker" />
 
             <Button Text="Distress History/Chart"
-                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                    Style="{StaticResource Style_GreenRoundedBorderButton}"
                     Clicked="GoToDistressHistory" />
 
             <Button Text="User Diary"
-                    Style="{StaticResource Style_GreenRoundedBorderButtonStyle}"
+                    Style="{StaticResource Style_GreenRoundedBorderButton}"
                     Clicked="GoToUserDiary" />
         </StackLayout>
     </ContentPage.Content>

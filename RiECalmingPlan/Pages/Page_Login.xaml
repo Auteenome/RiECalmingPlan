@@ -17,13 +17,6 @@
                      Phone="StartAndExpand" />
         </ScrollView.VerticalOptions>
 
-        <!--<StackLayout x:Name="LogoStack" VerticalOptions="FillAndExpand">
-            -->
-        <!--WIll fill to the end of the icon-->
-        <!--
-            <Image x:Name="LoginIcon" Source="logo.png" Margin="0,80,0,0"/>
-        </StackLayout>-->
-
         <StackLayout Spacing="20"
                      Margin="20"
                      Padding="10"
