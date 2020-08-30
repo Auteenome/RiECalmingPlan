@@ -3,6 +3,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:RiECalmingPlan.Views"
+             xmlns:viewModels="clr-namespace:RiECalmingPlan.ViewModels"
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Views.DisplayQuestionView"
              xmlns:local="clr-namespace:RiECalmingPlan.Views"> <!-- reference local to StepProgressBar.cs -->
@@ -26,11 +27,12 @@
                                         <DataTemplate>
                                             <ViewCell>
                                                 <StackLayout Orientation="Horizontal">
+                                                    <Button Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DisplayQuestion}}, Path=DeleteResponseCommand}" CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}" IsVisible="{Binding ResponseType, Converter={StaticResource responseTypeToBool}}"/>
                                                     <Label Text="{Binding Label}"
                                                            Style="{StaticResource Style_NimbusRegSmallSizeLabel}"
                                                            VerticalOptions="Center" />
 
-                                                    <views:StepProgressBar StepColor="{StaticResource RiELightGreen}" Style="{StaticResource StepperStyle} "/>
+                                                    <views:StepProgressBar StepColor="{StaticResource RiELightGreen}" Style="{StaticResource StepperStyle}"/>
 
                                                 </StackLayout>
                                             </ViewCell>
@@ -81,6 +83,7 @@
                                                     <Label Text="{Binding Label}"
                                                            Style="{StaticResource Style_NimbusRegSmallSizeLabel}"
                                                            VerticalOptions="Center"/>
+                                                    <Button Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DisplayQuestion}}, Path=DeleteResponseCommand}" CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}" IsVisible="{Binding ResponseType, Converter={StaticResource responseTypeToBool}}"/>
                                                 </StackLayout>
                                             </ViewCell>
                                         </DataTemplate>
@@ -155,6 +158,13 @@
             StepperTemplate="{StaticResource stepperTemplate}"
             CheckBoxTemplate="{StaticResource checkBoxTemplate}"
             TextResponseTemplate="{StaticResource textResponseTemplate}" />
+
+            <!-- WIP option 2 using a template selector to define delete function
+            <views:CellTemplateSelector x:Key="cellTemplateSelector"
+            CustomCell="{StaticResource customCell}"
+            BaseCell="{StaticResource baseCell}" />
+            -->
+            <views:ResponseTypeToBoolConverter x:Key="responseTypeToBool" />
 
             <Style x:Key="StepperStyle" TargetType="local:StepProgressBar" >
                 <Setter Property="Steps" Value="4" />

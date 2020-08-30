@@ -169,5 +169,15 @@ namespace RiECalmingPlan.Models {
          * 
          */
 
+        public async Task DeleteStepperResponse(Label_Stepper stepper) {
+            await db.QueryAsync<Label_Stepper>("DELETE FROM [StepperLabels] WHERE CPQID = ? AND StepperID = ?",
+                    stepper.CPQID, stepper.StepperID);
+        }
+
+        public async Task DeleteCheckboxResponse(Label_CheckBox checkbox) {
+            await db.QueryAsync<Label_CheckBox>("DELETE FROM [CheckBoxLabels] WHERE CPQID = ? AND CheckBoxID = ?",
+                    checkbox.CPQID, checkbox.CheckBoxID);
+        }
+
     }
 }

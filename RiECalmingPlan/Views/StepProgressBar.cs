@@ -22,9 +22,9 @@ namespace RiECalmingPlan.Views {
          */
 
         Button _lastStepSelected;
-        public static readonly BindableProperty StepsProperty = BindableProperty.Create(nameof(Steps), typeof(int), typeof(StepProgressBar), 0);
-        public static readonly BindableProperty StepSelectedProperty = BindableProperty.Create(nameof(StepSelected), typeof(int), typeof(StepProgressBar), -1, defaultBindingMode: BindingMode.TwoWay);
-        public static readonly BindableProperty StepColorProperty = BindableProperty.Create(nameof(StepColor), typeof(Color), typeof(StepProgressBar), Color.Black, defaultBindingMode: BindingMode.TwoWay);
+        public static BindableProperty StepsProperty = BindableProperty.Create(nameof(Steps), typeof(int), typeof(StepProgressBar), 0);
+        public static BindableProperty StepSelectedProperty = BindableProperty.Create(nameof(StepSelected), typeof(int), typeof(StepProgressBar), -1, defaultBindingMode: BindingMode.OneWayToSource);
+        public static BindableProperty StepColorProperty = BindableProperty.Create(nameof(StepColor), typeof(Color), typeof(StepProgressBar), Color.Black, defaultBindingMode: BindingMode.TwoWay);
 
         public Color StepColor {
             get { return (Color)GetValue(StepColorProperty); }

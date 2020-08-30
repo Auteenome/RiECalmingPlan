@@ -16,6 +16,9 @@ namespace RiECalmingPlan.Models {
         [Column("StepperText")]
         public override string Label { get; set; }
 
+        [Column("ResponseType")]
+        public string ResponseType { get; set; }
+
         [Column("StepperValue")]
         public int StepperValue { get; set; }
 
