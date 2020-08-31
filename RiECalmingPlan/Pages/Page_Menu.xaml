@@ -15,36 +15,50 @@
                      Text="Admin"
                      Order="Secondary" 
                      Clicked="GoToDeviceInfo"/>
+        <ToolbarItem x:Name="TbItemResetDB"
+                     Text="Reset Database"
+                     Order="Secondary"
+                     Clicked="ResetLocalDatabase" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Style="{StaticResource Style_MenuStackLayoutStyle}">
-            
+            <!--<Label Text="*Rest in Essence text logo*"
+                   FontAttributes="Italic"
+                   FontFamily="NimbusBold"
+                   FontSize="Medium"
+                   VerticalOptions="StartAndExpand"
+                   TextColor="{StaticResource RiEDarkGreen}"
+                   HorizontalOptions="CenterAndExpand" />-->
+
             <!--frame for displaying the rest in essence logo-->
             <!--<Frame Style="{StaticResource Style_MenuIconWrapperFrameStyle}">
                 <Image Source="RIE_logo300"
                        Aspect="AspectFit" />
             </Frame>-->
-            
+
             <Button Text="Calming Plan Questions"
                     Style="{StaticResource Style_GreenRoundedBorderButton}"
                     Clicked="GoToContextMainPage" />
-            
-            <Button Text="Reset Database"
-                    Style="{StaticResource Style_GreenRoundedBorderButton}"
-                    BackgroundColor="{StaticResource RiEDarkGreen}"
-                    Clicked="ResetLocalDatabase" />
-            
+
             <Button Text="Distress Tracker"
                     Style="{StaticResource Style_GreenRoundedBorderButton}"
                     Clicked="GoToDistressTracker" />
 
-            <Button Text="Distress History/Chart"
-                    Style="{StaticResource Style_GreenRoundedBorderButton}"
-                    Clicked="GoToDistressHistory" />
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Button Text="Distress History/Chart"
+                        Style="{StaticResource Style_TextIconButton}"
+                        ImageSource="baseline_insert_chart_outlined_24"
+                        HorizontalOptions="StartAndExpand"
+                        Clicked="GoToDistressHistory" />
+            </StackLayout>
 
-            <Button Text="User Diary"
-                    Style="{StaticResource Style_GreenRoundedBorderButton}"
-                    Clicked="GoToUserDiary" />
+            <StackLayout HorizontalOptions="CenterAndExpand">
+                <Button Text="User Diary"
+                        Style="{StaticResource Style_TextIconButton}"
+                        ImageSource="baseline_book_24"
+                        Clicked="GoToUserDiary" />
+            </StackLayout>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

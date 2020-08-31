@@ -59,19 +59,16 @@
 
         <ContentView x:Key="DistressLevelSlides"
                      BindingContext="{Binding Source={x:Reference Carousel}, Path=BindingContext}">
-            <!--frame for whole card-->
             <Frame x:Name="Frame_SupportPlan"
                    Style="{StaticResource QuestionFrameStyle}"
                    HorizontalOptions="Center"
                    VerticalOptions="CenterAndExpand">
-                <!--frame for colored border-->
                 <Frame BackgroundColor="White"
                        Padding="5"
                        Margin="-10"
                        CornerRadius="5"
                        HasShadow="False">
-                <!--grid for data-->
-                <Grid RowSpacing="0">
+                    <Grid RowSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="0"/>
@@ -82,7 +79,6 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                         
-                        <!--expressions stacklayout-->
                         <StackLayout Grid.Row="0"
                                      Grid.Column="0">
                             <Label x:Name="Label_DistressLevel"
@@ -118,7 +114,6 @@
                                  HorizontalOptions="FillAndExpand"
                                  WidthRequest="1"
                                  Color="{StaticResource RiEOffGray}" />
-                        <!--stacklayout for suggestions-->
                         <StackLayout Grid.Row="2"
                                      Grid.Column="0">
                             <Label Text="Suggestions"
@@ -171,6 +166,133 @@
                 </Frame>
             </Frame>
         </ContentView>
+
+        
+        <!--<ContentView x:Key="DistressLevelSlides"
+                     BindingContext="{Binding Source={x:Reference Carousel}, Path=BindingContext}">
+            -->
+        <!--frame for whole card-->
+        <!--
+            <Frame x:Name="Frame_SupportPlan"
+                   Style="{StaticResource QuestionFrameStyle}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand">
+                -->
+        <!--grid for data-->
+        <!--
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="0" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    -->
+        <!--expressions stacklayout-->
+        <!--
+                    <StackLayout Grid.Row="0"
+                                 Grid.Column="0">
+                        <Label x:Name="Label_DistressLevel"
+                               Text="{Binding Source={x:Reference Carousel}, Path=BindingContext.DistressType, StringFormat='Distress Level: {0}'}"
+                               TextColor="White"
+                               FontSize="Medium"
+                               FontFamily="NimbusBold"
+                               HorizontalOptions="CenterAndExpand"
+                               IsVisible="False" />
+                        <Label Text="Expressions"
+                               TextColor="White"
+                               FontSize="Default"
+                               FontFamily="NimbusBold"
+                               HorizontalOptions="CenterAndExpand" />
+
+                        <StackLayout BindableLayout.ItemsSource="{Binding DistressExpressions}">
+                            <BindableLayout.EmptyView>
+                                <Label Text="Looks like you don't have any expressions in this category!"
+                                       TextColor="White"
+                                       FontSize="Default"
+                                       FontFamily="NimbusReg" />
+                            </BindableLayout.EmptyView>
+
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Text="{Binding Label}"
+                                           TextColor="White"
+                                           FontSize="Default"
+                                           FontFamily="NimbusReg" />
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                    -->
+        <!--box view for horizontal line - looks ugly-->
+        <!--
+                    <BoxView Grid.Row="1"
+                             Grid.Column="0"
+                             HorizontalOptions="FillAndExpand"
+                             WidthRequest="1"
+                             Color="{StaticResource RiEOffGray}" />
+                    -->
+        <!--stacklayout for suggestions-->
+        <!--
+                    <StackLayout Grid.Row="2"
+                                 Grid.Column="0">
+                        <Label Text="Suggestions"
+                               TextColor="White"
+                               FontSize="Default"
+                               FontFamily="NimbusBold"
+                               HorizontalOptions="CenterAndExpand" />
+                        <StackLayout BindableLayout.ItemsSource="{Binding DistressSuggestions}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Label}"
+                                               TextColor="White"
+                                               FontSize="Default"
+                                               FontFamily="NimbusReg" />
+                                        <Label x:Name="Label_PhoneNumber"
+                                               Text="{Binding PhoneNumber}"
+                                               Style="{StaticResource Style_LabelClickable}"
+                                               FontSize="Default"
+                                               FontFamily="NimbusReg">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.CallNumber}"
+                                                                      CommandParameter="{Binding Source={x:Reference Label_PhoneNumber}, Path=Text}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                        <Label x:Name="Label_URLLink"
+                                               Text="{Binding URL}"
+                                               Style="{StaticResource Style_LabelClickable}"
+                                               FontSize="Default"
+                                               FontFamily="NimbusReg">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference Carousel}, Path=BindingContext.OpenWebLink}"
+                                                                      CommandParameter="{Binding Source={x:Reference Label_URLLink}, Path=Text}" />
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Grid.Row="3"
+                                 Grid.Column="0"
+                                 Margin="5">
+                        <Button Text="Back"
+                                Style="{StaticResource Style_GreenRoundedBorderButton}"
+                                Margin="0,20,0,0"
+                                Clicked="BackButtonPressed"
+                                BackgroundColor="{StaticResource RiEDarkGreen}"
+                                TextColor="White"
+                                WidthRequest="400" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </ContentView>-->
+
     </ContentPage.Resources>
 
     <ContentPage.Content>

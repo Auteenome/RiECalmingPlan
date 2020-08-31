@@ -7,14 +7,16 @@
              x:Class="RiECalmingPlan.Pages.Page_UserDiary"
              BackgroundColor="{StaticResource RiEOffWhite}">
     
-    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="NewEntryButtonClicked"/>
-        <ToolbarItem Text="Reset" Clicked="ResetButtonClicked"/>
+        <!--<ToolbarItem Text="Reset" Clicked="ResetButtonClicked"/>-->
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
-        <ListView x:Name="listView" Margin="20" ItemsSource="{Binding Entries}" ItemSelected="OnListViewItemSelected">
+        <ListView x:Name="listView"
+                  Margin="20"
+                  ItemsSource="{Binding Entries}"
+                  ItemSelected="OnListViewItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -22,7 +24,9 @@
                             <SwipeView.LeftItems>
                                 <SwipeItems>
                                     <!-- IconImageSource="delete.png" if you want to use an image here-->
-                                    <SwipeItem Text="Delete" BackgroundColor="LightGray" Invoked="DeleteSwipeItemClicked"/>
+                                    <SwipeItem Text="Delete"
+                                               BackgroundColor="LightGray"
+                                               Invoked="DeleteSwipeItemClicked" />
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <StackLayout BackgroundColor="{StaticResource RiEOffWhite}">
@@ -30,12 +34,9 @@
                                 <Label Text="{Binding FirstSubmit, StringFormat='First Submitted: {0}'}" />
                             </StackLayout>
                         </SwipeView>
-
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
-    
-    
 </ContentPage>

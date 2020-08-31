@@ -23,11 +23,6 @@
                      VerticalOptions="CenterAndExpand"
                      HorizontalOptions="CenterAndExpand"
                      WidthRequest="-1">
-            <StackLayout.Style>
-                <OnIdiom x:TypeArguments="Style"
-                         Tablet="{StaticResource Style_TabletStackLayout}"
-                         Phone="{StaticResource Style_PhoneStackLayout}" />
-            </StackLayout.Style>
             <StackLayout.Padding>
                 <!-- OnIdiom allows different arguements for different frameworks -->
                 <OnIdiom x:TypeArguments="Thickness">
@@ -78,7 +73,7 @@
             </Label>
 
             <Button Text="Log in"
-                    Style="{StaticResource LoginButtonStyle}"
+                    Style="{StaticResource Style_GreenRoundedBorderButton}"
                     HorizontalOptions="Fill"
                     BackgroundColor="{StaticResource RiEDarkGreen}"
                     TextColor="White"
@@ -86,7 +81,7 @@
             <!--Clicked="SignInProcedure"-->
 
             <Button Text="Sign up"
-                    Style="{StaticResource LoginButtonStyle}"
+                    Style="{StaticResource Style_GreenRoundedBorderButton}"
                     HorizontalOptions="Fill"
                     BackgroundColor="{StaticResource RiEOrange}"
                     TextColor="White"

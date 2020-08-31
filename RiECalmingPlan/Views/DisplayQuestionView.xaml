@@ -147,26 +147,34 @@
                                         <DataTemplate>
                                             <ViewCell>
                                                 <StackLayout>
-                                                    <Label Text="{Binding Label}" Style="{StaticResource Style_NimbusRegSmallSizeLabel}" />
-                                                    <Button Text="Delete" Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DisplayQuestion}}, Path=DeleteResponseCommand}" CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}" IsVisible="{Binding ResponseType, Converter={StaticResource responseTypeToBool}}"/>
+                                                    <Label Text="{Binding Label}"
+                                                           Style="{StaticResource Style_NimbusRegSmallSizeLabel}" />
+                                                    <Button Text="Delete"
+                                                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:DisplayQuestion}}, Path=DeleteResponseCommand}"
+                                                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
+                                                            IsVisible="{Binding ResponseType, Converter={StaticResource responseTypeToBool}}" />
                                                 </StackLayout>
                                             </ViewCell>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </StackLayout>
-                            <!--this could be made prettier by using a frame wrapper with a custom editor--> 
-                            <Editor x:Name="CustomEntry"
-                                    Text="{Binding OtherText}"
-                                    Placeholder="Other"
-                                    FontFamily="NimbusReg"
-                                    FontSize="Default"
-                                    MaxLength="500"
-                                    AutoSize="TextChanges"/>
-                            <Button Style="{StaticResource Style_GreenRoundedBorderButton}"
-                                    Text="Add"
-                                    Command="{Binding AddResponseCommand}"
-                                    CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}" />
+                            <StackLayout Orientation="Horizontal"
+                                         VerticalOptions="End">
+                                <Editor x:Name="CustomEntry"
+                                        Text="{Binding OtherText}"
+                                        Placeholder="Other"
+                                        FontFamily="NimbusReg"
+                                        FontSize="Default"
+                                        MaxLength="500"
+                                        AutoSize="TextChanges"
+                                        HorizontalOptions="FillAndExpand" />
+                                <Button Style="{StaticResource Style_GreenRoundedBorderButton}"
+                                        HorizontalOptions="End"
+                                        Text="Add"
+                                        Command="{Binding AddResponseCommand}"
+                                        CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}" />
+                            </StackLayout>
                         </StackLayout>
                     </Frame>
                 </StackLayout>

@@ -39,6 +39,7 @@
     <Color x:Key="Distress_GreenOpaque">#a9d46f</Color>
     
     <!-- ********** ********** **********  Testing ********** ********** ********** -->
+    
     <Style x:Key="Style_TestLabel"
            TargetType="Label">
         <Setter Property="BackgroundColor"
@@ -56,33 +57,6 @@
     </Style>
 
     <!-- ********** ********** ********** Buttons ********** ********** ********** -->
-
-    <Style x:Key="ButtonStyle"
-           TargetType="Button">
-        <Setter Property="BackgroundColor"
-                Value="{StaticResource RiEOffWhite}" />
-        <Setter Property="TextColor"
-                Value="{StaticResource RiEOffBlack}" />
-        <Setter Property="BorderColor"
-                Value="{StaticResource RiEGray}" />
-        <Setter Property="BorderWidth"
-                Value="0" />
-        <!--<Setter Property="HorizontalOptions"
-                        Value="" />-->
-    </Style>
-
-    <!-- curved button style with bold font -->
-    <Style x:Key="LoginButtonStyle"
-           TargetType="Button">
-        <Setter Property="Padding"
-                Value="0" />
-        <Setter Property="CornerRadius"
-                Value="20" />
-        <Setter Property="HeightRequest"
-                Value="40" />
-        <Setter Property="FontAttributes"
-                Value="Bold" />
-    </Style>
 
     <Style x:Key="Style_GreenRoundedBorderButton"
            TargetType="Button">
@@ -133,11 +107,37 @@
         <Setter Property="BackgroundColor"
                 Value="{StaticResource RiEDarkGreen}" />
         <Setter Property="WidthRequest"
-                Value="60" />
+                Value="80" />
         <Setter Property="HeightRequest"
-                Value="35" />
+                Value="40" />
         <Setter Property="CornerRadius"
                 Value="20" />
+        <Setter Property="FontSize"
+                Value="30" />
+    </Style>
+
+    <Style x:Key="Style_TextIconButton"
+           TargetType="Button">
+        <Setter Property="BackgroundColor"
+                Value="{StaticResource RiEDarkGreen}" />
+        <!--<Setter Property="WidthRequest"
+                Value="80" />-->
+        <Setter Property="HeightRequest"
+                Value="40" />
+        <Setter Property="CornerRadius"
+                Value="20" />
+        <Setter Property="FontSize"
+                Value="17" />
+        <Setter Property="FontFamily"
+                Value="NimbusBold" />
+        <Setter Property="TextColor"
+                Value="White" />
+        <Setter Property="ContentLayout"
+                Value="Left,10" />
+        <Setter Property="HorizontalOptions"
+                Value="Start" />
+        <!--<Setter Property="HorizontalOptions"
+                Value="StartAndExpand" />-->
     </Style>
 
     <!-- ********** ********** ********** Labels ********** ********** ********** -->
