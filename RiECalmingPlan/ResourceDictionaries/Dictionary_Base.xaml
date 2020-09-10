@@ -166,6 +166,14 @@
                 Value="Medium" />
     </Style>
 
+    <Style x:Key="Style_NimbusBoldLargeSizeLabel"
+           TargetType="Label">
+        <Setter Property="FontFamily"
+                Value="NimbusBold" />
+        <Setter Property="FontSize"
+                Value="Large" />
+    </Style>
+
     <Style x:Key="Style_NimbusBoldMediumSizeLabel"
            TargetType="Label">
         <Setter Property="FontFamily"

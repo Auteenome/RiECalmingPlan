@@ -7,7 +7,7 @@ using RiECalmingPlan.Pages;
 using Xamarin.Forms;
 
 
-namespace RiECalmingPlan.Views {
+namespace RiECalmingPlan.Pages {
     public partial class Page_Menu : ContentPage {
 
         
@@ -53,6 +53,7 @@ namespace RiECalmingPlan.Views {
 
         async private void TbItemAbout_Clicked(object sender, EventArgs e)
         {
+
         }
     }
 }

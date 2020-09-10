@@ -1,27 +1,45 @@
-﻿using System;
+﻿using RiECalmingPlan.Models;
+using System;
+using System.IO;
 using System.Collections.Generic;
-using RiECalmingPlan.Models;
-using Xamarin.Forms.Xaml;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using System.Reflection;
 
-
-
-
-namespace RiECalmingPlan.Views {
-    public partial class TermsAndConditions : ContentPage {
-
-        public TermsAndConditions() {
+namespace RiECalmingPlan.Pages {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Page_TermsAndConditions : ContentPage {
+        public Page_TermsAndConditions()
+        {
             InitializeComponent();
-            BackgroundColor = Constants.BackgroundColor;
+
+            // ********** FILE READING ********** 
+            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
+            Stream stream = assembly.GetManifestResourceStream("RiECalmingPlan.Resource.RiETermsAndConditions.txt");
+            StreamReader inputStream = new StreamReader(stream);
+            string text = "";
+            text = inputStream.ReadToEnd();
+            Console.WriteLine(text);
+            // ********** ********** **********
+
+            Label_TermsAndConditions.Text = text;
         }
 
-        private async void ContinueToMenu(object sender, EventArgs e) {
-            //Just use an OK semaphoer to signal the Terms and Conditions
-            //  have been agreed to
-            Application.Current.Properties["TandC_Accepted"] = "Agreed";
-            await Application.Current.SavePropertiesAsync();
-            await Navigation.PopAsync();
+        private async void Button_Accept_Clicked(object sender, EventArgs e)
+        {
+            if (CheckBox_Agreed.IsChecked)
+            {
+                AppPreferences.TermsAndConditionsAccepted = true;
+                await Navigation.PushAsync(new Page_Register());
+            }
+            else
+            {
+                await DisplayAlert("Accept", "Please accept the terms and conditions", "OK");
+            }
         }
-
     }
 }

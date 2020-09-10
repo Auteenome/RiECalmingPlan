@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RiECalmingPlan.Pages.Page_Register"
+             xmlns:local="clr-namespace:RiECalmingPlan.Renderers"
+             BackgroundColor="{StaticResource RiEOffWhite}">
+
+    <ScrollView>
+        <ScrollView.VerticalOptions>
+            <OnIdiom x:TypeArguments="LayoutOptions"
+                     Tablet="CenterAndExpand"
+                     Phone="StartAndExpand" />
+        </ScrollView.VerticalOptions>
+
+        <StackLayout Spacing="20"
+                     Margin="20"
+                     Padding="10"
+                     VerticalOptions="CenterAndExpand"
+                     HorizontalOptions="CenterAndExpand"
+                     WidthRequest="-1">
+
+            <Label Text="Register an Account"
+                   Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"
+                   TextColor="{StaticResource RiEOffBlack}"
+                   Padding="10"
+                   HorizontalTextAlignment="Center" />
+
+            <!--********** Email Entry **********-->
+            <Label Text="Your email will be used to reset your password if you ever forget it. It is recommended to use an email that is not accessible by anyone but you."
+                   Style="{StaticResource Style_NimbusRegDefaultSizeLabel}" 
+                   TextColor="{StaticResource RiEOffBlack}"/>
+            
+            <Frame Style="{StaticResource Style_EntryCurvedBorderFrameStyle}"
+                   BackgroundColor="White">
+                <local:BorderlessEntry x:Name="Entry_Email"
+                                       Placeholder="Email Address"
+                                       Text="{Binding Email}"
+                                       Style="{StaticResource Style_CustomEntryLoginStyle}"
+                                       HeightRequest="30"
+                                       WidthRequest="350"
+                                       Keyboard="Email"
+                                       ReturnType="Next" />
+            </Frame>
+
+            <!--********** Password Entry **********-->
+            <Label Text="Please enter a password."
+                   Style="{StaticResource Style_NimbusRegDefaultSizeLabel}"
+                   TextColor="{StaticResource RiEOffBlack}" />
+            
+            <Frame Style="{StaticResource Style_EntryCurvedBorderFrameStyle}"
+                   BackgroundColor="White">
+                <local:BorderlessEntry x:Name="Entry_Password"
+                                       Placeholder="Password"
+                                       Text="{Binding Password}"
+                                       Style="{StaticResource Style_CustomEntryLoginStyle}"
+                                       HeightRequest="30"
+                                       WidthRequest="350"
+                                       IsPassword="True"
+                                       Keyboard="Default" />
+            </Frame>
+
+            <Button Text="Register (account creation not implemented)"
+                    Style="{StaticResource Style_GreenRoundedBorderButton}"
+                    Command="{Binding RegisterCommand}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

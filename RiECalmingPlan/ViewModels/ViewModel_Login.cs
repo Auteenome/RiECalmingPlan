@@ -12,7 +12,6 @@ namespace RiECalmingPlan.ViewModels {
         // Has command LoginCommand that checks entries not null or empty, and calls User.CheckLoginInformation(Email, Password)
         // Has Sign Up command
 
-        //public event PropertyChangedEventHandler PropertyChanged;
         private string email;
         private string password;
 
@@ -24,8 +23,6 @@ namespace RiECalmingPlan.ViewModels {
         public string Email {
             get { return email; }
             set {
-                //email = value;
-                //PropertyChanged(this, new PropertyChangedEventArgs("Email"));
                 SetProperty(ref email, value);
             }
         }
@@ -33,8 +30,6 @@ namespace RiECalmingPlan.ViewModels {
         public string Password {
             get { return password; }
             set {
-                //password = value;
-                //PropertyChanged(this, new PropertyChangedEventArgs("Passowrd"));
                 SetProperty(ref password, value);
             }
         }
@@ -54,7 +49,7 @@ namespace RiECalmingPlan.ViewModels {
                 if (User.CheckLoginInformation(Email, Password))
                 {
                     App.Current.MainPage.DisplayAlert("Login", "Login successful", "Okay");
-                    App.Current.MainPage.Navigation.PushAsync(new Views.Page_Menu());
+                    App.Current.MainPage.Navigation.PushAsync(new Pages.Page_Menu());
                 } 
                 else
                     App.Current.MainPage.DisplayAlert("Login", "Login unsuccessful, username or password incorrect", "Okay");
@@ -66,7 +61,11 @@ namespace RiECalmingPlan.ViewModels {
         }
         private void SignUp()
         {
-            App.Current.MainPage.DisplayAlert("Sign Up", "Sign Up functionality not yet implemented", "Okay");
+            // redirect to Terms and Conditions if they have not been accepted
+            if (AppPreferences.TermsAndConditionsAccepted)
+                App.Current.MainPage.Navigation.PushAsync(new Pages.Page_Register());
+            else
+                App.Current.MainPage.Navigation.PushAsync(new Pages.Page_TermsAndConditions());
         }
         
     }

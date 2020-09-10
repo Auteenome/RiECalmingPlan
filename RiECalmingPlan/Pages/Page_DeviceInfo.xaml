@@ -17,25 +17,7 @@
 
             <FlexLayout FlexLayout.Grow="1" />
 
-            <Label x:Name="Label_PhoneNumber"
-                   Style="{StaticResource Style_LabelClickable}"
-                   Text="0490715342">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding TapCommand}"
-                                          CommandParameter="0490715342" />
-                </Label.GestureRecognizers>
-            </Label>
-
             <FlexLayout FlexLayout.Grow="1" />
-
-            <Label x:Name="Label_URLLink"
-                   Style="{StaticResource Style_LabelClickable}"
-                   Text="https://restinessence.com.au/">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding TapCommand}"
-                                          CommandParameter="https://restinessence.com.au/" />
-                </Label.GestureRecognizers>
-            </Label>
 
             <FlexLayout FlexLayout.Grow="1" />
         </FlexLayout>

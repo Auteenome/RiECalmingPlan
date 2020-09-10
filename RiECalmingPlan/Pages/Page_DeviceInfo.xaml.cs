@@ -20,8 +20,6 @@ namespace RiECalmingPlan.Pages {
             Label_Height.Text = "The height resolution for this device is: " + Application.Current.Properties["heightResolution"].ToString();
             Label_Width.Text = "The width resolution for this device is: " + Application.Current.Properties["widthResolution"].ToString();
 
-            Label_PhoneNumber.BindingContext = new TapPhoneDialerViewModel();
-            Label_URLLink.BindingContext = new TapOpenLinkViewModel();
             // BindingContext = this;
         }
     }

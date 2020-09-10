@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RiECalmingPlan.Views.Page_Menu"
+             x:Class="RiECalmingPlan.Pages.Page_Menu"
              BackgroundColor="{StaticResource RiEOffWhite}">
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="TbItemAbout"
                      Text="About Rest in Essence"
@@ -20,6 +21,7 @@
                      Order="Secondary"
                      Clicked="ResetLocalDatabase" />
     </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout Style="{StaticResource Style_MenuStackLayoutStyle}">
             <!--<Label Text="*Rest in Essence text logo*"

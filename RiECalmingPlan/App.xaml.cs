@@ -19,9 +19,9 @@ namespace RiECalmingPlan {
         public const int smallWidthResolution = 768;
         public const int smallHeightResolution = 1280;
 
-        public App(string savepath = "") {
+        public App(string savepath = "")
+        {
             InitializeComponent();
-
             SavePath = savepath;//Path used for saving to JSON (Different path between android/IOS)
 
             //This is the first page actioned
@@ -45,24 +45,21 @@ namespace RiECalmingPlan {
                                                                                 //Needs additional vlaidation in the
                                                                                 //  Registration page as no checking is done
                                                                                 //  for a username as a valid email
-            Application.Current.Properties["setMenuRootPage"] = true;   //This will be used to see if CalmingPlanMenuPage
-                                                                        //  will be set as the new Navigation root page.
-                                                                        //  On the initial push to CalmingPLanMenuPage it
-                                                                        //  is true and will set it as the new Navigation root 
-                                                                        //  It will then be set false and subsequent arrivals
-                                                                        //  at CalmingPLanMenuPage will not be affected.
 
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;                                // get device display info
             Application.Current.Properties["widthResolution"] = mainDisplayInfo.Width;          // get width as double
             Application.Current.Properties["heightResolution"] = mainDisplayInfo.Height;        // get height as double
 
-            loadStyles();
-            MainPage = loadMainPage();  // will load main menu or login screen based on application property 'setmenurootpage'
+            // uncomment this for testing
+            //AppPreferences.TermsAndConditionsAccepted = false;
+
+            LoadStyles();
+            MainPage = LoadMainPage();
         }
 
-        // method will be used to detect if device is 'small'
-        private static bool boolIsSmallDevice()
+        private static bool BoolIsSmallDevice()
         {
+        // method will be used to detect if device is 'small'
             var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
             var width = mainDisplayInfo.Width;
             var height = mainDisplayInfo.Height;
@@ -70,33 +67,34 @@ namespace RiECalmingPlan {
             return (width <= smallWidthResolution && height <= smallHeightResolution);
         }
 
-        private NavigationPage loadMainPage()
+        private NavigationPage LoadMainPage()
         {
             // decides whether to navigate to menu page or login page
-            if ((bool)Application.Current.Properties["setMenuRootPage"])
+            if (!AppPreferences.AccountCreated || !AppPreferences.TermsAndConditionsAccepted)  // if no account, or t&c not accepted
+            //if (false)
             {
-                return new NavigationPage(new Page_Menu())
+                return new NavigationPage(new Page_Login()) 
                 {
                     Style = this.Resources["NavBarStyle"] as Style      // references the resource dictionary, and loads the navbar style
                 };
             }
             else
             {
-                return new NavigationPage(new Page_Login())
+                return new NavigationPage(new Pages.Page_Menu()) 
                 {
                     Style = this.Resources["NavBarStyle"] as Style      // references the resource dictionary, and loads the navbar style
                 };
             }
         }
 
-        private void loadStyles()
+        private void LoadStyles()
         {
             Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Base.SharedDictionary);     // load base style
 
             // choose which file to override with based on screen size
             if (Device.Idiom == TargetIdiom.Tablet)
                 Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Tablet.SharedDictionary);    // merge Dictionary_Tablet with main
-            else if (boolIsSmallDevice())
+            else if (BoolIsSmallDevice())
                 Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Small.SharedDictionary);     // merge Dictionary_Small with main
             else
                 Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Default.SharedDictionary);   // merge Dictionary_Default with main

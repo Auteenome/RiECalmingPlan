@@ -13,11 +13,13 @@
   <ItemGroup>
     <None Remove="Resource\NimbusSanL-Bol.otf" />
     <None Remove="Resource\NimbusSanL-Reg.otf" />
+    <None Remove="Resource\RiETermsAndConditions.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resource\NimbusSanL-Bol.otf" />
     <EmbeddedResource Include="Resource\NimbusSanL-Reg.otf" />
+    <EmbeddedResource Include="Resource\RiETermsAndConditions.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,12 +44,6 @@
     <Compile Update="Pages\Page_Login.xaml.cs">
       <DependentUpon>Page_Login.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Pages\Page_Registration.xaml.cs">
-      <DependentUpon>Page_Registration.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Page_TermsAndConditions.xaml.cs">
-      <DependentUpon>Page_TermsAndConditions.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Mono.Android">
@@ -59,6 +55,12 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Page_NewDiaryEntry.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Page_Register.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Page_TermsAndConditions.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Page_UserDiary.xaml">

@@ -1,12 +1,40 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RiECalmingPlan.Views.TermsAndConditions">
-     <ContentPage.Content>
-        <StackLayout Padding="20" >
-            <Label Text="Legal Goo Goo" />
-            <Label Text="More Legal Ga Ga" Padding="10" />
-            <Button x:Name="TandC_Accepted" Text="Accept Terms and Conditions" VerticalOptions="Center" HorizontalOptions="Center" Clicked="ContinueToMenu" Padding="10" BackgroundColor="White" TextColor="Black"></Button>
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RiECalmingPlan.Pages.Page_TermsAndConditions"
+             BackgroundColor="{StaticResource RiEOffWhite}">
+    
+    <StackLayout Spacing="20"
+                 Margin="20"
+                 Padding="10"
+                 VerticalOptions="CenterAndExpand"
+                 HorizontalOptions="CenterAndExpand"
+                 WidthRequest="-1">
+
+        <Label Text="Auteenome Conditions of Use"
+               Style="{StaticResource Style_NimbusBoldLargeSizeLabel}"/>
+
+        <ScrollView>
+            <Label x:Name="Label_TermsAndConditions"
+                   Text="These are the terms and conditions"
+                   Style="{StaticResource Style_NimbusRegDefaultSizeLabel}"/>
+        </ScrollView>
+        
+        <StackLayout Orientation="Horizontal"
+                     Spacing="0">
+            <CheckBox x:Name="CheckBox_Agreed"
+                      VerticalOptions="Center"
+                      IsChecked="False" />
+            <Label Text="I have read and agree to the Terms and Conditions"
+                   VerticalOptions="Center" />
         </StackLayout>
-    </ContentPage.Content>
+
+        <Button x:Name="Button_Accept"
+                Style="{StaticResource Style_GreenRoundedBorderButton}"
+                Text="Accept terms and conditions"
+                Clicked="Button_Accept_Clicked" />
+    </StackLayout>
 </ContentPage>

@@ -4,10 +4,9 @@
              xmlns:local="clr-namespace:RiECalmingPlan.Renderers"
              x:Class="RiECalmingPlan.Views.Page_Login"
              BackgroundColor="{StaticResource RiEOffWhite}">
-    
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="TbItemSignUp" Text="Sign Up" Order="Primary"/>
-        <ToolbarItem x:Name="TbItemAbout" Text="About" Order="Secondary" />
+        <ToolbarItem x:Name="TbItemAbout" Text="About" Order="Primary" />
     </ContentPage.ToolbarItems>
 
     <ScrollView>
@@ -35,7 +34,7 @@
             <!--<ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="False" />-->
 
             <Label Text="Log in to Auteenome"
-                   Style="{StaticResource HeaderStyle}"
+                   Style="{StaticResource Style_NimbusBoldLargeSizeLabel}"
                    TextColor="{StaticResource RiEOffBlack}"
                    Padding="10"
                    HorizontalTextAlignment="Center" />
@@ -89,8 +88,7 @@
 
             <Button x:Name="btn_adminNextPage"
                     Text="Go to Next Page"
-                    Clicked="Page2Jump"
-                    Style="{StaticResource AdminButtonStyle}" />
+                    Clicked="Page2Jump"/>
 
         </StackLayout>
     </ScrollView>
