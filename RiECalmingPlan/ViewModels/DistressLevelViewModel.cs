@@ -1,4 +1,5 @@
 ﻿using MvvmHelpers;
+using RiECalmingPlan.LocalNotifications;
 using RiECalmingPlan.Models;
 using System;
 using System.Collections.Generic;
@@ -30,8 +31,10 @@ namespace RiECalmingPlan.ViewModels {
         public Command<string> CallNumber { get; private set; }
         public Command<string> OpenWebLink { get; private set; }
 
-        private readonly Timer timer = new Timer(60 * 1000);
+        private readonly Timer timer = new Timer(3 * 1000);//3 seconds
         private UserInputDistressLevel TimeStamp;
+
+        readonly INotificationManager notificationManager;
 
         public DistressLevelViewModel() {
             FilterResponses = new Command<string>(FilterByLevel);
@@ -40,6 +43,8 @@ namespace RiECalmingPlan.ViewModels {
             DistressExpressions = new ObservableRangeCollection<Response>();
             timer.Elapsed += Timer_Elapsed;
             timer.AutoReset = false;
+
+            notificationManager = DependencyService.Get<INotificationManager>();
         }
 
         private void Call(string s) {
@@ -66,7 +71,7 @@ namespace RiECalmingPlan.ViewModels {
              */
             DistressType = parameter;
             //Timer reset
-            timer.Interval = 60 * 1000;
+            timer.Interval = 3 * 1000;
             timer.Start();
             //Reset current log
             TimeStamp = new UserInputDistressLevel() { DistressLevelType = DistressType, StartTime = DateTime.Now };
@@ -74,6 +79,7 @@ namespace RiECalmingPlan.ViewModels {
 
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e) {
             Console.WriteLine("Timestamp added");
+            notificationManager.ScheduleNotification("RiE Support Plan", $"You have selected the {DistressType} level category!");
             await App.database.AppendUserInputDistressLevel(TimeStamp);
             timer.Stop();
         }
@@ -89,5 +95,6 @@ namespace RiECalmingPlan.ViewModels {
         public void StopTimer() {
             timer.Stop();
         }
+
     }
 }

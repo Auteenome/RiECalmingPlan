@@ -16,9 +16,11 @@ using Android.Support.V4.App;
 using Plugin.Permissions;
 using Uri = Android.Net.Uri;
 using Plugin.Fingerprint;
+using RiECalmingPlan.LocalNotifications;
+using Xamarin.Forms;
 
 namespace RiECalmingPlan.Droid {
-    [Activity(Label = "Auteenome", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Auteenome", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
 
         internal static MainActivity Instance { get; private set; }
@@ -42,6 +44,7 @@ namespace RiECalmingPlan.Droid {
 
 
             LoadApplication(new App(savepath));
+            CreateNotificationFromIntent(Intent);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults) {
@@ -49,9 +52,17 @@ namespace RiECalmingPlan.Droid {
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        // Field, property, and method for Picture Picker
-        public static readonly int PickImageId = 1000; 
-        public TaskCompletionSource<string> GetImagePathAsync { get; internal set; }
+        //https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/local-notifications
+        protected override void OnNewIntent(Intent intent) {
+            CreateNotificationFromIntent(intent);
+        }
 
+        void CreateNotificationFromIntent(Intent intent) {
+            if (intent?.Extras != null) {
+                string title = intent.Extras.GetString(AndroidNotificationManager.TitleKey);
+                string message = intent.Extras.GetString(AndroidNotificationManager.MessageKey);
+                DependencyService.Get<INotificationManager>().ReceiveNotification(title, message);
+            }
+        }
     }
 }

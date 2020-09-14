@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 
 using Foundation;
+using RiECalmingPlan.iOS.LocalNotifications;
 using UIKit;
+using UserNotifications;
 
 namespace RiECalmingPlan.iOS
 {
@@ -27,6 +29,8 @@ namespace RiECalmingPlan.iOS
             global::Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             global::Xamarin.Forms.Forms.Init();
 
+
+            UNUserNotificationCenter.Current.Delegate = new IOSNotificationReceiver();
 
             string savedata = "savedata.json";
             string folderpath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "..", "Library");

@@ -29,10 +29,11 @@ namespace RiECalmingPlan.Pages {
 
         async void GoToUserDiary(object sender, EventArgs e) {
             //Fingerprint stuff https://github.com/smstuebe/xamarin-fingerprint
-            var request = new AuthenticationRequestConfiguration("Fingerprint Protected", "Use your finger to unlock your diary!");
+            var request = new AuthenticationRequestConfiguration("Fingerprint Protected", "Use your finger to unlock your diary!") {
+                AllowAlternativeAuthentication = true
+            };
             var result = await CrossFingerprint.Current.AuthenticateAsync(request);
             //If we need to, we can also request an alternative method for logging in, it will replace the 'cancel' button in the dialog box
-            //request.AllowAlternativeAuthentication = true;
             if (result.Authenticated) {
                 await Navigation.PushAsync(new Page_UserDiary());
             }
