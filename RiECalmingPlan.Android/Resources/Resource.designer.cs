@@ -13044,136 +13044,142 @@ namespace RiECalmingPlan.Droid
 			public const int baseline_book_24 = 2131230927;
 			
 			// aapt resource value: 0x7F0800D0
-			public const int baseline_book_white_36 = 2131230928;
+			public const int baseline_insert_chart_outlined_24 = 2131230928;
 			
 			// aapt resource value: 0x7F0800D1
-			public const int baseline_insert_chart_outlined_24 = 2131230929;
+			public const int btn_checkbox_checked_mtrl = 2131230929;
 			
 			// aapt resource value: 0x7F0800D2
-			public const int btn_checkbox_checked_mtrl = 2131230930;
+			public const int btn_checkbox_checked_to_unchecked_mtrl_animation = 2131230930;
 			
 			// aapt resource value: 0x7F0800D3
-			public const int btn_checkbox_checked_to_unchecked_mtrl_animation = 2131230931;
+			public const int btn_checkbox_unchecked_mtrl = 2131230931;
 			
 			// aapt resource value: 0x7F0800D4
-			public const int btn_checkbox_unchecked_mtrl = 2131230932;
+			public const int btn_checkbox_unchecked_to_checked_mtrl_animation = 2131230932;
 			
 			// aapt resource value: 0x7F0800D5
-			public const int btn_checkbox_unchecked_to_checked_mtrl_animation = 2131230933;
+			public const int btn_radio_off_mtrl = 2131230933;
 			
 			// aapt resource value: 0x7F0800D6
-			public const int btn_radio_off_mtrl = 2131230934;
+			public const int btn_radio_off_to_on_mtrl_animation = 2131230934;
 			
 			// aapt resource value: 0x7F0800D7
-			public const int btn_radio_off_to_on_mtrl_animation = 2131230935;
+			public const int btn_radio_on_mtrl = 2131230935;
 			
 			// aapt resource value: 0x7F0800D8
-			public const int btn_radio_on_mtrl = 2131230936;
+			public const int btn_radio_on_to_off_mtrl_animation = 2131230936;
 			
 			// aapt resource value: 0x7F0800D9
-			public const int btn_radio_on_to_off_mtrl_animation = 2131230937;
+			public const int button_acute = 2131230937;
 			
 			// aapt resource value: 0x7F0800DA
-			public const int button_acute = 2131230938;
+			public const int button_calm = 2131230938;
 			
 			// aapt resource value: 0x7F0800DB
-			public const int button_calm = 2131230939;
+			public const int button_mild = 2131230939;
 			
 			// aapt resource value: 0x7F0800DC
-			public const int button_mild = 2131230940;
+			public const int button_moderate = 2131230940;
 			
 			// aapt resource value: 0x7F0800DD
-			public const int button_moderate = 2131230941;
+			public const int design_bottom_navigation_item_background = 2131230941;
 			
 			// aapt resource value: 0x7F0800DE
-			public const int design_bottom_navigation_item_background = 2131230942;
+			public const int design_fab_background = 2131230942;
 			
 			// aapt resource value: 0x7F0800DF
-			public const int design_fab_background = 2131230943;
+			public const int design_ic_visibility = 2131230943;
 			
 			// aapt resource value: 0x7F0800E0
-			public const int design_ic_visibility = 2131230944;
+			public const int design_ic_visibility_off = 2131230944;
 			
 			// aapt resource value: 0x7F0800E1
-			public const int design_ic_visibility_off = 2131230945;
+			public const int design_password_eye = 2131230945;
 			
 			// aapt resource value: 0x7F0800E2
-			public const int design_password_eye = 2131230946;
+			public const int design_snackbar_background = 2131230946;
 			
 			// aapt resource value: 0x7F0800E3
-			public const int design_snackbar_background = 2131230947;
+			public const int fingerprint_dialog_error_to_fp = 2131230947;
 			
 			// aapt resource value: 0x7F0800E4
-			public const int fingerprint_dialog_error_to_fp = 2131230948;
+			public const int fingerprint_dialog_fp_to_error = 2131230948;
 			
 			// aapt resource value: 0x7F0800E5
-			public const int fingerprint_dialog_fp_to_error = 2131230949;
+			public const int ic_mtrl_chip_checked_black = 2131230949;
 			
 			// aapt resource value: 0x7F0800E6
-			public const int ic_mtrl_chip_checked_black = 2131230950;
+			public const int ic_mtrl_chip_checked_circle = 2131230950;
 			
 			// aapt resource value: 0x7F0800E7
-			public const int ic_mtrl_chip_checked_circle = 2131230951;
+			public const int ic_mtrl_chip_close_circle = 2131230951;
 			
 			// aapt resource value: 0x7F0800E8
-			public const int ic_mtrl_chip_close_circle = 2131230952;
+			public const int ic_question_answer_white_24dp = 2131230952;
 			
 			// aapt resource value: 0x7F0800E9
-			public const int mtrl_snackbar_background = 2131230953;
+			public const int ic_question_answer_white_36dp = 2131230953;
 			
 			// aapt resource value: 0x7F0800EA
-			public const int mtrl_tabs_default_indicator = 2131230954;
+			public const int ic_report_problem_white_24dp = 2131230954;
 			
 			// aapt resource value: 0x7F0800EB
-			public const int navigation_empty_icon = 2131230955;
+			public const int mtrl_snackbar_background = 2131230955;
 			
 			// aapt resource value: 0x7F0800EC
-			public const int notification_action_background = 2131230956;
+			public const int mtrl_tabs_default_indicator = 2131230956;
 			
 			// aapt resource value: 0x7F0800ED
-			public const int notification_bg = 2131230957;
+			public const int navigation_empty_icon = 2131230957;
 			
 			// aapt resource value: 0x7F0800EE
-			public const int notification_bg_low = 2131230958;
+			public const int notification_action_background = 2131230958;
 			
 			// aapt resource value: 0x7F0800EF
-			public const int notification_bg_low_normal = 2131230959;
+			public const int notification_bg = 2131230959;
 			
 			// aapt resource value: 0x7F0800F0
-			public const int notification_bg_low_pressed = 2131230960;
+			public const int notification_bg_low = 2131230960;
 			
 			// aapt resource value: 0x7F0800F1
-			public const int notification_bg_normal = 2131230961;
+			public const int notification_bg_low_normal = 2131230961;
 			
 			// aapt resource value: 0x7F0800F2
-			public const int notification_bg_normal_pressed = 2131230962;
+			public const int notification_bg_low_pressed = 2131230962;
 			
 			// aapt resource value: 0x7F0800F3
-			public const int notification_icon_background = 2131230963;
+			public const int notification_bg_normal = 2131230963;
 			
 			// aapt resource value: 0x7F0800F4
-			public const int notification_template_icon_bg = 2131230964;
+			public const int notification_bg_normal_pressed = 2131230964;
 			
 			// aapt resource value: 0x7F0800F5
-			public const int notification_template_icon_low_bg = 2131230965;
+			public const int notification_icon_background = 2131230965;
 			
 			// aapt resource value: 0x7F0800F6
-			public const int notification_tile_bg = 2131230966;
+			public const int notification_template_icon_bg = 2131230966;
 			
 			// aapt resource value: 0x7F0800F7
-			public const int notify_panel_notification_icon_bg = 2131230967;
+			public const int notification_template_icon_low_bg = 2131230967;
 			
 			// aapt resource value: 0x7F0800F8
-			public const int RIE_logo300 = 2131230968;
+			public const int notification_tile_bg = 2131230968;
 			
 			// aapt resource value: 0x7F0800F9
-			public const int splashscreen = 2131230969;
+			public const int notify_panel_notification_icon_bg = 2131230969;
 			
 			// aapt resource value: 0x7F0800FA
-			public const int tooltip_frame_dark = 2131230970;
+			public const int RIE_logo300 = 2131230970;
 			
 			// aapt resource value: 0x7F0800FB
-			public const int tooltip_frame_light = 2131230971;
+			public const int splashscreen = 2131230971;
+			
+			// aapt resource value: 0x7F0800FC
+			public const int tooltip_frame_dark = 2131230972;
+			
+			// aapt resource value: 0x7F0800FD
+			public const int tooltip_frame_light = 2131230973;
 			
 			static Drawable()
 			{
@@ -14356,14 +14362,23 @@ namespace RiECalmingPlan.Droid
 			// aapt resource value: 0x7F0D000F
 			public const int baseline_insert_chart_outlined_white_48 = 2131558415;
 			
+			// aapt resource value: 0x7F0D0013
+			public const int icon = 2131558419;
+			
+			// aapt resource value: 0x7F0D0014
+			public const int icon_round = 2131558420;
+			
 			// aapt resource value: 0x7F0D0010
-			public const int icon = 2131558416;
+			public const int ic_question_answer_white_24dp = 2131558416;
 			
 			// aapt resource value: 0x7F0D0011
-			public const int icon_round = 2131558417;
+			public const int ic_question_answer_white_36dp = 2131558417;
 			
 			// aapt resource value: 0x7F0D0012
-			public const int launcher_foreground = 2131558418;
+			public const int ic_report_problem_white_24dp = 2131558418;
+			
+			// aapt resource value: 0x7F0D0015
+			public const int launcher_foreground = 2131558421;
 			
 			static Mipmap()
 			{

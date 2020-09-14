@@ -22,7 +22,7 @@ namespace RiECalmingPlan.Views {
             //  and a password for this draft system.
             InitializeComponent();
             BindingContext = new ViewModel_Login();
-            Init();
+            // Init();
         }
 
         void Init() {
