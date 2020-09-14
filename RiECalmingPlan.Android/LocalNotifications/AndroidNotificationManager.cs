@@ -51,6 +51,7 @@ namespace RiECalmingPlan.Droid {
                 .SetDefaults((int)NotificationDefaults.Sound | (int)NotificationDefaults.Vibrate);
 
             Notification notification = builder.Build();
+            notification.Flags = NotificationFlags.AutoCancel;
             manager.Notify(messageId, notification);
 
             return messageId;
