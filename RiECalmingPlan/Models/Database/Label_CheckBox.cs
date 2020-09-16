@@ -10,22 +10,23 @@ namespace RiECalmingPlan.Models {
     public class Label_CheckBox : GeneratedResponse {
 
         [Column("CPQID")]
-        public int CPQID { get; set; }
+        public override int CPQID { get; set; }
 
-        [Column("CheckBoxID")]
-        public int CheckBoxID { get; set; }
+        [Column("QID")]
+        public override int QID { get; set; }
 
-        [Column("CheckText")]
+        [Column("Label")]
         public override string Label { get; set; }
 
         [Column("ResponseType")]
         public override string ResponseType { get; set; }
 
-        private int _CheckBoxValue;
-        [Column("CheckBoxValue")]
-        public int CheckBoxValue { get { return _CheckBoxValue; } set { SetProperty(ref _CheckBoxValue, value); } }
+        private int _Value;
+        [Column("Value")]
+        public int Value { get { return _Value; } set { SetProperty(ref _Value, value); } }
 
-
+        [Column("Override")]
+        public override string Override { get; set; }
 
     }
 }

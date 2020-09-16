@@ -67,32 +67,67 @@ namespace RiECalmingPlan.Models {
 
         public async Task<ObservableRangeCollection<Response>> GetDistressExpressions(string DistressLevelType) {
             /*
-             * Returns all responses where their respective question's distress level type matches the input
-             * 
-             * The current problem with this is that it will select from the following tables in order,
-             * and not a randomised sublist of the query. Pulling out a sublist from each one will make the returned list to be of size 3n,
-             * which it really should be 5 or less regardless.
-             * 
-             *  ORDER BY RANDOM() LIMIT 5
+             * This function pulls the Top Half of the Support Plan.
              */
+
             ObservableRangeCollection<Response> r = new ObservableRangeCollection<Response>();
-            r.AddRange(await db.QueryAsync<Label_CheckBox>("SELECT * FROM [CheckBoxLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND CheckBoxLabels.CheckBoxValue = 1 AND Questions.CPQID = CheckBoxLabels.CPQID", DistressLevelType));
-            r.AddRange(await db.QueryAsync<Label_Stepper>("SELECT * FROM [StepperLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND StepperLabels.StepperValue > 0 AND Questions.CPQID = StepperLabels.CPQID", DistressLevelType));
-            r.AddRange(await db.QueryAsync<Label_TextResponse>("SELECT * FROM [TextResponseLabels] LEFT JOIN [Questions] WHERE Questions.DistressLevelType = ? AND Questions.CPQID = TextResponseLabels.CPQID", DistressLevelType));
+            if (DistressLevelType.Equals("Calm")) {
+                //Calm Request, pull every response that is checked with a "Calm" override OR if the Question associated with the checked response has a QuestionCarePlanArea containing "Positive"
+                //This will also pull Stepper Responses if the value is >0 and the QuestionCarePlanArea contains "Positive"
+                //When using UNION in a query, the ORDER BY clause is restricted to a specific column
+                
+                r.AddRange(await db.QueryAsync<Response>(
+                    "SELECT *, RANDOM() As Random FROM [CheckBoxLabels] LEFT JOIN [Questions] WHERE (Questions.CPQID = CheckBoxLabels.CPQID AND CheckBoxLabels.Value = 1) AND (Questions.QuestionCarePlanArea LIKE '%Positive%' OR CheckBoxLabels.Override = ?)"
+                    + "UNION SELECT *, RANDOM() As Random FROM [StepperLabels] LEFT JOIN [Questions] WHERE (Questions.CPQID = StepperLabels.CPQID AND StepperLabels.Value > 1) AND (Questions.QuestionCarePlanArea LIKE '%Positive%' OR StepperLabels.Override = ?)"
+                    + "ORDER BY Random LIMIT 5", DistressLevelType, DistressLevelType));
+                
+            } else {
+                //Non Calm Request, pull every response with DistressLevelType override OR if the Question associated with the checked response has a QuestionCarePlanArea containing "Distress Actions"
+                //Since Override takes priority over the actual Value of the stepper, the tuples that will be added that have the correct value will only be added if the Override is empty
+                r.AddRange(await db.QueryAsync<Response>(
+                    "SELECT *, RANDOM() As Random FROM [CheckBoxLabels] LEFT JOIN [Questions] WHERE (Questions.CPQID = CheckBoxLabels.CPQID AND CheckBoxLabels.Value = 1) AND (Questions.QuestionCarePlanArea LIKE '%Distress Actions%' OR CheckBoxLabels.Override = ?)"
+                    + "UNION SELECT *, RANDOM() As Random FROM [StepperLabels] LEFT JOIN [Questions] WHERE (Questions.CPQID = StepperLabels.CPQID AND (StepperLabels.Value = ? AND StepperLabels.Override IS NULL)) AND (Questions.QuestionCarePlanArea LIKE '%Distress Actions%' OR StepperLabels.Override = ?)"
+                    + "ORDER BY Random LIMIT 5", DistressLevelType, DistressType.DistressTypeValue(DistressLevelType), DistressLevelType));
+                if (DistressLevelType.Equals("Acute")) {
+                    //Acute Request, in addition to pulling every response associated with it, it will also append all responses that have an Override value of "LT-Acute", regardless of value above 0
+                    //This will also go above the previous 5 limit, which will also ensure that this partitiion of the query always is appended
+                    r.AddRange(await db.QueryAsync<Response>("SELECT * FROM [StepperLabels] WHERE (StepperLabels.Override = 'LT-Acute' AND Value > 0 AND Value IS NOT NULL)"));
+                }
+            }
             return r;
 
         }
 
         public async Task<ObservableRangeCollection<Suggestion>> GetDistressSuggestions(string DistressLevelType) {
             /*
-             * Returns all responses where their respective question's distress level type matches the input
-             *
-             * 
-             *  ORDER BY RANDOM() LIMIT 5
+             * This function pulls the Second Half of the Support Plan from Suggestions (Usually Calm Acute and LT-Acute)
              */
             ObservableRangeCollection<Suggestion> s = new ObservableRangeCollection<Suggestion>();
-            s.AddRange(await db.QueryAsync<Suggestion>("SELECT * FROM [Suggestions] WHERE Level = ?", DistressLevelType));
+            if (DistressLevelType.Equals("LT-Acute")) {
+                s.AddRange(await db.QueryAsync<Suggestion>("SELECT * FROM [Suggestions] WHERE Level = ?", "Acute"));
+                s.AddRange(await db.QueryAsync<Suggestion>("SELECT * FROM [Suggestions] WHERE Level = ?", DistressLevelType));
+            } else {
+                s.AddRange(await db.QueryAsync<Suggestion>("SELECT * FROM [Suggestions] WHERE Level = ?", DistressLevelType));
+            }
             return s;
+        }
+
+        public async Task<ObservableRangeCollection<Response>> GetDistressInterventions(string DistressLevelType) {
+            /*
+             * This function pulls the Second Half of the Support Plan from the Responses Table (Mild Moderate and Acute)
+             */
+            ObservableRangeCollection<Response> r = new ObservableRangeCollection<Response>();
+            if (!DistressLevelType.Equals("Calm")) {
+                //Pull every response with DistressLevelType override OR if the Question associated with the checked response has a QuestionCarePlanArea containing "Intervention"
+                //Since Override takes priority over the actual Value of the stepper, the tuples that will be added that have the correct value will only be added if the Override is empty
+                r.AddRange(await db.QueryAsync<Response>(
+                "SELECT *, RANDOM() As Random FROM [CheckBoxLabels] LEFT JOIN [Questions] WHERE (Questions.CPQID = CheckBoxLabels.CPQID AND CheckBoxLabels.Value = 1) AND (Questions.QuestionCarePlanArea LIKE '%Intervention%' OR CheckBoxLabels.Override = ?)"
+                + "UNION SELECT *, RANDOM() As Random FROM [StepperLabels] LEFT JOIN [Questions] WHERE (Questions.CPQID = StepperLabels.CPQID AND (StepperLabels.Value = ? AND StepperLabels.Override IS NULL)) AND (Questions.QuestionCarePlanArea LIKE '%Intervention%' OR StepperLabels.Override = ?)"
+                + "ORDER BY Random LIMIT 5"
+                , DistressLevelType, DistressType.DistressTypeValue(DistressLevelType), DistressLevelType));
+
+            }
+            return r;
         }
 
         public async Task<List<Label_Stepper>> GetAssociatedStepperAsync(int CPQID) {
@@ -116,9 +151,9 @@ namespace RiECalmingPlan.Models {
          */
         public async Task UpdateStepperResponse(Label_Stepper stepper) {
             if (stepper != null) {
-                await db.QueryAsync<Label_Stepper>("UPDATE [StepperLabels] SET StepperValue = ? WHERE CPQID = ? AND StepperID = ?",
-                    stepper.StepperValue, stepper.CPQID, stepper.StepperID);
-                Console.WriteLine("\n CPQID:" + stepper.CPQID + "\n StepperID: " + stepper.StepperID + "\n StepperText: " + stepper.Label + "\n StepperValue: " + stepper.StepperValue);
+                await db.QueryAsync<Label_Stepper>("UPDATE [StepperLabels] SET Value = ? WHERE CPQID = ? AND QID = ?",
+                    stepper.Value, stepper.CPQID, stepper.QID);
+                Console.WriteLine("\n CPQID:" + stepper.CPQID + "\n StepperID: " + stepper.QID + "\n StepperText: " + stepper.Label + "\n StepperValue: " + stepper.Value);
             } else {
                 Console.WriteLine("\n STEPPER null");
             }
@@ -126,9 +161,9 @@ namespace RiECalmingPlan.Models {
 
         public async Task UpdateCheckBoxResponse(Label_CheckBox checkbox) {
             if (checkbox != null) {
-                await db.QueryAsync<Label_CheckBox>("UPDATE [CheckBoxLabels] SET CheckBoxValue = ? WHERE CPQID = ? AND CheckBoxID = ?",
-                    checkbox.CheckBoxValue, checkbox.CPQID, checkbox.CheckBoxID);
-                Console.WriteLine("\n CPQID:" + checkbox.CPQID + "\n CheckBoxID: " + checkbox.CheckBoxID + "\n CheckText: " + checkbox.Label + "\n CheckBoxValue: " + checkbox.CheckBoxValue);
+                await db.QueryAsync<Label_CheckBox>("UPDATE [CheckBoxLabels] SET Value = ? WHERE CPQID = ? AND QID = ?",
+                    checkbox.Value, checkbox.CPQID, checkbox.QID);
+                Console.WriteLine("\n CPQID:" + checkbox.CPQID + "\n CheckBoxID: " + checkbox.QID + "\n CheckText: " + checkbox.Label + "\n Value: " + checkbox.Value);
             } else {
                 Console.WriteLine("\n checkbox null");
             }
@@ -136,9 +171,9 @@ namespace RiECalmingPlan.Models {
 
         public async Task UpdateTextResponse(Label_TextResponse textResponse) {
             if (textResponse != null) {
-                await db.QueryAsync<Label_TextResponse>("UPDATE [TextResponseLabels] SET TextResponse = ? WHERE CPQID = ? AND TextResponseID = ?",
-                    textResponse.Label, textResponse.CPQID, textResponse.TextResponseID);
-                Console.WriteLine("\n CPQID:" + textResponse.CPQID + "\n textResponseID: " + textResponse.TextResponseID + "\n Text: " + textResponse.Label);
+                await db.QueryAsync<Label_TextResponse>("UPDATE [TextResponseLabels] SET Label = ? WHERE CPQID = ? AND QID = ?",
+                    textResponse.Label, textResponse.CPQID, textResponse.QID);
+                Console.WriteLine("\n CPQID:" + textResponse.CPQID + "\n textResponseID: " + textResponse.CPQID + "\n Text: " + textResponse.QID);
             } else {
                 Console.WriteLine("\n textbox null");
             }
@@ -170,18 +205,18 @@ namespace RiECalmingPlan.Models {
          */
 
         public async Task DeleteStepperResponse(Label_Stepper stepper) {
-            await db.QueryAsync<Label_Stepper>("DELETE FROM [StepperLabels] WHERE CPQID = ? AND StepperID = ?",
-                    stepper.CPQID, stepper.StepperID);
+            await db.QueryAsync<Label_Stepper>("DELETE FROM [StepperLabels] WHERE CPQID = ? AND QID = ?",
+                    stepper.CPQID, stepper.QID);
         }
 
         public async Task DeleteCheckboxResponse(Label_CheckBox checkbox) {
-            await db.QueryAsync<Label_CheckBox>("DELETE FROM [CheckBoxLabels] WHERE CPQID = ? AND CheckBoxID = ?",
-                    checkbox.CPQID, checkbox.CheckBoxID);
+            await db.QueryAsync<Label_CheckBox>("DELETE FROM [CheckBoxLabels] WHERE CPQID = ? AND QID = ?",
+                    checkbox.CPQID, checkbox.QID);
         }
 
         public async Task DeleteTextResponse(Label_TextResponse textResponse) {
-            await db.QueryAsync<Label_TextResponse>("DELETE FROM [TextResponseLabels] WHERE CPQID = ? AND TextResponseID = ?",
-                    textResponse.CPQID, textResponse.TextResponseID);
+            await db.QueryAsync<Label_TextResponse>("DELETE FROM [TextResponseLabels] WHERE CPQID = ? AND QID = ?",
+                    textResponse.CPQID, textResponse.QID);
         }
 
     }

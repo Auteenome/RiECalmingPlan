@@ -79,7 +79,7 @@
                                         <DataTemplate>
                                             <ViewCell>
                                                 <StackLayout Orientation="Horizontal" Spacing="0">
-                                                    <CheckBox IsChecked="{Binding CheckBoxValue}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center">
+                                                    <CheckBox IsChecked="{Binding Value}" CheckedChanged="OnCheckBoxCheckedChanged" VerticalOptions="Center">
                                                         <!--Checkbox Style based on state (Checked, Unchecked) -->
                                                         <VisualStateManager.VisualStateGroups>
                                                             <VisualStateGroup x:Name="CommonStates">
@@ -194,7 +194,7 @@
 
             <Style x:Key="StepperStyle" TargetType="local:StepProgressBar" >
                 <Setter Property="Steps" Value="4" />
-                <Setter Property="StepSelected" Value="{Binding StepperValue}" />
+                <Setter Property="StepSelected" Value="{Binding Value}" />
             </Style>
             
         </ResourceDictionary>

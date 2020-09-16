@@ -3,6 +3,7 @@ using RiECalmingPlan.LocalNotifications;
 using RiECalmingPlan.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Timers;
 using Xamarin.Essentials;
@@ -21,13 +22,15 @@ namespace RiECalmingPlan.ViewModels {
          */
         private string _DistressType;
         private ObservableRangeCollection<Response> _DistressExpressions;
+        private ObservableRangeCollection<Response> _DistressResponses;
         private ObservableRangeCollection<Suggestion> _DistressSuggestions;
 
         public Command<string> FilterResponses { get; private set; }
-        public string DistressType { get { return _DistressType; } set { SetProperty(ref _DistressType, value); GenerateDistressExpressions(); GenerateDistressSuggestions(); } }
+        public string DistressType { get { return _DistressType; } set { SetProperty(ref _DistressType, value); GenerateDistressExpressions();} }
         public ObservableRangeCollection<Response> DistressExpressions { get { return _DistressExpressions; } set { SetProperty(ref _DistressExpressions, value); } }
 
         public ObservableRangeCollection<Suggestion> DistressSuggestions { get { return _DistressSuggestions; } set { SetProperty(ref _DistressSuggestions, value); } }
+        public ObservableRangeCollection<Response> DistressResponses { get { return _DistressResponses; } set { SetProperty(ref _DistressResponses, value); } }
         public Command<string> CallNumber { get; private set; }
         public Command<string> OpenWebLink { get; private set; }
 
@@ -79,17 +82,25 @@ namespace RiECalmingPlan.ViewModels {
 
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e) {
             Console.WriteLine("Timestamp added");
-            notificationManager.ScheduleNotification("RiE Support Plan", $"You have selected the {DistressType} level category!");
+            // notificationManager.ScheduleNotification("RiE Support Plan", $"You have selected the {DistressType} level category!");
             await App.database.AppendUserInputDistressLevel(TimeStamp);
             timer.Stop();
         }
 
         private async void GenerateDistressExpressions() {
+            //Top Half. Most of the work is done in Database class
             DistressExpressions = await App.database.GetDistressExpressions(DistressType);
+            GenerateDistressSuggestions();
         }
 
         private async void GenerateDistressSuggestions() {
-            DistressSuggestions = await App.database.GetDistressSuggestions(DistressType);
+            //Bottom Half
+            DistressResponses = await App.database.GetDistressInterventions(DistressType);
+            if (DistressType.Equals("Acute") && DistressExpressions.Any(p => p.Override.Equals("LT-Acute"))) {
+                DistressSuggestions = await App.database.GetDistressSuggestions("LT-Acute");
+            } else {
+                DistressSuggestions = await App.database.GetDistressSuggestions(DistressType);
+            }
         }
 
         public void StopTimer() {

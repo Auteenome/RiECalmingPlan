@@ -7,17 +7,16 @@ namespace RiECalmingPlan.Models {
     [Table("TextResponseLabels")]
     public class Label_TextResponse : NonGeneratedResponse {
         [Column("CPQID")]
-        public int CPQID { get; set; }
+        public override int CPQID { get; set; }
 
-        [Column("TextResponseID")]
-        public int TextResponseID { get; set; }
+        [Column("QID")]
+        public override int QID { get; set; }
 
-        [Column("TextResponse")]
+        [Column("Label")]
         public override string Label { get; set; }
 
         [Column("ResponseType")]
         public override string ResponseType { get; set; }
-
 
 
     }

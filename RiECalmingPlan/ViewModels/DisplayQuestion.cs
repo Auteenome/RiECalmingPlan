@@ -42,15 +42,15 @@ namespace RiECalmingPlan.ViewModels {
             if (!string.IsNullOrWhiteSpace(s)) {
                 Console.WriteLine("Adding Response " + s);
                 if (Question.QuestionType.Equals("CheckBox")) {
-                    Label_CheckBox checkbox = new Label_CheckBox() { CPQID = Question.CPQID, CheckBoxID = GeneratedResponses.Count + 1, Label = s, ResponseType = "Custom", CheckBoxValue = 1 };
+                    Label_CheckBox checkbox = new Label_CheckBox() { CPQID = Question.CPQID, QID = GeneratedResponses.Count + 1, Label = s, ResponseType = "Custom", Value = 1 };
                     GeneratedResponses.Add(checkbox);
                     await App.database.AppendCheckBoxResponse(checkbox);
                 } else if (Question.QuestionType.Equals("Stepper")) {
-                    Label_Stepper stepper = new Label_Stepper() { CPQID = Question.CPQID, StepperID = GeneratedResponses.Count + 1, Label = s, ResponseType = "Custom", StepperValue = 0 };
+                    Label_Stepper stepper = new Label_Stepper() { CPQID = Question.CPQID, QID = GeneratedResponses.Count + 1, Label = s, ResponseType = "Custom", Value = 0 };
                     GeneratedResponses.Add(stepper);
                     await App.database.AppendStepperResponse(stepper);
                 } else {
-                    Label_TextResponse textResponse = new Label_TextResponse() { CPQID = Question.CPQID, TextResponseID = NonGeneratedResponses.Count + 1, Label = s, ResponseType = "Custom" };
+                    Label_TextResponse textResponse = new Label_TextResponse() { CPQID = Question.CPQID, QID = NonGeneratedResponses.Count + 1, Label = s, ResponseType = "Custom" };
                     NonGeneratedResponses.Add(textResponse);
                     await App.database.AppendTextResponse(textResponse);
                 }

@@ -33,7 +33,7 @@ namespace RiECalmingPlan.Views {
         private void CheckBoxItemTapped(object sender, ItemTappedEventArgs e) {
             Label_CheckBox checkBoxLabel = (Label_CheckBox)e.Item;
 
-            checkBoxLabel.CheckBoxValue = checkBoxLabel.CheckBoxValue == 0 ? 1:0;
+            checkBoxLabel.Value = checkBoxLabel.Value == 0 ? 1:0;
         }
     }
 }

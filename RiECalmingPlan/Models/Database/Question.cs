@@ -19,8 +19,8 @@ namespace RiECalmingPlan.Models {
         [Column("QuestionType")]
         public string QuestionType { get; set; }
 
-        [Column("DistressLevelType")]
-        public string DistressLevelType { get; set; }
+        [Column("Enabled")]
+        public bool Enabled { get; set; }
 
     }
 }

@@ -127,6 +127,22 @@
                                    FontSize="Default"
                                    FontFamily="NimbusBold"
                                    HorizontalOptions="CenterAndExpand" />
+                            <StackLayout BindableLayout.ItemsSource="{Binding DistressResponses}">
+                                <BindableLayout.EmptyView>
+                                    <Label Text="Looks like you don't have any Responses in this category!"
+                                           FontSize="Default"
+                                           FontFamily="NimbusReg" />
+                                </BindableLayout.EmptyView>
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding Label}"
+                                                   FontSize="Default"
+                                                   FontFamily="NimbusReg" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
                             <StackLayout BindableLayout.ItemsSource="{Binding DistressSuggestions}">
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate>
