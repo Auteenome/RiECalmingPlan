@@ -6,64 +6,66 @@
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_NewDiaryEntry"
              BackgroundColor="{StaticResource RiELightGreen}">
-    
-    
+
+
     <ContentPage.Content>
         <Frame Style="{StaticResource QuestionFrameStyle}">
             <ScrollView>
                 <!--may change this to a flexlayout, for a responsive stack-->
                 <StackLayout Padding="5" HorizontalOptions="StartAndExpand" Spacing="10">
-                    <!--<Label Text="Starter Statement[From database]" />-->
-                    <!--<Label Text="{Binding Starter}" />-->
-                    <Label Text="Write your diary entry below"
+                    <Label Text="Starter Statement[From database]" />
+                    <Picker x:Name="starterPicker" ItemsSource="{Binding Starters}" ItemDisplayBinding="{Binding Label}" SelectedIndex="{Binding SelectedIndex}" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"/>
+                    <StackLayout>
+                        <Label Text="Write your diary entry below"
                            Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"
                            HorizontalOptions="CenterAndExpand"/>
-                    <Editor Text="{Binding Body}"
+                        <Editor Text="{Binding Body}"
                             HorizontalOptions="CenterAndExpand"
                             WidthRequest="500"
                             MaxLength="2000"
                             AutoSize="TextChanges"
                             FontSize="Default"
                             FontFamily="NimbusReg"/>
-                    <Label Text="Upload A Photo"
+                        <Label Text="Upload A Photo"
                            Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"
                            HorizontalOptions="CenterAndExpand" />
-                    <Image x:Name="image"
+                        <Image x:Name="image"
                            Margin="0" />
-                    <Grid ColumnDefinitions="*,*"
+                        <Grid ColumnDefinitions="*,*"
                           RowDefinitions="*"
                           Margin="20,0,20,0">
-                        <Button Grid.Column="0"
+                            <Button Grid.Column="0"
                                 Text=""
                                 ContentLayout="Left"
                                 ImageSource="baseline_add_photo_alternate_24"
                                 Style="{StaticResource Style_IconButton}"
                                 HorizontalOptions="Center"
                                 Clicked="OnPickPhotoButtonClicked" />
-                        <Button Grid.Column="1"
+                            <Button Grid.Column="1"
                                 Text=""
                                 ContentLayout="Left"
                                 ImageSource="baseline_add_a_photo_24"
                                 Style="{StaticResource Style_IconButton}"
                                 HorizontalOptions="Center"
                                 Clicked="OnCameraPhotoButtonClicked" />
-                    </Grid>
-                    <!--<Label x:Name="Debug" />-->
-                    <Label Text="How happy are you right now?"
+                        </Grid>
+                        <!--<Label x:Name="Debug" />-->
+                        <Label Text="How happy are you right now?"
                            Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"
                            HorizontalOptions="CenterAndExpand" 
                            Margin="0,20,0,0"/>
-                    <Slider Value="{Binding HappinessIndicator}"
+                        <Slider Value="{Binding HappinessIndicator}"
                             WidthRequest="500"
                             HorizontalOptions="CenterAndExpand"
                             MinimumTrackColor="Black"
                             MaximumTrackColor="Blue" />
-                    <Button x:Name="SaveButton"
+                        <Button x:Name="SaveButton"
                             Text="Save Diary Entry"
                             Clicked="OnSaveButtonClicked"
                             Style="{StaticResource Style_GreenRoundedBorderButton}" 
                             Margin="0,20,0,0"
                             VerticalOptions="End"/>
+                    </StackLayout>
                 </StackLayout>
             </ScrollView>
         </Frame>

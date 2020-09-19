@@ -67,7 +67,7 @@ namespace RiECalmingPlan.ViewModels {
             }
         }
 
-        private void FilterByLevel(string parameter) {
+        private async void FilterByLevel(string parameter) {
             /*
              * This code is triggered using whichever text is contained within the Distress Level buttons
              * 
@@ -77,7 +77,17 @@ namespace RiECalmingPlan.ViewModels {
             timer.Interval = 3 * 1000;
             timer.Start();
             //Reset current log
-            TimeStamp = new UserInputDistressLevel() { DistressLevelType = DistressType, StartTime = DateTime.Now };
+            try{
+                var location = await Geolocation.GetLastKnownLocationAsync();
+                var placemarks = await Geocoding.GetPlacemarksAsync(location);
+                Placemark placemark = placemarks?.FirstOrDefault();
+                string locationString = placemark.FeatureName + " " + placemark.Thoroughfare + ", " + placemark.Locality + ", " + placemark.AdminArea + ", " + placemark.CountryName + ", " + placemark.PostalCode;
+                TimeStamp = new UserInputDistressLevel() { DistressLevelType = DistressType, StartTime = DateTime.Now, Location = locationString};
+            } catch (FeatureNotSupportedException fnsEx) {
+                // Feature not supported on device
+            } catch (Exception ex) {
+                // Handle exception that may have occurred in geocoding
+            }
         }
 
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e) {

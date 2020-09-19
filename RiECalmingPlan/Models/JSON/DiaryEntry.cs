@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RiECalmingPlan.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -19,9 +20,9 @@ namespace RiECalmingPlan.Models.JSON {
          * 2. Date last edited (Which may be merged with Date of last edited)
          *
          */
-        public string Starter { get; set; }
+        public int Starter { get; set; }
         public string Body { get; set; }
-        public string PhotoLink { get; set; } //Problem with this, see Page_NewDiaryEntry.cs, OnPickPhotoButtonClicked()
+        public string PhotoLink { get; set; }
         public Double HappinessIndicator { get; set; }
 
         public DateTime FirstSubmit { get; set; }

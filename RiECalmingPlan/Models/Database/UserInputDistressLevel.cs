@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Essentials;
 
 namespace RiECalmingPlan.Models {
     public class UserInputDistressLevel {
@@ -12,7 +13,7 @@ namespace RiECalmingPlan.Models {
         [Column("StartTime")]
         public DateTime StartTime { get; set; }
 
-
-
+        [Column("Location")]
+        public string Location { get; set; }
     }
 }

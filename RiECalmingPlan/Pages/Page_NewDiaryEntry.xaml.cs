@@ -1,5 +1,8 @@
-﻿using Plugin.Media;
+﻿using MvvmHelpers;
+using Plugin.Media;
+using RiECalmingPlan.Models;
 using RiECalmingPlan.Models.JSON;
+using RiECalmingPlan.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,8 +27,17 @@ namespace RiECalmingPlan.Pages {
         public event EventHandler UpdateHandler;
         public string EntryType = "New";
 
-        public Page_NewDiaryEntry() {
+        ViewModel_DiaryStarters starters;
+
+        public Page_NewDiaryEntry(ViewModel_DiaryStarters s) {
+            starters = s;
             InitializeComponent();
+        }
+
+        public void Init() {
+            starterPicker.BindingContext = starters;
+            starters.SelectedIndex = ((DiaryEntry)BindingContext).Starter;
+            starterPicker.SelectedIndex = starters.SelectedIndex;
         }
 
         async void SetImageFromPath() {
@@ -79,7 +91,7 @@ namespace RiECalmingPlan.Pages {
                 if (file == null) {
                     return;
                 } else {
-                    await DisplayAlert("File Location", file.Path, "OK");
+                    //await DisplayAlert("File Location", file.Path, "OK");
 
                     ((DiaryEntry)BindingContext).PhotoLink = file.Path;
                     SetImageFromPath();
@@ -88,6 +100,7 @@ namespace RiECalmingPlan.Pages {
         }
 
         async void OnSaveButtonClicked(object sender, EventArgs e) {
+            ((DiaryEntry)BindingContext).Starter = starters.SelectedIndex;
             if (EntryType.Equals("New")) {
                 SaveHandler(this.BindingContext, EventArgs.Empty);
             } else {
@@ -95,5 +108,6 @@ namespace RiECalmingPlan.Pages {
             }
             await Navigation.PopAsync();
         }
+
     }
 }

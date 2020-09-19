@@ -29,6 +29,7 @@
                             <StackLayout>
                                 <Label Text="{Binding DistressLevelType, StringFormat='Level: {0}'}" />
                                 <Label Text="{Binding StartTime, StringFormat='Time Recorded: {0}'}" />
+                                <Label Text="{Binding Location, StringFormat='Location: {0}'}"/>
                             </StackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>

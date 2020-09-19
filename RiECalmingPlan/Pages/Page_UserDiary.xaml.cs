@@ -14,7 +14,8 @@ namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page_UserDiary : ContentPage {
 
-        
+        public ViewModel_DiaryStarters starters = new ViewModel_DiaryStarters();//starters are preloaded here so they are displayed during each ADD/UPDATE entry page
+
         public Page_UserDiary() {
             InitializeComponent();
             BindingContext = new ViewModel_DiaryEntries();
@@ -26,9 +27,10 @@ namespace RiECalmingPlan.Pages {
         }
 
         async void NewEntryButtonClicked(object sender, EventArgs e) {
-            var page = new Page_NewDiaryEntry {
+            var page = new Page_NewDiaryEntry(starters) {
                 BindingContext = new DiaryEntry()
             };
+            page.Init();
             page.SaveHandler += ((ViewModel_DiaryEntries)BindingContext).AddEntry;
             await Navigation.PushAsync(page);
         }
@@ -47,10 +49,12 @@ namespace RiECalmingPlan.Pages {
             DiaryEntry entry = (DiaryEntry)e.SelectedItem;
             ((ViewModel_DiaryEntries)BindingContext).Entries.Remove(entry);
             if (e.SelectedItem != null) {
-                var page = new Page_NewDiaryEntry {
+                var page = new Page_NewDiaryEntry(starters) {
                     BindingContext = entry,
-                    EntryType = "Update"
+                    EntryType = "Update",
+                    
                 };
+                page.Init();
                 page.UpdateHandler += ((ViewModel_DiaryEntries)BindingContext).UpdateEntry;
                 await Navigation.PushAsync(page);
             }
