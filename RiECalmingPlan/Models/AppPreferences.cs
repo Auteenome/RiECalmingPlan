@@ -11,9 +11,26 @@ namespace RiECalmingPlan.Models {
             set => Preferences.Set(nameof(AccountCreated), value);
         }
 
+        /*
+        public static string UserEmailAddress {
+            get => Preferences.Get(nameof(UserEmailAddress), null);
+            set => Preferences.Set(nameof(UserEmailAddress), value);
+        }
+
+        public static string UserPassword {
+            get => Preferences.Get(nameof(UserPassword), null);
+            set => Preferences.Set(nameof(UserPassword), value);
+        }
+        */
+
         public static bool TermsAndConditionsAccepted {
             get => Preferences.Get(nameof(TermsAndConditionsAccepted), false);
             set => Preferences.Set(nameof(TermsAndConditionsAccepted), value);
+        }
+
+        public static bool FirstTimeOpened {
+            get => Preferences.Get(nameof(FirstTimeOpened), true);
+            set => Preferences.Set(nameof(FirstTimeOpened), value);
         }
     }
 }

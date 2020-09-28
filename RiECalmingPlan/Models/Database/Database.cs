@@ -42,25 +42,28 @@ namespace RiECalmingPlan.Models {
         public async Task<ObservableCollection<DisplayQuestion>> GetDisplayQuestionList() {
             ObservableCollection<DisplayQuestion> list = new ObservableCollection<DisplayQuestion>();
             foreach (Question q in await db.Table<Question>().ToListAsync()) {
-                List<GeneratedResponse> g = new List<GeneratedResponse>();
-                List<NonGeneratedResponse> ng = new List<NonGeneratedResponse>();
-                switch (q.QuestionType) {
-                    case ("CheckBox"):
-                        g.AddRange(await GetAssociatedCheckBoxesAsync(q.CPQID));
-                        break;
-                    case ("Stepper"):
-                        g.AddRange(await GetAssociatedStepperAsync(q.CPQID));
-                        break;
-                    case ("Text Response"):
-                        ng.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
-                        break;
-                    default:
-                        ng.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
-                        break;
+                if (q.Enabled)
+                {
+                    List<GeneratedResponse> g = new List<GeneratedResponse>();
+                    List<NonGeneratedResponse> ng = new List<NonGeneratedResponse>();
+                    switch (q.QuestionType)
+                    {
+                        case ("CheckBox"):
+                            g.AddRange(await GetAssociatedCheckBoxesAsync(q.CPQID));
+                            break;
+                        case ("Stepper"):
+                            g.AddRange(await GetAssociatedStepperAsync(q.CPQID));
+                            break;
+                        case ("Text Response"):
+                            ng.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
+                            break;
+                        default:
+                            ng.AddRange(await GetAssociatedTextResponseAsync(q.CPQID));
+                            break;
+                    }
+
+                    list.Add(new DisplayQuestion(q, g, ng));
                 }
-
-
-                list.Add(new DisplayQuestion(q, g, ng));
             }
             return list;
         }

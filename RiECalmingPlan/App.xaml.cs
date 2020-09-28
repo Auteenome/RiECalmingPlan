@@ -22,25 +22,15 @@ namespace RiECalmingPlan {
         public App(string savepath = "")
         {
             InitializeComponent();
-            SavePath = savepath;//Path used for saving to JSON (Different path between android/IOS)
-
-            //This is the first page actioned
-            //Set the Login page to start the app instead of the Main Page
-
-            //Set the database path and connection to use for the entire app
-
-            //Check to see if the Datbase exists - If so, the user has initiated the App,
-            //SO    Go to the login page to sign in the user
-            //      (that will then set a Navigation Path starting at the Calm Plan Menu as the Root Page)
-            //OR    The app has not been initiated, so go to Terms and COnditions and Registration
+            SavePath = savepath;    //Path used for saving to JSON (Different path between android/IOS)
 
             //Initialise the Application Properties used as flags
-            Application.Current.Properties["TandC_Accepted"] = "NotAgreed"; //Flag to indicate Terms and COnditions
+            //Application.Current.Properties["TandC_Accepted"] = "NotAgreed"; //Flag to indicate Terms and COnditions
                                                                             //  have been agreed to by a user
-            Application.Current.Properties["userLogin"] = "";   //Stores a user email
-            Application.Current.Properties["usePassword"] = ""; //Stores a user password
-            Application.Current.Properties["loginOK"] = "NotOK"; //Not used yet   
-            Application.Current.Properties["isRegistered"] = "NotRegistered";   //Flag to indicate that a user exists and
+            //Application.Current.Properties["userLogin"] = "";   //Stores a user email
+            //Application.Current.Properties["usePassword"] = ""; //Stores a user password
+            //Application.Current.Properties["loginOK"] = "NotOK"; //Not used yet   
+            //Application.Current.Properties["isRegistered"] = "NotRegistered";   //Flag to indicate that a user exists and
                                                                                 // user details are stored in the database
                                                                                 //Needs additional vlaidation in the
                                                                                 //  Registration page as no checking is done
@@ -51,7 +41,7 @@ namespace RiECalmingPlan {
             Application.Current.Properties["heightResolution"] = mainDisplayInfo.Height;        // get height as double
 
             // uncomment this for testing
-            //AppPreferences.TermsAndConditionsAccepted = false;
+            AppPreferences.TermsAndConditionsAccepted = false;
 
             LoadStyles();
             MainPage = LoadMainPage();
@@ -71,7 +61,6 @@ namespace RiECalmingPlan {
         {
             // decides whether to navigate to menu page or login page
             if (!AppPreferences.AccountCreated || !AppPreferences.TermsAndConditionsAccepted)  // if no account, or t&c not accepted
-            //if (false)
             {
                 return new NavigationPage(new Page_Login()) 
                 {
