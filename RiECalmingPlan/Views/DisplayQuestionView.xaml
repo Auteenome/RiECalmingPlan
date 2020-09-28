@@ -55,6 +55,12 @@
                                         FontFamily="NimbusBold"
                                         Command="{Binding AddResponseCommand}" 
                                         CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
+                                <Button Text="Feedback"
+                                        Style="{StaticResource Style_GreenRoundedBorderButton}"
+                                        HorizontalOptions="End"
+                                        FontFamily="NimbusBold" 
+                                        Command="{Binding DisplayRiEFeedbackCommand}"/>
+
                             </StackLayout>
                             
                         </StackLayout>

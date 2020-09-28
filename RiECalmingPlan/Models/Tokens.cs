@@ -4,6 +4,7 @@ using SQLite;
 namespace RiECalmingPlan.Models
 {
     public class Tokens
+        // this is unused legacy code
     {
         //Created when a user logs in
 

@@ -46,6 +46,9 @@ namespace RiECalmingPlan.Models {
                 {
                     List<GeneratedResponse> g = new List<GeneratedResponse>();
                     List<NonGeneratedResponse> ng = new List<NonGeneratedResponse>();
+
+                    string fbText = await GetAssociatedRiEFeedback(q.CPQID);    // added by mh
+
                     switch (q.QuestionType)
                     {
                         case ("CheckBox"):
@@ -62,7 +65,7 @@ namespace RiECalmingPlan.Models {
                             break;
                     }
 
-                    list.Add(new DisplayQuestion(q, g, ng));
+                    list.Add(new DisplayQuestion(q, g, ng, fbText));    // modifed by mh
                 }
             }
             return list;
@@ -154,6 +157,14 @@ namespace RiECalmingPlan.Models {
         public async Task<List<UserInputDistressLevel>> GetUserInputDistressLevels() {
             return await db.QueryAsync<UserInputDistressLevel>("SELECT * FROM [UserInputDistressLevel]");
         }
+
+        public async Task<string> GetAssociatedRiEFeedback(int CPQID)
+        {
+            List<RiEFeedback> fbList = new List<RiEFeedback>();
+            fbList.AddRange(await db.QueryAsync<RiEFeedback>("SELECT * FROM [RiEFeedback] WHERE [CPQID] = ?", CPQID));
+            return fbList[0].FeedbackText; // not sure how to return just a string from a query, so simply returns the first entry
+        }
+
         //------------------- UPDATE -------------------------------
         /*
          * Overwrites a row with the input given

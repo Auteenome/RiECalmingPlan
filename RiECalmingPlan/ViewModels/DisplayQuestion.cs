@@ -15,6 +15,7 @@ namespace RiECalmingPlan.ViewModels {
         private ObservableRangeCollection<GeneratedResponse> _GeneratedResponses;
         private ObservableRangeCollection<NonGeneratedResponse> _NonGeneratedResponses;
         private string _OtherText;
+        private string _RiEFeedback;
 
 
         public Question Question { get { return _Question; } set { SetProperty(ref _Question, value); } }
@@ -26,8 +27,9 @@ namespace RiECalmingPlan.ViewModels {
         public string OtherText { get { return _OtherText; } set { SetProperty(ref _OtherText, value); } }
         public Command<string> AddResponseCommand { get; private set; } 
         public Command<Response> DeleteResponseCommand { get; private set; }
+        public Command DisplayRiEFeedbackCommand { get; private set; }
 
-        public DisplayQuestion(Question question, List<GeneratedResponse> generatedResponses, List<NonGeneratedResponse> nonGeneratedResponses) {
+        public DisplayQuestion(Question question, List<GeneratedResponse> generatedResponses, List<NonGeneratedResponse> nonGeneratedResponses, string RiEfb) {
             Question = question;
             GeneratedResponses = new ObservableRangeCollection<GeneratedResponse>();
             NonGeneratedResponses = new ObservableRangeCollection<NonGeneratedResponse>();
@@ -36,6 +38,9 @@ namespace RiECalmingPlan.ViewModels {
             AddResponseCommand = new Command<string>(AddResponse);
             DeleteResponseCommand = new Command<Response>(DeleteResponse);
             _OtherText = string.Empty;
+
+            _RiEFeedback = RiEfb;
+            DisplayRiEFeedbackCommand = new Command(DisplayRiEFeedback);
         }
 
         public async void AddResponse(string s) {
@@ -73,6 +78,14 @@ namespace RiECalmingPlan.ViewModels {
                 NonGeneratedResponses.Remove(ng);
                 await App.database.DeleteTextResponse((Label_TextResponse)ng);
             }
+        }
+
+        public async void DisplayRiEFeedback()
+        {
+            if (string.IsNullOrEmpty(_RiEFeedback))
+                await Application.Current.MainPage.DisplayAlert("Clinician Feedback", "No feedback is available", "Ok");
+            else
+                await Application.Current.MainPage.DisplayAlert("Clinician Feedback", _RiEFeedback.ToString(), "Ok");
         }
     }
 }

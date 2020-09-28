@@ -2,6 +2,7 @@
 namespace RiECalmingPlan.Models
 {
     public class UserDetails
+        // this is unused legacy code
     {     
             public string UserEmail { get; set; }
             public string UserGivenName { get; set;  }

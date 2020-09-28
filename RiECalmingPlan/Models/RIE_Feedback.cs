@@ -5,6 +5,7 @@ using SQLite;
 
 namespace RiECalmingPlan.Models
 {
+    // this is unused legacy code
     public class RIE_Feedback
     {
         [PrimaryKey, AutoIncrement]
