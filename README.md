@@ -20,12 +20,8 @@ appropriate responses. Checkbox and Stepper informaiton is saved as the user pre
    - Currently, the User Diary does not allow for removal of singular diary entries. The Reset button clears all Diary Entries.
 
 TODO
-1. Fix survey card presentation
-2. Test Database code on IOS
-3. Update Graph Presentation
-4. Functional diary with inbuilt FingerPrint lock
-5. Update Diary Presentation.
-6. Allow for singular Diary Entry removal.
+1. Update Graph Presentation
+2. Implement the full Terms and Conditions when given
 
 NOTES
 1. ListViews etc are not very good to have with a CarouselView, as swiping diagonally upwards or downwards will result 
