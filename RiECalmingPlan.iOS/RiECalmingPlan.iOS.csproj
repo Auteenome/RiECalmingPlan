@@ -77,6 +77,8 @@
     </Compile>
     <BundleResource Include="Resources\Questions.db" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <BundleResource Include="Resources\NimbusSanL-Bol.otf" />
+    <BundleResource Include="Resources\NimbusSanL-Reg.otf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

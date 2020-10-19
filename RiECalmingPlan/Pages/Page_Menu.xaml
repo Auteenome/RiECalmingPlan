@@ -5,20 +5,20 @@
              BackgroundColor="{StaticResource RiEOffWhite}">
     
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="TbItemAbout"
+        <!--<ToolbarItem x:Name="TbItemAbout"
                      Text="About Rest in Essence"
                      Order="Secondary" 
                      Clicked="TbItemAbout_Clicked"/>
         <ToolbarItem x:Name="TbItemAccount"
                      Text="Account settings"
-                     Order="Secondary" />
-        <ToolbarItem x:Name="TbItemAdmin"
+                     Order="Secondary" />-->
+        <!--<ToolbarItem x:Name="TbItemAdmin"
                      Text="Admin"
                      Order="Secondary" 
-                     Clicked="GoToDeviceInfo"/>
+                     Clicked="GoToDeviceInfo"/>-->
         <ToolbarItem x:Name="TbItemResetDB"
                      Text="Reset Database"
-                     Order="Secondary"
+                     Order="Primary"
                      Clicked="ResetLocalDatabase" />
     </ContentPage.ToolbarItems>
     
