@@ -163,274 +163,73 @@
     <AndroidResource Include="Resources\drawable\baseline_add_a_photo_24.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_add_a_photo_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-hdpi\baseline_add_a_photo_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_add_a_photo_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_add_a_photo_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_add_a_photo_white_18.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-mdpi\baseline_add_a_photo_white_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_add_a_photo_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_add_a_photo_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_add_a_photo_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xhdpi\baseline_add_a_photo_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_add_a_photo_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_add_a_photo_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_add_a_photo_white_18.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_add_a_photo_white_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_add_a_photo_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_add_a_photo_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_add_a_photo_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_add_a_photo_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_add_a_photo_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_add_a_photo_white_18.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\baseline_add_photo_alternate_24.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_add_photo_alternate_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-hdpi\baseline_add_photo_alternate_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_add_photo_alternate_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_add_photo_alternate_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_add_photo_alternate_white_18.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-mdpi\baseline_add_photo_alternate_white_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_add_photo_alternate_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_add_photo_alternate_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_add_photo_alternate_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xhdpi\baseline_add_photo_alternate_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_add_photo_alternate_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_add_photo_alternate_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_add_photo_alternate_white_18.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_add_photo_alternate_white_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_add_photo_alternate_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_add_photo_alternate_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_add_photo_alternate_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_add_photo_alternate_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_add_photo_alternate_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_add_photo_alternate_white_48.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\baseline_book_24.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_book_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-hdpi\baseline_book_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_book_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_book_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_book_white_18.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-mdpi\baseline_book_white_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_book_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_book_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_book_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xhdpi\baseline_book_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_book_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_book_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_book_white_18.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_book_white_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_book_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_book_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_book_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_book_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_book_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_book_white_48.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\baseline_insert_chart_outlined_24.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_insert_chart_outlined_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-hdpi\baseline_insert_chart_outlined_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_insert_chart_outlined_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\baseline_insert_chart_outlined_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_insert_chart_outlined_white_18.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-mdpi\baseline_insert_chart_outlined_white_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_insert_chart_outlined_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\baseline_insert_chart_outlined_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_insert_chart_outlined_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xhdpi\baseline_insert_chart_outlined_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_insert_chart_outlined_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\baseline_insert_chart_outlined_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_insert_chart_outlined_white_18.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_insert_chart_outlined_white_24.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_insert_chart_outlined_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\baseline_insert_chart_outlined_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_insert_chart_outlined_white_18.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_insert_chart_outlined_white_24.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_insert_chart_outlined_white_36.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\baseline_insert_chart_outlined_white_48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_question_answer_white_36dp.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\ic_question_answer_white_36dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\ic_question_answer_white_36dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\ic_question_answer_white_36dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_question_answer_white_36dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_question_answer_white_36dp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-anydpi-v26\ic_question_answer_white_36dp.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_question_answer_white_24dp.xml" />

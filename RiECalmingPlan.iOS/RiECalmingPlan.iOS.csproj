@@ -76,9 +76,9 @@
       <SubType>Code</SubType>
     </Compile>
     <BundleResource Include="Resources\Questions.db" />
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -119,6 +119,39 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\icon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\icon.appiconset\icon40x4011.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\icon.appiconset\icon40x402.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\icon.appiconset\icon58.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\icon.appiconset\icon60.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\icon.appiconset\icon80.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\icon.appiconset\icon87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RIE_logo300.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RIE_logo300.imageset\RIE_logo300.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RIE_logo300.imageset\RIE_logo3001.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RIE_logo300.imageset\RIE_logo3002.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
@@ -167,5 +200,71 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_add_a_photo_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_add_a_photo_24%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_add_a_photo_24%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\button_acute.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\button_calm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\button_mild.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\button_moderate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_book_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_book_24%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_book_24%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_add_photo_alternate_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_add_photo_alternate_24%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_add_photo_alternate_24%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_insert_chart_outlined_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_insert_chart_outlined_24%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_insert_chart_outlined_24%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_question_answer_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_question_answer_white_24dp%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_question_answer_white_24dp%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_report_problem_white_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_report_problem_white_24dp%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ic_report_problem_white_24dp%403x.png" />
   </ItemGroup>
 </Project>

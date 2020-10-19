@@ -81,5 +81,10 @@ namespace RiECalmingPlan.Views {
         {
             await DisplayAlert("Reset Password", "This functionality has not been added yet", "Okay");
         }
+
+        private void TbItemAbout_Clicked(object sender, EventArgs e)
+        {
+            DistressLevelViewModel.OpenBrowser("restinessence.com.au");
+        }
     }
 }
