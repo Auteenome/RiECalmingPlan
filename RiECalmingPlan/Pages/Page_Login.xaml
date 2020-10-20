@@ -6,7 +6,7 @@
              BackgroundColor="{StaticResource RiEOffWhite}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="TbItemAbout" Text="About" Order="Primary" />
+        <ToolbarItem x:Name="TbItemAbout" Text="About" Order="Primary" Clicked="TbItemAbout_Clicked"/>
     </ContentPage.ToolbarItems>
 
     <ScrollView>

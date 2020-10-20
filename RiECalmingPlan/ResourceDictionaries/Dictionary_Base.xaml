@@ -37,7 +37,16 @@
     <Color x:Key="Distress_OrangeOpaque">#f3835d</Color>
     <Color x:Key="Distress_YellowOpaque">#ffce48</Color>
     <Color x:Key="Distress_GreenOpaque">#a9d46f</Color>
-    
+
+    <!-- ********** ********** ********** Fonts ********** ********** ********** -->
+    <!--Custom fonts tutorial-->
+    <!--https://www.xamarinhelp.com/custom-fonts-xamarin-forms/-->
+
+    <!--<OnPlatform x:TypeArguments="x:String"
+                x:Key="BoldFont">
+        <On Platform="Android" Value=""
+    </OnPlatform>-->
+
     <!-- ********** ********** **********  Testing ********** ********** ********** -->
     
     <Style x:Key="Style_TestLabel"

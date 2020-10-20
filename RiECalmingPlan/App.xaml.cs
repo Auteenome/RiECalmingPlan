@@ -47,16 +47,6 @@ namespace RiECalmingPlan {
             MainPage = LoadMainPage();
         }
 
-        private static bool BoolIsSmallDevice()
-        {
-        // method will be used to detect if device is 'small'
-            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
-            var width = mainDisplayInfo.Width;
-            var height = mainDisplayInfo.Height;
-
-            return (width <= smallWidthResolution && height <= smallHeightResolution);
-        }
-
         private NavigationPage LoadMainPage()
         {
             // decides whether to navigate to menu page or login page
@@ -87,6 +77,16 @@ namespace RiECalmingPlan {
                 Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Small.SharedDictionary);     // merge Dictionary_Small with main
             else
                 Dictionary_Main.MergedDictionaries.Add(ResourceDictionaries.Dictionary_Default.SharedDictionary);   // merge Dictionary_Default with main
+        }
+
+        private static bool BoolIsSmallDevice()
+        {
+            // method will be used to detect if device is 'small'
+            var mainDisplayInfo = DeviceDisplay.MainDisplayInfo;
+            var width = mainDisplayInfo.Width;
+            var height = mainDisplayInfo.Height;
+
+            return (width <= smallWidthResolution && height <= smallHeightResolution);
         }
 
         protected override void OnStart() {

@@ -24,10 +24,10 @@
                 Value="Center" />
         <Setter Property="VerticalOptions"
                 Value="CenterAndExpand" />
-        <Setter Property="WidthRequest"
+        <!--<Setter Property="WidthRequest"
                 Value="400" />
         <Setter Property="HeightRequest"
-                Value="600" />
+                Value="600" />-->
     </Style>
 
     <!--style for the frame wrapping the icon on the main menu-->

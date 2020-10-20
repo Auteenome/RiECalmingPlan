@@ -5,8 +5,7 @@ using Xamarin.Forms;
 
 namespace RiECalmingPlan.Views {
 
-    // code referenced from: https://xamgirl.com/step-bar-in-xamarin-forms/
-    // modified by Mitchell Hedges
+    // stepper referenced from: https://xamgirl.com/step-bar-in-xamarin-forms/
     public class StepProgressBar : StackLayout {
         /*
          * This StepProgressBar does the following things (To avoid confusion)

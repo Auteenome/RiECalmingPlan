@@ -56,7 +56,8 @@ namespace RiECalmingPlan.ViewModels {
             }
         }
 
-        private void OpenBrowser(string s) {
+        // changed method to public static so that it can be accessed elsewhere - maybe this should be moved to a utility class?
+        public static void OpenBrowser(string s) {
             if (!string.IsNullOrWhiteSpace(s.ToString())) {
                 Browser.OpenAsync("https://" + s, new BrowserLaunchOptions {//Have to add Https:// to the link before opening it so it won't crash
                     LaunchMode = BrowserLaunchMode.SystemPreferred,
