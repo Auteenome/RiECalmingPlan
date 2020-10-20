@@ -106,7 +106,7 @@ namespace RiECalmingPlan.ViewModels {
         private async void GenerateDistressSuggestions() {
             //Bottom Half
             DistressResponses = await App.database.GetDistressInterventions(DistressType);
-            if (DistressType.Equals("Acute") && DistressExpressions.Any(p => p.Override.Equals("LT-Acute"))) {
+            if (DistressType.Equals("Acute") && DistressExpressions.Any(p => p.Override != null && p.Override.Equals("LT-Acute"))) {
                 DistressSuggestions = await App.database.GetDistressSuggestions("LT-Acute");
             } else {
                 DistressSuggestions = await App.database.GetDistressSuggestions(DistressType);
