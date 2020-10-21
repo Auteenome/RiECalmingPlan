@@ -75,10 +75,10 @@
     <Compile Include="MainPage.xaml.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' ">
       <SubType>Code</SubType>
     </Compile>
-    <BundleResource Include="Resources\Questions.db" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\NimbusSanL-Bol.otf" />
     <BundleResource Include="Resources\NimbusSanL-Reg.otf" />
+    <BundleResource Include="Resources\Questions.db" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

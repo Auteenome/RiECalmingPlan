@@ -107,9 +107,9 @@
     <Compile Include="SQLite\SQLite_Android.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="Assets\Questions.db" />
     <AndroidAsset Include="Assets\NimbusSanL-Bol.otf" />
     <AndroidAsset Include="Assets\NimbusSanL-Reg.otf" />
+    <AndroidAsset Include="Assets\Questions.db" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />

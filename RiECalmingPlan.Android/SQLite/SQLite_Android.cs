@@ -24,13 +24,12 @@ namespace RiECalmingPlan.Droid.SQLite {
             //Copies and pastes db file from assets folder to above path
             if (File.Exists(dbFile)) {
                 File.Delete(dbFile);
-                FileStream writeStream = new FileStream(dbFile, FileMode.OpenOrCreate, FileAccess.Write);
-                await Android.App.Application.Context.Assets.Open(databaseName).CopyToAsync(writeStream);
+                FileStream writeStream = new FileStream(dbFile, FileMode.OpenOrCreate, FileAccess.Write);//Creates a writestream using the combined filepath as the destination
+                await Android.App.Application.Context.Assets.Open(databaseName).CopyToAsync(writeStream);//Copies the assets database to writestream destination
             }
 
-            var path = dbFile;
             // Create the connection
-            var conn = new SQLiteAsyncConnection(path);
+            var conn = new SQLiteAsyncConnection(dbFile);
             // Return the database connection
             return conn;
         }
