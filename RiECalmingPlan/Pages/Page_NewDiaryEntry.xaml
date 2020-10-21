@@ -13,7 +13,7 @@
             <ScrollView>
                 <!--may change this to a flexlayout, for a responsive stack-->
                 <StackLayout Padding="5" HorizontalOptions="StartAndExpand" Spacing="10">
-                    <Label Text="Starter Statement[From database]" />
+                    <Label Text="Starter Statement" />
                     <Picker x:Name="starterPicker" ItemsSource="{Binding Starters}" ItemDisplayBinding="{Binding Label}" SelectedIndex="{Binding SelectedIndex}" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"/>
                     <StackLayout>
                         <Label Text="Write your diary entry below"

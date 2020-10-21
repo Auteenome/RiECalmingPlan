@@ -28,8 +28,10 @@ namespace RiECalmingPlan.Droid.SQLite {
                 await Android.App.Application.Context.Assets.Open(databaseName).CopyToAsync(writeStream);//Copies the assets database to writestream destination
             }
 
+
+            var path = dbFile;
             // Create the connection
-            var conn = new SQLiteAsyncConnection(dbFile);
+            var conn = new SQLiteAsyncConnection(path);
             // Return the database connection
             return conn;
         }

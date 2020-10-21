@@ -30,7 +30,9 @@
                                 </SwipeItems>
                             </SwipeView.LeftItems>
                             <StackLayout BackgroundColor="{StaticResource RiEOffWhite}">
-                                <Label Text="{Binding Body}" />
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Body}" />
+                                </StackLayout>
                                 <Label Text="{Binding FirstSubmit, StringFormat='First Submitted: {0}'}" />
                             </StackLayout>
                         </SwipeView>
