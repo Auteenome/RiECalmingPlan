@@ -23,52 +23,91 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource Style_MenuStackLayoutStyle}"
+        <!--<StackLayout Style="{StaticResource Style_MenuStackLayoutStyle}"
                      Spacing="20">
-            <!--<Label Text="*Rest in Essence text logo*"
-                   FontAttributes="Italic"
-                   FontFamily="NimbusBold"
-                   FontSize="Medium"
-                   VerticalOptions="StartAndExpand"
-                   TextColor="{StaticResource RiEDarkGreen}"
-                   HorizontalOptions="CenterAndExpand" />-->
 
-            <!--frame for displaying the rest in essence logo-->
-            <!--<Frame Style="{StaticResource Style_MenuIconWrapperFrameStyle}">
-                <Image Source="RIE_logo300"
-                       Aspect="AspectFit" />
-            </Frame>-->
-            <StackLayout HorizontalOptions="CenterAndExpand">
-                <Button Text="Calming Plan Questions"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="ic_question_answer_white_24dp"
-                        HorizontalOptions="StartAndExpand"
-                        Clicked="GoToContextMainPage"/>
-            </StackLayout>
+            --><!--frame for displaying the rest in essence logo-->
+            <!--<Frame Style="{StaticResource Style_MenuIconWrapperFrameStyle}"
+                   VerticalOptions="StartAndExpand">-->
+                <!--<Image Source="RIE_long_logo.png"
+                       Aspect="AspectFill" />-->
+            <!--</Frame>--><!--
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Button Text="Calming Plan Questions"
+                            Style="{StaticResource Style_TextIconButton}"
+                            ImageSource="ic_question_answer_white_24dp"
+                            HorizontalOptions="StartAndExpand"
+                            Clicked="GoToContextMainPage" />
+                </StackLayout>
 
-            <StackLayout HorizontalOptions="CenterAndExpand">
-                <Button Text="Distress History/Chart"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="baseline_insert_chart_outlined_24"
-                        HorizontalOptions="StartAndExpand"
-                        Clicked="GoToDistressHistory" />
-            </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Button Text="Distress History/Chart"
+                            Style="{StaticResource Style_TextIconButton}"
+                            ImageSource="baseline_insert_chart_outlined_24"
+                            HorizontalOptions="StartAndExpand"
+                            Clicked="GoToDistressHistory" />
+                </StackLayout>
 
-            <StackLayout HorizontalOptions="CenterAndExpand">
-                <Button Text="Distress Tracker"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="ic_report_problem_white_24dp"
-                        HorizontalOptions="StartAndExpand"
-                        Clicked="GoToDistressTracker" />
-            </StackLayout>
-            
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Button Text="Distress Tracker"
+                            Style="{StaticResource Style_TextIconButton}"
+                            ImageSource="ic_report_problem_white_24dp"
+                            HorizontalOptions="StartAndExpand"
+                            Clicked="GoToDistressTracker" />
+                </StackLayout>
+
             <StackLayout HorizontalOptions="CenterAndExpand">
                 <Button Text="User Diary"
                         Style="{StaticResource Style_TextIconButton}"
                         ImageSource="baseline_book_24"
                         Clicked="GoToUserDiary" />
             </StackLayout>
+        </StackLayout>-->
+
+        <FlexLayout Padding="20"
+                    Direction="Column"
+                    JustifyContent="SpaceAround"
+                    AlignItems="Center">
+
+            <Image Source="RIE_long_logo.png"
+                   Aspect="AspectFill"
+                   Margin="0"/>
+
+            <!--frame for flex grow-->
+            <Frame FlexLayout.Grow="1"
+                   HasShadow="False"
+                   BackgroundColor="Transparent" />
+
+
+            <Button Text="Calming Plan Questions"
+                    Style="{StaticResource Style_TextIconButton}"
+                    Margin="10"
+                    ImageSource="ic_question_answer_white_24dp"
+                    Clicked="GoToContextMainPage" />
+
+            <Button Text="Distress History/Chart"
+                    Style="{StaticResource Style_TextIconButton}"
+                    Margin="10"
+                    ImageSource="baseline_insert_chart_outlined_24"
+                    Clicked="GoToDistressHistory" />
+
+            <Button Text="Distress Tracker"
+                    Style="{StaticResource Style_TextIconButton}"
+                    Margin="10"
+                    ImageSource="ic_report_problem_white_24dp"
+                    Clicked="GoToDistressTracker" />
+
+            <Button Text="User Diary"
+                    Style="{StaticResource Style_TextIconButton}"
+                    Margin="10"
+                    ImageSource="baseline_book_24"
+                    Clicked="GoToUserDiary" />
             
-        </StackLayout>
+            <!--frame for flex grow-->
+            <Frame FlexLayout.Grow="1"
+                   HasShadow="False"
+                   BackgroundColor="Transparent" />
+
+        </FlexLayout>
     </ContentPage.Content>
 </ContentPage>

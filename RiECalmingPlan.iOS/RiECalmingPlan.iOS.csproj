@@ -144,6 +144,9 @@
     <ImageAsset Include="Assets.xcassets\icon.appiconset\icon87.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RIE_long_logo.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\RIE_logo300.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -154,6 +157,15 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\RIE_logo300.imageset\RIE_logo3002.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RIE_long_logo.imageset\RIE_long_logo.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RIE_long_logo.imageset\RIE_long_logo1.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\RIE_long_logo.imageset\RIE_long_logo2.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>

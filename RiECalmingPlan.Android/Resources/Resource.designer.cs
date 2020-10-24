@@ -13170,13 +13170,16 @@ namespace RiECalmingPlan.Droid
 			public const int RIE_logo300 = 2131230969;
 			
 			// aapt resource value: 0x7F0800FA
-			public const int splashscreen = 2131230970;
+			public const int RIE_long_logo = 2131230970;
 			
 			// aapt resource value: 0x7F0800FB
-			public const int tooltip_frame_dark = 2131230971;
+			public const int splashscreen = 2131230971;
 			
 			// aapt resource value: 0x7F0800FC
-			public const int tooltip_frame_light = 2131230972;
+			public const int tooltip_frame_dark = 2131230972;
+			
+			// aapt resource value: 0x7F0800FD
+			public const int tooltip_frame_light = 2131230973;
 			
 			static Drawable()
 			{

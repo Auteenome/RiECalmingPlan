@@ -34,7 +34,7 @@ namespace RiECalmingPlan.Pages {
             if (CheckBox_Agreed.IsChecked)
             {
                 AppPreferences.TermsAndConditionsAccepted = true;
-                await Navigation.PushAsync(new Page_Register());
+                await Navigation.PushAsync(new Page_Menu());
             }
             else
             {

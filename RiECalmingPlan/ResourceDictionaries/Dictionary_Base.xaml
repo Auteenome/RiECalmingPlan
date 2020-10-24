@@ -10,7 +10,7 @@
     
     <!-- 
     This is the base dictionary for the app.
-    Reference these styles using: Style="{StaticResource ResourceKey}" 
+    Reference these styles using: Style="{StaticResource Key}" 
     App.xaml should detect the device's screen size, and load the appropriate dictionary to ovveride this base dictionary
     An overridden styles must reset all desired values - cannot override a style to change only one value.
     -->
@@ -217,6 +217,7 @@
     
     <!-- ********** ********** ********** Layouts ********** ********** ********** -->
 
+    <!--for styling on tablets, see tablet dictionary-->
     <Style x:Key="Style_MenuStackLayoutStyle"
            TargetType="StackLayout">
         <Setter Property="Padding"
@@ -225,8 +226,8 @@
                 Value="20" />
         <Setter Property="Margin"
                 Value="20" />
-        <Setter Property="WidthRequest"
-                Value="350" />
+        <!--<Setter Property="WidthRequest"
+                Value="350" />-->
         <Setter Property="VerticalOptions"
                 Value="CenterAndExpand" />
         <Setter Property="HorizontalOptions"
@@ -264,12 +265,16 @@
     <!--style for the frame wrapping the icon on the main menu-->
     <Style x:Key="Style_MenuIconWrapperFrameStyle"
            TargetType="Frame">
-        <Setter Property="WidthRequest"
-                Value="220" />
+        <!--<Setter Property="WidthRequest"
+                Value="220" />-->
         <Setter Property="HasShadow"
                 Value="False" />
+        <!--<Setter Property="BackgroundColor"
+                Value="{StaticResource RiEOffWhite}" />-->
         <Setter Property="BackgroundColor"
-                Value="{StaticResource RiEOffWhite}" />
+                Value="White" />
+        <Setter Property="Padding"
+                Value="0" />
     </Style>
     
     

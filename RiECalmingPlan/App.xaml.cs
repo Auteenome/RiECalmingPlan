@@ -41,7 +41,7 @@ namespace RiECalmingPlan {
             Application.Current.Properties["heightResolution"] = mainDisplayInfo.Height;        // get height as double
 
             // uncomment this for testing
-            AppPreferences.TermsAndConditionsAccepted = false;
+            //AppPreferences.TermsAndConditionsAccepted = false;
 
             LoadStyles();
             MainPage = LoadMainPage();
@@ -50,9 +50,9 @@ namespace RiECalmingPlan {
         private NavigationPage LoadMainPage()
         {
             // decides whether to navigate to menu page or login page
-            if (!AppPreferences.AccountCreated || !AppPreferences.TermsAndConditionsAccepted)  // if no account, or t&c not accepted
+            if (!AppPreferences.TermsAndConditionsAccepted)  // if t&c not accepted
             {
-                return new NavigationPage(new Page_Login()) 
+                return new NavigationPage(new Pages.Page_TermsAndConditions()) 
                 {
                     Style = this.Resources["NavBarStyle"] as Style      // references the resource dictionary, and loads the navbar style
                 };
