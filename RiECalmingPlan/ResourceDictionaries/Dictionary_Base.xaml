@@ -74,7 +74,7 @@
         <Setter Property="TextColor"
                 Value="White" />
         <Setter Property="Padding"
-                Value="0" />
+                Value="10,5,10,5" />
         <Setter Property="CornerRadius"
                 Value="20" />
         <Setter Property="HeightRequest"
@@ -82,7 +82,7 @@
         <Setter Property="FontAttributes"
                 Value="Bold" />
         <Setter Property="HorizontalOptions"
-                Value="FillAndExpand" />
+                Value="Center" />
         <Setter Property="FontFamily"
                 Value="NimbusBold" />
         <Setter Property="FontSize"
@@ -117,6 +117,8 @@
                 Value="{StaticResource RiEDarkGreen}" />
         <Setter Property="WidthRequest"
                 Value="80" />
+        <Setter Property="Padding"
+                Value="10,5,10,5" />
         <Setter Property="HeightRequest"
                 Value="40" />
         <Setter Property="CornerRadius"
@@ -135,6 +137,8 @@
                 Value="40" />
         <Setter Property="CornerRadius"
                 Value="20" />
+        <Setter Property="Padding"
+                Value="12,5,12,5" />
         <Setter Property="FontSize"
                 Value="17" />
         <Setter Property="FontFamily"

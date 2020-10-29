@@ -63,6 +63,7 @@
                             Text="Save Diary Entry"
                             Clicked="OnSaveButtonClicked"
                             Style="{StaticResource Style_GreenRoundedBorderButton}" 
+                            Padding="10,5,10,5"
                             Margin="0,20,0,0"
                             VerticalOptions="End"/>
                     </StackLayout>
