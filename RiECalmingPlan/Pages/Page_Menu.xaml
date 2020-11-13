@@ -76,34 +76,33 @@
             <!--frame for flex grow-->
             <Frame FlexLayout.Grow="1"
                    HasShadow="False"
-                   BackgroundColor="Transparent" />
+                   BackgroundColor="Transparent"/>
+            <StackLayout Spacing="20">
+                <Button Text="Calming Plan Questions"
+                        Style="{StaticResource Style_TextIconButton}"
+                        ImageSource="ic_question_answer_white_24dp"
+                        Clicked="GoToContextMainPage" 
+                        HorizontalOptions="Fill"/>
 
+                <Button Text="Distress History/Chart"
+                        Style="{StaticResource Style_TextIconButton}"
+                        ImageSource="baseline_insert_chart_outlined_24"
+                        Clicked="GoToDistressHistory" HorizontalOptions="Fill"/>
 
-            <Button Text="Calming Plan Questions"
-                    Style="{StaticResource Style_TextIconButton}"
-                    Margin="10"
-                    ImageSource="ic_question_answer_white_24dp"
-                    Clicked="GoToContextMainPage" />
+                <Button Text="Distress Tracker"
+                        Style="{StaticResource Style_TextIconButton}"
+                        ImageSource="ic_report_problem_white_24dp"
+                        Clicked="GoToDistressTracker" HorizontalOptions="Fill"/>
 
-            <Button Text="Distress History/Chart"
-                    Style="{StaticResource Style_TextIconButton}"
-                    Margin="10"
-                    ImageSource="baseline_insert_chart_outlined_24"
-                    Clicked="GoToDistressHistory" />
+                <Button Text="User Diary"
+                        Style="{StaticResource Style_TextIconButton}"
+                        ImageSource="baseline_book_24"
+                        Clicked="GoToUserDiary" HorizontalOptions="Fill"/>
 
-            <Button Text="Distress Tracker"
-                    Style="{StaticResource Style_TextIconButton}"
-                    Margin="10"
-                    ImageSource="ic_report_problem_white_24dp"
-                    Clicked="GoToDistressTracker" />
+            </StackLayout>
 
-            <Button Text="User Diary"
-                    Style="{StaticResource Style_TextIconButton}"
-                    Margin="10"
-                    ImageSource="baseline_book_24"
-                    Clicked="GoToUserDiary" />
-            
             <!--frame for flex grow-->
+
             <Frame FlexLayout.Grow="1"
                    HasShadow="False"
                    BackgroundColor="Transparent" />
