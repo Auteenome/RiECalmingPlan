@@ -54,7 +54,9 @@ namespace RiECalmingPlan {
             {
                 return new NavigationPage(new Pages.Page_TermsAndConditions()) 
                 {
+                    
                     Style = this.Resources["NavBarStyle"] as Style      // references the resource dictionary, and loads the navbar style
+                    
                 };
             }
             else

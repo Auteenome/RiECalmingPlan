@@ -46,6 +46,10 @@ namespace RiECalmingPlan.Pages {
             await Navigation.PushAsync(new Page_DeviceInfo());
         }
 
+        async void GoToAboutPage(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_About());
+        }
+
         void ResetLocalDatabase(object sender, EventArgs e) {
             //will be implemented soon
             App.database.ResetConnection();

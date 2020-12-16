@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RiECalmingPlan.Pages.Page_About"
+             BackgroundColor="{StaticResource RiEOffWhite}">
+
+
+    <ContentPage.Content>
+        <FlexLayout Padding="20"
+                    Direction="Column"
+                    JustifyContent="SpaceAround"
+                    AlignItems="Center">
+            <Image Source="RIE_long_logo.png"
+                   Aspect="AspectFill"
+                   Margin="0"/>
+            <!-- Taken from Infographic-->
+            <Label VerticalOptions="CenterAndExpand" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}">
+                <Label.Text>
+                    Rest in Essence (RiE) seeks to significantly improve the care and support provided to young people living with acute mental health issues in our communities.
+                    
+Established in 2014 and based in Newcastle NSW, Rest in Essence draws on the original therapeutic model developed by our in-house PhD candidate to create industry-leading software, education and general care programs.
+                    
+Our approach is evidence-based and revolutionary. We partner with government and non-government organisations that play a leading role in the care of young people to enhance their care models for greatly improved outcomes.
+                </Label.Text>
+            </Label>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

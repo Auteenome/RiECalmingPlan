@@ -55,7 +55,7 @@
                                         FontFamily="NimbusBold"
                                         Command="{Binding AddResponseCommand}" 
                                         CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
-                                <Button Text="Feedback"
+                                <Button Text="Help"
                                         Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
                                         FontFamily="NimbusBold" 
@@ -127,7 +127,7 @@
                                         FontFamily="NimbusBold"
                                         Command="{Binding AddResponseCommand}" 
                                         CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
-                                <Button Text="Feedback"
+                                <Button Text="Help"
                                         Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
                                         FontFamily="NimbusBold"
@@ -185,7 +185,7 @@
                                         Text="Add"
                                         Command="{Binding AddResponseCommand}"
                                         CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}" />
-                                <Button Text="Feedback"
+                                <Button Text="Help"
                                         Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
                                         FontFamily="NimbusBold"

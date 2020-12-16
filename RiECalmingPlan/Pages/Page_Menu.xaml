@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RiECalmingPlan.Pages.Page_Menu"
              BackgroundColor="{StaticResource RiEOffWhite}">
-    
+
     <ContentPage.ToolbarItems>
+        
         <!--<ToolbarItem x:Name="TbItemAbout"
                      Text="About Rest in Essence"
                      Order="Secondary" 
@@ -84,20 +85,25 @@
                         Clicked="GoToContextMainPage" 
                         HorizontalOptions="Fill"/>
 
-                <Button Text="Distress History/Chart"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="baseline_insert_chart_outlined_24"
-                        Clicked="GoToDistressHistory" HorizontalOptions="Fill"/>
-
                 <Button Text="Distress Tracker"
                         Style="{StaticResource Style_TextIconButton}"
                         ImageSource="ic_report_problem_white_24dp"
                         Clicked="GoToDistressTracker" HorizontalOptions="Fill"/>
 
+                <Button Text="Distress History/Chart"
+                        Style="{StaticResource Style_TextIconButton}"
+                        ImageSource="baseline_insert_chart_outlined_24"
+                        Clicked="GoToDistressHistory" HorizontalOptions="Fill"/>
+
                 <Button Text="User Diary"
                         Style="{StaticResource Style_TextIconButton}"
                         ImageSource="baseline_book_24"
                         Clicked="GoToUserDiary" HorizontalOptions="Fill"/>
+
+                <Button Text="About"
+                        Style="{StaticResource Style_TextIconButton}"
+                        ImageSource="pin_right.png"
+                        Clicked="GoToAboutPage" HorizontalOptions="Fill"/>
 
             </StackLayout>
 
