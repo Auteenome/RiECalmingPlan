@@ -13,7 +13,7 @@ namespace RiECalmingPlan.Pages {
     public partial class Page_DistressHistory : ContentPage {
         public Page_DistressHistory() {
             InitializeComponent();
-            BindingContext = new DistressHistoryViewModel();
+            BindingContext = new ViewModel_DistressHistory();
         }
     }
 }

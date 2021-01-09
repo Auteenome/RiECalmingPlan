@@ -17,6 +17,9 @@ namespace RiECalmingPlan.Models {
             GetConnection();
         }
         /*
+         * Follows the CRUD Database method structure.
+         * 
+         * 
          * To generate a question the following things must occur in order
          * 1. The Question row is checked to determine which question type it is (CheckBox, RadioBox, Text Response)
          * 2. CheckBox/RadioBox options require more database pulling, whereas text response will generate a textfield instead

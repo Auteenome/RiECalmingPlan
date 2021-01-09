@@ -84,7 +84,7 @@ namespace RiECalmingPlan.Views {
 
         private void TbItemAbout_Clicked(object sender, EventArgs e)
         {
-            DistressLevelViewModel.OpenBrowser("restinessence.com.au");
+            ViewModel_DistressLevel.OpenBrowser("restinessence.com.au");
         }
     }
 }

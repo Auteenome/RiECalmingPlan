@@ -10,6 +10,19 @@ using Xamarin.Forms;
 
 namespace RiECalmingPlan.ViewModels {
     public class DisplayQuestion : ViewModel_Base {
+        /*
+         * DisplayQuestion in its own sense is a glorified Model object that holds a singular row of Question Table information,
+         * and multiple Response Table information for the question it belongs to.
+         * 
+         * This viewmodel also accounts for Non-Generated Responses (Text responses) but is not shown in the app since those questions
+         * were redacted from the database.
+         * 
+         * 
+         * Each Display Question also allows for the following commands (Add/Delete/DisplayFeedback) that are bindable to its respective View.
+         * 
+         */
+
+
 
         private Question _Question;
         private ObservableRangeCollection<GeneratedResponse> _GeneratedResponses;

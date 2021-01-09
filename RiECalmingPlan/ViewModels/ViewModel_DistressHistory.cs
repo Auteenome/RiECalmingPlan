@@ -10,7 +10,14 @@ using System.Linq;
 using System.Text;
 
 namespace RiECalmingPlan.ViewModels {
-    public class DistressHistoryViewModel : ViewModel_Base {
+    public class ViewModel_DistressHistory : ViewModel_Base {
+        /*
+         * Pulls the full history from the database, and that list can be filtered into a new list which is displayed in the View.
+         * Filtering controls are also here, and a mapping that helps with defining the magnitude of a distress level is included to help with filtering.
+         * 
+         * 
+         * 
+         */
 
         private ObservableRangeCollection<UserInputDistressLevel> _FilteredHistory;
         private ObservableRangeCollection<UserInputDistressLevel> _FullHistory;
@@ -33,7 +40,7 @@ namespace RiECalmingPlan.ViewModels {
         };
 
 
-        public DistressHistoryViewModel() {
+        public ViewModel_DistressHistory() {
             Refresh();
         }
 

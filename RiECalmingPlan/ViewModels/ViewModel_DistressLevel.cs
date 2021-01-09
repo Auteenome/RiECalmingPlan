@@ -10,7 +10,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace RiECalmingPlan.ViewModels {
-    public class DistressLevelViewModel : ViewModel_Base {
+    public class ViewModel_DistressLevel : ViewModel_Base {
         /*
          * This class pulls all responses from the database and slots them in the appropriate distress level group, defined from the question it belongs to.
          * 
@@ -34,12 +34,16 @@ namespace RiECalmingPlan.ViewModels {
         public Command<string> CallNumber { get; private set; }
         public Command<string> OpenWebLink { get; private set; }
 
-        private readonly Timer timer = new Timer(3 * 1000);//3 seconds
+        private readonly Timer timer = new Timer(1000);//3 (3 * 1000) seconds (now brought down to minimum (1000) as quick fix, can remove timer but cannot set duration to 0)
         private UserInputDistressLevel TimeStamp;
 
         readonly INotificationManager notificationManager;
+        /*
+         * Previously the user would get a local notification when data has been logged for the use of Distress Graph. 
+         * This is redacted because the sound part wasn't removed during a meeting and members found it distracting.
+         */
 
-        public DistressLevelViewModel() {
+        public ViewModel_DistressLevel() {
             FilterResponses = new Command<string>(FilterByLevel);
             CallNumber = new Command<string>(Call);
             OpenWebLink = new Command<string>(OpenBrowser);
@@ -75,7 +79,7 @@ namespace RiECalmingPlan.ViewModels {
              */
             DistressType = parameter;
             //Timer reset
-            timer.Interval = 3 * 1000;
+            timer.Interval = 1000;//3 (3 * 1000) seconds (now brought down to minimum (1000) as quick fix, can remove timer but cannot set duration to 0)
             timer.Start();
             //Reset current log
             try{
@@ -105,7 +109,7 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private async void GenerateDistressSuggestions() {
-            //Bottom Half
+            //Bottom Half. Again most of the work is done in Database class
             DistressResponses = await App.database.GetDistressInterventions(DistressType);
             if (DistressType.Equals("Acute") && DistressExpressions.Any(p => p.Override != null && p.Override.Equals("LT-Acute"))) {
                 DistressSuggestions = await App.database.GetDistressSuggestions("LT-Acute");

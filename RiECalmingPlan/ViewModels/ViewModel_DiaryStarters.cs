@@ -6,6 +6,11 @@ using System.Text;
 
 namespace RiECalmingPlan.ViewModels {
     public class ViewModel_DiaryStarters : ViewModel_Base{
+        /*
+         * Pulls the Diary Starters from the database
+         * Includes a Selected Index property to define which starter was selected
+         * 
+         */
 
         private ObservableRangeCollection<DiaryStarter> _Starters;
         private int _SelectedIndex;

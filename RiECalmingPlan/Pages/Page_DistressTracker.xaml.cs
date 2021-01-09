@@ -13,7 +13,7 @@ namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page_DistressTracker : ContentPage {
 
-        private readonly DistressLevelViewModel ViewModel = new DistressLevelViewModel();
+        private readonly ViewModel_DistressLevel ViewModel = new ViewModel_DistressLevel();
 
         public Page_DistressTracker() {
             InitializeComponent();
