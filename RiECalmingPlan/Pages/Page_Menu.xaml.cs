@@ -4,15 +4,22 @@ using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 using RiECalmingPlan.Models;
 using RiECalmingPlan.Pages;
+using RiECalmingPlan.ViewModels;
 using Xamarin.Forms;
 
 
 namespace RiECalmingPlan.Pages {
     public partial class Page_Menu : ContentPage {
-
+        ViewModel_MainMenu _viewModel;
         
         public Page_Menu() {
             InitializeComponent();
+            BindingContext = _viewModel = new ViewModel_MainMenu();
+        }
+
+        protected override void OnAppearing() {
+            base.OnAppearing();
+            _viewModel.LastDiaryEntry = AppPreferences.LastDiaryEntry;
         }
 
         async void GoToContextMainPage(object sender, EventArgs e) {
@@ -54,11 +61,6 @@ namespace RiECalmingPlan.Pages {
             //will be implemented soon
             App.database.ResetConnection();
             Console.WriteLine("Database connection reset");
-        }
-
-        async private void TbItemAbout_Clicked(object sender, EventArgs e)
-        {
-
         }
     }
 }

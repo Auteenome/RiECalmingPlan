@@ -28,7 +28,7 @@ namespace RiECalmingPlan.ViewModels {
         private ObservableRangeCollection<GeneratedResponse> _GeneratedResponses;
         private ObservableRangeCollection<NonGeneratedResponse> _NonGeneratedResponses;
         private string _OtherText;
-        private string _RiEFeedback;
+        private readonly string _RiEFeedback;
 
 
         public Question Question { get { return _Question; } set { SetProperty(ref _Question, value); } }

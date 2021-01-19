@@ -4,6 +4,7 @@ using SQLite;
 using System.IO;
 using RiECalmingPlan.Views;
 using RiECalmingPlan.Models;
+using RiECalmingPlan.ViewModels;
 using Xamarin.Essentials;
 
 

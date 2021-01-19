@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using MvvmHelpers.Commands;
+using RiECalmingPlan.Models;
 using RiECalmingPlan.Models.JSON;
 
 namespace RiECalmingPlan.ViewModels {
@@ -33,6 +34,9 @@ namespace RiECalmingPlan.ViewModels {
         public void AddEntry(object sender, EventArgs e) {
             ((DiaryEntry)sender).FirstSubmit = DateTime.Now;
             ((DiaryEntry)sender).LastEdited = DateTime.Now;
+
+            AppPreferences.LastDiaryEntry = DateTime.Now;
+
             Entries.Add(((DiaryEntry)sender));
             UserDiaryFileController.Save(Entries);
         }

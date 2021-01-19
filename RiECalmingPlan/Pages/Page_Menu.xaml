@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:RiECalmingPlan.ViewModels"
              x:Class="RiECalmingPlan.Pages.Page_Menu"
              BackgroundColor="{StaticResource RiEOffWhite}">
 
+
     <ContentPage.ToolbarItems>
-        
+
         <!--<ToolbarItem x:Name="TbItemAbout"
                      Text="About Rest in Essence"
                      Order="Secondary" 
@@ -22,97 +24,62 @@
                      Order="Primary"
                      Clicked="ResetLocalDatabase" />
     </ContentPage.ToolbarItems>
-    
     <ContentPage.Content>
-        <!--<StackLayout Style="{StaticResource Style_MenuStackLayoutStyle}"
-                     Spacing="20">
 
-            --><!--frame for displaying the rest in essence logo-->
-            <!--<Frame Style="{StaticResource Style_MenuIconWrapperFrameStyle}"
-                   VerticalOptions="StartAndExpand">-->
-                <!--<Image Source="RIE_long_logo.png"
-                       Aspect="AspectFill" />-->
-            <!--</Frame>--><!--
-                <StackLayout HorizontalOptions="CenterAndExpand">
-                    <Button Text="Calming Plan Questions"
-                            Style="{StaticResource Style_TextIconButton}"
-                            ImageSource="ic_question_answer_white_24dp"
-                            HorizontalOptions="StartAndExpand"
-                            Clicked="GoToContextMainPage" />
-                </StackLayout>
+        <StackLayout Padding="20" VerticalOptions="FillAndExpand">
 
-                <StackLayout HorizontalOptions="CenterAndExpand">
-                    <Button Text="Distress History/Chart"
-                            Style="{StaticResource Style_TextIconButton}"
-                            ImageSource="baseline_insert_chart_outlined_24"
-                            HorizontalOptions="StartAndExpand"
-                            Clicked="GoToDistressHistory" />
-                </StackLayout>
-
-                <StackLayout HorizontalOptions="CenterAndExpand">
-                    <Button Text="Distress Tracker"
-                            Style="{StaticResource Style_TextIconButton}"
-                            ImageSource="ic_report_problem_white_24dp"
-                            HorizontalOptions="StartAndExpand"
-                            Clicked="GoToDistressTracker" />
-                </StackLayout>
-
-            <StackLayout HorizontalOptions="CenterAndExpand">
-                <Button Text="User Diary"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="baseline_book_24"
-                        Clicked="GoToUserDiary" />
-            </StackLayout>
-        </StackLayout>-->
-
-        <FlexLayout Padding="20"
-                    Direction="Column"
-                    JustifyContent="SpaceAround"
-                    AlignItems="Center">
-
+            <!-- HEADER -->
             <Image Source="RIE_long_logo.png"
-                   Aspect="AspectFill"
-                   Margin="0"/>
+                   VerticalOptions="Start"/>
 
-            <!--frame for flex grow-->
-            <Frame FlexLayout.Grow="1"
-                   HasShadow="False"
-                   BackgroundColor="Transparent"/>
-            <StackLayout Spacing="20">
+            <!-- MAIN MENU BUTTONS -->
+            <StackLayout VerticalOptions="CenterAndExpand" Padding="20" Spacing="20">
                 <Button Text="Calming Plan Questions"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="ic_question_answer_white_24dp"
-                        Clicked="GoToContextMainPage" 
-                        HorizontalOptions="Fill"/>
+                                Style="{StaticResource Style_TextIconButton}"
+                                ImageSource="ic_question_answer_white_24dp"
+                                Clicked="GoToContextMainPage" 
+                                HorizontalOptions="Fill"/>
 
                 <Button Text="Distress Tracker"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="ic_report_problem_white_24dp"
-                        Clicked="GoToDistressTracker" HorizontalOptions="Fill"/>
+                                Style="{StaticResource Style_TextIconButton}"
+                                ImageSource="ic_report_problem_white_24dp"
+                                Clicked="GoToDistressTracker" 
+                                HorizontalOptions="Fill"/>
 
                 <Button Text="Distress History/Chart"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="baseline_insert_chart_outlined_24"
-                        Clicked="GoToDistressHistory" HorizontalOptions="Fill"/>
+                                Style="{StaticResource Style_TextIconButton}"
+                                ImageSource="baseline_insert_chart_outlined_24"
+                                Clicked="GoToDistressHistory" 
+                                HorizontalOptions="Fill"/>
 
                 <Button Text="User Diary"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="baseline_book_24"
-                        Clicked="GoToUserDiary" HorizontalOptions="Fill"/>
+                                Style="{StaticResource Style_TextIconButton}"
+                                ImageSource="baseline_book_24"
+                                Clicked="GoToUserDiary" 
+                                HorizontalOptions="Fill"/>
 
                 <Button Text="About"
-                        Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="pin_right.png"
-                        Clicked="GoToAboutPage" HorizontalOptions="Fill"/>
-
+                                Style="{StaticResource Style_TextIconButton}"
+                                ImageSource="pin_right.png"
+                                Clicked="GoToAboutPage" 
+                                HorizontalOptions="Fill"/>
             </StackLayout>
 
-            <!--frame for flex grow-->
+            <!-- FOOTER -->
 
-            <Frame FlexLayout.Grow="1"
-                   HasShadow="False"
-                   BackgroundColor="Transparent" />
-
-        </FlexLayout>
+            <Grid VerticalOptions="End" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Text="T&amp;C"
+                        Style="{StaticResource Style_TextIconButton}"
+                        ImageSource="pin_right.png"
+                        Clicked="GoToAboutPage" 
+                        Grid.Column="0"/>
+                <!-- Bind to last diary entry user has added-->
+                <Label HorizontalTextAlignment="End" Text="{Binding LastDiaryEntry, StringFormat='Last Diary Entry:{0}'}" Grid.Column="1"/>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -40,7 +40,6 @@ namespace RiECalmingPlan.Pages {
 
         protected override void OnDisappearing() {
             base.OnDisappearing();
-            ViewModel.StopTimer();
         }
 
     }

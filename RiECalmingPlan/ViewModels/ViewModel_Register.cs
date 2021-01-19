@@ -32,7 +32,7 @@ namespace RiECalmingPlan.ViewModels {
         }
         private void Register()
         {
-            Models.AppPreferences.AccountCreated = true;
+            ViewModels.AppPreferences.AccountCreated = true;
             App.Current.MainPage.Navigation.PushAsync(new Pages.Page_Menu());
         }
     }

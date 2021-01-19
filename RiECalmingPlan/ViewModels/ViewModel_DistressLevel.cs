@@ -34,10 +34,8 @@ namespace RiECalmingPlan.ViewModels {
         public Command<string> CallNumber { get; private set; }
         public Command<string> OpenWebLink { get; private set; }
 
-        private readonly Timer timer = new Timer(1000);//3 (3 * 1000) seconds (now brought down to minimum (1000) as quick fix, can remove timer but cannot set duration to 0)
         private UserInputDistressLevel TimeStamp;
 
-        readonly INotificationManager notificationManager;
         /*
          * Previously the user would get a local notification when data has been logged for the use of Distress Graph. 
          * This is redacted because the sound part wasn't removed during a meeting and members found it distracting.
@@ -48,10 +46,7 @@ namespace RiECalmingPlan.ViewModels {
             CallNumber = new Command<string>(Call);
             OpenWebLink = new Command<string>(OpenBrowser);
             DistressExpressions = new ObservableRangeCollection<Response>();
-            timer.Elapsed += Timer_Elapsed;
-            timer.AutoReset = false;
 
-            notificationManager = DependencyService.Get<INotificationManager>();
         }
 
         private void Call(string s) {
@@ -78,29 +73,26 @@ namespace RiECalmingPlan.ViewModels {
              * 
              */
             DistressType = parameter;
-            //Timer reset
-            timer.Interval = 1000;//3 (3 * 1000) seconds (now brought down to minimum (1000) as quick fix, can remove timer but cannot set duration to 0)
-            timer.Start();
             //Reset current log
-            try{
+            try {
                 var location = await Geolocation.GetLastKnownLocationAsync();
                 var placemarks = await Geocoding.GetPlacemarksAsync(location);
                 Placemark placemark = placemarks?.FirstOrDefault();
                 string locationString = placemark.FeatureName + " " + placemark.Thoroughfare + ", " + placemark.Locality + ", " + placemark.AdminArea + ", " + placemark.CountryName + ", " + placemark.PostalCode;
                 TimeStamp = new UserInputDistressLevel() { DistressLevelType = DistressType, StartTime = DateTime.Now, Location = locationString};
+
+
+                //Log user's current distress level
+                await App.database.AppendUserInputDistressLevel(TimeStamp);
             } catch (FeatureNotSupportedException fnsEx) {
                 // Feature not supported on device
+                Console.WriteLine(fnsEx);
             } catch (Exception ex) {
                 // Handle exception that may have occurred in geocoding
+                Console.WriteLine(ex);
             }
         }
 
-        private async void Timer_Elapsed(object sender, ElapsedEventArgs e) {
-            Console.WriteLine("Timestamp added");
-            // notificationManager.ScheduleNotification("RiE Support Plan", $"You have selected the {DistressType} level category!");
-            await App.database.AppendUserInputDistressLevel(TimeStamp);
-            timer.Stop();
-        }
 
         private async void GenerateDistressExpressions() {
             //Top Half. Most of the work is done in Database class
@@ -116,10 +108,6 @@ namespace RiECalmingPlan.ViewModels {
             } else {
                 DistressSuggestions = await App.database.GetDistressSuggestions(DistressType);
             }
-        }
-
-        public void StopTimer() {
-            timer.Stop();
         }
 
     }

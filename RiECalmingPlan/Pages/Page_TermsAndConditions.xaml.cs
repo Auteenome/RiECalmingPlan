@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Reflection;
+using RiECalmingPlan.ViewModels;
 
 namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -21,8 +22,7 @@ namespace RiECalmingPlan.Pages {
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
             Stream stream = assembly.GetManifestResourceStream("RiECalmingPlan.Resource.RiETermsAndConditions.txt");
             StreamReader inputStream = new StreamReader(stream);
-            string text = "";
-            text = inputStream.ReadToEnd();
+            string text = inputStream.ReadToEnd();
             Console.WriteLine(text);
             // ********** ********** **********
 
@@ -33,8 +33,18 @@ namespace RiECalmingPlan.Pages {
         {
             if (CheckBox_Agreed.IsChecked)
             {
+                /*
+                 * This below code (Upon first entering after installed, will still show the back button once the user enters the main menu)
+                 * The new code now removes this page after the new one is opened (also displays the back button for like 0.01s so it isn't great)
+                 * 
+                 * AppPreferences.TermsAndConditionsAccepted = true;
+                 * await Navigation.PushAsync(new Page_Menu());
+                 */
+
                 AppPreferences.TermsAndConditionsAccepted = true;
+                var previousPage = Navigation.NavigationStack.LastOrDefault();//Current page (Terms and Conditions)
                 await Navigation.PushAsync(new Page_Menu());
+                Navigation.RemovePage(previousPage);
             }
             else
             {
