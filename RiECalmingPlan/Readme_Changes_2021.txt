@@ -10,3 +10,6 @@
 - [Distress Pyramid] Timer removed
 - [Main Menu] Layout changed to include last diary entry date + T&C read-only page button
 - [Terms and Conditions -> Main Menu] back button does not show any more on first entering app (The back button blinks when transitioning anyway)
+
+23/01/2021
+- [Calming Plan] Appended a last slide to the Questions Carousel to indicate the end of the Survey

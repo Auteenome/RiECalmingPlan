@@ -1,4 +1,5 @@
 ﻿using RiECalmingPlan.Models;
+using RiECalmingPlan.ViewModels;
 using System;
 
 using Xamarin.Forms;
@@ -11,16 +12,7 @@ namespace RiECalmingPlan.Views {
 
         public DisplayQuestionView() {
             InitializeComponent();
-            RefreshCarouselView();
-        }
-
-        private async void RefreshCarouselView() {
-            try {
-                Questions.ItemsSource = await App.database.GetDisplayQuestionList();
-            } catch (Exception e) {
-                Console.WriteLine(e);
-            }
-
+            BindingContext = new ViewModel_DisplayQuestionView();
         }
 
         private async void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e) {

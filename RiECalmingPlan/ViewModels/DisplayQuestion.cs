@@ -55,6 +55,10 @@ namespace RiECalmingPlan.ViewModels {
             _RiEFeedback = RiEfb;
             DisplayRiEFeedbackCommand = new Command(DisplayRiEFeedback);
         }
+        
+        public DisplayQuestion() {
+
+        }
 
         public async void AddResponse(string s) {
             if (!string.IsNullOrWhiteSpace(s)) {

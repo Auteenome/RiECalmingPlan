@@ -11,6 +11,7 @@ namespace RiECalmingPlan.Views {
         public DataTemplate StepperTemplate { get; set; }
         public DataTemplate CheckBoxTemplate { get; set; }
         public DataTemplate TextResponseTemplate { get; set; }
+        public DataTemplate LastSlideTemplate { get; set; }
 
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container) {
@@ -21,6 +22,8 @@ namespace RiECalmingPlan.Views {
                     return CheckBoxTemplate;
                 case ("Text Response"):
                     return TextResponseTemplate;
+                case ("Last Slide"):
+                    return LastSlideTemplate;
                 default:
                     return TextResponseTemplate;
             }

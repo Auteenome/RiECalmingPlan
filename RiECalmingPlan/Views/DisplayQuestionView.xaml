@@ -41,7 +41,7 @@
                                 </ListView>
 
                             </StackLayout>
-                            
+
                             <StackLayout Orientation="Horizontal" VerticalOptions="End">
                                 <Editor x:Name="CustomEntry" 
                                         Text="{Binding OtherText}"
@@ -62,7 +62,7 @@
                                         Command="{Binding DisplayRiEFeedbackCommand}"/>
 
                             </StackLayout>
-                            
+
                         </StackLayout>
                     </Frame>
                 </StackLayout>
@@ -133,7 +133,7 @@
                                         FontFamily="NimbusBold"
                                         Command="{Binding DisplayRiEFeedbackCommand}" />
                             </StackLayout>
-                            
+
                         </StackLayout>
                     </Frame>
                 </StackLayout>
@@ -196,10 +196,22 @@
                 </StackLayout>
             </DataTemplate>
 
+            <DataTemplate x:Key="lastSlideTemplate">
+                <StackLayout VerticalOptions="Start">
+                    <Frame Style="{StaticResource QuestionFrameStyle}">
+                        <StackLayout>
+                            <Label HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource Style_QuestionLabel}" Text="This is the end of the Calming Plan"/>
+                            <Label HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource Style_QuestionLabel}" Text="You can now proceed to the Support Plan!"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </DataTemplate>
+
             <views:AnswerTemplateSelector x:Key="answerTemplateSelector"
             StepperTemplate="{StaticResource stepperTemplate}"
             CheckBoxTemplate="{StaticResource checkBoxTemplate}"
-            TextResponseTemplate="{StaticResource textResponseTemplate}" />
+            TextResponseTemplate="{StaticResource textResponseTemplate}"
+            LastSlideTemplate="{StaticResource lastSlideTemplate}"/>
 
             <!-- WIP option 2 using a template selector to define delete function
             <views:CellTemplateSelector x:Key="cellTemplateSelector"
@@ -212,13 +224,14 @@
                 <Setter Property="Steps" Value="4" />
                 <Setter Property="StepSelected" Value="{Binding Value}" />
             </Style>
-            
+
         </ResourceDictionary>
+
     </ContentView.Resources>
 
     <ContentView.Content>
-      <StackLayout>
-            <CarouselView x:Name="Questions" ItemTemplate="{StaticResource answerTemplateSelector}"/>
-      </StackLayout>
+        <StackLayout>
+            <CarouselView x:Name="Questions" ItemsSource="{Binding Questions}" ItemTemplate="{StaticResource answerTemplateSelector}"/>
+        </StackLayout>
   </ContentView.Content>
 </ContentView>
