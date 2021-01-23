@@ -33,9 +33,17 @@ namespace RiECalmingPlan.Pages {
             Carousel.Position = 1;
         }
 
-        public void BackButtonPressed(object sender, EventArgs e) {
-            Frame_SupportPlan.BackgroundColor = Color.White;
+        public void YesButtonPressed(object sender, EventArgs e) {
+            Carousel.Position = 2;
+        }
+
+        public void NoButtonPressed(object sender, EventArgs e) {
             Carousel.Position = 0;
+        }
+
+        public async void ContinueButtonPressed(object sender, EventArgs e) {
+            await Application.Current.MainPage.DisplayAlert("This is the Title", "Your Mood has been Saved", "Okay");
+            await Navigation.PopAsync();
         }
 
         protected override void OnDisappearing() {
