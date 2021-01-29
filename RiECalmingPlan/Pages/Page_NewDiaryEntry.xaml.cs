@@ -50,7 +50,7 @@ namespace RiECalmingPlan.Pages {
                 return;
             }
 
-            image.Source = ((DiaryEntry)BindingContext).PhotoLink;
+            //image.Source = ((DiaryEntry)BindingContext).PhotoLink;
         }
 
         protected override void OnAppearing() {
@@ -64,7 +64,7 @@ namespace RiECalmingPlan.Pages {
 
             var file = await CrossMedia.Current.PickPhotoAsync();
             if (file != null) {
-                ((DiaryEntry)BindingContext).PhotoLink = file.Path;
+                //((DiaryEntry)BindingContext).PhotoLink = file.Path;
                 SetImageFromPath();
             }
 
@@ -93,7 +93,7 @@ namespace RiECalmingPlan.Pages {
                 } else {
                     //await DisplayAlert("File Location", file.Path, "OK");
 
-                    ((DiaryEntry)BindingContext).PhotoLink = file.Path;
+                    //((DiaryEntry)BindingContext).PhotoLink = file.Path;
                     SetImageFromPath();
 
                 }

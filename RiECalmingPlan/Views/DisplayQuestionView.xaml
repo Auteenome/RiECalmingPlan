@@ -212,12 +212,7 @@
             CheckBoxTemplate="{StaticResource checkBoxTemplate}"
             TextResponseTemplate="{StaticResource textResponseTemplate}"
             LastSlideTemplate="{StaticResource lastSlideTemplate}"/>
-
-            <!-- WIP option 2 using a template selector to define delete function
-            <views:CellTemplateSelector x:Key="cellTemplateSelector"
-            CustomCell="{StaticResource customCell}"
-            BaseCell="{StaticResource baseCell}" />
-            -->
+            
             <views:ResponseTypeToBoolConverter x:Key="responseTypeToBool" />
 
             <Style x:Key="StepperStyle" TargetType="local:StepProgressBar" >

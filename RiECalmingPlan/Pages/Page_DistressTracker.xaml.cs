@@ -15,6 +15,8 @@ namespace RiECalmingPlan.Pages {
 
         private readonly ViewModel_DistressLevel ViewModel = new ViewModel_DistressLevel();
 
+        
+
         public Page_DistressTracker() {
             InitializeComponent();
             Carousel.BindingContext = ViewModel;
@@ -22,14 +24,20 @@ namespace RiECalmingPlan.Pages {
         }
 
         public void LevelButtonPressed(object sender, EventArgs e) {
-            if (Label_DistressLevel.Text.ToString() == "Distress Level: Acute")
+            //Definitely have to simplify this somewhere else
+            if (Label_DistressLevel.Text.ToString() == "Distress Level: Acute") {
+                Frame_Suggestions.BackgroundColor = (Color)Application.Current.Resources["Distress_Red"];
                 Frame_SupportPlan.BackgroundColor = (Color)Application.Current.Resources["Distress_Red"];
-            else if (Label_DistressLevel.Text.ToString() == "Distress Level: Moderate")
+            } else if (Label_DistressLevel.Text.ToString() == "Distress Level: Moderate") {
+                Frame_Suggestions.BackgroundColor = (Color)Application.Current.Resources["Distress_Orange"];
                 Frame_SupportPlan.BackgroundColor = (Color)Application.Current.Resources["Distress_Orange"];
-            else if(Label_DistressLevel.Text.ToString() == "Distress Level: Mild")
+            } else if (Label_DistressLevel.Text.ToString() == "Distress Level: Mild") {
+                Frame_Suggestions.BackgroundColor = (Color)Application.Current.Resources["Distress_Yellow"];
                 Frame_SupportPlan.BackgroundColor = (Color)Application.Current.Resources["Distress_Yellow"];
-            else if(Label_DistressLevel.Text.ToString() == "Distress Level: Calm")
+            } else if (Label_DistressLevel.Text.ToString() == "Distress Level: Calm") {
+                Frame_Suggestions.BackgroundColor = (Color)Application.Current.Resources["Distress_Green"];
                 Frame_SupportPlan.BackgroundColor = (Color)Application.Current.Resources["Distress_Green"];
+            }
             Carousel.Position = 1;
         }
 
@@ -42,7 +50,7 @@ namespace RiECalmingPlan.Pages {
         }
 
         public async void ContinueButtonPressed(object sender, EventArgs e) {
-            await Application.Current.MainPage.DisplayAlert("This is the Title", "Your Mood has been Saved", "Okay");
+            await Application.Current.MainPage.DisplayAlert("Rest In Essence App", "Your Mood has been Saved", "Okay");
             await Navigation.PopAsync();
         }
 

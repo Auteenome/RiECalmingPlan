@@ -1,11 +1,12 @@
-﻿using RiECalmingPlan.ViewModels;
+﻿using MvvmHelpers;
+using RiECalmingPlan.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
 namespace RiECalmingPlan.Models.JSON {
-    public class DiaryEntry {
+    public class DiaryEntry : ViewModel_Base {
         /*
          * Model class that holds a single Diary Entry (Page of a diary) and consists of the following in order:
          * 
@@ -20,13 +21,23 @@ namespace RiECalmingPlan.Models.JSON {
          * 2. Date last edited (Which may be merged with Date of last edited)
          *
          */
-        public int Starter { get; set; }
-        public string Body { get; set; }
-        public string PhotoLink { get; set; }
-        public Double HappinessIndicator { get; set; }
+        private int _Starter;
+        private string _Body;
+        private ObservableRangeCollection<string> _PhotoLinks;
+        private Double _HappinessIndicator;
 
-        public DateTime FirstSubmit { get; set; }
-        public DateTime LastEdited { get; set; }
+        private DateTime _FirstSubmit;
+        private DateTime _LastEdited;
+
+        public int Starter { get { return _Starter; } set { SetProperty(ref _Starter, value); } }
+        public string Body { get { return _Body; } set { SetProperty(ref _Body, value); } }
+        public ObservableRangeCollection<string> PhotoLinks { get { return _PhotoLinks; } set { SetProperty(ref _PhotoLinks, value); } }
+        public Double HappinessIndicator { get { return _HappinessIndicator; } set { SetProperty(ref _HappinessIndicator, value); } }
+
+        public DateTime FirstSubmit { get { return _FirstSubmit; } set { SetProperty(ref _FirstSubmit, value); } }
+        public DateTime LastEdited { get { return _LastEdited; } set { SetProperty(ref _LastEdited, value); } }
+
+
 
     }
 }

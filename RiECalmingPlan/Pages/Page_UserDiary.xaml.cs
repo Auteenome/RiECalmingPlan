@@ -9,55 +9,27 @@ using RiECalmingPlan.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RiECalmingPlan.Models.JSON;
+using RiECalmingPlan.Views;
 
 namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page_UserDiary : ContentPage {
 
-        public ViewModel_DiaryStarters starters = new ViewModel_DiaryStarters();//starters are preloaded here so they are displayed during each ADD/UPDATE entry page
+        //public ViewModel_DiaryStarters starters = new ViewModel_DiaryStarters();//starters are preloaded here so they are displayed during each ADD/UPDATE entry page
+
+        public ViewModel_UserDiary _viewModel;
 
         public Page_UserDiary() {
             InitializeComponent();
-            BindingContext = new ViewModel_DiaryEntries();
+            BindingContext = _viewModel = new ViewModel_UserDiary();
         }
 
-        protected override void OnAppearing() {
-            base.OnAppearing();
-            ((ViewModel_DiaryEntries)BindingContext).Refresh();
-        }
+        
 
-        async void NewEntryButtonClicked(object sender, EventArgs e) {
-            var page = new Page_NewDiaryEntry(starters) {
-                BindingContext = new DiaryEntry()
-            };
-            page.Init();
-            page.SaveHandler += ((ViewModel_DiaryEntries)BindingContext).AddEntry;
-            await Navigation.PushAsync(page);
-        }
-
-        void ResetButtonClicked(object sender, EventArgs e) {
-            ((ViewModel_DiaryEntries)BindingContext).Reset();
-        }
-
-        void DeleteSwipeItemClicked(object sender, EventArgs e) {
-            SwipeItem item = sender as SwipeItem;
-            DiaryEntry model = item.BindingContext as DiaryEntry;
-            ((ViewModel_DiaryEntries)BindingContext).RemoveEntry(model);
-        }
-
-        async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e) {
-            DiaryEntry entry = (DiaryEntry)e.SelectedItem;
-            ((ViewModel_DiaryEntries)BindingContext).Entries.Remove(entry);
-            if (e.SelectedItem != null) {
-                var page = new Page_NewDiaryEntry(starters) {
-                    BindingContext = entry,
-                    EntryType = "Update",
-                    
-                };
-                page.Init();
-                page.UpdateHandler += ((ViewModel_DiaryEntries)BindingContext).UpdateEntry;
-                await Navigation.PushAsync(page);
-            }
+        //I'll be honest and say this took me like half a day to find
+        private void RefreshSlide_Clicked(object sender, EventArgs e) {
+            Carousel.ClearValue(ItemsView.ItemTemplateProperty);
+            Carousel.SetValue(ItemsView.ItemTemplateProperty, this.Resources["userDiarySelector"]);
         }
     }
 }

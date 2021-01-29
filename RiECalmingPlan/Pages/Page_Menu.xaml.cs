@@ -36,6 +36,8 @@ namespace RiECalmingPlan.Pages {
 
         async void GoToUserDiary(object sender, EventArgs e) {
             //Fingerprint stuff https://github.com/smstuebe/xamarin-fingerprint
+            /*
+             * 
             var request = new AuthenticationRequestConfiguration("Fingerprint Protected", "Use your finger to unlock your diary!") {
                 AllowAlternativeAuthentication = true
             };
@@ -44,6 +46,8 @@ namespace RiECalmingPlan.Pages {
             if (result.Authenticated) {
                 await Navigation.PushAsync(new Page_UserDiary());
             }
+            */
+            await Navigation.PushAsync(new Page_UserDiary());
             //Too many attempts will also lock them out for a while, but not sure how long exactly.
             //If the alternative method is not added and fingerprint is not already put into the device, it will not allow the user to enter into the diary at all
         }

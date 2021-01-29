@@ -13,3 +13,17 @@
 
 23/01/2021
 - [Calming Plan] Appended a last slide to the Questions Carousel to indicate the end of the Survey
+- [Support Plan] Changed the flow of the Support Plan page. Will deal with the UI changes later.
+
+25/01/2021
+- [Support Plan] Tidied up the Suggestions frame to match the Expressions Frame
+
+26/01/2021
+- [User Diary] Started working on the layout updates
+
+28/01/2021
+- [User Diary] Continued working on the layout updates
+
+29/01/2021
+- [User Diary] Continued working on the layout updates (Saving and loading from the JSON works, but more work needs to be done to make it work with images etc)
+

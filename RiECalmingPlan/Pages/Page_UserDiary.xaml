@@ -3,42 +3,131 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:RiECalmingPlan.Views"
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_UserDiary"
+             xmlns:viewModel="clr-namespace:RiECalmingPlan.ViewModels"
              BackgroundColor="{StaticResource RiEOffWhite}">
-    
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="NewEntryButtonClicked"/>
-        <!--<ToolbarItem Text="Reset" Clicked="ResetButtonClicked"/>-->
-    </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <!--
+            The resources here will have the following resources
+            - Completed Diary Entry (Turns into Editing Diary Entry once Edit button is pressed)
+            - Editing Diary Entry (Turns into Completed Diary Entry once Save button is pressed)
+            - New Diary Entry space (End of the carousel, can click this to turn it into an editing Diary Entry. This space will also just be an image button with a '+' on it or something)
+            - Template Selector (To define if the layout will be Completed/Edited/New)
+        -->
+        <DataTemplate x:Key="DiaryEntry_CompletedTemplate">
+            <!-- Indicates a completed diary entry -->
+            <Frame Style="{StaticResource QuestionFrameStyle}">
+                <StackLayout Padding="5" Spacing="10">
+                    <Label HorizontalOptions="CenterAndExpand" Text="Starter Statement here"/>
+                    <Label HorizontalOptions="CenterAndExpand" BindingContext="{Binding Entry}" Text="{Binding Body}"/>
+                    <CollectionView BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="3" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding}"/>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <ProgressBar HorizontalOptions="CenterAndExpand"  BindingContext="{Binding Entry}" Progress="{Binding HappinessIndicator}"/>
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="*">
+                        <Button Grid.Column="0"
+                                Text="Edit"
+                                ImageSource="baseline_add_photo_alternate_24"
+                                Command="{Binding Command_EditEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
+                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
+                                Clicked="RefreshSlide_Clicked"/>
+                        <Button Grid.Column="1"
+                                Text="Delete"
+                                ImageSource="baseline_add_photo_alternate_24"
+                                Command="{Binding Command_RemoveEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
+                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
+                                Clicked="RefreshSlide_Clicked"/>
+                    </Grid>
+
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DiaryEntry_EditingTemplate">
+            <!-- Indicates a completed/uncompleted diary entry that can be changed. -->
+            <!-- This uses the current user diary new entry layout but will be refined later -->
+            <Frame Style="{StaticResource QuestionFrameStyle}">
+                <!--may change this to a flexlayout, for a responsive stack-->
+                <StackLayout>
+                    <Label Text="Starter Statement" />
+                    <Picker x:Name="starterPicker" ItemsSource="{Binding Starters}" ItemDisplayBinding="{Binding Label}" SelectedIndex="{Binding SelectedIndex}" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"/>
+                    <StackLayout>
+                        <Label Text="Write your diary entry below"
+                           Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"
+                           HorizontalOptions="CenterAndExpand"/>
+                        <Editor BindingContext="{Binding Entry}" 
+                                Text="{Binding Body}"
+                                HorizontalOptions="CenterAndExpand"
+                                WidthRequest="500"
+                                MaxLength="2000"
+                                AutoSize="TextChanges"
+                                FontSize="Default"
+                                FontFamily="NimbusReg"/>
+                        <Label Text="Upload A Photo" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}" HorizontalOptions="CenterAndExpand" />
+                        <CollectionView BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="3" />
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding}"/>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="*">
+                            <Button Command="{Binding Command_AddImageFromGallery}" Grid.Column="0" ContentLayout="Left" ImageSource="baseline_add_photo_alternate_24" Style="{StaticResource Style_IconButton}" HorizontalOptions="Center"/>
+                            <Button Command="{Binding Command_AddImageFromCamera}" Grid.Column="1" Text="" ContentLayout="Left" ImageSource="baseline_add_a_photo_24" Style="{StaticResource Style_IconButton}" HorizontalOptions="Center"/>
+                        </Grid>
+                        <Label Text="How happy are you right now?" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}" HorizontalOptions="CenterAndExpand" Margin="0,20,0,0"/>
+                        <Slider BindingContext="{Binding Entry}" Value="{Binding HappinessIndicator}" WidthRequest="500" HorizontalOptions="CenterAndExpand" MinimumTrackColor="Black" MaximumTrackColor="Blue" />
+                        <Button x:Name="SaveButton" 
+                                Text="Save Diary Entry" 
+                                Style="{StaticResource Style_GreenRoundedBorderButton}" 
+                                Padding="10,5,10,5" 
+                                Margin="0,20,0,0" 
+                                VerticalOptions="End"
+                                Command="{Binding Command_SaveEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
+                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
+                                Clicked="RefreshSlide_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+        <DataTemplate x:Key="DiaryEntry_NewSpaceTemplate">
+            <!-- Indicates a new space (Usually the end) of the diary carousel that the user can click on turn this space into a new diary entry -->
+            <Frame Style="{StaticResource QuestionFrameStyle}">
+                <StackLayout>
+                    <Label Text="This is an empty space"/>
+                    <Button Text="Add Diary Entry" 
+                            Command="{Binding Command_EditEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
+                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
+                            Clicked="RefreshSlide_Clicked"/>
+                </StackLayout>
+            </Frame>
+        </DataTemplate>
+
+
+        <views:UserDiaryTemplateSelector x:Key="userDiarySelector"
+            CompletedTemplate="{StaticResource DiaryEntry_CompletedTemplate}"
+            EditingTemplate="{StaticResource DiaryEntry_EditingTemplate}"
+            NewSpaceTemplate="{StaticResource DiaryEntry_NewSpaceTemplate}"/>
+
+    </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ListView x:Name="listView"
-                  Margin="20"
-                  ItemsSource="{Binding Entries}"
-                  ItemSelected="OnListViewItemSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItems>
-                                    <!-- IconImageSource="delete.png" if you want to use an image here-->
-                                    <SwipeItem Text="Delete"
-                                               BackgroundColor="LightGray"
-                                               Invoked="DeleteSwipeItemClicked" />
-                                </SwipeItems>
-                            </SwipeView.LeftItems>
-                            <StackLayout BackgroundColor="{StaticResource RiEOffWhite}">
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding Body}" />
-                                </StackLayout>
-                                <Label Text="{Binding FirstSubmit, StringFormat='First Submitted: {0}'}" />
-                            </StackLayout>
-                        </SwipeView>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackLayout>
+            <CarouselView x:Name="Carousel" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
