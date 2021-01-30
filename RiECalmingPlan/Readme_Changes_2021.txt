@@ -19,11 +19,14 @@
 - [Support Plan] Tidied up the Suggestions frame to match the Expressions Frame
 
 26/01/2021
-- [User Diary] Started working on the layout updates
+- [User Diary] Started working on the layout and data updates
 
 28/01/2021
-- [User Diary] Continued working on the layout updates
+- [User Diary] Continued working on the layout and data updates (Saving and loading from the JSON works, but more work needs to be done to make it work with images etc)
 
 29/01/2021
-- [User Diary] Continued working on the layout updates (Saving and loading from the JSON works, but more work needs to be done to make it work with images etc)
+- [User Diary] Continued working on the layout and data updates (Images now work correctly)
 
+30/01/2021
+- [User Diary] Continued working on the layout updates (UI is tidied up a bit and now it is suitable to be used functionally
+	(Note, there is no function that allows the user to remove an image from the list when editing a diary entry. Might be added in eventually)
