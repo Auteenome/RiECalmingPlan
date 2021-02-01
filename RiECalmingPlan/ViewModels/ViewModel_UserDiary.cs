@@ -20,6 +20,12 @@ namespace RiECalmingPlan.ViewModels {
          * 
          */
 
+        private ObservableRangeCollection<DiaryStarter> _DiaryStarters;
+        public ObservableRangeCollection<DiaryStarter> DiaryStarters { get { return _DiaryStarters; } set { SetProperty(ref _DiaryStarters, value); } }
+
+        private string _SelectedStarter;
+        public string SelectedStarter { get { return _SelectedStarter; } set { SetProperty(ref _SelectedStarter, value); } }
+
         private ObservableRangeCollection<ViewModel_DiaryEntry> _DiaryEntries;
         public ObservableRangeCollection<ViewModel_DiaryEntry> DiaryEntries { get {return _DiaryEntries; } set { SetProperty(ref _DiaryEntries, value); } }
 
@@ -36,10 +42,14 @@ namespace RiECalmingPlan.ViewModels {
             RefreshViewModel();
         }
 
-        private void RefreshViewModel() {
+        private async void RefreshViewModel() {
+
             ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry>();
             entries.AddRange(UserDiaryFileController.Load());
             entries.Add(new ViewModel_DiaryEntry() { Entry = new DiaryEntry() });
+
+
+            DiaryStarters = await App.database.GetDiaryStarterOptionsAsync();
 
             DiaryEntries = entries;
         }

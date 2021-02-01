@@ -8,5 +8,9 @@ namespace RiECalmingPlan.Models {
     public class DiaryStarter {
         [Column("Label")]
         public string Label { get; set; }
+
+        public override string ToString() {
+            return Label;
+        }
     }
 }

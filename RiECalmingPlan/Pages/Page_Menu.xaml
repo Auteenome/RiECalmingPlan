@@ -73,8 +73,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Button Text="T&amp;C"
+                        ImageSource="baseline_info_24"
                         Style="{StaticResource Style_TextIconButton}"
-                        ImageSource="pin_right.png"
                         Clicked="GoToAboutPage" 
                         Grid.Column="0"/>
                 <!-- Bind to last diary entry user has added-->

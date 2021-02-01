@@ -21,7 +21,7 @@ namespace RiECalmingPlan.Models.JSON {
          * 2. Date last edited (Which may be merged with Date of last edited)
          *
          */
-        private int _Starter;
+        private DiaryStarter _Starter;
         private string _Body;
         private ObservableRangeCollection<string> _PhotoLinks;
         private Double _HappinessIndicator;
@@ -29,7 +29,15 @@ namespace RiECalmingPlan.Models.JSON {
         private DateTime _FirstSubmit;
         private DateTime _LastEdited;
 
-        public int Starter { get { return _Starter; } set { SetProperty(ref _Starter, value); } }
+        public DiaryStarter Starter { get { return _Starter; } set { SetProperty(ref _Starter, value); } }
+        public string StarterText { 
+            get {
+                if (_Starter == null) {
+                    return "Select One";
+                }
+                return _Starter.Label; 
+            } 
+        }
         public string Body { get { return _Body; } set { SetProperty(ref _Body, value); } }
         public ObservableRangeCollection<string> PhotoLinks { get { return _PhotoLinks; } set { SetProperty(ref _PhotoLinks, value); } }
         public Double HappinessIndicator { get { return _HappinessIndicator; } set { SetProperty(ref _HappinessIndicator, value); } }

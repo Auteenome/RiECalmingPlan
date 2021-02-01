@@ -30,3 +30,7 @@
 30/01/2021
 - [User Diary] Continued working on the layout updates (UI is tidied up a bit and now it is suitable to be used functionally
 	(Note, there is no function that allows the user to remove an image from the list when editing a diary entry. Might be added in eventually)
+
+31/01/2021, 1/02/2021
+- [User Diary] Continued working on UI, added new icons, vertical scrolling, diary starters now fully work 
+	(Image Resources are added only in android side for now but also need to be updated so all icons are consistent in style before publishing to IOS store etc)
