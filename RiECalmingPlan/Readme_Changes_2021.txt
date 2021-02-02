@@ -40,3 +40,4 @@
 - [T&C Page] Checkbox recolour, T&C bottom controls are now only visible if the user hasn't already accepted the first time after the app is installed
 - [User Diary] Vertical scrolling -> Horizontal Scrolling
 - [Calming Plan, Distress Tracker, Distress Graph, User Diary] Upon entering the page for the first time, a popup occurs showing help text
+- [Distress Tracker] Distress Input from Pyramid is now saved even without location being pulled (Will display a '-' if no value was saved at the time)

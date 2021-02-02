@@ -73,17 +73,18 @@ namespace RiECalmingPlan.ViewModels {
              * 
              */
             DistressType = parameter;
-            //Reset current log
+            Location location = null;
+            IEnumerable<Placemark> placemarks;
+            Placemark placemark;
+            string locationString = "-";//If the try/catch block fails it will save this NA value to the cell instead
+
+            //Reset current location
             try {
-                var location = await Geolocation.GetLastKnownLocationAsync();
-                var placemarks = await Geocoding.GetPlacemarksAsync(location);
-                Placemark placemark = placemarks?.FirstOrDefault();
-                string locationString = placemark.FeatureName + " " + placemark.Thoroughfare + ", " + placemark.Locality + ", " + placemark.AdminArea + ", " + placemark.CountryName + ", " + placemark.PostalCode;
-                TimeStamp = new UserInputDistressLevel() { DistressLevelType = DistressType, StartTime = DateTime.Now, Location = locationString};
+                location = await Geolocation.GetLastKnownLocationAsync().ConfigureAwait(false);
+                placemarks = await Geocoding.GetPlacemarksAsync(location).ConfigureAwait(false);
+                placemark = placemarks?.FirstOrDefault();
+                locationString = placemark.FeatureName + " " + placemark.Thoroughfare + ", " + placemark.Locality + ", " + placemark.AdminArea + ", " + placemark.CountryName + ", " + placemark.PostalCode;
 
-
-                //Log user's current distress level
-                await App.database.AppendUserInputDistressLevel(TimeStamp);
             } catch (FeatureNotSupportedException fnsEx) {
                 // Feature not supported on device
                 Console.WriteLine(fnsEx);
@@ -91,6 +92,16 @@ namespace RiECalmingPlan.ViewModels {
                 // Handle exception that may have occurred in geocoding
                 Console.WriteLine(ex);
             }
+
+            TimeStamp = new UserInputDistressLevel() {
+                DistressLevelType = DistressType,
+                StartTime = DateTime.Now,
+                Location = locationString
+            };
+
+            //Log user's current distress level
+            await App.database.AppendUserInputDistressLevel(TimeStamp);
+
         }
 
 
