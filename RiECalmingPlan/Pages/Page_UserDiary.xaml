@@ -175,7 +175,7 @@
         <StackLayout>
             <CarouselView Margin="30" PeekAreaInsets="10"  x:Name="Carousel" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}" >
                 <CarouselView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" />
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" />
                 </CarouselView.ItemsLayout>
             </CarouselView>
         </StackLayout>

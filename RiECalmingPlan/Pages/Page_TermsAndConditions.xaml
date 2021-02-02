@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:preferences="clr-namespace:RiECalmingPlan.ViewModels"
              x:Class="RiECalmingPlan.Pages.Page_TermsAndConditions"
              BackgroundColor="{StaticResource RiEOffWhite}">
     
@@ -22,17 +23,37 @@
                    Text="These are the terms and conditions"
                    Style="{StaticResource Style_NimbusRegDefaultSizeLabel}"/>
         </ScrollView>
-        
-        <StackLayout Orientation="Horizontal"
-                     Spacing="0">
+
+        <StackLayout Orientation="Horizontal" Spacing="0" IsVisible="{Binding ., Source={x:Static preferences:AppPreferences.TermsAndConditionsBottomControls}}">
             <CheckBox x:Name="CheckBox_Agreed"
                       VerticalOptions="Center"
-                      IsChecked="False" />
+                      IsChecked="False">
+                <!--Checkbox Style based on state (Checked, Unchecked) -->
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Color" Value="LightGreen" />
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="IsChecked">
+                            <VisualState.Setters>
+                                <Setter Property="Color" Value="DarkGreen" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </CheckBox>
+            
+            
             <Label Text="I have read and agree to the Terms and Conditions"
                    VerticalOptions="Center" />
-        </StackLayout>
 
+
+        </StackLayout>
         <Button x:Name="Button_Accept"
+                IsVisible="{Binding ., Source={x:Static preferences:AppPreferences.TermsAndConditionsBottomControls}}"
                 Style="{StaticResource Style_GreenRoundedBorderButton}"
                 Text="Accept terms and conditions"
                 Clicked="Button_Accept_Clicked" />

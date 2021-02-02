@@ -62,7 +62,7 @@ namespace RiECalmingPlan.ViewModels {
         private void SignUp()
         {
             // redirect to Terms and Conditions if they have not been accepted
-            if (AppPreferences.TermsAndConditionsAccepted)
+            if (AppPreferences.TermsAndConditionsBottomControls)
                 App.Current.MainPage.Navigation.PushAsync(new Pages.Page_Register());
             else
                 App.Current.MainPage.Navigation.PushAsync(new Pages.Page_TermsAndConditions());

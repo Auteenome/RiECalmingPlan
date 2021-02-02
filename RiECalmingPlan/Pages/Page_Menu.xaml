@@ -75,7 +75,7 @@
                 <Button Text="T&amp;C"
                         ImageSource="baseline_info_24"
                         Style="{StaticResource Style_TextIconButton}"
-                        Clicked="GoToAboutPage" 
+                        Clicked="GoToTandCPage" 
                         Grid.Column="0"/>
                 <!-- Bind to last diary entry user has added-->
                 <Label HorizontalTextAlignment="End" Text="{Binding LastDiaryEntry, StringFormat='Last Diary Entry:{0}'}" Grid.Column="1"/>

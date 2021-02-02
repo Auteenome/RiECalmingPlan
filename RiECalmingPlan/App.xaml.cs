@@ -51,7 +51,7 @@ namespace RiECalmingPlan {
         private NavigationPage LoadMainPage()
         {
             // decides whether to navigate to menu page or login page
-            if (!AppPreferences.TermsAndConditionsAccepted)  // if t&c not accepted
+            if (AppPreferences.TermsAndConditionsBottomControls)  // if t&c not accepted
             {
                 return new NavigationPage(new Pages.Page_TermsAndConditions()) 
                 {

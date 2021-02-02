@@ -34,3 +34,8 @@
 31/01/2021, 1/02/2021
 - [User Diary] Continued working on UI, added new icons, vertical scrolling, diary starters now fully work 
 	(Image Resources are added only in android side for now but also need to be updated so all icons are consistent in style before publishing to IOS store etc)
+
+2/02/2021
+- [Main Menu] Terms and Conditions button now takes you back to the Terms and Conditions page.
+- [T&C Page] Checkbox recolour, T&C bottom controls are now only visible if the user hasn't already accepted the first time after the app is installed
+- [User Diary] Vertical scrolling -> Horizontal Scrolling

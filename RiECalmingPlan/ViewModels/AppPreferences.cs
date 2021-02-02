@@ -23,9 +23,9 @@ namespace RiECalmingPlan.ViewModels {
         }
         */
 
-        public static bool TermsAndConditionsAccepted {
-            get => Preferences.Get(nameof(TermsAndConditionsAccepted), false);
-            set => Preferences.Set(nameof(TermsAndConditionsAccepted), value);
+        public static bool TermsAndConditionsBottomControls {
+            get => Preferences.Get(nameof(TermsAndConditionsBottomControls), true);
+            set => Preferences.Set(nameof(TermsAndConditionsBottomControls), value);
         }
 
         public static bool FirstTimeOpened {

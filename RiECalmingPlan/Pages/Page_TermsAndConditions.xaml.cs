@@ -14,8 +14,7 @@ using RiECalmingPlan.ViewModels;
 namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page_TermsAndConditions : ContentPage {
-        public Page_TermsAndConditions()
-        {
+        public Page_TermsAndConditions() {
             InitializeComponent();
 
             // ********** FILE READING ********** 
@@ -29,10 +28,8 @@ namespace RiECalmingPlan.Pages {
             Label_TermsAndConditions.Text = text;
         }
 
-        private async void Button_Accept_Clicked(object sender, EventArgs e)
-        {
-            if (CheckBox_Agreed.IsChecked)
-            {
+        private async void Button_Accept_Clicked(object sender, EventArgs e) {
+            if (CheckBox_Agreed.IsChecked) {
                 /*
                  * This below code (Upon first entering after installed, will still show the back button once the user enters the main menu)
                  * The new code now removes this page after the new one is opened (also displays the back button for like 0.01s so it isn't great)
@@ -41,13 +38,11 @@ namespace RiECalmingPlan.Pages {
                  * await Navigation.PushAsync(new Page_Menu());
                  */
 
-                AppPreferences.TermsAndConditionsAccepted = true;
+                AppPreferences.TermsAndConditionsBottomControls = false;
                 var previousPage = Navigation.NavigationStack.LastOrDefault();//Current page (Terms and Conditions)
                 await Navigation.PushAsync(new Page_Menu());
                 Navigation.RemovePage(previousPage);
-            }
-            else
-            {
+            } else {
                 await DisplayAlert("Accept", "Please accept the terms and conditions", "OK");
             }
         }
