@@ -19,7 +19,7 @@ namespace RiECalmingPlan.Views {
             CheckBox checkbox = (CheckBox)sender;
             Label_CheckBox checkBoxLabel = ((Label_CheckBox)checkbox.BindingContext);
 
-           await App.database.UpdateCheckBoxResponse(checkBoxLabel);
+            await App.database.UpdateCheckBoxResponse(checkBoxLabel);
         }
 
         private void CheckBoxItemTapped(object sender, ItemTappedEventArgs e) {

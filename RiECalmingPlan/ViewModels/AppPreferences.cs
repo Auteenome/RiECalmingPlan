@@ -28,6 +28,24 @@ namespace RiECalmingPlan.ViewModels {
             set => Preferences.Set(nameof(TermsAndConditionsBottomControls), value);
         }
 
+        //---------------- HELP FLAGS ---------------------------------------
+        public static bool Help_CalmingPlan {
+            get => Preferences.Get(nameof(Help_CalmingPlan), false);
+            set => Preferences.Set(nameof(Help_CalmingPlan), value);
+        }
+        public static bool Help_DistressTracker {
+            get => Preferences.Get(nameof(Help_DistressTracker), false);
+            set => Preferences.Set(nameof(Help_DistressTracker), value);
+        }
+        public static bool Help_DistressHistory {
+            get => Preferences.Get(nameof(Help_DistressHistory), false);
+            set => Preferences.Set(nameof(Help_DistressHistory), value);
+        }
+        public static bool Help_UserDiary {
+            get => Preferences.Get(nameof(Help_UserDiary), false);
+            set => Preferences.Set(nameof(Help_UserDiary), value);
+        }
+
         public static bool FirstTimeOpened {
             get => Preferences.Get(nameof(FirstTimeOpened), true);
             set => Preferences.Set(nameof(FirstTimeOpened), value);

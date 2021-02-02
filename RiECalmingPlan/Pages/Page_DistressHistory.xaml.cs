@@ -14,6 +14,11 @@ namespace RiECalmingPlan.Pages {
         public Page_DistressHistory() {
             InitializeComponent();
             BindingContext = new ViewModel_DistressHistory();
+
+            if (!AppPreferences.Help_DistressHistory) {
+                AppPreferences.Help_DistressHistory = true;
+                this.DisplayAlert("Distress Tracker Tutorial", "You can view all the times you have interacted with the pyramid", "Okay");
+            }
         }
     }
 }

@@ -22,6 +22,11 @@ namespace RiECalmingPlan.Pages {
         public Page_UserDiary() {
             InitializeComponent();
             BindingContext = _viewModel = new ViewModel_UserDiary();
+
+            if (!AppPreferences.Help_UserDiary) {
+                AppPreferences.Help_UserDiary = true;
+                this.DisplayAlert("User Diary Tutorial", "You can add your own diary entries to this diary", "Okay");
+            }
         }
 
         

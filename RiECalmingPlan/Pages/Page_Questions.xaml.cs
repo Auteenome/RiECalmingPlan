@@ -1,4 +1,5 @@
 ﻿using RiECalmingPlan.Models;
+using RiECalmingPlan.ViewModels;
 using System;
 
 using Xamarin.Forms;
@@ -10,10 +11,10 @@ namespace RiECalmingPlan.Pages {
         public Page_Questions() {
             InitializeComponent();
 
-        }
-
-        protected override void OnAppearing() {
-            base.OnAppearing();
+            if (!AppPreferences.Help_CalmingPlan) {
+                AppPreferences.Help_CalmingPlan = true;
+                this.DisplayAlert("Calming Plan Tutorial", "Please finish this survey regarding your stressors", "Okay");
+            }
         }
 
     }
