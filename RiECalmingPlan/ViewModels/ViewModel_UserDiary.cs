@@ -45,8 +45,8 @@ namespace RiECalmingPlan.ViewModels {
         private async void RefreshViewModel() {
 
             ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry>();
-            entries.AddRange(UserDiaryFileController.Load());
             entries.Add(new ViewModel_DiaryEntry() { Entry = new DiaryEntry() });
+            entries.AddRange(UserDiaryFileController.Load());
 
 
             DiaryStarters = await App.database.GetDiaryStarterOptionsAsync();
@@ -57,11 +57,13 @@ namespace RiECalmingPlan.ViewModels {
         private void SaveEntry(ViewModel_DiaryEntry entry) {
             Console.WriteLine("Saving Entry ");
 
+            entry.Entry.LastEdited = DateTime.Now;
+            AppPreferences.LastDiaryEntry = entry.Entry.LastEdited;
+
             List<ViewModel_DiaryEntry> entries = new List<ViewModel_DiaryEntry>();
             entries.AddRange(DiaryEntries);//Adds current diary list from viewmodel
             UserDiaryFileController.Save(entries);
 
-            AppPreferences.LastDiaryEntry = entry.Entry.LastEdited;
 
             RefreshViewModel();
         }
@@ -78,8 +80,21 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private void EditEntry(ViewModel_DiaryEntry entry) {
+            //Triggered when the user clicks the EditEntry or NewEntry button
+            if (entry.CurrentState == ViewModel_DiaryEntry.DiaryEntryState.NEWSPACE) {
+                //If it was a new frame, change the first submit field
+                Console.WriteLine("Setting First Submit");
+                entry.Entry.FirstSubmit = DateTime.Now;
+                entry.Entry.LastEdited = DateTime.Now;
+            }
             Console.WriteLine("Editing Entry ");
-
+            foreach (ViewModel_DiaryEntry e in DiaryEntries) {
+                //Flip all Editing states in each entry to be completed
+                if (e.CurrentState == ViewModel_DiaryEntry.DiaryEntryState.EDITING) {
+                    e.CurrentState = ViewModel_DiaryEntry.DiaryEntryState.COMPLETED;
+                }
+            }
+            //Finally, change the current entry to be EDIT state
             entry.CurrentState = ViewModel_DiaryEntry.DiaryEntryState.EDITING;
         }
     }

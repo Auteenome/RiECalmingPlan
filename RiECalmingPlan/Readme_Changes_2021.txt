@@ -49,6 +49,9 @@
 - [Calming Plan] Main Menu button added at the last slide
 Notes: Xamarin Forms [5.0.0.1931] (Newest) is not compatable with Carouselview for this project. This is because it has something to do with the new loop feature.
 The last known version of it is Xamarin Forms [4.8.0.1821]. This will be kept until a more stable version is released. Also at this point the Loop property is taken back off.
+- [User Diary, Main Menu] Last Edited and First Submitted fields are correctly changed and reflective in the views it belongs to.
+- [Calming Plan, Distress Tracker, Distress Graph, User Diary] The user is given an option to permanently remove the respective dialog box after the first time after installation
+
 
 
 

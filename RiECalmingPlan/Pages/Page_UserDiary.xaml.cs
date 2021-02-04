@@ -24,20 +24,25 @@ namespace RiECalmingPlan.Pages {
             InitializeComponent();
             BindingContext = _viewModel = new ViewModel_UserDiary();
 
+            Init();
+        }
+
+        public async void Init() {
             if (!AppPreferences.Help_UserDiary) {
-                AppPreferences.Help_UserDiary = true;
-                this.DisplayAlert("User Diary Tutorial", "You can add your own diary entries to this diary", "Okay");
+                AppPreferences.Help_UserDiary = !(await this.DisplayAlert("User Diary Tutorial", "You can add your own diary entries to this diary", "Yes", "No"));
             }
         }
         
 
         //I'll be honest and say this took me like half a day to find
         private void RefreshSlide_Clicked(object sender, EventArgs e) {
-            ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry>(_viewModel.DiaryEntries);
-            Carousel.ItemsSource = entries;
+            //Refreshes ItemSource (The problem with this is that the state flags are jumbled. Have to fix this if xamarin forms is updated)
+            //ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry>(_viewModel.DiaryEntries);
+            //Carousel.ItemsSource = entries;
 
-            //Carousel.ClearValue(ItemsView.ItemTemplateProperty);
-            //Carousel.SetValue(ItemsView.ItemTemplateProperty, Resources["userDiarySelector"]);
+
+            Carousel.ClearValue(ItemsView.ItemTemplateProperty);
+            Carousel.SetValue(ItemsView.ItemTemplateProperty, Resources["userDiarySelector"]);
         }
     }
 }

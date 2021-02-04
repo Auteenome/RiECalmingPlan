@@ -11,11 +11,13 @@ namespace RiECalmingPlan.Pages {
         public Page_Questions() {
             InitializeComponent();
 
-            if (!AppPreferences.Help_CalmingPlan) {
-                AppPreferences.Help_CalmingPlan = true;
-                this.DisplayAlert("Calming Plan Tutorial", "Please finish this survey regarding your stressors", "Okay");
-            }
+            Init();
         }
 
+        public async void Init() {
+            if (!AppPreferences.Help_CalmingPlan) {
+                AppPreferences.Help_CalmingPlan = !(await this.DisplayAlert("Calming Plan Tutorial", "Please finish this survey regarding your stressors", "Yes", "No"));
+            }
+        }
     }
 }

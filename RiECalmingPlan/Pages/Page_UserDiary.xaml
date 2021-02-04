@@ -21,7 +21,10 @@
             <!-- Indicates a completed diary entry -->
             <Frame Style="{StaticResource QuestionFrameStyle}">
                 <StackLayout Padding="5" Spacing="10">
-                    <Label HorizontalOptions="CenterAndExpand" Text="Starter Statement here"/>
+                    <Label BindingContext="{Binding Entry}" Text="{Binding FirstSubmit, StringFormat='First Submitted: {0}'}" HorizontalOptions="CenterAndExpand" MaxLines="1" IsVisible="True"/>
+                    <Label BindingContext="{Binding Entry}" Text="{Binding LastEdited, StringFormat='Last Edited: {0}'}" HorizontalOptions="CenterAndExpand" MaxLines="1" IsVisible="True"/>
+
+
 
                     <Label BindingContext="{Binding Entry}" HorizontalOptions="CenterAndExpand" MaxLines="1">
                         <Label.Text>
@@ -31,6 +34,8 @@
                             </MultiBinding>
                         </Label.Text>
                     </Label>
+
+
 
                     <!-- Image Collection -->
                     <CollectionView BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">

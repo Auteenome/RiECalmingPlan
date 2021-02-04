@@ -21,11 +21,14 @@ namespace RiECalmingPlan.Pages {
             InitializeComponent();
             Carousel.BindingContext = ViewModel;
 
-            if (!AppPreferences.Help_DistressTracker) {
-                AppPreferences.Help_DistressTracker = true;
-                this.DisplayAlert("Distress Tracker Tutorial", "You can find your expressions and interventions here", "Okay");
-            }
+            Init();
 
+        }
+
+        public async void Init() {
+            if (!AppPreferences.Help_DistressTracker) {
+                AppPreferences.Help_DistressTracker = !(await this.DisplayAlert("Distress Tracker Tutorial", "You can find your expressions and interventions here.\nShow Again?", "No", "Yes"));
+            }
         }
 
         public void LevelButtonPressed(object sender, EventArgs e) {
