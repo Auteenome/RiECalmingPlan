@@ -4,6 +4,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Support.V4.App;
+using AndroidX.Core.App;
 using RiECalmingPlan.LocalNotifications;
 using Xamarin.Forms;
 using AndroidApp = Android.App.Application;

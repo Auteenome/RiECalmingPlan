@@ -41,3 +41,14 @@
 - [User Diary] Vertical scrolling -> Horizontal Scrolling
 - [Calming Plan, Distress Tracker, Distress Graph, User Diary] Upon entering the page for the first time, a popup occurs showing help text
 - [Distress Tracker] Distress Input from Pyramid is now saved even without location being pulled (Will display a '-' if no value was saved at the time)
+
+4/02/2021
+- Android Minimum SDK is now at v10
+- [Nuget Packages] All packages updated to latest, except Xamarin Forms (See Notes)
+- [Calming Plan, User Diary, Distress Tracker] Carousel Loop property set to false. Nuget Package update forced Carousel to loop as a default. REDACTED (See Notes)
+- [Calming Plan] Main Menu button added at the last slide
+Notes: Xamarin Forms [5.0.0.1931] (Newest) is not compatable with Carouselview for this project. This is because it has something to do with the new loop feature.
+The last known version of it is Xamarin Forms [4.8.0.1821]. This will be kept until a more stable version is released. Also at this point the Loop property is taken back off.
+
+
+

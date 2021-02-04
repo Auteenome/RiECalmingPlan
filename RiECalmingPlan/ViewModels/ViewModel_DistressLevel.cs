@@ -73,7 +73,7 @@ namespace RiECalmingPlan.ViewModels {
              * 
              */
             DistressType = parameter;
-            Location location = null;
+            Location location;
             IEnumerable<Placemark> placemarks;
             Placemark placemark;
             string locationString = "-";//If the try/catch block fails it will save this NA value to the cell instead

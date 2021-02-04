@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RiECalmingPlan.Models.JSON;
 using RiECalmingPlan.Views;
+using MvvmHelpers;
 
 namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -28,13 +29,15 @@ namespace RiECalmingPlan.Pages {
                 this.DisplayAlert("User Diary Tutorial", "You can add your own diary entries to this diary", "Okay");
             }
         }
-
         
 
         //I'll be honest and say this took me like half a day to find
         private void RefreshSlide_Clicked(object sender, EventArgs e) {
-            Carousel.ClearValue(ItemsView.ItemTemplateProperty);
-            Carousel.SetValue(ItemsView.ItemTemplateProperty, this.Resources["userDiarySelector"]);
+            ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry>(_viewModel.DiaryEntries);
+            Carousel.ItemsSource = entries;
+
+            //Carousel.ClearValue(ItemsView.ItemTemplateProperty);
+            //Carousel.SetValue(ItemsView.ItemTemplateProperty, Resources["userDiarySelector"]);
         }
     }
 }

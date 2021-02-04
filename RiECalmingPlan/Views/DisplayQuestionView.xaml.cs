@@ -27,5 +27,9 @@ namespace RiECalmingPlan.Views {
 
             checkBoxLabel.Value = checkBoxLabel.Value == 0 ? 1:0;
         }
+
+        private void LastSlideButtonClicked(object sender, EventArgs e) {
+            Navigation.PopAsync();
+        }
     }
 }

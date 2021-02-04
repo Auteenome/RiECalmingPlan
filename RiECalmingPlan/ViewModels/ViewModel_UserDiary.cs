@@ -61,6 +61,8 @@ namespace RiECalmingPlan.ViewModels {
             entries.AddRange(DiaryEntries);//Adds current diary list from viewmodel
             UserDiaryFileController.Save(entries);
 
+            AppPreferences.LastDiaryEntry = entry.Entry.LastEdited;
+
             RefreshViewModel();
         }
 

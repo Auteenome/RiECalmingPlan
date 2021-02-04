@@ -197,11 +197,12 @@
             </DataTemplate>
 
             <DataTemplate x:Key="lastSlideTemplate">
-                <StackLayout VerticalOptions="Start">
+                <StackLayout VerticalOptions="Center">
                     <Frame Style="{StaticResource QuestionFrameStyle}">
                         <StackLayout>
-                            <Label HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource Style_QuestionLabel}" Text="This is the end of the Calming Plan"/>
-                            <Label HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource Style_QuestionLabel}" Text="You can now proceed to the Support Plan!"/>
+                            <Label HorizontalOptions="Center" Style="{StaticResource Style_QuestionLabel}" Text="This is the end of the Calming Plan"/>
+                            <Label HorizontalOptions="Center" Style="{StaticResource Style_QuestionLabel}" Text="You can now proceed to the Support Plan!"/>
+                            <Button HorizontalOptions="Center" Style="{StaticResource Style_GreenRoundedBorderButton}" Text="Main Menu" Clicked="LastSlideButtonClicked" />
                         </StackLayout>
                     </Frame>
                 </StackLayout>
