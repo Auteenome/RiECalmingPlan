@@ -66,8 +66,9 @@ It will also use the Database for starter context so the user can continue writi
 This page is also FingerPrint Protected.
 
 Pages/Page_UserDiary (.xaml + .cs)
-Pages/Page_NewDiaryEntry (.xaml + .cs)
-ViewModels/ViewModel_DiaryStarters.cs
+[- REMOVED] Pages/Page_NewDiaryEntry (.xaml + .cs)
+[- REMOVED] ViewModels/ViewModel_DiaryStarters.cs
+[+ ADDED] ViewModels/ViewModel_UserDiary.cs
 ViewModels/ViewModel_DiaryEntries.cs
 Models/Database/DiaryStarter.cs
 Models/Database/Database.cs

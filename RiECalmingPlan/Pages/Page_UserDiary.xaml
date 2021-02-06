@@ -9,6 +9,10 @@
              xmlns:viewModel="clr-namespace:RiECalmingPlan.ViewModels"
              BackgroundColor="{StaticResource RiEOffWhite}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Help" Clicked="ToolBarHelp_Clicked" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Resources>
         <!--
             The resources here will have the following resources
@@ -178,7 +182,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <CarouselView x:Name="Carousel" Margin="30" PeekAreaInsets="10" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}">
+            <CarouselView x:Name="Carousel" Margin="30" PositionChanged="Carousel_PositionChanged" PeekAreaInsets="10" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}">
                 <CarouselView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" />
                 </CarouselView.ItemsLayout>

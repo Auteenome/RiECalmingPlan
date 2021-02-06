@@ -44,8 +44,9 @@ namespace RiECalmingPlan.ViewModels {
 
         private async void RefreshViewModel() {
 
-            ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry>();
-            entries.Add(new ViewModel_DiaryEntry() { Entry = new DiaryEntry() });
+            ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry> {
+                new ViewModel_DiaryEntry() { Entry = new DiaryEntry() }
+            };
             entries.AddRange(UserDiaryFileController.Load());
 
 
@@ -54,7 +55,7 @@ namespace RiECalmingPlan.ViewModels {
             DiaryEntries = entries;
         }
 
-        private void SaveEntry(ViewModel_DiaryEntry entry) {
+        public void SaveEntry(ViewModel_DiaryEntry entry) {
             Console.WriteLine("Saving Entry ");
 
             entry.Entry.LastEdited = DateTime.Now;
@@ -68,18 +69,21 @@ namespace RiECalmingPlan.ViewModels {
             RefreshViewModel();
         }
 
-        private void RemoveEntry(ViewModel_DiaryEntry entry) {
+        private async void RemoveEntry(ViewModel_DiaryEntry entry) {
             Console.WriteLine("Removing Entry ");
-
-            DiaryEntries.Remove(entry);
-            List<ViewModel_DiaryEntry> entries = new List<ViewModel_DiaryEntry>();
-            entries.AddRange(DiaryEntries);
-            UserDiaryFileController.Save(entries);
-
-            RefreshViewModel();
+            bool answer = await App.Current.MainPage.DisplayAlert("Removing a Diary Entry", "Are you sure you want to delete this Diary Entry?", "Yes", "No");
+            if (answer == true) {
+                DiaryEntries.Remove(entry);
+                List<ViewModel_DiaryEntry> entries = new List<ViewModel_DiaryEntry>();
+                entries.AddRange(DiaryEntries);
+                UserDiaryFileController.Save(entries); 
+                
+                RefreshViewModel();
+            }
         }
 
         private void EditEntry(ViewModel_DiaryEntry entry) {
+            Console.WriteLine(entry);
             //Triggered when the user clicks the EditEntry or NewEntry button
             if (entry.CurrentState == ViewModel_DiaryEntry.DiaryEntryState.NEWSPACE) {
                 //If it was a new frame, change the first submit field
