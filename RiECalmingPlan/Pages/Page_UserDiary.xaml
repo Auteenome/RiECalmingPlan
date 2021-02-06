@@ -30,7 +30,7 @@
 
 
 
-                    <Label BindingContext="{Binding Entry}" HorizontalOptions="CenterAndExpand" MaxLines="1">
+                    <Label BindingContext="{Binding Entry}" HorizontalOptions="CenterAndExpand">
                         <Label.Text>
                             <MultiBinding StringFormat="{}{0}{1}">
                                 <Binding Path="Starter" />
@@ -88,7 +88,7 @@
             <Frame Style="{StaticResource QuestionFrameStyle}">
                 <!--may change this to a flexlayout, for a responsive stack-->
                 <StackLayout>
-                    <Label Text="Starter Statement" />
+                    <Label Text="Starter Statement"  Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"/>
                     <!--
                     <Picker x:Name="starterPicker"
                             BindingContext="{Binding Entry}"
@@ -97,61 +97,73 @@
                             SelectedItem="{Binding Starter, Mode=TwoWay}"
                             Title="{Binding Starter}"/>
                     -->
-                    <StackLayout BindingContext="{Binding Entry}">
-                        <Picker ItemsSource="{Binding DiaryStarters, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}"
+                    <Frame Padding="0" CornerRadius="5" BorderColor="#006738" BackgroundColor="#c6e29f">
+                        <StackLayout BindingContext="{Binding Entry}">
+                            <Picker ItemsSource="{Binding DiaryStarters, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}"
                                 SelectedItem="{Binding Starter, Mode=TwoWay}"
                                 Title="{Binding StarterText, Mode=TwoWay}"/>
-                    </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
 
                     <Label Text="Write your diary entry below" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"/>
-                        <Editor BindingContext="{Binding Entry}" 
-                        Text="{Binding Body}"
-                        HorizontalOptions="CenterAndExpand"
-                        WidthRequest="500"
-                        MaxLength="2000"
-                        AutoSize="TextChanges"
-                        FontSize="Default"
-                        FontFamily="NimbusReg"/>
-                    <Label Text="Upload A Photo" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"/>
-
-
-                    <!-- Image Collection -->
-                    <CollectionView BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical" Span="3"/>
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Image Margin="5" Source="{Binding}"/>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                        <CollectionView.EmptyView>
+                    <Frame Padding="0" CornerRadius="5" BorderColor="#006738" BackgroundColor="#c6e29f">
+                        <ScrollView>
                             <StackLayout>
-                                <Label HorizontalOptions="Center" VerticalOptions="Center" Text="There are no images here!"/>
+                                <Editor BindingContext="{Binding Entry}" 
+                                    Text="{Binding Body}"
+                                    HorizontalOptions="CenterAndExpand"
+                                    WidthRequest="500"
+                                    MaxLength="2000" 
+                                    AutoSize="TextChanges"
+                                    FontSize="Default"
+                                    FontFamily="NimbusReg"/>
                             </StackLayout>
-                        </CollectionView.EmptyView>
-                    </CollectionView>
+                        </ScrollView>
+                    </Frame>
 
+                    
+                    <Label Text="Upload A Photo" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"/>
+                    <Frame Padding="0" CornerRadius="5" BorderColor="#006738" BackgroundColor="#c6e29f">
+                        <!-- Image Collection -->
+                        <CollectionView BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="3"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Image Margin="5" Source="{Binding}"/>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <StackLayout>
+                                    <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Text="There are no images here!"/>
+                                </StackLayout>
+                            </CollectionView.EmptyView>
+                        </CollectionView>
+                    </Frame>
 
                     <!-- 'Add Image' Buttons-->
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                        <StackLayout HorizontalOptions="FillAndExpand">
-                            <Button HorizontalOptions="Center" Command="{Binding Command_AddImageFromGallery}" ImageSource="baseline_add_photo_alternate_24" Style="{StaticResource Style_IconButton}"/>
+                    <StackLayout VerticalOptions="End">
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                                <Button HorizontalOptions="Center" Command="{Binding Command_AddImageFromGallery}" ImageSource="baseline_add_photo_alternate_24" Style="{StaticResource Style_IconButton}"/>
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                                <Button HorizontalOptions="Center" Command="{Binding Command_AddImageFromCamera}" ImageSource="baseline_add_a_photo_24" Style="{StaticResource Style_IconButton}"/>
+                            </StackLayout>
                         </StackLayout>
-                        <StackLayout HorizontalOptions="FillAndExpand">
-                            <Button HorizontalOptions="Center" Command="{Binding Command_AddImageFromCamera}" ImageSource="baseline_add_a_photo_24" Style="{StaticResource Style_IconButton}"/>
-                        </StackLayout>
-                    </StackLayout>
 
-                    <Label Text="How happy are you right now?" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}" HorizontalOptions="CenterAndExpand"/>
-                    <Slider BindingContext="{Binding Entry}" Value="{Binding HappinessIndicator}" WidthRequest="500" HorizontalOptions="CenterAndExpand" MinimumTrackColor="Red" MaximumTrackColor="Lime" />
-                    <Button x:Name="SaveButton" 
+                        <Label Text="How happy are you right now?" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}" HorizontalOptions="CenterAndExpand"/>
+                        <Slider BindingContext="{Binding Entry}" Value="{Binding HappinessIndicator}" WidthRequest="500" HorizontalOptions="CenterAndExpand" MinimumTrackColor="Red" MaximumTrackColor="Lime" />
+                        <Button x:Name="SaveButton" 
                             ImageSource="baseline_save_24"
                             Text="Save Diary Entry" 
                             Style="{StaticResource Style_GreenRoundedBorderButton}"
                             Command="{Binding Command_SaveEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
                             CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
                             Clicked="RefreshSlide_Clicked"/>
+                    </StackLayout>
                 </StackLayout>
             </Frame>
         </DataTemplate>

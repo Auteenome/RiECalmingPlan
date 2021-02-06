@@ -42,7 +42,7 @@
 - [Calming Plan, Distress Tracker, Distress Graph, User Diary] Upon entering the page for the first time, a popup occurs showing help text
 - [Distress Tracker] Distress Input from Pyramid is now saved even without location being pulled (Will display a '-' if no value was saved at the time)
 
-4/02/2021 (5hr)
+4/02/2021 (8hrs)
 - Android Minimum SDK is now at v10
 - [Nuget Packages] All packages updated to latest, except Xamarin Forms (See Notes)
 - [Calming Plan, User Diary, Distress Tracker] Carousel Loop property set to false. Nuget Package update forced Carousel to loop as a default. REDACTED (See Notes)
@@ -55,8 +55,11 @@ The last known version of it is Xamarin Forms [4.8.0.1821]. This will be kept un
 5/02/2021 (1hr)
 - [User Diary] Added a confirmation dialog box upon deleting a Diary Entry
 
-6/02/2021 (4hrs)
+6/02/2021 (8hrs)
 - [User Diary] Leaving an EDITED Diary Entry will automatically save that frame, and refresh the Carousel View UI
-
+- [Android Global] Pink Accent changed to RiE Dark Green for controls such as Editor, Entry, Dialog Boxes, etc
+- [User Diary] Updated UI such that the positioning of buttons are fixed at the end and the content inside editors etc are height variable.
+(Multiple lines in the Editor Control, also the 'Body' part of the Diary Entry, will squash the Pictures Collection downward, but only for a fixed amount of lines)
+- [Calming Plan] "Add" button removed in the UI, its functionality is replaced by exiting the keyboard when typing in a new response
 
 

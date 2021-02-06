@@ -48,13 +48,16 @@
                                         Placeholder="Other"
                                         HorizontalOptions="FillAndExpand"
                                         FontFamily="NimbusReg"
-                                        FontSize="Default" />
+                                        FontSize="Default"
+                                        Completed="CustomEntry_Completed"/>
+                                <!--
                                 <Button Text="Add"
                                         Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
                                         FontFamily="NimbusBold"
                                         Command="{Binding AddResponseCommand}" 
                                         CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
+                                -->
                                 <Button Text="Help"
                                         Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
@@ -120,13 +123,16 @@
                                         Placeholder="Other"
                                         HorizontalOptions="FillAndExpand"
                                         FontFamily="NimbusReg"
-                                        FontSize="Default"/>
+                                        FontSize="Default"
+                                        Completed="CustomEntry_Completed"/>
+                                <!--
                                 <Button Text="Add"
                                         Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
                                         FontFamily="NimbusBold"
                                         Command="{Binding AddResponseCommand}" 
                                         CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}"/>
+                                -->
                                 <Button Text="Help"
                                         Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
@@ -179,12 +185,15 @@
                                         FontSize="Default"
                                         MaxLength="500"
                                         AutoSize="TextChanges"
-                                        HorizontalOptions="FillAndExpand" />
+                                        HorizontalOptions="FillAndExpand" 
+                                        Completed="CustomEntry_Completed"/>
+                                <!--
                                 <Button Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"
                                         Text="Add"
                                         Command="{Binding AddResponseCommand}"
                                         CommandParameter="{Binding Source={x:Reference CustomEntry}, Path=Text}" />
+                                -->
                                 <Button Text="Help"
                                         Style="{StaticResource Style_GreenRoundedBorderButton}"
                                         HorizontalOptions="End"

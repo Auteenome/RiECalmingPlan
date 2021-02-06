@@ -9,10 +9,11 @@ namespace RiECalmingPlan.Views {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DisplayQuestionView : ContentView {
 
+        ViewModel_DisplayQuestionView _viewModel;
 
         public DisplayQuestionView() {
             InitializeComponent();
-            BindingContext = new ViewModel_DisplayQuestionView();
+            BindingContext = _viewModel = new ViewModel_DisplayQuestionView();
         }
 
         private async void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e) {
@@ -30,6 +31,10 @@ namespace RiECalmingPlan.Views {
 
         private void LastSlideButtonClicked(object sender, EventArgs e) {
             Navigation.PopAsync();
+        }
+
+        private void CustomEntry_Completed(object sender, EventArgs e) {
+            _viewModel.Questions[Questions.Position].AddResponse((sender as Editor).Text);
         }
     }
 }
