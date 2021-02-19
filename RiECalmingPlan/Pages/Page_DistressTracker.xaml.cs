@@ -27,7 +27,7 @@ namespace RiECalmingPlan.Pages {
 
         public async void Init() {
             if (!AppPreferences.Help_DistressTracker) {
-                AppPreferences.Help_DistressTracker = !(await this.DisplayAlert("Distress Tracker Tutorial", "You can find your expressions and interventions here.\nShow Again?", "No", "Yes"));
+                AppPreferences.Help_DistressTracker = !(await this.DisplayAlert("Distress Tracker Tutorial", "You can find your expressions and interventions here.\nShow Again?", "Yes", "No"));
             }
         }
 

@@ -60,6 +60,7 @@ The last known version of it is Xamarin Forms [4.8.0.1821]. This will be kept un
 - [Android Global] Pink Accent changed to RiE Dark Green for controls such as Editor, Entry, Dialog Boxes, etc
 - [User Diary] Updated UI such that the positioning of buttons are fixed at the end and the content inside editors etc are height variable.
 (Multiple lines in the Editor Control, also the 'Body' part of the Diary Entry, will squash the Pictures Collection downward, but only for a fixed amount of lines)
-- [Calming Plan] "Add" button removed in the UI, its functionality is replaced by exiting the keyboard when typing in a new response
+- [Calming Plan] "Add" button removed in the UI, its functionality is replaced by exiting the keyboard when typing in a new response.	
 
-
+16/02/2021 (4hrs)
+- [Distress History] Fixed a null reference exception for the Graph control. The 'text' property was compulsory for a ChartEntry object.

@@ -15,7 +15,7 @@
                 <Picker ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilter}"  VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <StackLayout VerticalOptions="Center">
-                <microcharts:ChartView HeightRequest="250" Chart="{Binding LineChart}" />
+                <microcharts:ChartView HeightRequest="250" Chart="{Binding LineChart}"  />
             </StackLayout>
             <ScrollView VerticalOptions="EndAndExpand">
                 <StackLayout BindableLayout.ItemsSource="{Binding FilteredHistory}">

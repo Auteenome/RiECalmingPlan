@@ -75,10 +75,11 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private void ResetChart() {
-            List<ChartEntry> entries = new List<ChartEntry>(); 
+            List<ChartEntry> entries = new List<ChartEntry>();
             foreach (UserInputDistressLevel timestamp in FilteredHistory) {
                 Magnitude.TryGetValue(timestamp.DistressLevelType, out int value);
                 entries.Add(new ChartEntry(value) {
+                    Label = "",
                     ValueLabel = timestamp.StartTime.ToString(),
                     Color = SKColor.Parse("#b455b6")
                 });

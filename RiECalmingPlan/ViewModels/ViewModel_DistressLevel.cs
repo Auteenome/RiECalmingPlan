@@ -34,8 +34,6 @@ namespace RiECalmingPlan.ViewModels {
         public Command<string> CallNumber { get; private set; }
         public Command<string> OpenWebLink { get; private set; }
 
-        private UserInputDistressLevel TimeStamp;
-
         /*
          * Previously the user would get a local notification when data has been logged for the use of Distress Graph. 
          * This is redacted because the sound part wasn't removed during a meeting and members found it distracting.
@@ -93,7 +91,7 @@ namespace RiECalmingPlan.ViewModels {
                 Console.WriteLine(ex);
             }
 
-            TimeStamp = new UserInputDistressLevel() {
+            UserInputDistressLevel TimeStamp = new UserInputDistressLevel() {
                 DistressLevelType = DistressType,
                 StartTime = DateTime.Now,
                 Location = locationString
