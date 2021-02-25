@@ -101,9 +101,13 @@ namespace RiECalmingPlan.Pages {
         private void Carousel_PositionChanged(object sender, PositionChangedEventArgs e) {
             //This one definitely should work
             Console.WriteLine("Previous Position: " + e.PreviousPosition + " Current Position: " + e.CurrentPosition );
-            if(_viewModel.DiaryEntries[e.PreviousPosition] != null && _viewModel.DiaryEntries[e.PreviousPosition].CurrentState == ViewModel_DiaryEntry.DiaryEntryState.EDITING) {
-                _viewModel.SaveEntry(_viewModel.DiaryEntries[e.PreviousPosition]);
+            if (e.PreviousPosition < _viewModel.DiaryEntries.Count) {
+                if (_viewModel.DiaryEntries[e.PreviousPosition] != null && _viewModel.DiaryEntries[e.PreviousPosition].CurrentState == ViewModel_DiaryEntry.DiaryEntryState.EDITING) {
+                    _viewModel.SaveEntry(_viewModel.DiaryEntries[e.PreviousPosition]);
+                }
+
             }
+
             Carousel.ClearValue(ItemsView.ItemTemplateProperty);
             Carousel.SetValue(ItemsView.ItemTemplateProperty, Resources["userDiarySelector"]);
         }

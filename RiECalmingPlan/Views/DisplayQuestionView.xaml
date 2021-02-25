@@ -43,7 +43,7 @@
                             </StackLayout>
 
                             <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                                <Editor x:Name="CustomEntry" 
+                                <Entry x:Name="CustomEntry" 
                                         Text="{Binding OtherText}"
                                         Placeholder="Other"
                                         HorizontalOptions="FillAndExpand"
@@ -118,7 +118,7 @@
                             </StackLayout>
 
                             <StackLayout Orientation="Horizontal" VerticalOptions="End">
-                                <Editor x:Name="CustomEntry" 
+                                <Entry x:Name="CustomEntry" 
                                         Text="{Binding OtherText}" 
                                         Placeholder="Other"
                                         HorizontalOptions="FillAndExpand"
@@ -178,13 +178,12 @@
                             </StackLayout>
                             <StackLayout Orientation="Horizontal"
                                          VerticalOptions="End">
-                                <Editor x:Name="CustomEntry"
+                                <Entry x:Name="CustomEntry"
                                         Text="{Binding OtherText}"
                                         Placeholder="Other"
                                         FontFamily="NimbusReg"
                                         FontSize="Default"
                                         MaxLength="500"
-                                        AutoSize="TextChanges"
                                         HorizontalOptions="FillAndExpand" 
                                         Completed="CustomEntry_Completed"/>
                                 <!--

@@ -64,3 +64,25 @@ The last known version of it is Xamarin Forms [4.8.0.1821]. This will be kept un
 
 16/02/2021 (4hrs)
 - [Distress History] Fixed a null reference exception for the Graph control. The 'text' property was compulsory for a ChartEntry object.
+
+25/02/2021 (8hrs)
+- [StepProgressBar (For Calming Plan)] 
+Highlighted Circles start at value = 0, unless the user has entered a higher number before. If so, the "OnPropertyChanged" event occurs, and highlights the correct value before unselecting
+the previous one.
+Previously, Setting the default value for "StepSelectedProperty" to -1 as a quick fix will auto-highlight all zeros, and trigger "OnPropertyChanged", but swiping to the end was impossible
+due to a pattern error.
+Further testing lead to the Convert.Int32() function to result in a signed integer of a string (Used for the button Id's) but results in a 0, if the value was null. 
+This hinders using 0 outright as in this case it is treated as the same as null.
+
+Fix:
+Iterator starts at 1 instead of 0, the text of the button generated in each iteration is -1 of the iterator's current index, which makes it look like it starts from 0
+references will use the classID of the button instead, which will pretty much be the same value as the iterator. This is where we get [1, 2, 3, 4] for what seems to be [0, 1, 2, 3]
+Using FirstOrDefault() instead of First() allows it to return a better result before being null checked, allowing the user to swipe through the entire carousel without crashing.
+
+- [User Diary] 
+Previous: The last index of the diary, upon deletion, triggers the "OnPositionChanged" Command, which checks the diary list of its previous position before moving the current carousel
+position to the new last index. This results in an IndexOutOfBounds error.
+Current: The "OnPositionChanged" command now proceeds to check the item in the array if it is below its item count.
+
+Unfixable: For Android, the back button cannot be replaced by text
+

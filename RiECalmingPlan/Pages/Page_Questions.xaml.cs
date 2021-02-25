@@ -8,9 +8,13 @@ using Xamarin.Forms.Xaml;
 namespace RiECalmingPlan.Pages {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page_Questions : ContentPage {
+
+        ViewModel_DisplayQuestionView _viewModel;
+
+
         public Page_Questions() {
             InitializeComponent();
-
+            BindingContext = _viewModel = new ViewModel_DisplayQuestionView();
             Init();
         }
 

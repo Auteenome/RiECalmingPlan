@@ -43,7 +43,7 @@ namespace RiECalmingPlan {
 
             // uncomment this for testing
             //AppPreferences.TermsAndConditionsAccepted = false;
-
+            Device.SetFlags(new string[] { "CarouselView_Experimental" });
             LoadStyles();
             MainPage = LoadMainPage();
         }

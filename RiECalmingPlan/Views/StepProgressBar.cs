@@ -21,7 +21,7 @@ namespace RiECalmingPlan.Views {
          */
 
         Button _lastStepSelected;
-        public static BindableProperty StepsProperty = BindableProperty.Create(nameof(Steps), typeof(int), typeof(StepProgressBar), 0);
+        public static BindableProperty StepsProperty = BindableProperty.Create(nameof(Steps), typeof(int), typeof(StepProgressBar), null);
         public static BindableProperty StepSelectedProperty = BindableProperty.Create(nameof(StepSelected), typeof(int), typeof(StepProgressBar), 0, defaultBindingMode: BindingMode.TwoWay);
         public static BindableProperty StepColorProperty = BindableProperty.Create(nameof(StepColor), typeof(Color), typeof(StepProgressBar), Color.Black, defaultBindingMode: BindingMode.TwoWay);
 
@@ -54,10 +54,10 @@ namespace RiECalmingPlan.Views {
             base.OnPropertyChanged(propertyName);
 
             if (propertyName == StepsProperty.PropertyName) {
-                for (int i = 0; i < Steps; i++) {
+                for (int i = 1; i <= Steps; i++) {
                     //Generates the circle button things, defaulting them all as unselected circles
                     var button = new Button() {
-                        Text = $"{i}",
+                        Text = $"{i-1}",
                         ClassId = $"{i}",
                         Style = Resources["unSelectedStyle"] as Style
                     };
@@ -79,7 +79,7 @@ namespace RiECalmingPlan.Views {
                     }
                 }
             } else if (propertyName == StepSelectedProperty.PropertyName) {
-                var children = this.Children.First(p => (!string.IsNullOrEmpty(p.ClassId) && Convert.ToInt32(p.ClassId) == StepSelected));
+                var children = this.Children.FirstOrDefault(p => (!string.IsNullOrEmpty(p.ClassId) && Convert.ToInt32(p.ClassId) == StepSelected));
                 if (children != null) {
                     SelectElement(children as Button);
                 }
@@ -106,7 +106,7 @@ namespace RiECalmingPlan.Views {
             // Selects the new button selected
             elementSelected.Style = Resources["selectedStyle"] as Style;
 
-            StepSelected = Convert.ToInt32(elementSelected.Text);
+            StepSelected = Convert.ToInt32(elementSelected.ClassId);
 
             // The last button is refered to the new button clicked 
             _lastStepSelected = elementSelected;

@@ -34,7 +34,7 @@ namespace RiECalmingPlan.Views {
         }
 
         private void CustomEntry_Completed(object sender, EventArgs e) {
-            _viewModel.Questions[Questions.Position].AddResponse((sender as Editor).Text);
+            _viewModel.Questions[Questions.Position].AddResponse((sender as Entry).Text);
         }
     }
 }

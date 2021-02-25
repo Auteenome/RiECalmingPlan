@@ -29,6 +29,10 @@ namespace RiECalmingPlan.ViewModels {
         private ObservableRangeCollection<ViewModel_DiaryEntry> _DiaryEntries;
         public ObservableRangeCollection<ViewModel_DiaryEntry> DiaryEntries { get {return _DiaryEntries; } set { SetProperty(ref _DiaryEntries, value); } }
 
+        private int _Index = 0;
+        public int Index { get { return _Index; } set { SetProperty(ref _Index, value); } }
+
+
         public Command<ViewModel_DiaryEntry> Command_SaveEntry { get; private set; }
         public Command<ViewModel_DiaryEntry> Command_EditEntry { get; private set; }
         public Command<ViewModel_DiaryEntry> Command_RemoveEntry { get; private set; }
@@ -44,7 +48,7 @@ namespace RiECalmingPlan.ViewModels {
 
         private async void RefreshViewModel() {
 
-            ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry> {
+            ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry>() {
                 new ViewModel_DiaryEntry() { Entry = new DiaryEntry() }
             };
             entries.AddRange(UserDiaryFileController.Load());
@@ -73,11 +77,10 @@ namespace RiECalmingPlan.ViewModels {
             Console.WriteLine("Removing Entry ");
             bool answer = await App.Current.MainPage.DisplayAlert("Removing a Diary Entry", "Are you sure you want to delete this Diary Entry?", "Yes", "No");
             if (answer == true) {
-                DiaryEntries.Remove(entry);
-                List<ViewModel_DiaryEntry> entries = new List<ViewModel_DiaryEntry>();
-                entries.AddRange(DiaryEntries);
-                UserDiaryFileController.Save(entries); 
-                
+                List<ViewModel_DiaryEntry> entries = new List<ViewModel_DiaryEntry>(DiaryEntries);
+                entries.Remove(entry);
+                UserDiaryFileController.Save(entries);
+
                 RefreshViewModel();
             }
         }
