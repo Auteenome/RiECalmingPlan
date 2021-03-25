@@ -86,3 +86,10 @@ Current: The "OnPositionChanged" command now proceeds to check the item in the a
 
 Unfixable: For Android, the back button cannot be replaced by text
 
+25/03/2021 (8hrs)
+- [Questions.db] [DiaryStarter.cs removed] Diary Starters were removed from the database as they are one dimensional. The starters are hardcoded into the Picker element in the Page_UserDiary.xaml file instead.
+- [User Diary] + button placed next to the Help button in the toolbar to allow the user to add a new page.
+- [User Diary] Scrolling within the carousel does not enforce an entire Itemsource update. Instead, elements are now properly replaced in the viewmodel such that the UI will pick this up
+independently of each element.
+- [Distress Tracker] Graph as been updated as per Peter's configurations.
+

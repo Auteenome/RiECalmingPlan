@@ -10,7 +10,9 @@
              BackgroundColor="{StaticResource RiEOffWhite}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Help" Clicked="ToolBarHelp_Clicked" ></ToolbarItem>
+        <ToolbarItem Text="Help" Clicked="ToolBarHelp_Clicked"/>
+        <ToolbarItem Text="|"/> <!-- Divider -->
+        <ToolbarItem Text="New" Command="{Binding Command_CreateEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" Clicked="ToolbarPlus_Clicked"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Resources>
@@ -32,7 +34,7 @@
 
                     <Label BindingContext="{Binding Entry}" HorizontalOptions="CenterAndExpand">
                         <Label.Text>
-                            <MultiBinding StringFormat="{}{0}{1}">
+                            <MultiBinding StringFormat="{}{0} {1}">
                                 <Binding Path="Starter" />
                                 <Binding Path="Body"/>
                             </MultiBinding>
@@ -64,8 +66,7 @@
                                 ImageSource="baseline_save_24"
                                 Style="{StaticResource Style_GreenRoundedBorderButton}"
                                 Command="{Binding Command_EditEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
-                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
-                                Clicked="RefreshSlide_Clicked"/>
+                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
                         </StackLayout>
                         <StackLayout HorizontalOptions="CenterAndExpand">
                             <Button Grid.Column="1"
@@ -73,8 +74,7 @@
                                 ImageSource="baseline_delete_24"
                                 Style="{StaticResource Style_GreenRoundedBorderButton}"
                                 Command="{Binding Command_RemoveEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
-                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
-                                Clicked="RefreshSlide_Clicked"/>
+                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -99,9 +99,25 @@
                     -->
                     <Frame Padding="0" CornerRadius="5" BorderColor="#006738" BackgroundColor="#c6e29f">
                         <StackLayout BindingContext="{Binding Entry}">
-                            <Picker ItemsSource="{Binding DiaryStarters, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}"
-                                SelectedItem="{Binding Starter, Mode=TwoWay}"
-                                Title="{Binding StarterText, Mode=TwoWay}"/>
+                            <Picker SelectedItem="{Binding Starter}" Title="Select One">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Today I</x:String>
+                                        <x:String>At school today I</x:String>
+                                        <x:String>Today me and my friends</x:String>
+                                        <x:String>Today I learnt that</x:String>
+                                        <x:String>Today I hung out with</x:String>
+                                        <x:String>I went to</x:String>
+                                        <x:String>Today I saw</x:String>
+                                        <x:String>I wish</x:String>
+                                        <x:String>Wouldn't it be awesome if</x:String>
+                                        <x:String>I really don't understand</x:String>
+                                        <x:String>Why does</x:String>
+                                        <x:String>I wonder</x:String>
+                                        <x:String>It was amazing</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
                         </StackLayout>
                     </Frame>
 
@@ -161,8 +177,7 @@
                             Text="Save Diary Entry" 
                             Style="{StaticResource Style_GreenRoundedBorderButton}"
                             Command="{Binding Command_SaveEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
-                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
-                            Clicked="RefreshSlide_Clicked"/>
+                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
                     </StackLayout>
                 </StackLayout>
             </Frame>
@@ -172,14 +187,7 @@
             <!-- Indicates a new space (Usually the end) of the diary carousel that the user can click on turn this space into a new diary entry -->
             <Frame Style="{StaticResource QuestionFrameStyle}">
                 <StackLayout>
-                    <Label Text="This is an empty space, you can add a diary entry here" VerticalOptions="StartAndExpand"/>
-                    <Button Text="Add Diary Entry" 
-                            VerticalOptions="End"
-                            ImageSource="baseline_insert_24"
-                            Style="{StaticResource Style_GreenRoundedBorderButton}"
-                            Command="{Binding Command_EditEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
-                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
-                            Clicked="RefreshSlide_Clicked"/>
+                    <Label Text="This is the cover of the Diary. There will be options to change the cover display later in future updates" VerticalOptions="StartAndExpand"/>
                 </StackLayout>
             </Frame>
         </DataTemplate>
@@ -194,7 +202,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <CarouselView x:Name="Carousel" Margin="30" PositionChanged="Carousel_PositionChanged" PeekAreaInsets="10" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}">
+            <CarouselView Loop="False" x:Name="Carousel" Margin="30" PositionChanged="Carousel_PositionChanged" PeekAreaInsets="10" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}">
                 <CarouselView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" />
                 </CarouselView.ItemsLayout>

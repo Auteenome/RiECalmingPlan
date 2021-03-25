@@ -74,12 +74,6 @@ namespace RiECalmingPlan.Models {
             return list;
         }
 
-        public async Task<ObservableRangeCollection<DiaryStarter>> GetDiaryStarterOptionsAsync() {
-            ObservableRangeCollection<DiaryStarter> r = new ObservableRangeCollection<DiaryStarter>(); 
-            r.AddRange(await db.QueryAsync<DiaryStarter>("SELECT * From DiaryStarters"));
-            return r;
-        }
-
         public async Task<ObservableRangeCollection<Response>> GetDistressExpressions(string DistressLevelType) {
             /*
              * This function pulls the Top Half of the Support Plan.
