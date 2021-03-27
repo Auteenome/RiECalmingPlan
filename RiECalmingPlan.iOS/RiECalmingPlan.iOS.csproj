@@ -286,4 +286,13 @@
   <ItemGroup>
     <BundleResource Include="Resources\pin_right.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bg_night.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bg_noon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bg_morning.png" />
+  </ItemGroup>
 </Project>

@@ -10,21 +10,24 @@ namespace RiECalmingPlan.Views {
     public class UserDiaryTemplateSelector : DataTemplateSelector {
         public DataTemplate CompletedTemplate { get; set; }
         public DataTemplate EditingTemplate { get; set; }
-        public DataTemplate NewSpaceTemplate { get; set; }
-
+        public DataTemplate CoverTemplate { get; set; }
+        public DataTemplate CoverEditingTemplate { get; set; }
 
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container) {
-            switch (((ViewModel_DiaryEntry)item).CurrentState) {
-                case ViewModel_DiaryEntry.DiaryEntryState.COMPLETED:
-                    return CompletedTemplate;
-                case ViewModel_DiaryEntry.DiaryEntryState.EDITING:
+            if (item is ViewModel_DiaryCover cover) {
+                if (cover.CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
+                    return CoverEditingTemplate;
+                } else {
+                    return CoverTemplate;
+                }
+            } else if(item is ViewModel_DiaryEntry entry) {
+                if (entry.CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
                     return EditingTemplate;
-                case ViewModel_DiaryEntry.DiaryEntryState.NEWSPACE:
-                    return NewSpaceTemplate;
-                default:
-                    return NewSpaceTemplate;
-
+                } else {
+                    return CompletedTemplate;
+                }
             }
+            return null;
         }
 
     }

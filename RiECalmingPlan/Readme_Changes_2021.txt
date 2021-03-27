@@ -93,3 +93,12 @@ Unfixable: For Android, the back button cannot be replaced by text
 independently of each element.
 - [Distress Tracker] Graph as been updated as per Peter's configurations.
 
+26/03/2021 (9hrs)
+- [User Diary] Updated Image Collection padding.
+- [User Diary] Started on infrastructure changes to allow for Diary Cover to be saved/edited alongside with diary entries.
+
+27/03/2021, 28/03/2021 (8hrs)
+- [User Diary] Finished infrastructure changes. 
+The diary cover/entries can be edited/saved and when loading it treats all pages as "completed". It should automatically save upon swipe.
+Cover background can be changed (preset ones are added in)
+

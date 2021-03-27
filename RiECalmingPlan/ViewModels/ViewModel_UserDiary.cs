@@ -20,13 +20,15 @@ namespace RiECalmingPlan.ViewModels {
          * 
          */
 
-        private ObservableRangeCollection<ViewModel_DiaryEntry> _DiaryEntries;
-        public ObservableRangeCollection<ViewModel_DiaryEntry> DiaryEntries { get { return _DiaryEntries; } set { SetProperty(ref _DiaryEntries, value); } } 
+        private ObservableRangeCollection<ViewModel_DiaryPage> _DiaryEntries;
+        public ObservableRangeCollection<ViewModel_DiaryPage> DiaryEntries { get { return _DiaryEntries; } set { SetProperty(ref _DiaryEntries, value); } } 
 
         public Command<ViewModel_DiaryEntry> Command_SaveEntry { get; private set; }
         public Command<ViewModel_DiaryEntry> Command_EditEntry { get; private set; }
         public Command<ViewModel_DiaryEntry> Command_RemoveEntry { get; private set; }
         public Command Command_CreateEntry { get; private set; }
+        public Command<ViewModel_DiaryCover> Command_EditCover { get; private set; }
+        public Command<ViewModel_DiaryCover> Command_SaveCover { get; private set; }
 
         public ViewModel_UserDiary() {
             //Bind Commands to Functions
@@ -34,35 +36,36 @@ namespace RiECalmingPlan.ViewModels {
             Command_RemoveEntry = new Command<ViewModel_DiaryEntry>(RemoveEntry);
             Command_EditEntry = new Command<ViewModel_DiaryEntry>(EditEntry);
             Command_CreateEntry = new Command(CreateEntry);
+            Command_SaveCover = new Command<ViewModel_DiaryCover>(SaveCover);
+            Command_EditCover = new Command<ViewModel_DiaryCover>(EditCover);
 
             RefreshViewModel();
         }
 
         private void RefreshViewModel() {
-            ObservableRangeCollection<ViewModel_DiaryEntry> entries = new ObservableRangeCollection<ViewModel_DiaryEntry>() {
-                    new ViewModel_DiaryEntry() { Entry = new DiaryEntry() }
-                };
+            ObservableRangeCollection<ViewModel_DiaryPage> entries = new ObservableRangeCollection<ViewModel_DiaryPage>();
             entries.AddRange(UserDiaryFileController.Load());
             DiaryEntries = entries;
         }
 
         //Creates a new Entry in the Diary with the EDITING state
         private void CreateEntry() {
-            DiaryEntries.Add(new ViewModel_DiaryEntry() { Entry = new DiaryEntry() { FirstSubmit = DateTime.Now }, CurrentState = ViewModel_DiaryEntry.DiaryEntryState.EDITING});
+            DiaryEntries.Add(new ViewModel_DiaryEntry() { Entry = new DiaryEntry() { FirstSubmit = DateTime.Now }, CurrentState = ViewModel_DiaryPage.PageState.EDITING});
         }
 
         //Saves the Diary Entry
         public void SaveEntry(ViewModel_DiaryEntry entry) {
-            Console.WriteLine("Saving Entry ");
+            Console.WriteLine("Saving Entry " + entry.CurrentState);
 
             entry.Entry.LastEdited = DateTime.Now;
             AppPreferences.LastDiaryEntry = entry.Entry.LastEdited;
 
-            ViewModel_DiaryEntry updatedEntry = new ViewModel_DiaryEntry() { Entry = entry.Entry, CurrentState = ViewModel_DiaryEntry.DiaryEntryState.COMPLETED };
+            ViewModel_DiaryEntry updatedEntry = new ViewModel_DiaryEntry() { Entry = entry.Entry};
+            updatedEntry.CurrentState = ViewModel_DiaryPage.PageState.COMPLETED;
             int i = DiaryEntries.IndexOf(entry);
             DiaryEntries[i] = updatedEntry;
 
-            List<ViewModel_DiaryEntry> entries = new List<ViewModel_DiaryEntry>(DiaryEntries); //Adds current diary list from viewmodel
+            List<ViewModel_DiaryPage> entries = new List<ViewModel_DiaryPage>(DiaryEntries); //Adds current diary list from viewmodel
             UserDiaryFileController.Save(entries);
 
         }
@@ -72,7 +75,7 @@ namespace RiECalmingPlan.ViewModels {
             if (answer == true) {
                 Console.WriteLine("Removing Entry ");
                 DiaryEntries.Remove(entry);
-                List<ViewModel_DiaryEntry> entries = new List<ViewModel_DiaryEntry>(DiaryEntries);
+                List<ViewModel_DiaryPage> entries = new List<ViewModel_DiaryPage>(DiaryEntries);
                 UserDiaryFileController.Save(entries);
             }
         }
@@ -80,25 +83,34 @@ namespace RiECalmingPlan.ViewModels {
         private void EditEntry(ViewModel_DiaryEntry entry) {
             Console.WriteLine(entry);
             //Triggered when the user clicks the EditEntry or NewEntry button
-            if (entry.CurrentState == ViewModel_DiaryEntry.DiaryEntryState.NEWSPACE) {
+            if (entry.CurrentState == ViewModel_DiaryPage.PageState.COMPLETED) {
                 //If it was a new frame, change the first submit field
                 Console.WriteLine("Setting First Submit");
-                entry.Entry.FirstSubmit = DateTime.Now;
-                entry.Entry.LastEdited = DateTime.Now;
-            }
-            Console.WriteLine("Editing Entry ");
-            foreach (ViewModel_DiaryEntry e in DiaryEntries) {
-                //Flip all Editing states in each entry to be completed
-                if (e.CurrentState == ViewModel_DiaryEntry.DiaryEntryState.EDITING) {
-                    e.CurrentState = ViewModel_DiaryEntry.DiaryEntryState.COMPLETED;
-                }
+                (entry.Entry).FirstSubmit = DateTime.Now;
+                (entry.Entry).LastEdited = DateTime.Now;
             }
             //Finally, change the current entry to be EDIT state
             //entry.CurrentState = ViewModel_DiaryEntry.DiaryEntryState.EDITING;
-            ViewModel_DiaryEntry updatedEntry = new ViewModel_DiaryEntry() { Entry = entry.Entry, CurrentState = ViewModel_DiaryEntry.DiaryEntryState.EDITING };
+            ViewModel_DiaryEntry updatedEntry = new ViewModel_DiaryEntry() { Entry = entry.Entry, CurrentState = ViewModel_DiaryPage.PageState.EDITING };
             int i = DiaryEntries.IndexOf(entry);
             DiaryEntries[i] = updatedEntry;
 
+        }
+
+        private void EditCover(ViewModel_DiaryCover cover) {
+            ViewModel_DiaryCover updatedEntry = new ViewModel_DiaryCover(cover.Cover) {CurrentState = ViewModel_DiaryPage.PageState.EDITING };
+            DiaryEntries[0] = updatedEntry;
+
+            List<ViewModel_DiaryPage> entries = new List<ViewModel_DiaryPage>(DiaryEntries); //Adds current diary list from viewmodel
+            UserDiaryFileController.Save(entries);
+        }
+
+        public void SaveCover(ViewModel_DiaryCover cover) {
+            ViewModel_DiaryCover updatedEntry = new ViewModel_DiaryCover(cover.Cover) {CurrentState = ViewModel_DiaryPage.PageState.COMPLETED };
+            DiaryEntries[0] = updatedEntry;
+
+            List<ViewModel_DiaryPage> entries = new List<ViewModel_DiaryPage>(DiaryEntries); //Adds current diary list from viewmodel
+            UserDiaryFileController.Save(entries);
         }
     }
 }

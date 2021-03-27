@@ -35,22 +35,20 @@ namespace RiECalmingPlan.Pages {
             string title = "";
             string text = "";
 
-            switch (_viewModel.DiaryEntries[Carousel.Position].CurrentState) {
-                case ViewModel_DiaryEntry.DiaryEntryState.NEWSPACE:
-                    title = "New Diary Entry Space";
-                    text = "This is your diary, you can add a new entry by clicking the button down below.";
-                    break;
-                case ViewModel_DiaryEntry.DiaryEntryState.EDITING:
-                    title = "Editing Diary Entry Space";
-                    text = "Please fill out the diary entry and click \"Save Diary Entry\" when you're done";
-                    break;
-                case ViewModel_DiaryEntry.DiaryEntryState.COMPLETED:
-                    title = "Completed Diary Entry Space";
-                    text = "You can read, edit or delete your completed diary entry";
-                    break;
-                default:
-                    break;
-
+            if (_viewModel.DiaryEntries[Carousel.Position] is ViewModel_DiaryCover cover) {
+                title = "Diary Cover";
+                if (cover.CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
+                    text = "You can put your name on the Diary and change the cover background";
+                } else {
+                    text = "This is your diary cover";
+                }
+            } else if (_viewModel.DiaryEntries[Carousel.Position] is ViewModel_DiaryEntry entry) {
+                title = "Diary Entry";
+                if (entry.CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
+                    text = "You are now editing a diary entry, when you are done, click the save button or swipe to a new slide";
+                } else {
+                    text = "This is one of your diary entries, you may edit or delete these";
+                }
             }
             DisplayAlert(title, text, "Okay");
         }
@@ -59,9 +57,15 @@ namespace RiECalmingPlan.Pages {
             //When the user swipes, if the user was currently editing a diary entry, it will save that diary entry.
             Console.WriteLine("Previous Position: " + e.PreviousPosition + " Current Position: " + e.CurrentPosition );
             if (e.PreviousPosition < _viewModel.DiaryEntries.Count) {
-                if (_viewModel.DiaryEntries[e.PreviousPosition] != null && _viewModel.DiaryEntries[e.PreviousPosition].CurrentState == ViewModel_DiaryEntry.DiaryEntryState.EDITING) {
-                    _viewModel.SaveEntry(_viewModel.DiaryEntries[e.PreviousPosition]);
-                }
+                if (_viewModel.DiaryEntries[e.PreviousPosition] != null && _viewModel.DiaryEntries[e.PreviousPosition].CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
+                    if (_viewModel.DiaryEntries[e.PreviousPosition] is ViewModel_DiaryCover cover) {
+                        _viewModel.SaveCover(cover);
+                    } else if(_viewModel.DiaryEntries[e.PreviousPosition] is ViewModel_DiaryEntry entry) {
+                        _viewModel.SaveEntry(entry);
+                    }
+
+                    
+                } 
 
             }
         }

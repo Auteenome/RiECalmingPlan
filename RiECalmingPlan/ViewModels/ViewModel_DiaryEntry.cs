@@ -7,38 +7,31 @@ using System.Text;
 using Xamarin.Forms;
 
 namespace RiECalmingPlan.ViewModels {
-    public class ViewModel_DiaryEntry : ViewModel_Base {
+    public class ViewModel_DiaryEntry : ViewModel_DiaryPage {
 
 
         private DiaryEntry _Entry;
         public DiaryEntry Entry { get { return _Entry; } set { SetProperty(ref _Entry, value); } }
 
-        private DiaryEntryState _CurrentState;
-        public DiaryEntryState CurrentState { get { return _CurrentState; } set { SetProperty(ref _CurrentState, value); } }
-
         public Command Command_AddImageFromGallery { get; private set; }
         public Command Command_AddImageFromCamera { get; private set; }
         public Command<string> Command_RemoveImage { get; private set; }
 
-        public enum DiaryEntryState { 
-            COMPLETED,
-            EDITING,
-            NEWSPACE
-        }
+        public ViewModel_DiaryEntry(DiaryEntry page) {
+            Entry = page;
+            CurrentState = PageState.COMPLETED;//When loading a diary entry from save file, it becomes a completed diary entry
 
-        public ViewModel_DiaryEntry(DiaryEntry entry) {
-            Entry = entry;
-            CurrentState = DiaryEntryState.COMPLETED;//When loading a diary entry from save file, it becomes a completed diary entry
-
-            Command_AddImageFromCamera = new Command(AddImageFromCamera);
-            Command_AddImageFromGallery = new Command(AddImageFromGallery);
-            Command_RemoveImage = new Command<string>(RemoveImage);
+            BindCommands();
         }
 
         public ViewModel_DiaryEntry() {
             Entry = null;
-            CurrentState = DiaryEntryState.NEWSPACE;//Just for at the end of the carousel
+            CurrentState = PageState.EDITING;//When loading a diary entry from save file, it becomes a completed diary entry
 
+            BindCommands();
+        }
+
+        private void BindCommands() {
             Command_AddImageFromCamera = new Command(AddImageFromCamera);
             Command_AddImageFromGallery = new Command(AddImageFromGallery);
             Command_RemoveImage = new Command<string>(RemoveImage);

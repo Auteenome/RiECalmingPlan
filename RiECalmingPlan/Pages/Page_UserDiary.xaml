@@ -11,7 +11,6 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Help" Clicked="ToolBarHelp_Clicked"/>
-        <ToolbarItem Text="|"/> <!-- Divider -->
         <ToolbarItem Text="New" Command="{Binding Command_CreateEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" Clicked="ToolbarPlus_Clicked"/>
     </ContentPage.ToolbarItems>
     
@@ -46,16 +45,17 @@
                     <!-- Image Collection -->
                     <CollectionView BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
                         <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical" Span="3" />
+                            <GridItemsLayout Orientation="Vertical" Span="3"/>
                         </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Image Margin="5" Source="{Binding}"/>
+                                <StackLayout>
+                                    <Image Margin="1" Source="{Binding}"/>
+                                </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    
-                    
+
                     <ProgressBar HorizontalOptions="FillAndExpand"  BindingContext="{Binding Entry}" Progress="{Binding HappinessIndicator}"/>
 
                     <!-- Edit/Delete Buttons-->
@@ -183,20 +183,71 @@
             </Frame>
         </DataTemplate>
 
-        <DataTemplate x:Key="DiaryEntry_NewSpaceTemplate">
+        <DataTemplate x:Key="DiaryEntry_CoverTemplate">
+            <!-- Frames have a default padding of 20 so the padding needs to be closer to 0 to let the image display filled -->
+            <Frame Style="{StaticResource QuestionFrameStyle}" Padding="1" IsClippedToBounds="True">
+                <RelativeLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Silver">
+                    <Image Aspect="AspectFill"
+                           BindingContext="{Binding Cover}" 
+                           Source="{Binding CoverBackgroundSource}"
+                           RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                           RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=0}"
+                           RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=0}"/>
+                    <StackLayout VerticalOptions="FillAndExpand" 
+                                 HorizontalOptions="FillAndExpand"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                                 RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=0}"
+                                 RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=0}" >
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Start">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" BindingContext="{Binding Cover}" Text="{Binding Name, StringFormat='{0}\&apos;s Diary'}"/>
+                        </StackLayout>
+                        <StackLayout VerticalOptions="CenterAndExpand"/>
+                        <!-- Center invisible block to push everything-->
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="End">
+                            <Button VerticalOptions="End"
+                                Text="Edit Cover" Style="{StaticResource Style_GreenRoundedBorderButton}" 
+                                Command="{Binding Command_EditCover, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}"
+                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
+                        </StackLayout>
+
+                    </StackLayout>
+                </RelativeLayout>
+            </Frame>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="DiaryEntry_CoverEditingTemplate">
             <!-- Indicates a new space (Usually the end) of the diary carousel that the user can click on turn this space into a new diary entry -->
             <Frame Style="{StaticResource QuestionFrameStyle}">
-                <StackLayout>
-                    <Label Text="This is the cover of the Diary. There will be options to change the cover display later in future updates" VerticalOptions="StartAndExpand"/>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Name"/>
+                    <Entry BindingContext="{Binding Cover}" Text="{Binding Name}"/>
+
+                    <Label Text="Background"/>
+                    <Picker BindingContext="{Binding Cover}" SelectedItem="{Binding CoverBackgroundSource}" Title="Select One">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>bg_morning.png</x:String>
+                                <x:String>bg_noon.png</x:String>
+                                <x:String>bg_night.png</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <Button Text="Select Background" Style="{StaticResource Style_GreenRoundedBorderButton}" 
+                            Command="{Binding Command_SaveCover, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}"
+                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
                 </StackLayout>
             </Frame>
         </DataTemplate>
 
-
         <views:UserDiaryTemplateSelector x:Key="userDiarySelector"
             CompletedTemplate="{StaticResource DiaryEntry_CompletedTemplate}"
             EditingTemplate="{StaticResource DiaryEntry_EditingTemplate}"
-            NewSpaceTemplate="{StaticResource DiaryEntry_NewSpaceTemplate}"/>
+            CoverTemplate="{StaticResource DiaryEntry_CoverTemplate}"
+            CoverEditingTemplate="{StaticResource DiaryEntry_CoverEditingTemplate}"/>
 
     </ContentPage.Resources>
 
