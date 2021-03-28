@@ -78,7 +78,6 @@
     <Compile Include="MainPage.xaml.cs" Condition=" '$(EnableDefaultCompileItems)' == 'true' ">
       <SubType>Code</SubType>
     </Compile>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\NimbusSanL-Bol.otf" />
     <BundleResource Include="Resources\NimbusSanL-Reg.otf" />
     <BundleResource Include="Resources\Questions.db" />
@@ -314,6 +313,9 @@
     <BundleResource Include="Resources\expression_Unhappy.png" />
     <BundleResource Include="Resources\RIE_logo300.png" />
     <BundleResource Include="Resources\RIE_long_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
