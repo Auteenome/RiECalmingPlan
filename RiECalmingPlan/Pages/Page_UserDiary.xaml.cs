@@ -65,15 +65,33 @@ namespace RiECalmingPlan.Pages {
                     }
 
                     
-                } 
+                }
 
             }
+            
+            UpdateEditSaveToolbarText();
         }
 
         private void ToolbarPlus_Clicked(object sender, EventArgs e) {
             //This function scrolls the carousel all the way to the end. When a new item is added to the end of the Itemsource.
             //This automatically triggers the Carousel_PositionChanged function as it goes towards the end, saving all subsequent entries. 
             Carousel.ScrollTo(_viewModel.DiaryEntries.Count-1);
+        }
+
+        private void ToolbarEditSave_Clicked(object sender, EventArgs e) {
+            _viewModel.ToggleEdit(_viewModel.DiaryEntries[Carousel.Position]);
+            UpdateEditSaveToolbarText();
+        }
+
+        private void UpdateEditSaveToolbarText() {
+            //The Edit/Save button toggles between the states. So this function will update the toolbar item to accompany that
+            if (_viewModel.DiaryEntries[Carousel.Position].CurrentState == ViewModel_DiaryPage.PageState.COMPLETED) {
+                EditSaveToolbarButton.IconImageSource = "baseline_edit_24.png";
+                //EditSaveToolbarButton.Text = "Edit";
+            } else if (_viewModel.DiaryEntries[Carousel.Position].CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
+                EditSaveToolbarButton.IconImageSource = "baseline_save_24.png";
+                //EditSaveToolbarButton.Text = "Save";
+            }
         }
     }
 }

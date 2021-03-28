@@ -102,3 +102,7 @@ independently of each element.
 The diary cover/entries can be edited/saved and when loading it treats all pages as "completed". It should automatically save upon swipe.
 Cover background can be changed (preset ones are added in)
 
+28/03/2021 (4hrs)
+- [User Diary] Included icons that apply based on the entry's 'HappinessIndicator' variable
+- [resources] Added icons that were in the Android variant but not in the IOS variant
+- [User Diary] Moved the Edit to the Toolbar section of the Diary, allowing it to be used as a toggle button to change the state of the slide at will.

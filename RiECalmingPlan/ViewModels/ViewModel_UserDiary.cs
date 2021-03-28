@@ -48,6 +48,23 @@ namespace RiECalmingPlan.ViewModels {
             DiaryEntries = entries;
         }
 
+        public void ToggleEdit(ViewModel_DiaryPage page) {
+            if (page is ViewModel_DiaryCover cover) {
+                if (cover.CurrentState == ViewModel_DiaryPage.PageState.COMPLETED) {
+                    EditCover(cover);
+                } else if (cover.CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
+                    SaveCover(cover);
+                }
+            } else if (page is ViewModel_DiaryEntry entry) {
+                if (entry.CurrentState == ViewModel_DiaryPage.PageState.COMPLETED) {
+                    EditEntry(entry);
+                }
+                else if (entry.CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
+                    SaveEntry(entry);
+                }
+            }
+        }
+
         //Creates a new Entry in the Diary with the EDITING state
         private void CreateEntry() {
             DiaryEntries.Add(new ViewModel_DiaryEntry() { Entry = new DiaryEntry() { FirstSubmit = DateTime.Now }, CurrentState = ViewModel_DiaryPage.PageState.EDITING});

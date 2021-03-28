@@ -62,6 +62,9 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
+    <AppExtensionDebugBundleId />
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="LocalNotifications\IOSNotificationManager.cs" />
     <Compile Include="LocalNotifications\IOSNotificationReceiver.cs" />
@@ -295,4 +298,26 @@
   <ItemGroup>
     <BundleResource Include="Resources\bg_morning.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_edit_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_save_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\baseline_info_24.png" />
+    <Content Include="Resources\baseline_new_24.png" />
+    <BundleResource Include="Resources\expression_VeryHappy.png" />
+    <BundleResource Include="Resources\expression_VeryUnhappy.png" />
+    <BundleResource Include="Resources\expression_Happy.png" />
+    <BundleResource Include="Resources\expression_Neutral.png" />
+    <BundleResource Include="Resources\expression_Unhappy.png" />
+    <BundleResource Include="Resources\RIE_logo300.png" />
+    <BundleResource Include="Resources\RIE_long_logo.png" />
+  </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties TriggeredFromHotReload="False" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
