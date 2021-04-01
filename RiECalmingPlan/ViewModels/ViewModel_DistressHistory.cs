@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RiECalmingPlan.ViewModels {
     public class ViewModel_DistressHistory : ViewModel_Base {
@@ -45,12 +46,13 @@ namespace RiECalmingPlan.ViewModels {
 
 
         public ViewModel_DistressHistory() {
-            Refresh();
+            AsyncInit();
         }
 
-        public async void Refresh() {
+        public async void AsyncInit() {
             FullHistory = new ObservableRangeCollection<UserInputDistressLevel>();
             FilteredHistory = new ObservableRangeCollection<UserInputDistressLevel>();
+            await App.database.RemoveAllDistressEntriesBeforeAMonthAgo();
             var list = await App.database.GetUserInputDistressLevels();
             FullHistory.AddRange(list);
             FullHistory = new ObservableRangeCollection<UserInputDistressLevel>(FullHistory.OrderBy(x => x.StartTime).ToList());

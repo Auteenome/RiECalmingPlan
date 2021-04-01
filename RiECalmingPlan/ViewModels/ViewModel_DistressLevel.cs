@@ -44,7 +44,6 @@ namespace RiECalmingPlan.ViewModels {
             CallNumber = new Command<string>(Call);
             OpenWebLink = new Command<string>(OpenBrowser);
             DistressExpressions = new ObservableRangeCollection<Response>();
-
         }
 
         private void Call(string s) {

@@ -196,6 +196,7 @@ namespace RiECalmingPlan.Models {
             }
         }
 
+
         //------------------- CREATE -------------------------------
         /*
          * Appends the row to the end of the table
@@ -234,6 +235,11 @@ namespace RiECalmingPlan.Models {
         public async Task DeleteTextResponse(Label_TextResponse textResponse) {
             await db.QueryAsync<Label_TextResponse>("DELETE FROM [TextResponseLabels] WHERE CPQID = ? AND QID = ?",
                     textResponse.CPQID, textResponse.QID);
+        }
+
+        public async Task RemoveAllDistressEntriesBeforeAMonthAgo() {
+            await db.QueryAsync<UserInputDistressLevel>("DELETE FROM [UserInputDistressLevel] WHERE StartTime < ?",
+                DateTime.Now.AddMonths(-1));
         }
 
     }

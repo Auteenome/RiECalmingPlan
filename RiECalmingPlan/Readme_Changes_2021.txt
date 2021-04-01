@@ -106,3 +106,10 @@ Cover background can be changed (preset ones are added in)
 - [User Diary] Included icons that apply based on the entry's 'HappinessIndicator' variable
 - [resources] Added icons that were in the Android variant but not in the IOS variant
 - [User Diary] Moved the Edit to the Toolbar section of the Diary, allowing it to be used as a toggle button to change the state of the slide at will.
+
+28/03/2021 (2hrs)
+- [IOS] Splash screen now works
+
+1/04/2021 (4hrs)
+- [Distress History] UserInputDistressLevel table cleans up upon entering the Distress History page, removing all entries older than a month.
+- [Distress Tracker] Updated the Suggestions/Responses frame (Just in case if no Suggestions are listed in the database)

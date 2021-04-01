@@ -143,7 +143,7 @@
                            Grid.Row="0"
                            Grid.Column="0">
                     <StackLayout>
-                        <Label Text="Suggestions"
+                        <Label Text="Responses"
                                    FontSize="Default"
                                    FontFamily="NimbusBold"
                                    HorizontalOptions="CenterAndExpand" />
@@ -163,7 +163,16 @@
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </StackLayout>
+                        <Label Text="Suggestions"
+                                   FontSize="Default"
+                                   FontFamily="NimbusBold"
+                                   HorizontalOptions="CenterAndExpand" />
                         <StackLayout BindableLayout.ItemsSource="{Binding DistressSuggestions}">
+                            <BindableLayout.EmptyView>
+                                <Label Text="Looks like you don't have any Suggestions in this category!"
+                                           FontSize="Default"
+                                           FontFamily="NimbusReg" />
+                            </BindableLayout.EmptyView>
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout Orientation="Horizontal">
