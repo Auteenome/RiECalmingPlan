@@ -82,7 +82,7 @@ namespace RiECalmingPlan.Pages {
             //The fix for this was to set the animate variable to false, so that on IOS it will still take the user to the last entry
             Console.WriteLine("[EntryAdded] Number of Pages " + _viewModel.DiaryEntries.Count);
             if (Device.RuntimePlatform == Device.iOS) {
-                int num = _viewModel.DiaryEntries.Count - 2;
+                int num = _viewModel.DiaryEntries.Count - 1;
                 Console.WriteLine("Scrolling to position " + num);
                 Carousel.ScrollTo(num, animate: false);
                 
