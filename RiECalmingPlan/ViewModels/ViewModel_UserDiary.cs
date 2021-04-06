@@ -21,7 +21,8 @@ namespace RiECalmingPlan.ViewModels {
          */
 
         private ObservableRangeCollection<ViewModel_DiaryPage> _DiaryEntries;
-        public ObservableRangeCollection<ViewModel_DiaryPage> DiaryEntries { get { return _DiaryEntries; } set { SetProperty(ref _DiaryEntries, value); } } 
+        public ObservableRangeCollection<ViewModel_DiaryPage> DiaryEntries { get { return _DiaryEntries; } set { SetProperty(ref _DiaryEntries, value); } }
+
 
         public Command<ViewModel_DiaryEntry> Command_SaveEntry { get; private set; }
         public Command<ViewModel_DiaryEntry> Command_EditEntry { get; private set; }
@@ -29,6 +30,8 @@ namespace RiECalmingPlan.ViewModels {
         public Command Command_CreateEntry { get; private set; }
         public Command<ViewModel_DiaryCover> Command_EditCover { get; private set; }
         public Command<ViewModel_DiaryCover> Command_SaveCover { get; private set; }
+
+        public event EventHandler NewDiaryEntryAdded;
 
         public ViewModel_UserDiary() {
             //Bind Commands to Functions
@@ -67,7 +70,9 @@ namespace RiECalmingPlan.ViewModels {
 
         //Creates a new Entry in the Diary with the EDITING state
         private void CreateEntry() {
-            DiaryEntries.Add(new ViewModel_DiaryEntry() { Entry = new DiaryEntry() { FirstSubmit = DateTime.Now }, CurrentState = ViewModel_DiaryPage.PageState.EDITING});
+            ViewModel_DiaryPage newEntry = new ViewModel_DiaryEntry() { Entry = new DiaryEntry() { FirstSubmit = DateTime.Now }, CurrentState = ViewModel_DiaryPage.PageState.EDITING };
+            DiaryEntries.Add(newEntry);
+            NewDiaryEntryAdded(this, EventArgs.Empty);
         }
 
         //Saves the Diary Entry

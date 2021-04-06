@@ -113,3 +113,12 @@ Cover background can be changed (preset ones are added in)
 1/04/2021 (4hrs)
 - [Distress History] UserInputDistressLevel table cleans up upon entering the Distress History page, removing all entries older than a month.
 - [Distress Tracker] Updated the Suggestions/Responses frame (Just in case if no Suggestions are listed in the database)
+
+6/04/2021 (7hrs)
+- [Diary Page] Very minor changes here.
+On IOS, the carousel scrolls to the end when a new entry is created. After reaching the end, the carousel moves back to the start of the list,
+which means the individual IOS code's CarouselView implementation needs to be fixed.
+When Scrolling, setting the animate parameter allows the carousel to move towards the end, opposed to setting it on and it only moving once.
+Scrolling back on its own will trigger the PositionChanged event and therefore the last entry will mutate into a completed state.
+Regardless, the Diary still will create an entry under the edit state, no problems, but scrolling to that position in IOS is troublesome for now.
+On Android, no dramas.

@@ -21,6 +21,7 @@ namespace RiECalmingPlan.Pages {
         public Page_UserDiary() {
             InitializeComponent();
             BindingContext = _viewModel = new ViewModel_UserDiary();
+            _viewModel.NewDiaryEntryAdded += EntryAdded;
 
             Init();
         }
@@ -55,27 +56,39 @@ namespace RiECalmingPlan.Pages {
 
         private void Carousel_PositionChanged(object sender, PositionChangedEventArgs e) {
             //When the user swipes, if the user was currently editing a diary entry, it will save that diary entry.
-            Console.WriteLine("Previous Position: " + e.PreviousPosition + " Current Position: " + e.CurrentPosition );
+            Console.WriteLine("[PositionChanged] Number of Pages: " + (_viewModel.DiaryEntries.Count -1));
+            Console.WriteLine("[PositionChanged] Previous Position: " + e.PreviousPosition + " Current Position: " + e.CurrentPosition );
             if (e.PreviousPosition < _viewModel.DiaryEntries.Count) {
-                if (_viewModel.DiaryEntries[e.PreviousPosition] != null && _viewModel.DiaryEntries[e.PreviousPosition].CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
+                if (_viewModel.DiaryEntries[e.PreviousPosition] != null && _viewModel.DiaryEntries[e.PreviousPosition].CurrentState == ViewModel_DiaryPage.PageState.EDITING){
                     if (_viewModel.DiaryEntries[e.PreviousPosition] is ViewModel_DiaryCover cover) {
                         _viewModel.SaveCover(cover);
-                    } else if(_viewModel.DiaryEntries[e.PreviousPosition] is ViewModel_DiaryEntry entry) {
+                    } else if (_viewModel.DiaryEntries[e.PreviousPosition] is ViewModel_DiaryEntry entry){
                         _viewModel.SaveEntry(entry);
                     }
 
-                    
-                }
 
+                }
             }
+
             
             UpdateEditSaveToolbarText();
         }
 
-        private void ToolbarPlus_Clicked(object sender, EventArgs e) {
+        private void EntryAdded(object sender, EventArgs e) {
             //This function scrolls the carousel all the way to the end. When a new item is added to the end of the Itemsource.
-            //This automatically triggers the Carousel_PositionChanged function as it goes towards the end, saving all subsequent entries. 
-            Carousel.ScrollTo(_viewModel.DiaryEntries.Count-1);
+            //This automatically triggers the Carousel_PositionChanged function as it goes towards the end, saving all subsequent entries.
+
+            //In Xamarin Forms 5.0, there is an IOS bug where the ScrollTo function would always put the current item to the first entry,
+            //The fix for this was to set the animate variable to false, so that on IOS it will still take the user to the last entry
+            Console.WriteLine("[EntryAdded] Number of Pages " + _viewModel.DiaryEntries.Count);
+            if (Device.RuntimePlatform == Device.iOS) {
+                int num = _viewModel.DiaryEntries.Count - 2;
+                Console.WriteLine("Scrolling to position " + num);
+                Carousel.ScrollTo(num, animate: false);
+                
+            } else if (Device.RuntimePlatform == Device.Android) {
+                Carousel.ScrollTo(index: _viewModel.DiaryEntries.Count - 1);
+            }
         }
 
         private void ToolbarEditSave_Clicked(object sender, EventArgs e) {
