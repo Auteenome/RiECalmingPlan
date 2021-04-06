@@ -86,3 +86,30 @@ Current: The "OnPositionChanged" command now proceeds to check the item in the a
 
 Unfixable: For Android, the back button cannot be replaced by text
 
+25/03/2021 (8hrs)
+- [Questions.db] [DiaryStarter.cs removed] Diary Starters were removed from the database as they are one dimensional. The starters are hardcoded into the Picker element in the Page_UserDiary.xaml file instead.
+- [User Diary] + button placed next to the Help button in the toolbar to allow the user to add a new page.
+- [User Diary] Scrolling within the carousel does not enforce an entire Itemsource update. Instead, elements are now properly replaced in the viewmodel such that the UI will pick this up
+independently of each element.
+- [Distress Tracker] Graph as been updated as per Peter's configurations.
+
+26/03/2021 (9hrs)
+- [User Diary] Updated Image Collection padding.
+- [User Diary] Started on infrastructure changes to allow for Diary Cover to be saved/edited alongside with diary entries.
+
+27/03/2021, 28/03/2021 (8hrs)
+- [User Diary] Finished infrastructure changes. 
+The diary cover/entries can be edited/saved and when loading it treats all pages as "completed". It should automatically save upon swipe.
+Cover background can be changed (preset ones are added in)
+
+28/03/2021 (4hrs)
+- [User Diary] Included icons that apply based on the entry's 'HappinessIndicator' variable
+- [resources] Added icons that were in the Android variant but not in the IOS variant
+- [User Diary] Moved the Edit to the Toolbar section of the Diary, allowing it to be used as a toggle button to change the state of the slide at will.
+
+28/03/2021 (2hrs)
+- [IOS] Splash screen now works
+
+1/04/2021 (4hrs)
+- [Distress History] UserInputDistressLevel table cleans up upon entering the Distress History page, removing all entries older than a month.
+- [Distress Tracker] Updated the Suggestions/Responses frame (Just in case if no Suggestions are listed in the database)

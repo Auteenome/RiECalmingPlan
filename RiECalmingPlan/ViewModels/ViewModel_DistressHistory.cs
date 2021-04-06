@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RiECalmingPlan.ViewModels {
     public class ViewModel_DistressHistory : ViewModel_Base {
@@ -28,8 +29,12 @@ namespace RiECalmingPlan.ViewModels {
         public ObservableRangeCollection<string> FilterOptions { get; } = new ObservableRangeCollection<string> {"Today", "Week", "Month", "All"};
         public string SelectedFilter { get { return _SelectedFilter; } set { SetProperty(ref _SelectedFilter, value); FilterItems(); ResetChart(); } }
 
+        /*
         private Chart _LineChart;
         public Chart LineChart { get { return _LineChart; } set { SetProperty(ref _LineChart, value); } }
+        */
+        private Chart _BarChart;
+        public Chart BarChart { get { return _BarChart; } set { SetProperty(ref _BarChart, value); } }
 
         readonly Dictionary<string, int> Magnitude = new Dictionary<string, int>() {
             {"None", 0 },
@@ -41,12 +46,13 @@ namespace RiECalmingPlan.ViewModels {
 
 
         public ViewModel_DistressHistory() {
-            Refresh();
+            AsyncInit();
         }
 
-        public async void Refresh() {
+        public async void AsyncInit() {
             FullHistory = new ObservableRangeCollection<UserInputDistressLevel>();
             FilteredHistory = new ObservableRangeCollection<UserInputDistressLevel>();
+            await App.database.RemoveAllDistressEntriesBeforeAMonthAgo();
             var list = await App.database.GetUserInputDistressLevels();
             FullHistory.AddRange(list);
             FullHistory = new ObservableRangeCollection<UserInputDistressLevel>(FullHistory.OrderBy(x => x.StartTime).ToList());
@@ -74,6 +80,7 @@ namespace RiECalmingPlan.ViewModels {
             }
         }
 
+        /*
         private void ResetChart() {
             List<ChartEntry> entries = new List<ChartEntry>();
             foreach (UserInputDistressLevel timestamp in FilteredHistory) {
@@ -86,5 +93,60 @@ namespace RiECalmingPlan.ViewModels {
             }
             LineChart = new LineChart() { Entries = entries };
         }
+        */
+        private void ResetChart() {
+            string level;
+            string entryDate;
+            string entryTime;
+            string labelEntry;
+            List<ChartEntry> entries = new List<ChartEntry>();
+            foreach (UserInputDistressLevel timestamp in FilteredHistory) {
+                Magnitude.TryGetValue(timestamp.DistressLevelType, out int value);
+                //assign appropriate distress colour level to entry
+                switch (value) {
+                    case 4:
+                        //Acute Red
+                        level = "#ff0000";
+                        break;
+                    case 3:
+                        //Moderate Orange
+                        //level = "#f05828";
+                        level = "#ffa500";
+                        break;
+                    case 2:
+                        //Mild Yellow
+                        //level = "f8d90f";
+                        level = "#ffff00";
+                        break;
+                    case 1:
+                        //calm - does not have a magniture but color is light green (Neon)
+                        //level = "#8dc63f";
+                        //level = "#32cd32";
+                        level = "#39ff14";
+                        break;
+                    default:
+                        level = "#b455b6";
+                        break;
+                }
+                entryTime = timestamp.StartTime.ToString("hh:mm tt");
+                entryDate = timestamp.StartTime.ToString("dd MMM"); //Gets short Date
+                labelEntry = entryTime + " " + entryDate;
+                entries.Add(new ChartEntry(value) {
+                    //Label = "", Label appears underneath Bar Chart as the magnitude of the Bar
+                    Label = value.ToString(),
+                    TextColor = SKColor.Parse("#ffffff"),
+                    //ValueLabel = timestamp.StartTime.ToString(),
+                    //ValueLabel appears on top of the Bar as timestamp
+                    ValueLabel = labelEntry,
+                    ValueLabelColor = SKColor.Parse("#ffffff"),
+                    //Color = SKColor.Parse("#b455b6")
+                    Color = SKColor.Parse(level)
+                });
+            }
+            //LineChart = new LineChart() { Entries = entries, MaxValue = 4, MinValue = 1, LineAreaAlpha = 1, BackgroundColor =SKColor.Parse("#FF90EE90")  };
+            BarChart = new BarChart() { Entries = entries, MaxValue = 4, MinValue = 1, LabelOrientation = Orientation.Horizontal, ValueLabelOrientation = Orientation.Vertical, BackgroundColor = SKColor.Parse("#006738"), LabelColor = SKColor.Parse("#ffffff"), LabelTextSize = 25f };
+
+        }
+
     }
 }

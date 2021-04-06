@@ -8,37 +8,40 @@ using System.Text;
 namespace RiECalmingPlan.Models.JSON {
     public static class UserDiaryFileController {
 
+        //The settings parameter allows for individual subclasses to be saved when being serialised/deserialised
+        //This allows for a list of objects that have the same parent to be saved as the type of the child.
+        static JsonSerializerSettings settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
 
-
-        public static List<ViewModel_DiaryEntry> Load() {
+        public static List<ViewModel_DiaryPage> Load() {
 
             if (File.Exists(App.SavePath)) {
                 //Open File
-                List<DiaryEntry> rawEntries = JsonConvert.DeserializeObject<List<DiaryEntry>>(File.ReadAllText(App.SavePath));
-                List<ViewModel_DiaryEntry> newEntries = new List<ViewModel_DiaryEntry>();
-                foreach (DiaryEntry entry in rawEntries) {
-                    newEntries.Add(new ViewModel_DiaryEntry(entry));
+                Console.WriteLine("JSON File Loaded.");
+                List<ViewModel_DiaryPage> pages = JsonConvert.DeserializeObject<List<ViewModel_DiaryPage>>(File.ReadAllText(App.SavePath), settings);
+
+                //When loading up, everything should already be in completed state.
+                foreach (ViewModel_DiaryPage page in pages) {
+                    page.CurrentState = ViewModel_DiaryPage.PageState.COMPLETED;
                 }
-                return newEntries;
+
+                return pages;
             } else {
                 //Create new File
-                List<ViewModel_DiaryEntry> entries = new List<ViewModel_DiaryEntry>();
-                Save(null);
-                return entries;
+                Console.WriteLine("JSON file does not exist. Creating new JSON File");
+                List<ViewModel_DiaryPage> pages = new List<ViewModel_DiaryPage>() {
+                    new ViewModel_DiaryCover(new DiaryCover())
+                };
+                Save(pages);
+                return pages;
             }
         }
 
-        public static void Save(List<ViewModel_DiaryEntry> entries) {
+        public static void Save(List<ViewModel_DiaryPage> pages) {
             //Save object as JSON File
-            List<DiaryEntry> rawEntries = new List<DiaryEntry>();
-            if (entries != null) {
-                foreach (ViewModel_DiaryEntry entry in entries) {
-                    if (entry.CurrentState != ViewModel_DiaryEntry.DiaryEntryState.NEWSPACE) {
-                        rawEntries.Add(entry.Entry);
-                    }
-                }
-            }
-            File.WriteAllText(App.SavePath, JsonConvert.SerializeObject(rawEntries));
+            Console.WriteLine("JSON File Saved");
+
+
+            File.WriteAllText(App.SavePath, JsonConvert.SerializeObject(pages, settings));
 
 
         }

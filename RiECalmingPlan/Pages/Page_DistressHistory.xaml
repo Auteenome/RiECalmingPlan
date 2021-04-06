@@ -15,7 +15,7 @@
                 <Picker ItemsSource="{Binding FilterOptions}" SelectedItem="{Binding SelectedFilter}"  VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
             </StackLayout>
             <StackLayout VerticalOptions="Center">
-                <microcharts:ChartView HeightRequest="250" Chart="{Binding LineChart}"/>
+                <microcharts:ChartView HeightRequest="250" Chart="{Binding BarChart}"/>
             </StackLayout>
             <ScrollView VerticalOptions="EndAndExpand">
                 <StackLayout BindableLayout.ItemsSource="{Binding FilteredHistory}">
@@ -26,10 +26,14 @@
                     </BindableLayout.EmptyView>
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout>
-                                <Label Text="{Binding DistressLevelType, StringFormat='Level: {0}'}" />
-                                <Label Text="{Binding StartTime, StringFormat='Time Recorded: {0}'}" />
-                                <Label Text="{Binding Location, StringFormat='Location: {0}'}"/>
+                            <StackLayout VerticalOptions="Center">
+                                <Frame>
+                                    <StackLayout>
+                                        <Label Text="{Binding DistressLevelType, StringFormat='Level: {0}'}" />
+                                        <Label Text="{Binding StartTime, StringFormat='Time Recorded: {0}'}" />
+                                        <Label Text="{Binding Location, StringFormat='Location: {0}'}"/>
+                                    </StackLayout>
+                                </Frame>
                             </StackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>

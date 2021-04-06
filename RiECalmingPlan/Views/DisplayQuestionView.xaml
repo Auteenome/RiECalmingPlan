@@ -235,7 +235,7 @@
 
     <ContentView.Content>
         <StackLayout>
-            <CarouselView x:Name="Questions" ItemsSource="{Binding Questions}" ItemTemplate="{StaticResource answerTemplateSelector}"/>
+            <CarouselView x:Name="Questions" Loop="False" ItemsSource="{Binding Questions}" ItemTemplate="{StaticResource answerTemplateSelector}"/>
         </StackLayout>
   </ContentView.Content>
 </ContentView>

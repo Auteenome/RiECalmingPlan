@@ -10,7 +10,9 @@
              BackgroundColor="{StaticResource RiEOffWhite}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Help" Clicked="ToolBarHelp_Clicked" ></ToolbarItem>
+        <ToolbarItem Text="Help" Clicked="ToolBarHelp_Clicked"/>
+        <ToolbarItem IconImageSource="baseline_new_24" Clicked="ToolbarPlus_Clicked" Command="{Binding Command_CreateEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}"/>
+        <ToolbarItem x:Name="EditSaveToolbarButton" IconImageSource="baseline_edit_24" Clicked="ToolbarEditSave_Clicked"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Resources>
@@ -21,6 +23,8 @@
             - New Diary Entry space (End of the carousel, can click this to turn it into an editing Diary Entry. This space will also just be an image button with a '+' on it or something)
             - Template Selector (To define if the layout will be Completed/Edited/New)
         -->
+        
+        <!-- ENTRY TEMPLATES -->
         <DataTemplate x:Key="DiaryEntry_CompletedTemplate">
             <!-- Indicates a completed diary entry -->
             <Frame Style="{StaticResource QuestionFrameStyle}">
@@ -32,7 +36,7 @@
 
                     <Label BindingContext="{Binding Entry}" HorizontalOptions="CenterAndExpand">
                         <Label.Text>
-                            <MultiBinding StringFormat="{}{0}{1}">
+                            <MultiBinding StringFormat="{}{0} {1}">
                                 <Binding Path="Starter" />
                                 <Binding Path="Body"/>
                             </MultiBinding>
@@ -44,37 +48,38 @@
                     <!-- Image Collection -->
                     <CollectionView BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
                         <CollectionView.ItemsLayout>
-                            <GridItemsLayout Orientation="Vertical" Span="3" />
+                            <GridItemsLayout Orientation="Vertical" Span="3"/>
                         </CollectionView.ItemsLayout>
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <Image Margin="5" Source="{Binding}"/>
+                                <StackLayout>
+                                    <Image Margin="1" Source="{Binding}"/>
+                                </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    
-                    
-                    <ProgressBar HorizontalOptions="FillAndExpand"  BindingContext="{Binding Entry}" Progress="{Binding HappinessIndicator}"/>
 
+                    <Image HorizontalOptions="CenterAndExpand" BindingContext="{Binding Entry}" Source="{Binding HappinessIndicator, Converter={StaticResource happinessIndicatorToImage}}"/>
+                    <!--
+                    <ProgressBar HorizontalOptions="FillAndExpand"  BindingContext="{Binding Entry}" Progress="{Binding HappinessIndicator}"/>
+                    -->
                     <!-- Edit/Delete Buttons-->
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+                        <!-- EDIT BUTTON
                         <StackLayout HorizontalOptions="CenterAndExpand">
-                            <Button Grid.Column="0"
-                                Text="Edit"
+                            <Button Text="Edit"
                                 ImageSource="baseline_save_24"
                                 Style="{StaticResource Style_GreenRoundedBorderButton}"
                                 Command="{Binding Command_EditEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
-                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
-                                Clicked="RefreshSlide_Clicked"/>
+                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
                         </StackLayout>
+                        -->
                         <StackLayout HorizontalOptions="CenterAndExpand">
-                            <Button Grid.Column="1"
-                                Text="Delete"
-                                ImageSource="baseline_delete_24"
-                                Style="{StaticResource Style_GreenRoundedBorderButton}"
-                                Command="{Binding Command_RemoveEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
-                                CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
-                                Clicked="RefreshSlide_Clicked"/>
+                            <Button Text="Delete"
+                                    ImageSource="baseline_delete_24"
+                                    Style="{StaticResource Style_GreenRoundedBorderButton}"
+                                    Command="{Binding Command_RemoveEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
+                                    CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -99,9 +104,25 @@
                     -->
                     <Frame Padding="0" CornerRadius="5" BorderColor="#006738" BackgroundColor="#c6e29f">
                         <StackLayout BindingContext="{Binding Entry}">
-                            <Picker ItemsSource="{Binding DiaryStarters, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}"
-                                SelectedItem="{Binding Starter, Mode=TwoWay}"
-                                Title="{Binding StarterText, Mode=TwoWay}"/>
+                            <Picker SelectedItem="{Binding Starter}" Title="Select One">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Today I</x:String>
+                                        <x:String>At school today I</x:String>
+                                        <x:String>Today me and my friends</x:String>
+                                        <x:String>Today I learnt that</x:String>
+                                        <x:String>Today I hung out with</x:String>
+                                        <x:String>I went to</x:String>
+                                        <x:String>Today I saw</x:String>
+                                        <x:String>I wish</x:String>
+                                        <x:String>Wouldn't it be awesome if</x:String>
+                                        <x:String>I really don't understand</x:String>
+                                        <x:String>Why does</x:String>
+                                        <x:String>I wonder</x:String>
+                                        <x:String>It was amazing</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
                         </StackLayout>
                     </Frame>
 
@@ -154,47 +175,99 @@
                             </StackLayout>
                         </StackLayout>
 
-                        <Label Text="How happy are you right now?" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}" HorizontalOptions="CenterAndExpand"/>
+                        <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+                            <Label HorizontalOptions="StartAndExpand" Text="How happy are you right now?" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}" />
+                            <Image HorizontalOptions="End" BindingContext="{Binding Entry}" Source="{Binding HappinessIndicator, Converter={StaticResource happinessIndicatorToImage}}"/>
+                        </StackLayout>
                         <Slider BindingContext="{Binding Entry}" Value="{Binding HappinessIndicator}" WidthRequest="500" HorizontalOptions="CenterAndExpand" MinimumTrackColor="Red" MaximumTrackColor="Lime" />
+                        <!-- SAVE BUTTON
                         <Button x:Name="SaveButton" 
                             ImageSource="baseline_save_24"
                             Text="Save Diary Entry" 
                             Style="{StaticResource Style_GreenRoundedBorderButton}"
                             Command="{Binding Command_SaveEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
-                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
-                            Clicked="RefreshSlide_Clicked"/>
+                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
+                        -->
                     </StackLayout>
                 </StackLayout>
             </Frame>
         </DataTemplate>
 
-        <DataTemplate x:Key="DiaryEntry_NewSpaceTemplate">
+        <!-- COVER TEMPLATES -->
+        
+        <DataTemplate x:Key="DiaryEntry_CoverTemplate">
+            <!-- Frames have a default padding of 20 so the padding needs to be closer to 0 to let the image display filled -->
+            <Frame Style="{StaticResource QuestionFrameStyle}" Padding="1" IsClippedToBounds="True">
+                <RelativeLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="Silver">
+                    <Image Aspect="AspectFill"
+                           BindingContext="{Binding Cover}" 
+                           Source="{Binding CoverBackgroundSource}"
+                           RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                           RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                           RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=0}"
+                           RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=0}"/>
+                    <StackLayout VerticalOptions="FillAndExpand" 
+                                 HorizontalOptions="FillAndExpand"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1}"
+                                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
+                                 RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=0}"
+                                 RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=0}" >
+                        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <Label VerticalOptions="Center" HorizontalOptions="Center" BindingContext="{Binding Cover}" Text="{Binding Name, StringFormat='{0}\&apos;s Diary'}" TextColor="Gray" FontSize="Large">
+                                <Label.Triggers>
+                                    <DataTrigger TargetType="Label" Binding="{Binding Name}" Value="">
+                                        <Setter Property="IsVisible" Value="False" />
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
+                        </StackLayout>
+
+                    </StackLayout>
+                </RelativeLayout>
+            </Frame>
+
+        </DataTemplate>
+
+        <DataTemplate x:Key="DiaryEntry_CoverEditingTemplate">
             <!-- Indicates a new space (Usually the end) of the diary carousel that the user can click on turn this space into a new diary entry -->
             <Frame Style="{StaticResource QuestionFrameStyle}">
-                <StackLayout>
-                    <Label Text="This is an empty space, you can add a diary entry here" VerticalOptions="StartAndExpand"/>
-                    <Button Text="Add Diary Entry" 
-                            VerticalOptions="End"
-                            ImageSource="baseline_insert_24"
-                            Style="{StaticResource Style_GreenRoundedBorderButton}"
-                            Command="{Binding Command_EditEntry, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}" 
-                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"
-                            Clicked="RefreshSlide_Clicked"/>
+                <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                    <Label Text="Name"/>
+                    <Entry BindingContext="{Binding Cover}" Text="{Binding Name}"/>
+
+                    <Label Text="Background"/>
+                    <Picker BindingContext="{Binding Cover}" SelectedItem="{Binding CoverBackgroundSource}" Title="Select One">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>bg_morning.png</x:String>
+                                <x:String>bg_noon.png</x:String>
+                                <x:String>bg_night.png</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                    
+                    <!--
+                    <Button Text="Select Background" Style="{StaticResource Style_GreenRoundedBorderButton}" 
+                            Command="{Binding Command_SaveCover, Source={RelativeSource AncestorType={x:Type viewModel:ViewModel_UserDiary}}}"
+                            CommandParameter="{Binding Source={RelativeSource Self}, Path=BindingContext}"/>
+                    -->
                 </StackLayout>
             </Frame>
         </DataTemplate>
 
+        <views:HappinessIndicatorToImageConverter x:Key="happinessIndicatorToImage" />
 
         <views:UserDiaryTemplateSelector x:Key="userDiarySelector"
             CompletedTemplate="{StaticResource DiaryEntry_CompletedTemplate}"
             EditingTemplate="{StaticResource DiaryEntry_EditingTemplate}"
-            NewSpaceTemplate="{StaticResource DiaryEntry_NewSpaceTemplate}"/>
+            CoverTemplate="{StaticResource DiaryEntry_CoverTemplate}"
+            CoverEditingTemplate="{StaticResource DiaryEntry_CoverEditingTemplate}"/>
 
     </ContentPage.Resources>
 
     <ContentPage.Content>
         <StackLayout>
-            <CarouselView x:Name="Carousel" Margin="30" PositionChanged="Carousel_PositionChanged" PeekAreaInsets="10" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}">
+            <CarouselView Loop="False" x:Name="Carousel" Margin="20" PositionChanged="Carousel_PositionChanged" PeekAreaInsets="10" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}">
                 <CarouselView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" />
                 </CarouselView.ItemsLayout>
