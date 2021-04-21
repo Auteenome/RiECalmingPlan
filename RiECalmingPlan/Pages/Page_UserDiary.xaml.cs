@@ -74,19 +74,21 @@ namespace RiECalmingPlan.Pages {
             UpdateEditSaveToolbarText();
         }
 
-        private void EntryAdded(object sender, EventArgs e) {
+        private async void EntryAdded(object sender, EventArgs e) {
             //This function scrolls the carousel all the way to the end. When a new item is added to the end of the Itemsource.
             //This automatically triggers the Carousel_PositionChanged function as it goes towards the end, saving all subsequent entries.
 
             //In Xamarin Forms 5.0, there is an IOS bug where the ScrollTo function would always put the current item to the first entry,
             //The fix for this was to set the animate variable to false, so that on IOS it will still take the user to the last entry
+            await Task.Delay(500); //Necessary to get the last page displayed as an Editing diary page
             Console.WriteLine("[EntryAdded] Number of Pages " + _viewModel.DiaryEntries.Count);
             if (Device.RuntimePlatform == Device.iOS) {
+
                 int num = _viewModel.DiaryEntries.Count - 1;
                 Console.WriteLine("Scrolling to position " + num);
                 Carousel.ScrollTo(num, animate: false);
-                
-            } else if (Device.RuntimePlatform == Device.Android) {
+
+            }else if (Device.RuntimePlatform == Device.Android) {
                 Carousel.ScrollTo(index: _viewModel.DiaryEntries.Count - 1);
             }
         }
@@ -96,7 +98,8 @@ namespace RiECalmingPlan.Pages {
             UpdateEditSaveToolbarText();
         }
 
-        private void UpdateEditSaveToolbarText() {
+        private async void UpdateEditSaveToolbarText() {
+            await Task.Delay(500);
             //The Edit/Save button toggles between the states. So this function will update the toolbar item to accompany that
             if (_viewModel.DiaryEntries[Carousel.Position].CurrentState == ViewModel_DiaryPage.PageState.COMPLETED) {
                 EditSaveToolbarButton.IconImageSource = "baseline_edit_24.png";
@@ -106,5 +109,8 @@ namespace RiECalmingPlan.Pages {
                 //EditSaveToolbarButton.Text = "Save";
             }
         }
+    }
+}
+
     }
 }
