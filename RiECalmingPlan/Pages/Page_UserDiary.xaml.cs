@@ -111,6 +111,3 @@ namespace RiECalmingPlan.Pages {
         }
     }
 }
-
-    }
-}
