@@ -65,10 +65,9 @@ namespace RiECalmingPlan.Pages {
             await Navigation.PushAsync(new Page_TermsAndConditions());
         }
 
-        void ResetLocalDatabase(object sender, EventArgs e) {
+        async void GoToOptionsPage(object sender, EventArgs e) {
             //will be implemented soon
-            App.database.ResetConnection();
-            Console.WriteLine("Database connection reset");
+            await Navigation.PushAsync(new Page_Options());
         }
     }
 }

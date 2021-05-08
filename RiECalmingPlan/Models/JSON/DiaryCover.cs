@@ -6,8 +6,8 @@ using System.Text;
 namespace RiECalmingPlan.Models.JSON {
     public class DiaryCover : ViewModel_Base {
 
-        public string _Name = "";
-        public string _CoverBackgroundSource;
+        private string _Name = "";
+        private string _CoverBackgroundSource;
 
         public string Name { get { return _Name; } set { SetProperty(ref _Name, value); } }
         public string CoverBackgroundSource { get { return _CoverBackgroundSource; } set { SetProperty(ref _CoverBackgroundSource, value); } }

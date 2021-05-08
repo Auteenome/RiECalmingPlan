@@ -19,10 +19,9 @@
                      Text="Admin"
                      Order="Secondary" 
                      Clicked="GoToDeviceInfo"/>-->
-        <ToolbarItem x:Name="TbItemResetDB"
-                     Text="Reset Database"
+        <ToolbarItem Text="Options"
                      Order="Primary"
-                     Clicked="ResetLocalDatabase" />
+                     Clicked="GoToOptionsPage" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
 

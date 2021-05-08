@@ -6,7 +6,7 @@ using System.Text;
 using Xamarin.Forms;
 
 namespace RiECalmingPlan.Models.JSON {
-    public class DiaryEntry : ViewModel_DiaryEntry {
+    public class DiaryEntry : ViewModel_Base {
         /*
          * Model class that holds a single Diary Entry (Page of a diary) and consists of the following in order:
          * 

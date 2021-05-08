@@ -8,5 +8,6 @@ namespace RiECalmingPlan.SQLite {
     public interface ISQLite {
         Task<SQLiteAsyncConnection> GetConnection();
         Task<SQLiteAsyncConnection> ResetDatabase();
+        string GetPath();
     }
 }

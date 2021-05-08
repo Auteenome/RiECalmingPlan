@@ -16,7 +16,8 @@ namespace RiECalmingPlan.Models.JSON {
 
             if (File.Exists(App.SavePath)) {
                 //Open File
-                Console.WriteLine("JSON File Loaded.");
+                FileInfo fileInfo = new FileInfo(App.SavePath);
+                Console.WriteLine("JSON File Loaded, Size of file " + fileInfo.Length);
                 List<ViewModel_DiaryPage> pages = JsonConvert.DeserializeObject<List<ViewModel_DiaryPage>>(File.ReadAllText(App.SavePath), settings);
 
                 //When loading up, everything should already be in completed state.
@@ -38,12 +39,19 @@ namespace RiECalmingPlan.Models.JSON {
 
         public static void Save(List<ViewModel_DiaryPage> pages) {
             //Save object as JSON File
-            Console.WriteLine("JSON File Saved");
-
-
             File.WriteAllText(App.SavePath, JsonConvert.SerializeObject(pages, settings));
 
 
+            FileInfo fileInfo = new FileInfo(App.SavePath);
+            Console.WriteLine("JSON File Saved, Size of file " + fileInfo.Length);
+
+        }
+
+        public static void DeleteDiary() {
+            if (File.Exists(App.SavePath)) {
+                File.Delete(App.SavePath);
+                Console.WriteLine("Diary Deleted");
+            }
         }
 
 

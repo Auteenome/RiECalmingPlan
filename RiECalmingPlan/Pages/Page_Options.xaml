@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RiECalmingPlan.Pages.Page_Options"
+             BackgroundColor="{StaticResource RiEOffWhite}">
+    <ContentPage.Content>
+        <StackLayout Padding="20" VerticalOptions="FillAndExpand">
+
+            <!-- HEADER -->
+            <Image Source="RIE_long_logo.png"
+                   VerticalOptions="Start"/>
+
+            <!-- MAIN MENU BUTTONS -->
+            <StackLayout VerticalOptions="CenterAndExpand" Padding="20" Spacing="20">
+                <Label Text="{Binding DBSize, StringFormat='Local Database, Size: {0} Bytes', TargetNullValue='No Database'}"/>
+                <Button Text="Reset Database"
+                                Style="{StaticResource Style_TextIconButton}"
+                                ImageSource="ic_question_answer_white_24dp"
+                                Command="{Binding Command_ResetDatabase}" 
+                                HorizontalOptions="Fill"/>
+
+                <Label Text="{Binding DiarySize, StringFormat='User Diary, Size: {0} Bytes', TargetNullValue='No User Diary'}"/>
+                <Button Text="Reset Diary"
+                                Style="{StaticResource Style_TextIconButton}"
+                                ImageSource="ic_report_problem_white_24dp"
+                                Command="{Binding Command_ResetDiary}" 
+                                HorizontalOptions="Fill"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

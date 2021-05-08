@@ -53,5 +53,12 @@ namespace RiECalmingPlan.Droid.SQLite {
             // Return the database connection
             return conn;
         }
+
+        string ISQLite.GetPath() {
+            String databaseName = "Questions.db";
+            var docFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            var dbFile = Path.Combine(docFolder, databaseName); // FILE PATH TO USE WHEN COPIED
+            return dbFile;
+        }
     }
 }

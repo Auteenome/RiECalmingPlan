@@ -267,7 +267,7 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <CarouselView Loop="False" x:Name="Carousel" Margin="20" CurrentItem="{Binding CurrentPage}" PositionChanged="Carousel_PositionChanged" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}">
+            <CarouselView Loop="False" x:Name="Carousel" Margin="20" PositionChanged="Carousel_PositionChanged" ItemsSource="{Binding DiaryEntries}" ItemTemplate="{StaticResource userDiarySelector}">
                 <CarouselView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" />
                 </CarouselView.ItemsLayout>

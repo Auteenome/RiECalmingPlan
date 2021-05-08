@@ -68,7 +68,21 @@ namespace RiECalmingPlan.iOS.SQLite {
         }
 
 
+        string ISQLite.GetPath() {
+            String databaseName = "Questions.db";
 
+            //This path has to be beyond the Personal Folder (Unlike Android)
+            string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
+
+            if (!Directory.Exists(libFolder)) {
+                Directory.CreateDirectory(libFolder);
+            }
+
+            string dbFile = Path.Combine(libFolder, databaseName);
+
+            return dbFile;
+        }
 
 
     }
