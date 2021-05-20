@@ -38,6 +38,13 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private async void AddImageFromGallery() {
+            /*
+             * Utilises the Image Gallery function on the mobile device to let the user choose an image to add to the diary page.
+             * 
+             * At the moment, only one image can be chosen
+             * 
+             * 
+             */
             Console.WriteLine("Adding Image From Gallery");
             var file = await CrossMedia.Current.PickPhotoAsync();
             if (file != null) {
@@ -49,6 +56,13 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private async void AddImageFromCamera() {
+            /*
+             * Utilises the Camera function on the mobile device to let the user take a photo and add it to the image collection.
+             * 
+             * 
+             * 
+             * 
+             */
             Console.WriteLine("Adding Image From Camera");
             await CrossMedia.Current.Initialize();
 

@@ -6,6 +6,14 @@ using Xamarin.Forms;
 
 namespace RiECalmingPlan.Views {
     public class HappinessIndicatorToImageConverter : IValueConverter {
+        /*
+         * Converts a number from 0 to 1 into an emoji essentially
+         * 
+         * 
+         */
+
+
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
             string imageSource;
             switch ((Double)value) {

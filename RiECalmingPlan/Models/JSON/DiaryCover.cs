@@ -5,7 +5,10 @@ using System.Text;
 
 namespace RiECalmingPlan.Models.JSON {
     public class DiaryCover : ViewModel_Base {
-
+        /*
+         * The cover only has the background, and the name belonging to the diary
+         * 
+         */
         private string _Name = "";
         private string _CoverBackgroundSource;
 

@@ -4,6 +4,13 @@ using System.Text;
 
 namespace RiECalmingPlan.Models {
     public static class DistressType {
+        /*
+         * Just an easier way of mapping Distress Types to a numbered ranking system
+         * 
+         * 
+         * 
+         */
+
 
         public static string DistressTypeValue(int i) {
             switch (i) {

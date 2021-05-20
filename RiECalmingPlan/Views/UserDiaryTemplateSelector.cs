@@ -8,6 +8,12 @@ using Xamarin.Forms.Xaml;
 namespace RiECalmingPlan.Views {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public class UserDiaryTemplateSelector : DataTemplateSelector {
+        /*
+         * The Diary Pages are sorted into 2 types (Cover and Entry), each having a COMPLETED and EDITING state.
+         * 
+         * This allows for constant switching between page states
+         */
+
         public DataTemplate CompletedTemplate { get; set; }
         public DataTemplate EditingTemplate { get; set; }
         public DataTemplate CoverTemplate { get; set; }

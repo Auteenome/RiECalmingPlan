@@ -122,3 +122,17 @@ When Scrolling, setting the animate parameter allows the carousel to move toward
 Scrolling back on its own will trigger the PositionChanged event and therefore the last entry will mutate into a completed state.
 Regardless, the Diary still will create an entry under the edit state, no problems, but scrolling to that position in IOS is troublesome for now.
 On Android, no dramas.
+
+8/05/2021 (7hrs)
+- [Main Menu] Toolbar now shows "Options" instead of "Reset Database", as the "Reset Database" function is moved to a new page,
+alongside with the newly added "Delete Diary" function. You can also see both file sizes for the Diary and Local database in this page
+
+19/05/2021, 20/05/2021 - 21/05/2021 (8hrs)
+- [User Diary] Allowed a completed diary entry's photos to be clicked on. This opens up a new page with that photo and lets you slide between them all.
+You can also delete an image using the delete toolbar option.
+
+TODO: Clicking on an image will still put you to the first image of the collection when it enters the enlargement page. I need to fix this by either:
+1. Forcing the new carousel of images to scroll to the image clicked. The index of the image clicked needs to be referenced for the new carousel. Harder to do, but best outcome.
+2. Force the new page to only house one image, and allow the user to delete just that one at will. Easier, but not great as we don't want to be stuck in 2010.
+
+Further commenting added

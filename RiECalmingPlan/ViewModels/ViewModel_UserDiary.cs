@@ -52,6 +52,8 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         public void ToggleEdit(ViewModel_DiaryPage page) {
+            //Toggles the state of the current page, UI will deal with the changes after this function is done
+
             if (page is ViewModel_DiaryCover cover) {
                 if (cover.CurrentState == ViewModel_DiaryPage.PageState.COMPLETED) {
                     EditCover(cover);
@@ -70,6 +72,7 @@ namespace RiECalmingPlan.ViewModels {
 
         //Creates a new Entry in the Diary with the EDITING state
         private void CreateEntry() {
+            //Creates a new entry
             ViewModel_DiaryPage newEntry = new ViewModel_DiaryEntry() { Entry = new DiaryEntry() { FirstSubmit = DateTime.Now }, CurrentState = ViewModel_DiaryPage.PageState.EDITING };
             DiaryEntries.Add(newEntry);
             NewDiaryEntryAdded(this, EventArgs.Empty);
@@ -77,6 +80,7 @@ namespace RiECalmingPlan.ViewModels {
 
         //Saves the Diary Entry
         public void SaveEntry(ViewModel_DiaryEntry entry) {
+            //Saves an entry
             Console.WriteLine("Saving Entry " + entry.CurrentState);
 
             entry.Entry.LastEdited = DateTime.Now;
@@ -93,6 +97,7 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private async void RemoveEntry(ViewModel_DiaryEntry entry) {
+            //Removes an entry
             bool answer = await App.Current.MainPage.DisplayAlert("Removing a Diary Entry", "Are you sure you want to delete this Diary Entry?", "Yes", "No");
             if (answer == true) {
                 Console.WriteLine("Removing Entry ");
@@ -103,6 +108,7 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private void EditEntry(ViewModel_DiaryEntry entry) {
+            //Edits an entry
             Console.WriteLine(entry);
             //Triggered when the user clicks the EditEntry or NewEntry button
             if (entry.CurrentState == ViewModel_DiaryPage.PageState.COMPLETED) {
@@ -120,6 +126,7 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private void EditCover(ViewModel_DiaryCover cover) {
+            //Edits the Cover of the diary, which is also typically the first page of the diary
             ViewModel_DiaryCover updatedEntry = new ViewModel_DiaryCover(cover.Cover) {CurrentState = ViewModel_DiaryPage.PageState.EDITING };
             DiaryEntries[0] = updatedEntry;
 
@@ -128,6 +135,7 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         public void SaveCover(ViewModel_DiaryCover cover) {
+            //Saves the Cover of the Diary
             ViewModel_DiaryCover updatedEntry = new ViewModel_DiaryCover(cover.Cover) {CurrentState = ViewModel_DiaryPage.PageState.COMPLETED };
             DiaryEntries[0] = updatedEntry;
 

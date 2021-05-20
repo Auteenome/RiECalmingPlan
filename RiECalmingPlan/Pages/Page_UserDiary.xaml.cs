@@ -109,5 +109,11 @@ namespace RiECalmingPlan.Pages {
                 //EditSaveToolbarButton.Text = "Save";
             }
         }
+
+        private void OnImageTapped(object sender, EventArgs e) {
+            Console.WriteLine("Image Tapped");
+            Page_ImageViewer page = new Page_ImageViewer() { BindingContext = Carousel.CurrentItem as ViewModel_DiaryEntry};
+            Navigation.PushAsync(page);
+        }
     }
 }

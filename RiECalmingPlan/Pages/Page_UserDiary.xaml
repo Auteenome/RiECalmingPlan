@@ -53,7 +53,11 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout>
-                                    <Image Margin="1" Source="{Binding}"/>
+                                    <Image Margin="1" Source="{Binding}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OnImageTapped" NumberOfTapsRequired="1" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>

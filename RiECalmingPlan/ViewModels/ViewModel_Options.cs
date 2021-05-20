@@ -25,12 +25,13 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private void RefreshInfo() {
+            //Just pulls the sizes of the respective files
+
             //Database
             if (File.Exists(DependencyService.Get<ISQLite>().GetPath())) {
                 FileInfo databaseSize = new FileInfo(DependencyService.Get<ISQLite>().GetPath());
                 DBSize = (int)databaseSize.Length;
             }
-
 
             //Diary
             if (File.Exists(App.SavePath)) {
@@ -40,12 +41,14 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         private void ResetDatabase() {
+            //Replaces the current database in usable mobile app space with the base database in package space.
             App.database.ResetConnection();
             Console.WriteLine("Database connection reset");
             RefreshInfo();
         }
 
         private void ResetDiary() {
+            //Deletes the diary. Opening the diary part of the app still creates a new diary file anyway.
             UserDiaryFileController.DeleteDiary();
             Console.WriteLine("Diary Deleted");
             RefreshInfo();
