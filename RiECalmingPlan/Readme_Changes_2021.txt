@@ -135,4 +135,20 @@ TODO: Clicking on an image will still put you to the first image of the collecti
 1. Forcing the new carousel of images to scroll to the image clicked. The index of the image clicked needs to be referenced for the new carousel. Harder to do, but best outcome.
 2. Force the new page to only house one image, and allow the user to delete just that one at will. Easier, but not great as we don't want to be stuck in 2010.
 
-Further commenting added
+- Further commenting added
+
+12/06/2021 - 13/06/2021 (4hrs)
+- [Main Menu, Options] User Diary renamed to My Private Journal in the Main Menu. "Reset Diary" renamed to "Reset Journal" in Options.
+- [Questions.db] The following changes have been made to the Questions Table:
+CPQID ordering:
+6 -> 6
+
+13 -> 18
+14 -> 19
+15 -> 20
+16 -> 21
+
+18 -> 13
+19 -> 14
+20 -> 15
+21 -> 16

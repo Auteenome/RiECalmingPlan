@@ -51,7 +51,7 @@
                                 Clicked="GoToDistressHistory" 
                                 HorizontalOptions="Fill"/>
 
-                <Button Text="User Diary"
+                <Button Text="My Private Journal"
                                 Style="{StaticResource Style_TextIconButton}"
                                 ImageSource="baseline_book_24"
                                 Clicked="GoToUserDiary" 

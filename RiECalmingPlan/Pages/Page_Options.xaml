@@ -20,7 +20,7 @@
                                 HorizontalOptions="Fill"/>
 
                 <Label Text="{Binding DiarySize, StringFormat='User Diary, Size: {0} Bytes', TargetNullValue='No User Diary'}"/>
-                <Button Text="Reset Diary"
+                <Button Text="Reset Journal"
                                 Style="{StaticResource Style_TextIconButton}"
                                 ImageSource="ic_report_problem_white_24dp"
                                 Command="{Binding Command_ResetDiary}" 
