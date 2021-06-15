@@ -152,3 +152,18 @@ CPQID ordering:
 19 -> 14
 20 -> 15
 21 -> 16
+
+13/06/2021, 14/06/2021, 15/06/2021 (12hrs)
+
+- [Diary] Images can both be blown up in both EDIT and COMPLETED states. Clicking on a particular image scrolls to that image in the blown up carousel.
+NOTE 1: You can only delete an image if you are in the EDIT state. Image deletion changes are only effective on the diary once you save the diary entry.
+NOTE 2: Auto scrolling must include an await timer, before the scrolling function.
+NOTE 3: Since it is not duplicating the images to a new file and renaming them by order, duplicate photos chosen will appear twice or more on the same list, which also means the first occurance
+of said duplicate will be scrolled to regardless of clicking on a duplicate further along the image collection.
+
+- [Diary] Diary Entry limit set to 50. Dialog popup will occur when you have reached 50 Diary Entries.
+
+Fix for version 2 or above. Copy the chosen images into appspace directory as they're being added, renaming them by order, then they will be used as the unique 
+identifier for the images for the collection, so 'duplicate' images are not so duplicate.
+
+

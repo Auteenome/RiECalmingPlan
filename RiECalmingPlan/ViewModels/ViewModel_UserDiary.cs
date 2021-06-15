@@ -32,6 +32,7 @@ namespace RiECalmingPlan.ViewModels {
         public Command<ViewModel_DiaryCover> Command_SaveCover { get; private set; }
 
         public event EventHandler NewDiaryEntryAdded;
+        public event EventHandler EntryLimitReached;
 
         public ViewModel_UserDiary() {
             //Bind Commands to Functions
@@ -73,9 +74,13 @@ namespace RiECalmingPlan.ViewModels {
         //Creates a new Entry in the Diary with the EDITING state
         private void CreateEntry() {
             //Creates a new entry
-            ViewModel_DiaryPage newEntry = new ViewModel_DiaryEntry() { Entry = new DiaryEntry() { FirstSubmit = DateTime.Now }, CurrentState = ViewModel_DiaryPage.PageState.EDITING };
-            DiaryEntries.Add(newEntry);
-            NewDiaryEntryAdded(this, EventArgs.Empty);
+            if (DiaryEntries.Count <= 50) {//Diary Cover counts as diary Entry
+                ViewModel_DiaryPage newEntry = new ViewModel_DiaryEntry() { Entry = new DiaryEntry() { FirstSubmit = DateTime.Now }, CurrentState = ViewModel_DiaryPage.PageState.EDITING };
+                DiaryEntries.Add(newEntry);
+                NewDiaryEntryAdded(this, EventArgs.Empty);
+            } else {
+                EntryLimitReached(this, EventArgs.Empty);
+            }
         }
 
         //Saves the Diary Entry

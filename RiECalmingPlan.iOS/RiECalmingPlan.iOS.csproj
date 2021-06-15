@@ -305,6 +305,7 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\baseline_info_24.png" />
+    <BundleResource Include="Resources\baseline_delete_24.png" />
     <Content Include="Resources\baseline_new_24.png" />
     <BundleResource Include="Resources\expression_VeryHappy.png" />
     <BundleResource Include="Resources\expression_VeryUnhappy.png" />

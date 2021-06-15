@@ -4,12 +4,12 @@
              x:Class="RiECalmingPlan.Pages.Page_ImageViewer">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="baseline_delete_24" Clicked="ToolbarItem_Clicked"/>
+        <ToolbarItem x:Name="ToolbarDelete" Clicked="ToolbarItem_Clicked"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <StackLayout>
-            <CarouselView x:Name="Carousel" Loop="False" BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
+            <CarouselView x:Name="Carousel" Loop="False" ItemsSource="{Binding Entry.PhotoLinks}">
                 <CarouselView.ItemsLayout>
                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" SnapPointsAlignment="Start" SnapPointsType="MandatorySingle" />
                 </CarouselView.ItemsLayout>

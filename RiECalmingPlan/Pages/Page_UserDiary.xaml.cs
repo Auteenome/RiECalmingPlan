@@ -22,6 +22,7 @@ namespace RiECalmingPlan.Pages {
             InitializeComponent();
             BindingContext = _viewModel = new ViewModel_UserDiary();
             _viewModel.NewDiaryEntryAdded += EntryAdded;
+            _viewModel.EntryLimitReached += EntryLimitReached;
 
             Init();
         }
@@ -88,9 +89,15 @@ namespace RiECalmingPlan.Pages {
                 Console.WriteLine("Scrolling to position " + num);
                 Carousel.ScrollTo(num, animate: false);
 
-            }else if (Device.RuntimePlatform == Device.Android) {
+            }
+            else if (Device.RuntimePlatform == Device.Android) {
                 Carousel.ScrollTo(index: _viewModel.DiaryEntries.Count - 1);
             }
+
+        }
+
+        private async void EntryLimitReached(object sender, EventArgs e) {
+            await this.DisplayAlert("Page Limit Reached", "Please delete a diary entry before adding a new one", "Okay");
         }
 
         private void ToolbarEditSave_Clicked(object sender, EventArgs e) {
@@ -111,8 +118,13 @@ namespace RiECalmingPlan.Pages {
         }
 
         private void OnImageTapped(object sender, EventArgs e) {
-            Console.WriteLine("Image Tapped");
-            Page_ImageViewer page = new Page_ImageViewer() { BindingContext = Carousel.CurrentItem as ViewModel_DiaryEntry};
+            string path = (((Image)sender).BindingContext).ToString();
+            Console.WriteLine("Image Tapped " + path);
+            bool boo = false; //True if entry state is not editing
+            if (_viewModel.DiaryEntries[Carousel.Position].CurrentState == ViewModel_DiaryPage.PageState.EDITING) {
+                boo = true;
+            }
+            Page_ImageViewer page = new Page_ImageViewer(path, boo) { BindingContext = Carousel.CurrentItem as ViewModel_DiaryEntry};
             Navigation.PushAsync(page);
         }
     }

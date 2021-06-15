@@ -46,7 +46,7 @@
 
 
                     <!-- Image Collection -->
-                    <CollectionView BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
+                    <CollectionView x:Name="ImageCollection" BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
                         <CollectionView.ItemsLayout>
                             <GridItemsLayout Orientation="Vertical" Span="3"/>
                         </CollectionView.ItemsLayout>
@@ -148,16 +148,23 @@
                     </Frame>
 
                     
-                    <Label Text="Upload A Photo" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"/>
+                    <Label x:Name="ImageCollection" Text="Upload A Photo" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}"/>
                     <Frame Padding="0" CornerRadius="5" BorderColor="#006738" BackgroundColor="#c6e29f">
                         <!-- Image Collection -->
                         <CollectionView BindingContext="{Binding Entry}" ItemsSource="{Binding PhotoLinks}">
                             <CollectionView.ItemsLayout>
                                 <GridItemsLayout Orientation="Vertical" Span="3"/>
                             </CollectionView.ItemsLayout>
+                            
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Image Margin="5" Source="{Binding}"/>
+                                    <StackLayout>
+                                        <Image Margin="1" Source="{Binding}">
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="OnImageTapped" NumberOfTapsRequired="1"/>
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                    </StackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                             <CollectionView.EmptyView>
