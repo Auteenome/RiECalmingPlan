@@ -15,11 +15,18 @@ namespace RiECalmingPlan.Pages {
         public Page_Menu() {
             InitializeComponent();
             BindingContext = _viewModel = new ViewModel_MainMenu();
+            
         }
 
-        protected override void OnAppearing() {
+
+        protected override async void OnAppearing() {
             base.OnAppearing();
             _viewModel.LastDiaryEntry = AppPreferences.LastDiaryEntry;
+
+            if (!AppPreferences.Help_General) {
+                AppPreferences.Help_General = true;
+                await Navigation.PushAsync(new Page_Help() { BindingContext = new ViewModel_Help("DefaultHelp") });
+            }
         }
 
         async void GoToContextMainPage(object sender, EventArgs e) {
@@ -68,6 +75,10 @@ namespace RiECalmingPlan.Pages {
         async void GoToOptionsPage(object sender, EventArgs e) {
             //will be implemented soon
             await Navigation.PushAsync(new Page_Options());
+        }
+
+        private async void ToolbarItem_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_Help() { BindingContext = new ViewModel_Help("DefaultHelp") });
         }
     }
 }

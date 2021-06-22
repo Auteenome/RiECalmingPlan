@@ -8,6 +8,10 @@
              x:Class="RiECalmingPlan.Pages.Page_DistressTracker"
              BackgroundColor="{StaticResource RiEOffWhite}">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Help" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Resources>
         <ContentView x:Key="CarouselControl">
             <Frame Style="{StaticResource QuestionFrameStyle}"

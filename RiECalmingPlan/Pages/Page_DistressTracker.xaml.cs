@@ -26,8 +26,19 @@ namespace RiECalmingPlan.Pages {
         }
 
         public async void Init() {
+            /*
             if (!AppPreferences.Help_DistressTracker) {
                 AppPreferences.Help_DistressTracker = !(await this.DisplayAlert("Distress Tracker Tutorial", "You can find your expressions and interventions here.\nShow Again?", "Yes", "No"));
+            }
+            */
+
+        }
+
+        protected override async void OnAppearing() {
+            base.OnAppearing();
+            if (!AppPreferences.Help_DistressTracker) {
+                AppPreferences.Help_DistressTracker = true;
+                await Navigation.PushAsync(new Page_Help() { BindingContext = new ViewModel_Help("DistressTrackerPage") });
             }
         }
 
@@ -66,5 +77,8 @@ namespace RiECalmingPlan.Pages {
             base.OnDisappearing();
         }
 
+        private async void ToolbarItem_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_Help() { BindingContext = new ViewModel_Help("DistressTrackerPage") });
+        }
     }
 }

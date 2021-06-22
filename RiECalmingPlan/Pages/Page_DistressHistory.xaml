@@ -7,6 +7,10 @@
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_DistressHistory">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Help" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
+
     
     <ContentPage.Content>
         <StackLayout>

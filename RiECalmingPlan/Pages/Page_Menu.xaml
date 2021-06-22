@@ -19,9 +19,12 @@
                      Text="Admin"
                      Order="Secondary" 
                      Clicked="GoToDeviceInfo"/>-->
+        <ToolbarItem Text="Help"
+                     Clicked="ToolbarItem_Clicked"/>
         <ToolbarItem Text="Options"
                      Order="Primary"
                      Clicked="GoToOptionsPage" />
+        
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
 

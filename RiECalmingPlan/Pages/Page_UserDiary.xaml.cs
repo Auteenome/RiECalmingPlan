@@ -28,11 +28,27 @@ namespace RiECalmingPlan.Pages {
         }
 
         public async void Init() {
+            /*
             if (!AppPreferences.Help_UserDiary) {
                 AppPreferences.Help_UserDiary = !(await this.DisplayAlert("User Diary Tutorial", "You can add your own diary entries to this diary.\nShow Again?", "Yes", "No"));
             }
+            */
+            
         }
 
+        protected override async void OnAppearing() {
+            base.OnAppearing();
+            if (!AppPreferences.Help_UserDiary) {
+                AppPreferences.Help_UserDiary = true;
+                await Navigation.PushAsync(new Page_Help() { BindingContext = new ViewModel_Help("JournalPage") });
+            }
+        }
+
+        private async void ToolBarHelp_Clicked(object sender, EventArgs e) {
+            await Navigation.PushAsync(new Page_Help() { BindingContext = new ViewModel_Help("JournalPage") });
+        }
+
+        /*
         private void ToolBarHelp_Clicked(object sender, EventArgs e) {
             string title = "";
             string text = "";
@@ -54,6 +70,7 @@ namespace RiECalmingPlan.Pages {
             }
             DisplayAlert(title, text, "Okay");
         }
+        */
 
         private void Carousel_PositionChanged(object sender, PositionChangedEventArgs e) {
             //When the user swipes, if the user was currently editing a diary entry, it will save that diary entry.

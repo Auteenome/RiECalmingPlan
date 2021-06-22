@@ -29,6 +29,11 @@ namespace RiECalmingPlan.ViewModels {
         }
 
         //---------------- HELP FLAGS ---------------------------------------
+        public static bool Help_General {
+            get => Preferences.Get(nameof(Help_General), false);
+            set => Preferences.Set(nameof(Help_General), value);
+        }
+
         public static bool Help_CalmingPlan {
             get => Preferences.Get(nameof(Help_CalmingPlan), false);
             set => Preferences.Set(nameof(Help_CalmingPlan), value);

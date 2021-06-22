@@ -167,3 +167,7 @@ Fix for version 2 or above. Copy the chosen images into appspace directory as th
 identifier for the images for the collection, so 'duplicate' images are not so duplicate.
 
 
+21/062021, 22/06/2021 (10hrs)
+
+- [All pages] Popup short dialogs changed to a new generic page that changes depending on the page that triggered it.
+These pages also include a "Help" Toolbar menu item to get back into this page. Diary Help replaced for this feature instead of dynamic popup.

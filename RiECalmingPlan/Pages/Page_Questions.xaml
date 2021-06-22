@@ -6,7 +6,9 @@
              xmlns:views="clr-namespace:RiECalmingPlan.Views"
              mc:Ignorable="d"
              x:Class="RiECalmingPlan.Pages.Page_Questions">
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Help" Clicked="ToolbarItem_Clicked"/>
+    </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout BackgroundColor="{DynamicResource RiELightGreen}">
