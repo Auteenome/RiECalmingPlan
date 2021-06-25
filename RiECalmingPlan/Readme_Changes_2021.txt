@@ -171,3 +171,8 @@ identifier for the images for the collection, so 'duplicate' images are not so d
 
 - [All pages] Popup short dialogs changed to a new generic page that changes depending on the page that triggered it.
 These pages also include a "Help" Toolbar menu item to get back into this page. Diary Help replaced for this feature instead of dynamic popup.
+
+25/06/2021 (6hrs)
+
+- [Help Page] Fixed styling to match About page. Formatted help text into readable short paragraphs. Help text is contained within a ScrollView rather than a Stacklayout.
+- [Calming Plan] "Help" button text within a calming plan question -> "Info"

@@ -14,15 +14,18 @@
                    Aspect="AspectFill"
                    Margin="0"/>
             <!-- Taken from Infographic-->
-            <Label VerticalOptions="CenterAndExpand" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}">
-                <Label.Text>
-                    Rest in Essence (RiE) seeks to significantly improve the care and support provided to young people living with acute mental health issues in our communities.
+            <ScrollView>
+                <Label VerticalOptions="CenterAndExpand" Style="{StaticResource Style_NimbusBoldMediumSizeLabel}">
+                    <Label.Text>
+                        Rest in Essence (RiE) seeks to significantly improve the care and support provided to young people living with acute mental health issues in our communities.
                     
 Established in 2014 and based in Newcastle NSW, Rest in Essence draws on the original therapeutic model developed by our in-house PhD candidate to create industry-leading software, education and general care programs.
                     
 Our approach is evidence-based and revolutionary. We partner with government and non-government organisations that play a leading role in the care of young people to enhance their care models for greatly improved outcomes.
-                </Label.Text>
-            </Label>
+                    </Label.Text>
+                </Label>
+            </ScrollView>
+            
         </FlexLayout>
     </ContentPage.Content>
 </ContentPage>
