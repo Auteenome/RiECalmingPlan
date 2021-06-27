@@ -11,7 +11,7 @@ using Android.Views;
 using Android.Widget;
 
 namespace RiECalmingPlan.Droid {
-    [Activity(Label = "YouthGotThis!", Icon = "@mipmap/icon", Theme = "@style/SplashTheme", MainLauncher = true)]
+    [Activity(Label = "Auteenome", Icon = "@mipmap/icon", Theme = "@style/SplashTheme", MainLauncher = true)]
     // change icon = to change the app icon
     public class SplashActivity : Activity {
         // activity displays a splash image while app loadup, before loading the main activity

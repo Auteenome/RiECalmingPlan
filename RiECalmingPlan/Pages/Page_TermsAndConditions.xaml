@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:preferences="clr-namespace:RiECalmingPlan.ViewModels"
+             xmlns:preferences="clr-namespace:RiECalmingPlan.ViewModels" 
+             xmlns:views="clr-namespace:RiECalmingPlan.Views"
              x:Class="RiECalmingPlan.Pages.Page_TermsAndConditions"
              BackgroundColor="{StaticResource RiEOffWhite}">
     
@@ -17,13 +18,19 @@
 
         <Label Text="Auteenome Conditions of Use"
                Style="{StaticResource Style_NimbusBoldLargeSizeLabel}"/>
-
+        <!--
         <ScrollView>
             <Label x:Name="Label_TermsAndConditions"
                    Text="These are the terms and conditions"
                    Style="{StaticResource Style_NimbusRegDefaultSizeLabel}"/>
         </ScrollView>
+        -->
 
+        <ScrollView>
+            <views:TermsAndConditionsText/>
+        </ScrollView>
+        
+        
         <StackLayout Orientation="Horizontal" Spacing="0" IsVisible="{Binding ., Source={x:Static preferences:AppPreferences.TermsAndConditionsBottomControls}}">
             <CheckBox x:Name="CheckBox_Agreed"
                       VerticalOptions="Center"

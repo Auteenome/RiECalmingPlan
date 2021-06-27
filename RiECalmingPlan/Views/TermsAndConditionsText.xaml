@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:RiECalmingPlan.Views"
+             x:Class="RiECalmingPlan.Views.TermsAndConditionsText">
+  <ContentView.Content>
+        <StackLayout>
+            <!-- 1. This Application-->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">1. This Application</Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span>This RiE Youth mobile application (</Span>
+                        <Span FontAttributes="Bold">App</Span>
+                        <Span>) is made available by Rest In Essence Australia Pty Ltd ACN 612 694 916 (</Span>
+                        <Span FontAttributes="Bold">RiE</Span>
+                        <Span>).</Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <!-- 2. Application of these Terms and Conditions -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">2. Application of these Terms and Conditions</Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span>These terms and conditions of use (</Span>
+                        <Span FontAttributes="Bold">Terms and Conditions</Span>
+                        <Span>) govern your use of the App. Downloading, installing or otherwise accessing the App is conclusive evidence of your acceptance that the Terms and Conditions apply and are binding on you.</Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <!-- 3. Application of these Terms and Conditions -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">3. Important Disclaimer</Label>
+            <Label>3.1. The App is intended to help you put strategies in place to improve your daily mental wellbeing. It is for informational purposes only and is not intended as a substitute for medical or other professional advice. If you have a suspected or diagnosed mental health condition you should consult a professional before using the App. You should seek medical or other professional help when appropriate and should not delay or decline to seek such help because you are using the App.</Label>
+            <Label>3.2. You acknowledge and agree that, to the maximum extent permitted by law, RiE:</Label>
+            <Label Padding="5, 0, 0, 0">(a) does not make any promise or representation as to the accuracy, currency, usefulness, effectiveness or suitability for purpose of any advice, materials or information published on the App or that using the App will achieve any particular outcome; and</Label>
+            <Label Padding="5, 0, 0, 0">(b) accepts no responsibility, and will not be liable to you or any third party, for any consequences arising directly or indirectly from any action taken or failure to act based on the use of the App or any advice, materials or information published on the App.</Label>
+            <!-- 4. Use of the App -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">4. Use of the App</Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span>4.1. RiE grants you permission to use the App for personal purposes on your mobile telephone or other compatible device onto which you have downloaded the App (</Span>
+                        <Span FontAttributes="Bold">Device</Span>
+                        <Span>). You must not use the App for commercial purposes.</Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>4.2. When you download the App, the App will be stored on your Device.</Label>
+            <Label>4.3. You must pay the purchase price for the App, if any, at the time of initial downloading. Except as required by law, the purchase price is not refundable.</Label>
+            <Label>4.4. If you are 14 years of age or younger or you do not have a sufficient understanding of the App, you must only use the App with the consent and supervision of a parent, legal guardian or person with parental responsibility for you.</Label>
+            <Label>4.5. You agree that you will not:</Label>
+            <Label Padding="5, 0, 0, 0">(a) use the App for any unlawful purpose;</Label>
+            <Label Padding="5, 0, 0, 0">(b) interfere with, or attempt to interfere with, the operation of the App;</Label>
+            <Label Padding="5, 0, 0, 0">(c) sell, copy, reproduce, transmit, modify, alter, reverse-engineer or emulate the App in any way; or</Label>
+            <Label Padding="5, 0, 0, 0">(d) copy, modify, alter, amend or use any content, logos, graphics, icons or other content published by RiE, except as expressly permitted by RiE.</Label>
+
+            <Label>4.6. RiE may suspend or terminate your access to the App if:</Label>
+            <Label Padding="5, 0, 0, 0">(a) you breach, or RiE believes that you have breached, any of these Terms and Conditions;</Label>
+            <Label Padding="5, 0, 0, 0">(b) RiE believes it is unlawful to allow you to access the App;</Label>
+            <Label Padding="5, 0, 0, 0">(c) RiE detects any suspicious activity with respect to the access to, or use of, the App by, or purportedly by, you;</Label>
+            <Label Padding="5, 0, 0, 0">(d) RiE decides in its absolute discretion to withdraw or to cease to support the App; or</Label>
+            <Label Padding="5, 0, 0, 0">(e) RiE is unable to provide access to the App due to any circumstance beyond its reasonable control.</Label>
+
+            <Label>4.7. RiE does not promise that the App will operate uninterrupted, fault-free or without delay.</Label>
+            <Label>4.8. To the maximum extent permitted by law, RiE excludes any responsibility or liability for the unavailability of the App for any reason whatsoever.</Label>
+            <Label>4.9. You may terminate your use of the App at any time.</Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span>4.10. If you terminate your use of the App, you should consider removing the App from your Device, by following the instructions from your Device provider regarding the deletion of mobile applications. Deletion of the App from your Device will result in the loss of all information or data which you have entered into the App (</Span>
+                        <Span FontAttributes="Bold">User Data</Span>
+                        <Span>)</Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <!-- 5. User Data-->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">5. User Data</Label>
+            <Label>5.1. The proper functioning of the App requires you to enter accurate and complete User Data, as prompted by the App. You must use reasonable endeavours to ensure that the User Data entered by you is accurate, current and complete.</Label>
+            <Label>5.2. The User Data will be stored on your Device. It is not sent to, or backed up by, RiE. If you lose your Device, you may lose the User Data unless the data in your device is otherwise backed up. You agree that RiE will have no liability or responsibility for the loss of User Data.</Label>
+            <Label>5.3. You acknowledge that:</Label>
+            <Label Padding="5, 0, 0, 0">(a) the App is not password protected; and</Label>
+            <Label Padding="5, 0, 0, 0">(b) you are responsible for maintaining the confidentiality of your User Data by restricting access to your Device, including by using password or other access restrictions, to protect such information.</Label>
+            <Label>5.4. You agree that RiE is allowed to use the User Data for the purpose of operating the App.</Label>
+            
+            <!-- 6. Liability and Indemnities -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">6. Liability and Indemnities</Label>
+            <Label>6.1. Nothing in this clause 6 excludes, restricts or modifies any terms, conditions or warranties, or RiE’s liability for them, which are imposed or implied by statute and by statute cannot be excluded, restricted or modified. Limitations and exclusions are made only to the maximum extent that RiE may legally do so.</Label>
+            <Label>6.2. Subject to clause 6.1, the maximum aggregate liability of RiE arising out of or in connection with these Terms and Conditions, whether arising under contract, in tort (including negligence), in equity, under statute or otherwise, will be limited to $1.00.</Label>
+            <Label>6.3. You agree to indemnify and keep indemnified RiE, its directors, officers, employees and agents, against any and all liability or claim incurred or suffered by RiE arising from or in any way connected with:</Label>
+            <Label Padding="5, 0, 0, 0">(a) a breach by you of any of your obligations under these Terms and Conditions; or</Label>
+            <Label Padding="5, 0, 0, 0">(b) any act or default or omission or wilful misconduct or negligence of you in connection with these Terms and Conditions,</Label>
+            <Label>provided that you will not be liable under this clause 6.3 to the extent to which the liability or claim is caused or contributed to by any negligent or wrongful act or omission or wilful misconduct of RiE or any of its directors, officers, employees and agents.</Label>
+
+            <!-- 7. Third Party Websites -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">7. Third Party Websites</Label>
+            <Label>The App may contain links to websites operated, controlled or produced by third parties. Unless otherwise indicated, RiE does not control, endorse, sponsor or approve such third party websites or their content nor does RiE provide any warranty or take any responsibility whatsoever for any aspect of those websites or their content.</Label>
+            <!-- 8. Complaints -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">8. Complaints</Label>
+            <Label>If you wish to submit a complaint in writing to RiE in relation to the App, you should contact RiE using the contact details below:</Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Email: "></Span>
+                        <local:EmailSpan Text="info@restinessence.com.au"
+                                         EmailAddress="info@restinessence.com.au" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <!-- 9. Privacy -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">9. Privacy</Label>
+            <Label>RiE will comply with its obligations under the Privacy Act 1988 (Cth)(Act) and will deal with Personal Information (as that term is defined in the Act) in accordance with its published privacy policy.</Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="This policy is available on request or on RiE's website "></Span>
+                        <local:HyperlinkSpan Text="http://www.restinessence.com.au/rie-youth-app/"
+                                             Url="http://www.restinessence.com.au/rie-youth-app/" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <!-- 10. Amendment of Terms and Conditions -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">10. Amendment of Terms and Conditions</Label>
+            <Label>10.1. RiE may at any time amend the Terms and Conditions and may notify you of these changes by publishing the revised Terms and Conditions on its website.</Label>
+            <Label>10.2. If RiE publishes the revised Terms and Conditions on its website, the revised Terms and Conditions take effect from the effective date noted in the Terms and Conditions or 30 days after the date of publication on the website, whichever is later.</Label>
+            <!-- 11. Severance -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">11. Severance</Label>
+            <Label>If any provision or part of any provision of these Terms and Conditions is invalid, illegal or unenforceable, such provision or part thereof will be severed from the Terms and Conditions and the remainder will continue in full force and effect.</Label>
+            <!-- 12. Assignment -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">12. Assignment</Label>
+            <Label>RiE may assign its rights or novate its rights or obligations under these Terms and Conditions (in whole or in part) to any person without your consent.</Label>
+            <!-- 13. Governing Law and Jurisdiction -->
+            <Label Style="{StaticResource Style_NimbusBoldLargeSizeLabel}">13. Governing Law and Jurisdiction</Label>
+            <Label>The Terms and Conditions will be governed by and construed in accordance with the laws in force in the State of New South Wales. Each party submits to the non-exclusive jurisdiction of the courts of New South Wales.</Label>
+            
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>

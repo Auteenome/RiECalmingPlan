@@ -40,18 +40,25 @@ namespace RiECalmingPlan.ViewModels {
             }
         }
 
-        private void ResetDatabase() {
+        private async void ResetDatabase() {
             //Replaces the current database in usable mobile app space with the base database in package space.
-            App.database.ResetConnection();
-            Console.WriteLine("Database connection reset");
-            RefreshInfo();
+            bool answer = await Application.Current.MainPage.DisplayAlert("Reset Database", "Are you sure you want to reset the database?", "Yes", "No");
+            if (answer) {
+                App.database.ResetConnection();
+                Console.WriteLine("Database connection reset");
+                RefreshInfo();
+            }
         }
 
-        private void ResetDiary() {
+        private async void ResetDiary() {
             //Deletes the diary. Opening the diary part of the app still creates a new diary file anyway.
-            UserDiaryFileController.DeleteDiary();
-            Console.WriteLine("Diary Deleted");
-            RefreshInfo();
+            bool answer = await Application.Current.MainPage.DisplayAlert("Reset Journal", "Are you sure you want to reset the Journal?", "Yes", "No");
+            if (answer) {
+                UserDiaryFileController.DeleteDiary();
+                Console.WriteLine("Diary Deleted");
+                RefreshInfo();
+            }
+
         }
 
     }

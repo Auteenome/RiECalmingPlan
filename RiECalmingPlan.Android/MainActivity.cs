@@ -20,7 +20,7 @@ using RiECalmingPlan.LocalNotifications;
 using Xamarin.Forms;
 
 namespace RiECalmingPlan.Droid {
-    [Activity(Label = "YouthGotThis!", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
+    [Activity(Label = "Auteenome", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, LaunchMode = LaunchMode.SingleTop)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity {
 
         internal static MainActivity Instance { get; private set; }

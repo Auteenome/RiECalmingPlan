@@ -17,6 +17,7 @@ namespace RiECalmingPlan.Pages {
         public Page_TermsAndConditions() {
             InitializeComponent();
 
+            /*
             // ********** FILE READING ********** 
             var assembly = IntrospectionExtensions.GetTypeInfo(typeof(App)).Assembly;
             Stream stream = assembly.GetManifestResourceStream("RiECalmingPlan.Resource.RiETermsAndConditions.txt");
@@ -26,6 +27,7 @@ namespace RiECalmingPlan.Pages {
             // ********** ********** **********
 
             Label_TermsAndConditions.Text = text;
+            */
         }
 
         private async void Button_Accept_Clicked(object sender, EventArgs e) {

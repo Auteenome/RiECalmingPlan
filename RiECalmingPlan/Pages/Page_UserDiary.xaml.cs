@@ -24,17 +24,19 @@ namespace RiECalmingPlan.Pages {
             _viewModel.NewDiaryEntryAdded += EntryAdded;
             _viewModel.EntryLimitReached += EntryLimitReached;
 
-            Init();
+            //Init();
         }
 
+        /*
         public async void Init() {
-            /*
+            
             if (!AppPreferences.Help_UserDiary) {
                 AppPreferences.Help_UserDiary = !(await this.DisplayAlert("User Diary Tutorial", "You can add your own diary entries to this diary.\nShow Again?", "Yes", "No"));
             }
-            */
+            
             
         }
+        */
 
         protected override async void OnAppearing() {
             base.OnAppearing();

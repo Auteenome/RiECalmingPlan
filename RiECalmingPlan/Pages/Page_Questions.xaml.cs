@@ -15,17 +15,19 @@ namespace RiECalmingPlan.Pages {
         public Page_Questions() {
             InitializeComponent();
             BindingContext = _viewModel = new ViewModel_DisplayQuestionView();
-            Init();
+            //Init();
         }
 
+        /*
         public async void Init() {
-            /*
+            
             if (!AppPreferences.Help_CalmingPlan) {
                 AppPreferences.Help_CalmingPlan = !(await this.DisplayAlert("Calming Plan Tutorial", "Please finish this survey regarding your stressors.\nShow Again?", "Yes", "No"));
             }
-            */
+            
 
         }
+        */
 
         protected override async void OnAppearing() {
             base.OnAppearing();

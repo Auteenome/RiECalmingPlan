@@ -176,3 +176,17 @@ These pages also include a "Help" Toolbar menu item to get back into this page. 
 
 - [Help Page] Fixed styling to match About page. Formatted help text into readable short paragraphs. Help text is contained within a ScrollView rather than a Stacklayout.
 - [Calming Plan] "Help" button text within a calming plan question -> "Info"
+
+26/06/2021, 27/06/2021 (12hrs)
+
+- [Terms and Conditions Page]
+Previous:
+Generic text was taken from a txt file and streamed onto the page.
+Current:
+Terms and Conditions hard coded from the given PDF file, which also has applied styling and email/url interactions.
+Going Forward:
+If the Terms and Conditions page is updated often, or if you don't like hard-updating the Terms and Conditions Page, you can also upload the PDF onto a website,
+and open the site from the Terms and Conditions button. That way admins can edit the pdf with ease, and no code in the app needs to be changed after first configuration.
+
+- [Options Page]
+Now asks the user if they want to reset the database/journal rather than doing it regardless
