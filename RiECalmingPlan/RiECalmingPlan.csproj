@@ -48,11 +48,13 @@
       <DependentUpon>TermsAndConditionsText.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
+  <!--
   <ItemGroup>
     <Reference Include="Mono.Android">
       <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.Android.framework\Versions\10.2.0.100\lib\xamarin.android\xbuild-frameworks\MonoAndroid\v9.0\Mono.Android.dll</HintPath>
     </Reference>
   </ItemGroup>
+  -->
   <ItemGroup>
     <EmbeddedResource Update="Pages\Page_About.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
