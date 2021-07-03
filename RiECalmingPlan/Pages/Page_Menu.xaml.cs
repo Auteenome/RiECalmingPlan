@@ -65,7 +65,8 @@ namespace RiECalmingPlan.Pages {
         }
 
         async void GoToAboutPage(object sender, EventArgs e) {
-            await Navigation.PushAsync(new Page_About());
+            //await Navigation.PushAsync(new Page_About());
+            await Navigation.PushAsync(new Page_Help() { BindingContext = new ViewModel_Help("DefaultHelp") });
         }
 
         async void GoToTandCPage(object sender, EventArgs e) {

@@ -19,8 +19,9 @@
                      Text="Admin"
                      Order="Secondary" 
                      Clicked="GoToDeviceInfo"/>-->
-        <ToolbarItem Text="Help"
-                     Clicked="ToolbarItem_Clicked"/>
+        
+        <!--<ToolbarItem Text="Help"
+                     Clicked="ToolbarItem_Clicked"/>-->
         <ToolbarItem Text="Options"
                      Order="Primary"
                      Clicked="GoToOptionsPage" />
@@ -80,7 +81,7 @@
                         Clicked="GoToTandCPage" 
                         Grid.Column="0"/>
                 <!-- Bind to last diary entry user has added-->
-                <Label HorizontalTextAlignment="End" Text="{Binding LastDiaryEntry, StringFormat='Last Diary Entry:{0}'}" Grid.Column="1"/>
+                <Label HorizontalTextAlignment="End" Text="{Binding LastDiaryEntry, StringFormat='Last Diary Entry:&#10;{0:dd/MM/yyyy a\\t h:mm tt}'}" Grid.Column="1"/>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

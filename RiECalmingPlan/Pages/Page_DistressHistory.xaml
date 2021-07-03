@@ -34,7 +34,7 @@
                                 <Frame>
                                     <StackLayout>
                                         <Label Text="{Binding DistressLevelType, StringFormat='Level: {0}'}" />
-                                        <Label Text="{Binding StartTime, StringFormat='Time Recorded: {0}'}" />
+                                        <Label Text="{Binding StartTime, StringFormat='Time Recorded: {0:dd/MM/yyyy a\\t h:mm tt}'}" />
                                         <Label Text="{Binding Location, StringFormat='Location: {0}'}"/>
                                     </StackLayout>
                                 </Frame>

@@ -190,3 +190,19 @@ and open the site from the Terms and Conditions button. That way admins can edit
 
 - [Options Page]
 Now asks the user if they want to reset the database/journal rather than doing it regardless
+
+
+1/07/2021 (3hrs)
+- [IOS] icons updated with RiE icons.
+
+
+3/07/2021 (3hrs)
+- [Questions.db]
+Responses table now reflected previous question reordering change. Correct responses are now shown for each question, and thus,
+the Distress Tracker can properly pull the same data.
+- [Main Page, Distress History]
+Dates now show in format "dd:MM:yyyy at hh:mm tt" (day:month:year at hour:minute AM/PM)
+- [Main Page]
+Help Toolbar button removed, About button now enters into the page where help button was going to.
+
+
