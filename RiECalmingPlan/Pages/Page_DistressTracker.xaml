@@ -226,7 +226,8 @@
             <CarouselView x:Name="Carousel"
                           IsSwipeEnabled="False"
                           VerticalOptions="CenterAndExpand"
-                          HorizontalOptions="CenterAndExpand">
+                          HorizontalOptions="CenterAndExpand"
+                          Loop="False">
                 <CarouselView.ItemsSource>
                     <x:Array Type="{x:Type ContentView}">
                         <ContentView Content="{DynamicResource CarouselControl}" />
