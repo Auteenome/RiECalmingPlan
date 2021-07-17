@@ -14,13 +14,13 @@ namespace RiECalmingPlan.Models {
 
         public static string DistressTypeValue(int i) {
             switch (i) {
-                case 0:
-                    return "Calm";
                 case 1:
-                    return "Mild";
+                    return "Calm";
                 case 2:
-                    return "Moderate";
+                    return "Mild";
                 case 3:
+                    return "Moderate";
+                case 4:
                     return "Acute";
                 default:
                     return "Calm";
@@ -30,13 +30,13 @@ namespace RiECalmingPlan.Models {
         public static int DistressTypeValue(string s) {
             switch (s) {
                 case "Calm":
-                    return 0;
-                case "Mild":
                     return 1;
-                case "Moderate":
+                case "Mild":
                     return 2;
-                case "Acute":
+                case "Moderate":
                     return 3;
+                case "Acute":
+                    return 4;
                 default:
                     return 0;
             }

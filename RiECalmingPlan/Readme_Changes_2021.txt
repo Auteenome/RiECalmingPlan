@@ -205,4 +205,12 @@ Dates now show in format "dd:MM:yyyy at hh:mm tt" (day:month:year at hour:minute
 - [Main Page]
 Help Toolbar button removed, About button now enters into the page where help button was going to.
 
+17/07/2021
+- [Android Internal Testing Version] Version updated to 2 to upload for internal testing
+- [DistressType.cs] Previous fix for Stepper Label text showing [0, 1, 2, 3] and inputting as [1, 2, 3, 4] respectively were not reflected in DistressType mapping. The mapping is now updated.
+
+TODO:
+- On Carousels, Left and Right buttons should be placed so users can click AND swipe to go to previous and next slides in the carousel.
+
+
 
